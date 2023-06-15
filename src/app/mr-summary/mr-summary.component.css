@@ -1,0 +1,44 @@
+.card{
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #E2E5F2;
+    border-radius: 4px;
+    opacity: 0.8;
+}
+.range {
+    width: 100%;
+    height: 7px;
+    /* background: #eeeff1 0% 0% no-repeat padding-box; */
+    background: #B0B0B0;
+    border-radius: 7px;
+}
+
+.ranged {
+    width: 100%;
+    height: 7px;
+    /* background: #fff 0% 0% no-repeat padding-box; */
+    background: #E7E7E7;
+    border-radius: 7px;
+}
+
+.rangeValueRed,
+.rangeValueYellow,
+.rangeValueGreen {
+    height: 7px;
+    border-radius: 7px;
+    position: relative;
+    top: -7px;
+    color:red;
+}
+.rangeValueRed {
+    background: #f90e3e 0% 0% no-repeat padding-box;
+}
+
+.rangeValueYellow {
+    background: #fba824 0% 0% no-repeat padding-box;
+}
+
+.rangeValueGreen {
+    background: #42b977 0% 0% no-repeat padding-box;
+}
+
+  

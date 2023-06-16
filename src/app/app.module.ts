@@ -28,6 +28,8 @@ import {MatInputModule} from '@angular/material/input';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { ClusterAnalysisComponent } from './cluster-analysis/cluster-analysis.component';
 import {MatTabsModule} from '@angular/material/tabs';
+import { SegmentsComponent } from './segments/segments.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +39,8 @@ import {MatTabsModule} from '@angular/material/tabs';
     FooterComponent,
     MrSummaryComponent,
     AlgorithmSelectionComponent,
-    ClusterAnalysisComponent
+    ClusterAnalysisComponent,
+    SegmentsComponent
   ],
   imports: [
     BrowserModule,

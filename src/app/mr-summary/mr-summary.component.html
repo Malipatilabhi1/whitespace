@@ -16,16 +16,16 @@
     </div>
     <div class="content d-flex flex-column py-2" >
         <div class="row1 d-flex flex-row" style="width:100%">
-            <div class="card mx-2 p-2" style="width: 25%;">
+            <div class="card mx-2 px-2" style="width: 25%;">
                  <h4><b>No of Questions</b></h4>
                  <p style="font-size: 40px;">43</p>
             </div>
-            <div class="card mx-2 p-2" style="width: 25%;">
+            <div class="card mx-2 px-2" style="width: 25%;">
                 <h4><b>No of Respondents</b></h4>
                 <p style="font-size: 40px;">1500</p>
            </div>
-           <div class="card mx-2 p-2" style="width: 25%;">
-            <h4><b>No of Respondents</b></h4>
+           <div class="card mx-2 px-2" style="width: 25%;">
+            <h4 class=""><b>No of Respondents</b></h4>
             <div class="d-flex" style="width:100%">
                 <div style="margin-left: 10px;width: 10em;margin-bottom: 5px;">
                     <div class="range" > </div>
@@ -34,7 +34,7 @@
             </div>
             <div class="d-flex flex-row">
                 <div class="d-flex flex-row">
-                    <div class="card-rounded-4" style="height:10px; width:10px;background-color:red;border-radius:10px;margin-left:10px;margin-right:10px; margin-top:5px"></div>
+                    <div class="card-rounded-4" style="height:10px; width:10px;background-color:#3F7EFF;border-radius:10px;margin-left:10px;margin-right:10px; margin-top:5px"></div>
                     <div >
                         <p>male 45%</p>
                     </div>
@@ -50,17 +50,22 @@
             
        </div>
        <div class="card mx-2" style="width: 25%;">
-         <h4 class=" px-2 py-0 my-0"><b>Household Composition</b></h4>
-         <div id="chart">
-            <apx-chart
-              [series]="chartOptions.series"
-              [chart]="chartOptions.chart"
-              [labels]="chartOptions.labels"
-              [title]="chartOptions.title"
-              [theme]="chartOptions.theme"
-              [responsive]="chartOptions.responsive"
-            ></apx-chart>
+        <h4 class="px-2 py-0 my-0"><b>Satisfaction With Current Product</b></h4>
+        <div class="card d-flex flex-row">
+          <div class="d-flex flex-column px-5 mt-1">
+              <img src="../../assets/images/smilee.png" class="" height="30" width="30" alt=""   >
+              <h4 style="text-align: center;"><b>35%</b></h4>
           </div>
+          <div class="d-flex flex-column px-4 mt-1">
+              <img  src="../../assets/images/neutralFace.png" class="" height="30" width="30" alt=""   >
+              <h4 style="text-align: center;"><b>25%</b></h4>
+          </div>
+          <div class="d-flex flex-column px-5 mt-1">
+              <img class="pt-1" src="../../assets/images/sadEmo.png" class="" height="30" width="30" alt=""   >
+              <h4 style="text-align: center;"><b>45%</b></h4>
+          </div>
+
+        </div>
        </div>
         </div>
         <div class="row2 d-flex flex-row" style="width:100%">
@@ -100,22 +105,18 @@
                   </div>
             </div>
             <div class="card m-2" style="width:33%">
-                <h4 class="px-2"><b>Satisifaction With Current Product</b></h4>
-              <div class="card d-flex flex-row">
-                <div class="d-flex flex-column px-5 mt-2">
-                    <img src="../../assets/images/smilee.png" class="" height="70" width="70" alt=""   >
-                    <h4 style="text-align: center;"><b>35%</b></h4>
-                </div>
-                <div class="d-flex flex-column px-4 mt-2">
-                    <img  src="../../assets/images/neutralFace.png" class="" height="70" width="70" alt=""   >
-                    <h4 style="text-align: center;"><b>25%</b></h4>
-                </div>
-                <div class="d-flex flex-column px-4 mt-2">
-                    <img class="pt-1" src="../../assets/images/sadEmo.png" class="" height="70" width="80" alt=""   >
-                    <h4 style="text-align: center;"><b>45%</b></h4>
-                </div>
-
-              </div>
+              <h4 class=" px-2 py-0 my-0"><b>Household Composition</b></h4>
+              <div id="chart">
+                 <apx-chart
+                   [series]="chartOptions.series"
+                   [chart]="chartOptions.chart"
+                   [labels]="chartOptions.labels"
+                   [title]="chartOptions.title"
+                   [theme]="chartOptions.theme"
+                   [responsive]="chartOptions.responsive"
+                 ></apx-chart>
+               </div>
+            
             </div>
 
         </div>
@@ -169,7 +170,7 @@
             </div>
 
         </div>
-        <div  style="display: flex; justify-content: end;">
+        <div class="px-2" style="display: flex; justify-content: end;">
             <button (click)="navigatetoAlgorithmSelection()" type="button" class="btn btn-primary">Next
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>

@@ -4,6 +4,7 @@ import { MrSummaryComponent } from './mr-summary/mr-summary.component';
 import { LandingScreenComponent } from './landing-screen/landing-screen.component';
 import { AlgorithmSelectionComponent } from './algorithm-selection/algorithm-selection.component';
 import { ClusterAnalysisComponent } from './cluster-analysis/cluster-analysis.component';
+import { SegmentsComponent } from './segments/segments.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,11 @@ const routes: Routes = [
   {
     path:"analysis",
     component: ClusterAnalysisComponent,
+    pathMatch:"full"
+  },
+  {
+    path:"segment",
+    component: SegmentsComponent,
     pathMatch:"full"
   },
 ];

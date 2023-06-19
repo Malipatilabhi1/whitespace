@@ -71,23 +71,23 @@
     <div class="d-flex flex-row">
       <div>
         <div id="chart" class="card mx-2">
-          <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [xaxis]="chartOptions.xaxis"
+          <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [xaxis]="chartOptions.xaxis" [yaxis]="chartOptions.yaxis"
             [dataLabels]="chartOptions.dataLabels" [grid]="chartOptions.grid" [stroke]="chartOptions.stroke"
-            [title]="chartOptions.title"></apx-chart>
+            [title]="chartOptions.title" [tooltip]="chartOptions.tooltip"></apx-chart>
         </div>
       </div>
       <div class="card mx-1">
         <div id="chart">
-          <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [xaxis]="chartOptions.xaxis"
+          <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [xaxis]="chartOptions.xaxis" [yaxis]="chartOptions.yaxis"
             [dataLabels]="chartOptions.dataLabels" [grid]="chartOptions.grid" [stroke]="chartOptions.stroke"
-            [title]="chartOptions.title"></apx-chart>
+            [title]="chartOptions.title" [tooltip]="chartOptions.tooltip"></apx-chart>
         </div>
       </div>
       <div class="card mx-1">
-        <div id="chart">
-          <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [xaxis]="chartOptions.xaxis"
-            [dataLabels]="chartOptions.dataLabels" [grid]="chartOptions.grid" [stroke]="chartOptions.stroke"
-            [title]="chartOptions.title"></apx-chart>
+        <div id="chart1">
+          <apx-chart [series]="chartOptions1.series" [chart]="chartOptions1.chart" [xaxis]="chartOptions1.xaxis" [yaxis]="chartOptions1.yaxis"
+            [dataLabels]="chartOptions1.dataLabels" [grid]="chartOptions1.grid" [stroke]="chartOptions1.stroke"
+            [title]="chartOptions1.title"  [tooltip]="chartOptions1.tooltip"></apx-chart>
         </div>
       </div>
     </div>

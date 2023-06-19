@@ -29,6 +29,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import { ClusterAnalysisComponent } from './cluster-analysis/cluster-analysis.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import { SegmentsComponent } from './segments/segments.component';
+import { Ng5SliderModule } from 'ng5-slider';
+
 
 @NgModule({
   declarations: [
@@ -63,7 +65,8 @@ import { SegmentsComponent } from './segments/segments.component';
     ReactiveFormsModule,
     MatInputModule,
     MatCheckboxModule,
-    MatTabsModule
+    MatTabsModule,
+    Ng5SliderModule
   ],
   providers: [],
   bootstrap: [AppComponent]

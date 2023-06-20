@@ -5,6 +5,7 @@ import { LandingScreenComponent } from './landing-screen/landing-screen.componen
 import { AlgorithmSelectionComponent } from './algorithm-selection/algorithm-selection.component';
 import { ClusterAnalysisComponent } from './cluster-analysis/cluster-analysis.component';
 import { SegmentsComponent } from './segments/segments.component';
+import { AnalysisComponent } from './analysis/analysis.component';
 
 const routes: Routes = [
   {
@@ -30,6 +31,11 @@ const routes: Routes = [
   {
     path:"segment",
     component: SegmentsComponent,
+    pathMatch:"full"
+  }, 
+  {
+    path:"whitespaceAnalysis",
+    component: AnalysisComponent,
     pathMatch:"full"
   },
 ];

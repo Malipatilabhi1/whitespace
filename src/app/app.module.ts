@@ -30,6 +30,7 @@ import { ClusterAnalysisComponent } from './cluster-analysis/cluster-analysis.co
 import {MatTabsModule} from '@angular/material/tabs';
 import { SegmentsComponent } from './segments/segments.component';
 import { Ng5SliderModule } from 'ng5-slider';
+import { AnalysisComponent } from './analysis/analysis.component';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { Ng5SliderModule } from 'ng5-slider';
     MrSummaryComponent,
     AlgorithmSelectionComponent,
     ClusterAnalysisComponent,
-    SegmentsComponent
+    SegmentsComponent,
+    AnalysisComponent
   ],
   imports: [
     BrowserModule,

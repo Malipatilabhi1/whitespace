@@ -31,6 +31,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import { SegmentsComponent } from './segments/segments.component';
 import { Ng5SliderModule } from 'ng5-slider';
 import { AnalysisComponent } from './analysis/analysis.component';
+import { ChatbotComponent } from './chatbot/chatbot.component';
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import { AnalysisComponent } from './analysis/analysis.component';
     AlgorithmSelectionComponent,
     ClusterAnalysisComponent,
     SegmentsComponent,
-    AnalysisComponent
+    AnalysisComponent,
+    ChatbotComponent
   ],
   imports: [
     BrowserModule,

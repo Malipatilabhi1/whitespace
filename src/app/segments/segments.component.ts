@@ -1,6 +1,7 @@
 import { Component,  OnInit } from '@angular/core';
 import {Options} from 'ng5-slider'
-
+import { Subject } from 'rxjs'; 
+import { debounceTime } from 'rxjs';
 @Component({
   selector: 'app-segments',
   templateUrl: './segments.component.html',
@@ -14,13 +15,18 @@ export class SegmentsComponent implements OnInit {
  functionalNeeds: string[] = [];
  functionalNeeds2: string[] = [];
 
-
+private saveDataSubject = new Subject<void>();
 
  ngOnInit(): void {
    this.loadSavedData();
+   this.saveDataSubject.pipe(debounceTime(500)).subscribe(()=>{
+    this.saveData();
+   });
  }
 
-
+saveDataDebounced():void{
+  this.saveDataSubject.next();
+}
 
  loadSavedData(): void {
    const savedSegmentCharacteristics = localStorage.getItem('segmentCharacteristics');
@@ -59,6 +65,7 @@ export class SegmentsComponent implements OnInit {
  addCharacteristic(): void {
    this.segmentCharacteristics.push('');
    this.saveData();
+   localStorage.setItem('segmentCharacteristics', JSON.stringify(this.segmentCharacteristics));
  }
 
 
@@ -94,6 +101,10 @@ export class SegmentsComponent implements OnInit {
  removeFunctionalNeed2(index: number): void {
    this.functionalNeeds2.splice(index, 1);
    this.saveData();
+ }
+
+ trackByIndex(index:number,item:any):number{
+  return index
  }
 
   sliderValues: number[] = [50, 10, 20, 70, 30, 60];

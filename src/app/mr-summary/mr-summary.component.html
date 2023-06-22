@@ -18,31 +18,31 @@
         <div class="row1 d-flex flex-row" style="width:100%">
             <div class="card mx-2 px-2" style="width: 25%;">
                  <h4><b>No of Questions</b></h4>
-                 <p style="font-size: 40px;">43</p>
+                 <p style="font-size: 40px;">{{dataScreen2.number_of_questions}}</p>
             </div>
             <div class="card mx-2 px-2" style="width: 25%;">
                 <h4><b>No of Respondents</b></h4>
-                <p style="font-size: 40px;">1500</p>
+                <p style="font-size: 40px;">{{dataScreen2.number_of_respondents}}</p>
            </div>
            <div class="card mx-2 px-2" style="width: 25%;">
             <h4 class=""><b>No of Respondents</b></h4>
             <div class="d-flex" style="width:100%">
                 <div style="margin-left: 10px;width: 10em;margin-bottom: 5px;">
                     <div class="range" > </div>
-                    <div  [ngStyle]="{'width': 45 +'%'}" class="rangeValueRed"></div>
+                    <div  [ngStyle]="{'width': dataScreen2.respondent_Female*100 +'%'}" class="rangeValueRed"></div>
                 </div>
             </div>
             <div class="d-flex flex-row">
                 <div class="d-flex flex-row">
                     <div class="card-rounded-4" style="height:10px; width:10px;background-color:#3F7EFF;border-radius:10px;margin-left:10px;margin-right:10px; margin-top:5px"></div>
                     <div >
-                        <p>male 45%</p>
+                        <p>Female {{dataScreen2.respondent_Female}}</p>
                     </div>
                 </div>
                 <div class="d-flex flex-row px-2">
                     <div class="card-rounded-4" style="height:10px; width:10px;background-color:#B0B0B0;border-radius:10px;margin-left:10px;margin-right:10px; margin-top:5px"></div>
                     <div >
-                        <p>Female 55%</p>
+                        <p>Male {{dataScreen2.respondent_Male}}</p>
                     </div>
                 </div>
             </div>
@@ -52,17 +52,17 @@
        <div class="card mx-2" style="width: 25%;">
         <h4 class="px-2 py-0 my-0"><b>Satisfaction With Current Product</b></h4>
         <div class="card d-flex flex-row">
-          <div class="d-flex flex-column px-5 mt-1">
+          <div class="d-flex flex-column px-4 mt-1">
               <img src="../../assets/images/smilee.png" class="" height="30" width="30" alt=""   >
-              <h4 style="text-align: center;"><b>35%</b></h4>
+              <h4 style="text-align: center;"><b>{{dataScreen2.satisfaction_Yes}}%</b></h4>
           </div>
           <div class="d-flex flex-column px-4 mt-1">
               <img  src="../../assets/images/neutralFace.png" class="" height="30" width="30" alt=""   >
-              <h4 style="text-align: center;"><b>25%</b></h4>
+              <h4 style="text-align: center;"><b>{{dataScreen2.satisfaction_Somewhat}}%</b></h4>
           </div>
-          <div class="d-flex flex-column px-5 mt-1">
+          <div class="d-flex flex-column px-4 mt-1">
               <img class="pt-1" src="../../assets/images/sadEmo.png" class="" height="30" width="30" alt=""   >
-              <h4 style="text-align: center;"><b>45%</b></h4>
+              <h4 style="text-align: center;"><b>{{dataScreen2.satisfaction_No}}%</b></h4>
           </div>
 
         </div>

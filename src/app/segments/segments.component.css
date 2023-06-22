@@ -1,0 +1,11 @@
+#modal-dialog {
+    position: fixed;
+    margin: auto;
+    width: 320px;
+    height: 80%;
+    right: 20px;
+    bottom:0px;
+} 
+#modal-content {
+    height: 80%;
+}

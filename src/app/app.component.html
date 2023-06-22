@@ -8,23 +8,29 @@
   <div class="sticky-top" style="width: 100% !important;">
     <app-header ></app-header>
   </div>
+ 
   <div class="d-flex" >
     <!-- <app-side-nav ></app-side-nav> -->
     <mat-drawer-container>
       <mat-drawer mode="side" [opened]="sideBarOpen" >
-        <app-side-nav ></app-side-nav>
+      
+         <app-side-nav ></app-side-nav>
+      
       </mat-drawer>   
     
 
   </mat-drawer-container>
     <div class="scroller" #scroller1 style="width: 100% !important;">
-     
+     <div id = "content" #content>
       <router-outlet class="scroll"></router-outlet>
       <!-- <app-landing-screen></app-landing-screen> -->
+      <!-- <button class="btn btn-primary rounded-0 offset-10" (click)="generatePdf22()">click</button> -->
+</div>
     </div>
 
   </div>
 </div>
+
 <div class="sticky-bottom mt-5" style="margin-top: 0;">
   <app-footer></app-footer>
 </div>

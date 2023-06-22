@@ -1,5 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import * as d3 from 'd3';
+declare var Plotly: any;
+interface MyData {
+  name: string;
+  children?: MyData[];
+}
 import {
   ChartComponent,
   ApexAxisChartSeries,
@@ -55,6 +61,7 @@ export class AlgorithmSelectionComponent implements OnInit {
   ngOnInit(): void {
     this.elbow()
     this.eps()
+    this.createDendrogram();
   }
   init= [
     {value: 'KMeans++', viewValue: 'KMeans++'},
@@ -70,9 +77,14 @@ export class AlgorithmSelectionComponent implements OnInit {
   rowData1: any = {};
   rowData2: any = {}; 
   rowData3: any = {}; 
+  isDendrogramVisible = false;
+ 
+    
+  
   showContent() 
   { 
     this.display= true
+    this.isDendrogramVisible = !this.isDendrogramVisible
     console.log('K Means:', this.rowData1); 
     console.log('Agglomerative Hierarchical:', this.rowData2); 
     console.log('DB Scan:', this.rowData3);
@@ -103,8 +115,8 @@ export class AlgorithmSelectionComponent implements OnInit {
         }
       ],
       chart: {
-        height: 170,
-        width: 420,
+        height: 190,
+        width: 600,
         type: "line",
         zoom: {
           enabled: false
@@ -306,8 +318,8 @@ export class AlgorithmSelectionComponent implements OnInit {
         }
       ],
       chart: {
-        height: 170,
-        width: 420,
+        height: 190,
+        width: 600,
         type: "line",
         zoom: {
           enabled: false
@@ -356,6 +368,101 @@ export class AlgorithmSelectionComponent implements OnInit {
       }
     };
   }
-      
   
+  createDendrogram(): void {
+    const data: MyData = {
+      name: 'Root',
+      children: [
+        {
+          name: '1',
+          children: [
+            { name: '1.1' },
+            { name: '1.2' }
+          ]
+        },
+        {
+          name: '2',
+          children: [
+            { name: '2.1' },
+            { name: '2.2' }
+          ]
+        },
+        {
+          name: '3',
+          children: [
+            {
+              name: '3.1',
+              children: [
+                { name: '3.1' },
+                {
+                  name: '3.2'
+
+                },]
+            },
+            {
+              name: '3.2',
+              children: [
+                { name: '3.1' },
+                {
+                  name: '3.2'
+
+                },]
+            },
+
+          ]
+        }
+      ]
+    };
+
+    const width = 500; // Adjust the width as needed
+    const height = 100; // Adjust the height as needed
+
+    const svg = d3.select('#dendrogram')
+      .append('svg')
+      .attr('width', width)
+      .attr('height', height + 100); // Increase the height to provide space for the complete circles
+
+    const tree = d3.tree<MyData>()
+      .size([width - 100, height]) // Swap width and height for vertical layout
+
+    const root = d3.hierarchy<MyData>(data);
+    const treeData = tree(root);
+
+    const link = svg.selectAll('path')
+      .data(treeData.links())
+      .enter()
+      .append('path')
+      .attr('d', d => {
+        return 'M' + d.source.x + ',' + d.source.y + // Swap x and y
+          'H' + d.target.x + // Use horizontal line to connect nodes
+          'V' + d.target.y; // Vertical line to target node
+      })
+      .attr('fill', 'none')
+      .attr('stroke', '#ccc')
+      .attr('stroke-width', 4);
+
+    const node = svg.selectAll('g')
+      .data(treeData.descendants())
+      .enter()
+      .append('g')
+      .attr('transform', d => {
+        if (d.parent) {
+          return 'translate(' + d.x + ',' + d.y + ')';
+        } else {
+          return 'translate(' + d.x + ',' + (d.y + 8) + ')'; // Adjust the y translation for the root node
+        }
+      });
+
+    node.append('circle')
+      .attr('r', (d) => d.parent ? 5 : 0) // Set the radius to 5 for non-root nodes, and 0 for the root node
+      .attr('fill', 'steelblue');
+
+    node.append('text')
+      .attr('dy', 17)
+      .attr('x', (d) => d.parent ? -5 : 0) // Set the x position to 8 for non-root nodes, and 0 for the root node
+      .attr('text-anchor', 'start')
+      .text((d) => d.parent ? d.data.name : ''); // Show the name for non-root nodes, and an empty string for the root node
+
+  }
+ 
 }

@@ -57,4 +57,5 @@ export class LandingScreenComponent implements OnInit {
       this.fileInput = null;
     }
   }
+  
 }

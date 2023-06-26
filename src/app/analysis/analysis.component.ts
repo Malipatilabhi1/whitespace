@@ -1,53 +1,54 @@
-import { Component, OnInit, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ElementRef, AfterViewInit, ViewChild } from '@angular/core';
+import { ClusterAnalysisComponent } from '../cluster-analysis/cluster-analysis.component';
 import html2canvas from 'html2canvas';
+import {  ViewContainerRef} from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 @Component({
   selector: 'app-analysis',
   templateUrl: './analysis.component.html',
   styleUrls: ['./analysis.component.css']
 })
 export class AnalysisComponent implements OnInit, AfterViewInit {
+  @ViewChild('printScreen', { read: ViewContainerRef, static: true }) printScreen!: ViewContainerRef;
+  a:boolean=false;
+  constructor() { }
 
-  constructor(private elementRef: ElementRef) { }
-  printScreen() {
-    const fourthComponentElement = document.getElementById('fourth-component');
+  captureScreenshots() {
+    const analysisComponent = document.getElementById('analysisComponent');
+    const clusterAnalysisComponent = document.getElementById('clusterAnalysisComponent');
   
    
   
-    if (!fourthComponentElement) {
-      console.error('Fourth component element not found.');
-      return;
-    }
-  
-   
-  
-    html2canvas(fourthComponentElement).then(canvas => {
-      const imageData = canvas.toDataURL(); // Convert canvas to base64 image data
-  
-   
-  
-      const popupWindow = window.open('', '_blank', 'top=0,left=0,height=100%,width=auto');
-      popupWindow.document.open();
-      popupWindow.document.write(`
-  <html>
-  <head>
-  <title>Print</title>
-  </head>
-  <body>
-  <img src="${imageData}" style="max-width: 100%; height: auto;">
-  </body>
-  </html>
-      `);
-      popupWindow.document.close();
-  
-   
-  
-      setTimeout(() => {
-        popupWindow.print();
-        popupWindow.close();
-      }, 1000); // Adjust the delay time if needed
+    html2canvas(analysisComponent).then(canvas1 => {
+      html2canvas(clusterAnalysisComponent).then(canvas2 => {
+        this.printScreenshots([canvas1, canvas2]);
+      });
     });
   }
+  printScreenshots(screenshots: HTMLCanvasElement[]) {
+    const printWindow = window.open('', '_blank');
+    const printDocument = printWindow?.document;
   
+   
+  
+    if (printDocument) {
+      printDocument.open();
+      printDocument.write('<html><head><title>Print</title></head><body></body></html>');
+  
+   
+  
+      for (const screenshot of screenshots) {
+        const img = printDocument.createElement('img');
+        img.src = screenshot.toDataURL();
+        printDocument.body.appendChild(img);
+      }
+  
+   
+  
+      printDocument.close();
+      printWindow?.print();
+    }
+  }
   
   ngOnInit() {
    

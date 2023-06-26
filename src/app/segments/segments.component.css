@@ -9,3 +9,7 @@
 #modal-content {
     height: 80%;
 }
+li.selected{
+    background-color: #3F7EFF;
+    color:white;
+}

@@ -1,151 +1,99 @@
 <div class="main">
-    <h1 class="p-1"><b>Segment Characteristics Definition</b></h1>
-   <div class="mx-3">
-    <mat-tab-group>
-        <mat-tab label="Segment 1">
-           <div class="card d-flex flex-column ">
-             <div class="d-flex flex-row">
-            <div class="d-flex flex-row" style="width:50%">
-               <div class="m-2">
-                <img src="../../assets/images/girl.jpg"  class="rouned-pill" style="border-radius: 50%;" height="120" width="120"   >
-               </div>
-                <div class="input-group m-2 pt-5" style="width:230px;height:50px;align-items: center;">
-                    <input type="text" style="display: flex;justify-content: center;background-color: rgb(230, 230, 247);" class="form-control" value="Self Obsessed Flamboyant">
-                </div>
+    <h1 class="px-2"><b>Segment Characteristics Definition</b></h1>
+    <div class="mx-3">
+    <div class="d-flex flex-row">
+        <div class="p-1 card me-1 mb-3 rounded-0" style="width: 25%; height: 500px; overflow-y: auto; background-color: white">
+            <ul class="list-group">
+            <li class="list-group-item m-2 my-div" style="border: 1px solid grey; cursor: pointer;"
+                    *ngFor="let segment of segments"
+                    [class.selected]="segment === selectedSegment"
+                    (click)="selectSegment(segment)">
+            <div class="segment-item">
+            <img class="m-1 rounded-pill" style="border-radius: 50%;" height="40" width="40" [src]="segment.image">
+            <span><b>{{ segment.name }}</b></span>
             </div>
-            <div class="d-flex flex-row" style="display:flex; justify-content: end;align-items:center;width:50%">
-                <div class="p-2" style="display: flex;justify-content: center;height:50px">
-                    <label style="width:300px;border:1px solid rgb(212, 212, 247);border-radius: 10px;align-items: center;display: flex;padding: 10px;" *ngIf="!isMapped" >status: Yet to be Mapped</label>
-                    <label style="width:300px;border:1px solid rgb(212, 212, 247);border-radius: 10px;align-items: center;display: flex;padding: 10px;background-color:rgb(212, 212, 247) ;" *ngIf="isMapped" >status: Mapped to product attribute</label>   
-                </div>
-                <div class="p-2" style="display: flex;justify-content: center;height:50px">
-                    <button style="width:230px" *ngIf="!isMapped" type="button" class="btn btn-secondary" data-bs-toggle="modal"
-                        data-bs-target="#exampleModal"> Map To Product Attribute</button>
-                    <button *ngIf="isMapped" type="button" class="btn btn-light" data-bs-toggle="modal" style="width:230px;background-color: rgb(235, 235, 241);"
-                        data-bs-target="#exampleModal"> Edit Mapped</button>
-                </div>
-            </div>  
+            </li>
+            </ul>
+            </div>
+    <div class="p-1" style="width: 75%">
+   <div class="card d-flex flex-column" *ngIf="selectedSegment">
+    <div class="d-flex flex-row"  >
+        <div class="d-flex flex-row" style="width:50%">
+            <div class="m-2">
+             <img  [src]="selectedSegment.image"  class="rouned-pill" style="border-radius: 50%;" height="120" width="120"   >
+            </div>
+             <div class="input-group m-2 pt-5" style="width:230px;height:50px;align-items: center;">
+                <!-- display ename -->
+                 <input type="text" style="display: flex;justify-content: center;background-color: rgb(230, 230, 247);" class="form-control" [(ngModel)]="selectedSegment.ename">
+                 
              </div>
-             <div class="d-flex flex-row">
-            
-            <div class="p-1 d-flex flex-column" style="width:33%">
-                <div class="d-flex flex-row mx-2 pt-2 pb-0 mb-0" style="width:100%">
-                    <h3 style="width:90%"><b>Segment Characteristics</b></h3>
-                    <button style="height:30px; vertical-align: center;display:flex;align-items: center;justify-content: end;border-radius: 5px;background-color: rgb(230, 230, 247);" class="btn btn-light mx-2" (click)="addCharacteristic()" >+</button>
-                   <!-- <button  style="height:30px; vertical-align: center;display:flex;align-items: center;border:none;" class="btn btn-primary" (click)="saveData()">Save</button> -->
-                </div>
-                
-                <div *ngFor="let characteristic of segmentCharacteristics; let i = index; " class="input-group m-1">
-                    <input type="text" class="form-control" [value]="characteristic">
-                    <button class="btn btn-light" style="background-color: rgb(230, 230, 247);" (click)="removeCharacteristic(i)">-</button>
-                </div>
-            </div>
-            <div class="p-1 d-flex flex-column" style="width:33%">
-                <div class="d-flex flex-row mx-2 pt-2" style="width:100%">
-                <h3 style="width:90%"><b>Functional Need</b></h3>
-                <button style="height:30px; vertical-align: center;display:flex;align-items: center;justify-content: end;border-radius: 5px;background-color: rgb(230, 230, 247);" class="btn btn-light mx-2" (click)="addFunctionalNeed()">+</button>
-                    <!-- <button  style="height:30px; vertical-align: center;display:flex;align-items: center;border:none;" class="btn btn-primary" (click)="saveData()">Save</button> -->
-                </div> 
-                    <div *ngFor="let need of functionalNeeds; let i = index" class="input-group m-1">
-                    <input type="text" class="form-control" [value]="need">
-                    <button class="btn btn-light" style="background-color: rgb(230, 230, 247);" (click)="removeFunctionalNeed(i)">-</button>
-                </div>
-               
-            </div>
-            <div class="p-1 d-flex flex-column" style="width:33%">
-                <div class="d-flex flex-row mx-2 pt-2" style="width:100%">
-                <h3 style="width:90%"><b>Emotional Need</b></h3>
-                <button style="height:30px; vertical-align: center;display:flex;align-items: center;justify-content: end;border-radius: 5px;background-color: rgb(230, 230, 247);" class="btn btn-light mx-2" (click)="addFunctionalNeed2()">+</button>
-                <!-- <button  style="height:30px; vertical-align: center;display:flex;align-items: center;border:none;" class="btn btn-primary" (click)="saveData()">Save</button> -->
-            </div>
-                <div *ngFor="let need of functionalNeeds2; let i = index" class="input-group m-1">
-                    <input type="text" class="form-control" [value]="need">
-                    <button class="btn btn-light" style="background-color: rgb(230, 230, 247);" (click)="removeFunctionalNeed2(i)">-</button>
-                </div>
-            </div>
-        </div>    
-           </div>
-        </mat-tab>
-        <mat-tab label="Segment 2"> 
-            <div class="card d-flex flex-column ">
-                <div class="d-flex flex-row">
-               <div class="d-flex flex-row" style="width:50%">
-                  <div class="m-2">
-                   <img src="../../assets/images/girl.jpg"  class="rouned-pill" style="border-radius: 50%;" height="120" width="120"   >
-                  </div>
-                   <div class="input-group m-2 pt-5" style="width:230px;height:50px;align-items: center;">
-                       <input type="text" style="display: flex;justify-content: center;background-color: rgb(230, 230, 247);" class="form-control" value="Nonchalant socialite">
-                   </div>
-               </div>
-               <div class="d-flex flex-row" style="display:flex; justify-content: end;align-items:center;width:50%">
-                   <div class="p-2" style="display: flex;justify-content: center;height:50px">
-                       <label style="width:300px;border:1px solid rgb(212, 212, 247);border-radius: 10px;align-items: center;display: flex;padding: 10px;" *ngIf="!isMapped" >status: Yet to be Mapped</label>
-                       <label style="width:300px;border:1px solid rgb(212, 212, 247);border-radius: 10px;align-items: center;display: flex;padding: 10px;background-color:rgb(212, 212, 247) ;" *ngIf="isMapped" >status: Mapped to product attribute</label>   
-                   </div>
-                   <div class="p-2" style="display: flex;justify-content: center;height:50px">
-                       <button style="width:230px" *ngIf="!isMapped" type="button" class="btn btn-secondary" data-bs-toggle="modal"
-                           data-bs-target="#exampleModal1"> Map To Product Attribute</button>
-                       <button *ngIf="isMapped" type="button" class="btn btn-light" data-bs-toggle="modal" style="width:230px;background-color: rgb(235, 235, 241);"
-                           data-bs-target="#exampleModal1"> Edit Mapped</button>
-                   </div>
-               </div>  
-                </div>
-                <div class="d-flex flex-row">
-               
-               <div class="p-1 d-flex flex-column" style="width:33%">
-                   <div class="d-flex flex-row mx-2 pt-2 pb-0 mb-0" style="width:100%">
-                       <h3 style="width:90%"><b>Segment Characteristics</b></h3>
-                       <button style="height:30px; vertical-align: center;display:flex;align-items: center;justify-content: end;border-radius: 5px;background-color: rgb(230, 230, 247);" class="btn btn-light mx-2" (click)="addCharacteristicSocialite()" >+</button>
-                      <!-- <button  style="height:30px; vertical-align: center;display:flex;align-items: center;border:none;" class="btn btn-primary" (click)="saveData()">Save</button> -->
-                   </div>
-                   
-                   <div *ngFor="let characteristic1 of segmentCharacteristicsSocialite1; let i = index; " class="input-group m-1">
-                       <input type="text" class="form-control" [value]="characteristic1">
-                       <button class="btn btn-light" style="background-color: rgb(230, 230, 247);" (click)="removeCharacteristicSocialite(i)">-</button>
-                   </div>
-               </div>
-               <div class="p-1 d-flex flex-column" style="width:33%">
-                   <div class="d-flex flex-row mx-2 pt-2" style="width:100%">
-                   <h3 style="width:90%"><b>Functional Need</b></h3>
-                   <button style="height:30px; vertical-align: center;display:flex;align-items: center;justify-content: end;border-radius: 5px;background-color: rgb(230, 230, 247);" class="btn btn-light mx-2" (click)="addFunctionalNeedSocialite()">+</button>
-                       <!-- <button  style="height:30px; vertical-align: center;display:flex;align-items: center;border:none;" class="btn btn-primary" (click)="saveData()">Save</button> -->
-                   </div> 
-                       <div *ngFor="let need of functionalNeedsSocialite; let i = index" class="input-group m-1">
-                       <input type="text" class="form-control" [value]="need">
-                       <button class="btn btn-light" style="background-color: rgb(230, 230, 247);" (click)="removeFunctionalNeedSocialite(i)">-</button>
-                   </div>
-                  
-               </div>
-               <div class="p-1 d-flex flex-column" style="width:33%">
-                   <div class="d-flex flex-row mx-2 pt-2" style="width:100%">
-                   <h3 style="width:90%"><b>Emotional Need</b></h3>
-                   <button style="height:30px; vertical-align: center;display:flex;align-items: center;justify-content: end;border-radius: 5px;background-color: rgb(230, 230, 247);" class="btn btn-light mx-2" (click)="addFunctionalNeed2Socialite()">+</button>
-                   <!-- <button  style="height:30px; vertical-align: center;display:flex;align-items: center;border:none;" class="btn btn-primary" (click)="saveData()">Save</button> -->
-               </div>
-                   <div *ngFor="let need of functionalNeeds2Socialite; let i = index" class="input-group m-1">
-                       <input type="text" class="form-control" [value]="need">
-                       <button class="btn btn-light" style="background-color: rgb(230, 230, 247);" (click)="removeFunctionalNeed2Socialite(i)">-</button>
-                   </div>
-               </div>
-           </div>    
-              </div>
-        </mat-tab>
-        <mat-tab label="Segment 3"> Content 3 </mat-tab>
-        <mat-tab label="Segment 4"> Content 4</mat-tab>
-        <mat-tab label="Segment 5"> Content 5</mat-tab>
-        <mat-tab label="Segment 6"> Content 6</mat-tab>
-    </mat-tab-group>
+         </div>
+         <div class="d-flex flex-row" style="display:flex; justify-content: end;align-items:center;width:50%">
+             <div class="p-2" style="display: flex;justify-content: center;height:53px">
+                 <label style="width:300px;border:1px solid rgb(212, 212, 247);border-radius: 10px;align-items: center;display: flex;padding: 10px;" *ngIf="!isMapped" >status: Yet to be Mapped</label>
+                 <label style="width:300px;border:1px solid rgb(212, 212, 247);border-radius: 10px;align-items: center;display: flex;padding: 10px;background-color:rgb(212, 212, 247) ;" *ngIf="isMapped" >status: Mapped to product attribute</label>   
+             </div>
+             <div class="p-2" style="display: flex;justify-content: center;height:50px">
+                 <button style="width:230px" *ngIf="!isMapped" type="button" class="btn btn-primary" data-bs-toggle="modal"
+                     data-bs-target="#exampleModal"> Map To Product Attribute</button>
+                 <button *ngIf="isMapped" type="button" class="btn btn-light" data-bs-toggle="modal" style="width:230px;background-color: rgb(126, 126, 212);"
+                     data-bs-target="#exampleModal"> Edit Mapped</button>
+             </div>
+         </div>
+    </div>  
+    <div class=" d-flex flex-row" style="width:100%" >
+        
+  <div class="1 mx-1" style="width:33%">
+    <div class="d-flex flex-row mx-2 pt-2 pb-0 mb-0">
+
+        
+        <h3 style="width: 90%"><b>Segment Characteristics</b></h3>
+        <button style="height: 30px; vertical-align: center;display:flex;align-items: center;justify-content: end;border-radius: 5px;background-color: rgb(230, 230, 247);"
+                      class="btn btn-light mx-2" (click)="addCharacteristic()">+</button>
+        </div>
+        <div *ngFor="let characteristic of selectedSegment?.segmentCharacteristics; let i = index;"
+                    class="input-group mx-1 my-3">
+        <input type="text" class=" form-control" [value]="characteristic">
+        <button class="btn btn-light" style="background-color: rgb(230, 230, 247);" (click)="removeCharacteristic(i)">-</button>
+        </div>
+  </div>
+ <div class="2 mx-1" style="width:33%">
+    <div class="d-flex flex-row mx-2 pt-2">
+        <h3 style="width: 90%"><b>Functional Need</b></h3>
+        <button style="height: 30px; vertical-align: center;display:flex;align-items: center;justify-content: end;border-radius: 5px;background-color: rgb(230, 230, 247);"
+                      class="btn btn-light mx-1 my-3" (click)="addFunctionalNeed()">+</button>
+        </div>
+        <div *ngFor="let need of selectedSegment?.functionalNeeds; let i = index" class="input-group m-1">
+        <input type="text" class="form-control" [value]="need">
+        <button class="btn btn-light" style="background-color: rgb(230, 230, 247);" (click)="removeFunctionalNeed(i)">-</button>
+        </div>
+ </div>
+   <div class="3 mx-2" style="width:33%">
+    <div class="d-flex flex-row mx-2 pt-2">
+        <h3 style="width: 90%"><b>Emotional Need</b></h3>
+        <button style="height: 30px; vertical-align: center;display:flex;align-items: center;justify-content: end;border-radius: 5px;background-color: rgb(230, 230, 247);"
+                      class="btn btn-light mx-2" (click)="addFunctionalNeed2()">+</button>
+        </div>
+        <div *ngFor="let need of selectedSegment?.functionalNeeds2; let i = index" class="input-group mx-1 my-3">
+        <input type="text" class="form-control" [value]="need">
+        <button class="btn btn-light" style="background-color: rgb(230, 230, 247);" (click)="removeFunctionalNeed2(i)">-</button>
+        </div>
    </div>
-   <div class="d-flex flex-row" style="display:flex;justify-content: end; ">
-   <div class="px-3 " style="display:flex;justify-content: end; "  >
-    <img src="../../assets/images/chatBot.jpg" class="rouned-pill" style="border-radius: 50%;" height="70" width="70" alt="" data-bs-toggle="modal" data-bs-target="#myModal2" >
-   </div>
-    <div class="p-2 mt-3" style="display:flex;justify-content: end;height:50px;align-items: center; ">
-        <button type="button" class="btn btn-primary" routerLink="/whitespaceAnalysis" >Next</button>
     </div>
 </div>
-</div>
-
+<div class="d-flex flex-row" style="display:flex;justify-content: end; ">
+    <div class="px-3 pt-3" style="display:flex;justify-content: end; cursor: pointer;"  >
+     <img src="../../assets/images/chatBot.jpg" class="rouned-pill" style="border-radius: 50%;" height="50" width="50" alt="" data-bs-toggle="modal" data-bs-target="#myModal2" >
+    </div>
+     <div class="p-2 mt-3" style="display:flex;justify-content: end;height:50px;align-items: center; ">
+         <button type="button" class="btn btn-primary" routerLink="/whitespaceAnalysis" >Next</button>
+     </div>
+ </div>
+    </div>
+    </div>
+   
+    </div>
+    </div>
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
@@ -159,92 +107,21 @@
                     <div class="d-flex flex-column" style="width:40%">
                         <div>
                             <h3 class="py-0 my-0"><b>Segment Characteristics</b></h3>
-                            <ul  *ngFor="let characteristic of segmentCharacteristics; let i = index; ">
-                                <li> {{characteristic}} </li>
+                            <ul  *ngFor="let characteristic of selectedSegment?.segmentCharacteristics; let i = index;">
+                                <li> {{characteristic }}</li>
                                 
                             </ul>
                         </div>
                         <div>
                             <h3 class="py-0 my-0"><b>Functional Needs</b></h3>
-                            <ul *ngFor="let need of functionalNeeds; let i = index">
+                            <ul *ngFor="let need of selectedSegment?.functionalNeeds; let i = index" >
                                 <li> {{need}} </li>
                             </ul>
                         </div>
                         <div>
                             <h3 class="py-0 my-0"><b>Emotional Need</b></h3>
-                            <ul *ngFor="let need of functionalNeeds2; let i = index">
-                                <li> {{need}} </li>
-                            </ul>
-                        </div>
-
-                    </div>
-                    <div style="width:60%">
-                        <div class="slider-container d-flex flex-row">
-                            <p class="pt-4 px-2">aroma</p>
-                            <ng5-slider [(value)]="sliderValues[0]" [options]="sliderOptions"></ng5-slider>
-                        </div>
-                        <div class="slider-container d-flex flex-row">
-                            <p class="pt-4 px-2">clean&nbsp;scalp</p>
-                            <ng5-slider [(value)]="sliderValues[1]" [options]="sliderOptions"></ng5-slider>
-                        </div>
-                        <div class="slider-container d-flex flex-row">
-                            <p class="pt-4 px-2">long&nbsp;lasting&nbsp;hold</p>
-                            <ng5-slider [(value)]="sliderValues[2]" [options]="sliderOptions"></ng5-slider>
-                        </div>
-                        <div class="slider-container d-flex flex-row">
-                            <p class="pt-4 px-2">maintainance</p>
-                            <ng5-slider [(value)]="sliderValues[3]" [options]="sliderOptions"></ng5-slider>
-                        </div>
-                        <div class="slider-container d-flex flex-row">
-                            <p class="pt-4 px-2">volume&nbsp;and&nbsp;bounce</p>
-                            <ng5-slider [(value)]="sliderValues[4]" [options]="sliderOptions"></ng5-slider>
-                        </div>
-                        <div class="slider-container d-flex flex-row">
-                            <p class="pt-4 px-2">special&nbsp;purpose</p>
-                            <ng5-slider [(value)]="sliderValues[5]" [options]="sliderOptions"></ng5-slider>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <div class="modal-footer">
-                <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
-                    (click)="logAllSliderValues()">Done</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<!-- modal2 -->
-<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title" id="exampleModalLabel"><b>Cluster1</b></h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="d-flex flex-row">
-                    <div class="d-flex flex-column" style="width:40%">
-                        <div>
-                            <h3 class="py-0 my-0"><b>Segment Characteristics</b></h3>
-                            <ul class="py-1 my-1" *ngFor="let characteristic of segmentCharacteristicsSocialite1; let i = index; ">
-                                <li > {{characteristic}} </li>
-                                
-                            </ul>
-                        </div>
-                        <div>
-                            <h3 class="py-0 my-0"><b>Functional Needs</b></h3>
-                            <ul *ngFor="let need of functionalNeedsSocialite; let i = index">
-                                <li> {{need}} </li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h3 class="py-0 my-0"><b>Emotional Need</b></h3>
-                            <ul *ngFor="let need of functionalNeeds2Socialite; let i = index">
-                                <li> {{need}} </li>
+                            <ul *ngFor="let need of selectedSegment?.functionalNeeds2; let i = index" class="input-group mx-1 my-3">
+                                <li>{{need}}  </li>
                             </ul>
                         </div>
 

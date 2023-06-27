@@ -41,4 +41,53 @@
     background: #42b977 0% 0% no-repeat padding-box;
 }
 
-  
+.left {
+    text-align: left;
+}
+
+.right {
+    text-align: right;
+}
+.card1{
+    border-radius: 4px;
+    background: linear-gradient(293deg, #FAB7BF 0%, #FFC7CB 100%);
+
+}
+h1{
+    color: #222;
+font-size: 40px;
+font-family: Outfit;
+font-weight: 700;
+}
+p{
+    color: #484848;
+font-size: 16px;
+font-family: Outfit;
+font-weight: 500;
+}
+.card2{
+    border-radius: 4px;
+    background: linear-gradient(293deg, #ABDDF7 0%, #B8EAF9 100%);
+
+}
+.card3{
+    border-radius: 4px;
+background: linear-gradient(293deg, #FDDF91 0%, #F5F3B8 100%);
+}
+.card4{
+    border-radius: 4px;
+    background: linear-gradient(293deg, #C9E9E5 0%, #E4FAF9 100%);
+
+}
+h2{
+    color: var(--character-title-85, rgba(0, 0, 0, 0.85));
+font-size: 20px;
+font-family: Outfit;
+font-weight: 500;
+}
+h4{
+    color: #222;
+font-size: 16px;
+font-family: Outfit;
+font-weight: 500;
+}

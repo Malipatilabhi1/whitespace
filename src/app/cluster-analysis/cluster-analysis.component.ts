@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ApexYAxis, ChartComponent } from "ng-apexcharts";
+import html2canvas from 'html2canvas';
 import {
   ApexAxisChartSeries,
   ApexTitleSubtitle,
@@ -306,6 +307,18 @@ export class ClusterAnalysisComponent implements OnInit {
     this.income2()
     this.gender2()
   }
+
+
+  captureScreenshot(componentId: string): Promise<string> {
+    const componentElement = document.getElementById(componentId);
+    return html2canvas(componentElement, {
+      scrollY: -window.scrollY,
+      useCORS: true,
+    }).then((canvas: HTMLCanvasElement) => {
+      return canvas.toDataURL('image/png');
+    });
+  }
+
 // algorithm1
   numberOfRespondents(){
     this.chartOptions = {

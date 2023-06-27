@@ -112,10 +112,17 @@
         <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2" >Generate Report</button>
     </div>
     
-        <!-- <app-cluster-analysis id="clusterAnalysisComponent"></app-cluster-analysis> -->
     
     
 </div>
+
+
+<div id="clusterAnalysisComponent">
+
+  <!-- <app-cluster-analysis></app-cluster-analysis> -->
+
+</div>
+
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -134,12 +141,11 @@
         </i>
         <h3><b>Generate Report</b></h3>
     
-        <button class="btn btn-primary" style="width:20em" (click)="captureScreenshots()" >Download Report</button>
+        <button class="btn btn-primary" style="width:20em" (click)="downloadPDF()" >Download Report</button>
     </div>
         </div>
         <div class="modal-footer">
-          <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
-          <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+         
         </div>
       </div>
     </div>

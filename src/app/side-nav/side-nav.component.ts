@@ -11,5 +11,8 @@ export class SideNavComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+selectedOption:string='';
+selectOption(option:string){
+this.selectedOption =option;
+}
 }

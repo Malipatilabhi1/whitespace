@@ -1,0 +1,20 @@
+h1{
+    color: #222;
+font-size: 36px;
+font-family: Outfit;
+font-weight: 600;
+}
+
+p{
+    color: #666;
+font-size: 18px;
+font-family: Outfit;
+font-weight: 500;
+}
+button{
+    border-radius: 4px;
+border: 1px solid var(--daybreak-blue-6, #1890FF);
+background: var(--daybreak-blue-6, #1890FF);
+
+box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.04);
+}

@@ -1,64 +1,131 @@
-import { Component, OnInit, ElementRef, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import  html2canvas from 'html2canvas';
 import { ClusterAnalysisComponent } from '../cluster-analysis/cluster-analysis.component';
-import html2canvas from 'html2canvas';
-import {  ViewContainerRef} from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
+import {jsPDF} from 'jspdf'
+import {saveAs} from 'file-saver'
 @Component({
   selector: 'app-analysis',
   templateUrl: './analysis.component.html',
   styleUrls: ['./analysis.component.css']
 })
-export class AnalysisComponent implements OnInit, AfterViewInit {
-  @ViewChild('printScreen', { read: ViewContainerRef, static: true }) printScreen!: ViewContainerRef;
-  a:boolean=false;
+export class AnalysisComponent implements OnInit {
+ 
+
   constructor() { }
 
-  captureScreenshots() {
-    const analysisComponent = document.getElementById('analysisComponent');
-    const clusterAnalysisComponent = document.getElementById('clusterAnalysisComponent');
+  captureScreenshot(componentId: string): Promise<string> {
+    const componentElement = document.getElementById(componentId);
+    return html2canvas(componentElement, {
+      scrollY: -window.scrollY,
+      useCORS: true,
+    }).then((canvas: HTMLCanvasElement) => {
+      return canvas.toDataURL('image/png');
+    });
+  }
   
    
   
-    html2canvas(analysisComponent).then(canvas1 => {
-      html2canvas(clusterAnalysisComponent).then(canvas2 => {
-        this.printScreenshots([canvas1, canvas2]);
+  captureScreenshots(): Promise<string[]> {
+    const analysisComponentId = 'analysisComponent';
+    const clusterAnalysisComponentId = 'clusterAnalysisComponent';
+  
+   
+  
+    const promises = [
+      this.captureScreenshot(analysisComponentId),
+      this.captureScreenshot(clusterAnalysisComponentId),
+    ];
+  
+   
+  
+    return Promise.all(promises);
+  }
+
+  convertImageToPDF(image: HTMLImageElement): Promise<Blob> {
+    return new Promise<Blob>((resolve) => {
+      const pdf = new jsPDF('p', 'px', [image.width, image.height]);
+      const canvas = document.createElement('canvas');
+      canvas.width = image.width;
+      canvas.height = image.height;
+  
+   
+  
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(image, 0, 0, image.width, image.height);
+  
+   
+  
+      canvas.toBlob((blob) => {
+        resolve(blob);
+      }, 'image/jpeg');
+    });
+  }
+  
+  
+  triggerDownload(pdfBlob: Blob, fileName: string): void {
+    console.log(pdfBlob)
+   saveAs(pdfBlob, fileName)
+  }
+ 
+  downloadPDF(): void {
+    this.captureScreenshots().then((screenshots: string[]) => {
+      const combinedImage = this.combineImages(screenshots);
+      this.convertImageToPDF(combinedImage).then((pdfBlob: Blob) => {
+        this.triggerDownload(pdfBlob, 'analysis.pdf');
       });
     });
   }
-  printScreenshots(screenshots: HTMLCanvasElement[]) {
-    const printWindow = window.open('', '_blank');
-    const printDocument = printWindow?.document;
+  
+ 
+   
+  
+  combineImages(screenshots: string[]): HTMLImageElement {
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
   
    
   
-    if (printDocument) {
-      printDocument.open();
-      printDocument.write('<html><head><title>Print</title></head><body></body></html>');
+    const images = screenshots.map((screenshot) => {
+      const img = new Image();
+      img.src = screenshot;
+      return img;
+    });
   
    
   
-      for (const screenshot of screenshots) {
-        const img = printDocument.createElement('img');
-        img.src = screenshot.toDataURL();
-        printDocument.body.appendChild(img);
-      }
+    canvas.width = Math.max(...images.map((img) => img.width));
+    canvas.height = images.reduce((sum, img) => sum + img.height, 0);
   
    
   
-      printDocument.close();
-      printWindow?.print();
-    }
+    let offsetY = 0;
+    images.forEach((img) => {
+      ctx.drawImage(img, 0, offsetY);
+      offsetY += img.height;
+    });
+  
+   
+  
+    const combinedImage = new Image();
+    combinedImage.src = canvas.toDataURL('image/png');
+  
+   
+  
+    return combinedImage;
   }
   
+   
+  
+ 
+  
+ 
+ 
   ngOnInit() {
    
   }
 
  
 
-  ngAfterViewInit() {
-   
-  }
   flamboyant: number[] = [15, 25, 35, 45, 55,15, 25, 35, 45, 55, 25, 20]; 
   purist: number[] = [15, 25, 35, 45, 55,15, 25, 35, 45, 55, 25, 22];
   sensible: number[] = [15, 25, 35, 45, 55,15, 25, 35, 45, 55, 25, 26]; 

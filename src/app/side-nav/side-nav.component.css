@@ -1,0 +1,11 @@
+.highlighted{
+    background: var(--daybreak-blue-1, #E6F7FF);
+    box-shadow: -3px 0px 0px 0px #1890FF inset;
+    border-right: 5px solid blue;
+    
+}
+h3{
+    color: #858585;
+font-size: 16px;
+font-family: Outfit;
+}

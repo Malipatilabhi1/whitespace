@@ -28,6 +28,7 @@ export type ChartOptions = {
   labels: any;
   theme: ApexTheme;
   title: ApexTitleSubtitle;
+  colors:any;
 };
 
 export type ChartOptionsAge = {
@@ -91,6 +92,21 @@ export type ChartOptionsWillingness = {
   title: ApexTitleSubtitle;
 };
 
+export type ChartOptionsGender = {
+  series: ApexNonAxisChartSeries;
+  chart: ApexChart;
+  responsive: ApexResponsive[];
+  labels: any;
+  colors:any;
+};
+
+export type ChartOptionsScore = {
+  series: ApexNonAxisChartSeries;
+  chart: ApexChart;
+  labels: string[];
+  plotOptions: ApexPlotOptions;
+  colors:any;
+};
 
 @Component({
   selector: 'app-mr-summary',
@@ -118,6 +134,12 @@ export class MrSummaryComponent implements OnInit {
   @ViewChild("chart5") chart5: ChartComponent;
   public chartOptionsWillingness: Partial<ChartOptionsWillingness>;
 
+  @ViewChild("chart6") chart6: ChartComponent;
+  public chartOptionsGender: Partial<ChartOptionsGender>;
+
+  @ViewChild("chart7") chart7: ChartComponent;
+  public chartOptionsScore: Partial<ChartOptionsScore>;
+
   constructor(private router: Router) { }
 
   ngOnInit(): void {
@@ -127,7 +149,9 @@ export class MrSummaryComponent implements OnInit {
     this.incomeDistribution(),
     this.avgSpend(),
     this.frequency(),
-    this.willingness()
+    this.willingness(),
+    this.gender(),
+    this.score()
   }
   
 
@@ -172,13 +196,72 @@ export class MrSummaryComponent implements OnInit {
     // Trigger the file input click event
     this.fileInput.click();
   }
+
+  gender(){
+    this.chartOptionsGender = {
+      series: [44, 55],
+      chart: {
+        width: 250,
+        type: "pie"
+      },
+      colors:["#9692F1","#FACC15"],
+      labels: ["Male", "Female"],
+      responsive: [
+        {
+          breakpoint: 480,
+          options: {
+            chart: {
+              width: 200
+            },
+            legend: {
+              position: "bottom"
+            }
+          }
+        }
+      ]
+    };
+  }
+  
+score(){
+  this.chartOptionsScore = {
+    series: [44, 55, 67],
+    chart: {
+      height: 150,
+      type: "radialBar"
+    },
+    colors:["#69C69B","#F9DA81","#E46B66"],
+    plotOptions: {
+      radialBar: {
+        dataLabels: {
+          name: {
+            fontSize: "22px"
+          },
+          value: {
+            fontSize: "16px"
+          },
+          total: {
+            show: true,
+            label: "Total",
+            formatter: function(w) {
+              return "249";
+            }
+          }
+        }
+      }
+    },
+    labels: ["Happy", "Neutral", "Sad"]
+  };
+}
+
+
   householdComposition(){
     this.chartOptions = {
       series: [25, 15, 44, 55, 41],
       chart: {
-        width: "80%",
+        width: "65%",
         type: "pie"
       },
+      colors:["#9692F1","#FACC15"],
       labels: [
         "Monday",
         "Tuesday",
@@ -439,7 +522,7 @@ export class MrSummaryComponent implements OnInit {
     this.chartOptionsWillingness = {
       series: [25, 15, 44],
       chart: {
-        width: "80%",
+        width: "85%",
         type: "pie"
       },
       labels: [

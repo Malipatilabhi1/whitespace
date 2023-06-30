@@ -5,3 +5,18 @@
 { 
   background-color: black !important; 
 }
+
+.heading{
+  font-size: 20px;
+font-family: Outfit;
+font-style: normal;
+font-weight: 500;
+}
+
+.text{
+  color: #666;
+font-size: 16px;
+font-family: Outfit;
+font-style: normal;
+font-weight: 400;
+}

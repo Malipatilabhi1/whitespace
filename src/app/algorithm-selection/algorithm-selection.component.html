@@ -1,4 +1,4 @@
-<div class="main">
+<!-- <div class="main">
   <div class="d-flex flex-column">
     <div class="px-3">
       <h1 class="p-0 m-0"><b>Algorithm Selection</b></h1>
@@ -132,4 +132,178 @@
     </div>
   </div>
  
+</div> -->
+
+<div class="d-flex flex-column">
+  <div class="row1 d-flex flex-row p-2" style="width:100%;background-color: white;">
+    <div style="width:60%">
+      <p class="heading">Algorithm Selection</p>
+    </div>
+    <div class="px-2 d-flex flex-row" style="width:40%;display: flex; justify-content: end;">
+      <div class="px-2" >
+        <button (click)="gotoClusterAnalysis()" type="button" class="btn btn-primary">Run Cluster Analysis</button>
+      </div>
+
+
+      <div>
+        <button (click)="showContent()" type="button" class="btn btn-light"
+          style="background-color: white;width: 174px;color:#1890FF;border:1px solid #1890FF">Run Clustering</button>
+      </div>
+    </div>
+  </div>
+  <div class="row2">
+    <p class="text p-2">Please select the algorithm to run the clustering</p>
+    <div class="d-flex flex-row mx-2" style="width:100%">
+     <div class="mx-1" style="width:33%">
+      <mat-accordion>
+        <mat-expansion-panel  [expanded]="true" style="height:465px;overflow-y: hidden;">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <div class="d-flex flex-row" style="width:100%">
+                <section class="example-section">
+                  <mat-checkbox class="example-margin" color="primary" [(ngModel)]="rowData1.selected">K Means</mat-checkbox>
+                </section>
+                
+              </div>
+            </mat-panel-title>
+            <mat-panel-description>
+              <div style="width:80%"></div>
+             <div  style="display: flex;justify-content: end;width:20%">
+              <button type="button" style="height:30px;align-items: center;display:flex" class="btn btn-primary">Run</button>
+             </div>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div>
+            <mat-form-field style="width:100%">
+              <mat-label>Init Method </mat-label>
+              <mat-select [(ngModel)]="rowData1.initMethod">
+                <mat-option *ngFor="let val of init" [value]="val.value">
+                  {{val.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        <div class="d-flex flex-row" style="width:100%">
+          <div class="mx-1"style="width:50%">
+            <mat-form-field appearance="outline" style="width:100%">
+              <mat-label>Cluster Range</mat-label>
+              <input matInput [(ngModel)]="rowData1.clusterRange">
+            </mat-form-field>
+          </div>
+          <div style="width:50%">
+            <mat-form-field appearance="outline" style="width:100%">
+              <mat-label># of Iterations</mat-label>
+              <input matInput [(ngModel)]="rowData1.numIterations">
+            </mat-form-field>
+          </div>
+        </div>
+          <div id="chart" >
+            <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [xaxis]="chartOptions.xaxis"
+              [yaxis]="chartOptions.yaxis" [dataLabels]="chartOptions.dataLabels" [grid]="chartOptions.grid"
+              [stroke]="chartOptions.stroke" [title]="chartOptions.title" [tooltip]="chartOptions.tooltip"></apx-chart>
+          </div>
+          <div class="d-flex flex-row px-1" style="width:100%">
+            <mat-form-field appearance="outline" style="width:50%">
+              <mat-label>EPS Value</mat-label>
+              <input matInput>
+            </mat-form-field>
+            <mat-form-field class="px-1" appearance="outline" style="width:50%">
+              <mat-label>Min Samples</mat-label>
+              <input matInput>
+            </mat-form-field>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+     </div>
+     <div  class="mx-1" style="width:33%">
+      <mat-accordion>
+        <mat-expansion-panel  [expanded]="true" style="height:465px;overflow-y: hidden;">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <div class="d-flex flex-row" style="width:100%">
+                <section class="example-section ">
+                  <mat-checkbox class="example-margin" color="primary" [(ngModel)]="rowData2.selected">Agglomerative
+                    Hierarchical</mat-checkbox>
+                </section>
+                
+              </div>
+            </mat-panel-title>
+            <mat-panel-description>
+              <div style="width:80%"></div>
+             <div  style="display: flex;justify-content: end;width:20%">
+              <button type="button" style="height:30px;align-items: center;display:flex" class="btn btn-primary">Run</button>
+             </div>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div>
+            <mat-form-field>
+              <mat-label>clustering Method </mat-label>
+              <mat-select [(ngModel)]="rowData2.clusteringMethod">
+                <mat-option *ngFor="let val of clust" [value]="val.value">
+                  {{val.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          
+          <div >
+            <h3 class="px-2"><b>Dendrogram</b></h3>
+            <div  class="pt-3"  id="dendrogram"></div>
+          </div>
+          <div  class="px-2 py-0 my-0">
+            <mat-form-field appearance="outline">
+              <mat-label># of Cluster</mat-label>
+              <input matInput>
+            </mat-form-field>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+     </div>
+     <div class="mx-1" style="width:33%">
+      <mat-accordion>
+        <mat-expansion-panel  [expanded]="true" style="height:465px;overflow-y: hidden;">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <div class="d-flex flex-row" style="width:100%">
+                <section class="example-section">
+                  <mat-checkbox class="example-margin" color="primary" [(ngModel)]="rowData3.selected">DB Scan</mat-checkbox>
+                </section>
+                
+              </div>
+            </mat-panel-title>
+            <mat-panel-description>
+              <div style="width:80%"></div>
+             <div  style="display: flex;justify-content: end;width:20%">
+              <button type="button" style="height:30px;align-items: center;display:flex" class="btn btn-primary">Run</button>
+             </div>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div>
+            <mat-form-field appearance="outline">
+              <mat-label>Param1</mat-label>
+              <input matInput [(ngModel)]="rowData3.param1">
+            </mat-form-field>
+          </div>
+          <div id="chart1">
+            <apx-chart [series]="chartOptions1.series" [chart]="chartOptions1.chart" [xaxis]="chartOptions1.xaxis"
+              [yaxis]="chartOptions1.yaxis" [dataLabels]="chartOptions1.dataLabels" [grid]="chartOptions1.grid"
+              [stroke]="chartOptions1.stroke" [title]="chartOptions1.title"
+              [tooltip]="chartOptions1.tooltip"></apx-chart>
+          </div>
+          <div class="d-flex flex-row px-2" style="width:100%">
+            <mat-form-field appearance="outline" style="width:50%">
+              <mat-label>EPS Value</mat-label>
+              <input matInput>
+            </mat-form-field>
+            <mat-form-field class="px-1" appearance="outline" style="width:50%">
+              <mat-label>Min Samples</mat-label>
+              <input matInput>
+            </mat-form-field>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+     </div>
+    </div>
+  </div>
+
 </div>

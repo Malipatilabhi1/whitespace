@@ -80,7 +80,7 @@ export class AlgorithmSelectionComponent implements OnInit {
   rowData2: any = {}; 
   rowData3: any = {}; 
   isDendrogramVisible = false;
- 
+  panelOpenState = false;
     
   
   showContent() 

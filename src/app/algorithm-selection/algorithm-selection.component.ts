@@ -118,7 +118,7 @@ export class AlgorithmSelectionComponent implements OnInit {
       ],
       chart: {
         height: 190,
-        width: 400,
+        width: 330,
         type: "line",
         zoom: {
           enabled: false
@@ -295,17 +295,12 @@ export class AlgorithmSelectionComponent implements OnInit {
       ,0.19234297,0.199275,,,0.20002158,0.20153811,0.20187271,0.20237466
       ,0.20678492,0.20934955,0.21557203,0.21651334,0.23788559,0.24247598
       ,0.24848038,0.26288019,0.28293695,0.28713078,0.31846389,0.4931595]
-
      const data = data1.filter((value)=> value !==undefined)
-  
-     data.sort((a,b)=>a-b);
+    data.sort((a,b)=>a-b);
     // Create an empty array to hold the labels for the x-axis
     const labels = [];
-
- 
-
-  // Loop through the data and add a label for every 30th value
-  for (let i = 0; i < data.length; i++) {
+    // Loop through the data and add a label for every 30th value
+   for (let i = 0; i < data.length; i++) {
     if (i % 50 === 0) {
       labels.push(i.toString());
     } else {
@@ -321,7 +316,7 @@ export class AlgorithmSelectionComponent implements OnInit {
       ],
       chart: {
         height: 190,
-        width: 400,
+        width: 330,
         type: "line",
         zoom: {
           enabled: false
@@ -447,8 +442,5 @@ export class AlgorithmSelectionComponent implements OnInit {
       .attr('text-anchor', 'middle')
       .text((d) => (d as any).data.name);
   }
-
-
-
  
 }

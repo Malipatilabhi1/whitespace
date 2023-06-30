@@ -6,7 +6,8 @@ import {
   ApexResponsive,
   ApexChart,
   ApexTheme,
-  ApexTitleSubtitle
+  ApexTitleSubtitle,
+  ApexGrid,
 } from "ng-apexcharts";
 
 import {
@@ -68,6 +69,7 @@ export type ChartOptionsAvgSpend = {
   tooltip: ApexTooltip;
   stroke: ApexStroke;
   legend: ApexLegend;
+  colors:any;
 };
 
 export type ChartOptionsFrequency = {
@@ -81,6 +83,7 @@ export type ChartOptionsFrequency = {
   tooltip: ApexTooltip;
   stroke: ApexStroke;
   legend: ApexLegend;
+  colors:any;
 };
 
 export type ChartOptionsWillingness = {
@@ -90,6 +93,7 @@ export type ChartOptionsWillingness = {
   labels: any;
   theme: ApexTheme;
   title: ApexTitleSubtitle;
+  colors:any;
 };
 
 export type ChartOptionsGender = {
@@ -103,9 +107,11 @@ export type ChartOptionsGender = {
 export type ChartOptionsScore = {
   series: ApexNonAxisChartSeries;
   chart: ApexChart;
-  labels: string[];
+  responsive: ApexResponsive[];
   plotOptions: ApexPlotOptions;
+  grid: ApexGrid
   colors:any;
+  labels: any;
 };
 
 @Component({
@@ -199,7 +205,7 @@ export class MrSummaryComponent implements OnInit {
 
   gender(){
     this.chartOptionsGender = {
-      series: [44, 55],
+      series:  [this.dataScreen2.respondent_Male, this.dataScreen2.respondent_Female ],
       chart: {
         width: 250,
         type: "pie"
@@ -214,8 +220,11 @@ export class MrSummaryComponent implements OnInit {
               width: 200
             },
             legend: {
-              position: "bottom"
-            }
+              formatter: function(val, opts) {
+                const percentage = opts.w.globals.seriesPercent[opts.seriesIndex];
+                return val + ' (' + percentage.toFixed(1) + '%)';
+              }
+            },
           }
         }
       ]
@@ -224,62 +233,59 @@ export class MrSummaryComponent implements OnInit {
   
 score(){
   this.chartOptionsScore = {
-    series: [44, 55, 67],
+    series: [this.dataScreen2.satisfaction_Yes, this.dataScreen2.satisfaction_Somewhat, this.dataScreen2.satisfaction_Yes],
     chart: {
-      height: 150,
-      type: "radialBar"
+      width: 280,
+      height:180,
+      type: "donut"
     },
     colors:["#69C69B","#F9DA81","#E46B66"],
+    labels: ["Happy", "Neutral", "Sad"],
     plotOptions: {
-      radialBar: {
-        dataLabels: {
-          name: {
-            fontSize: "22px"
+      pie: {
+        startAngle: -90,
+        endAngle: 90,
+        offsetY: 1
+      }
+    },
+    grid: {
+      padding: {
+        bottom: -10
+      }
+    },
+    responsive: [
+      {
+        breakpoint: 480,
+        options: {
+          chart: {
+            width: 150
           },
-          value: {
-            fontSize: "16px"
-          },
-          total: {
-            show: true,
-            label: "Total",
-            formatter: function(w) {
-              return "249";
-            }
+          legend: {
+            position: 'bottom'
           }
         }
       }
-    },
-    labels: ["Happy", "Neutral", "Sad"]
+    ]
   };
+  
 }
 
 
   householdComposition(){
     this.chartOptions = {
-      series: [25, 15, 44, 55, 41],
+      series: [this.dataScreen2['household_<3'], this.dataScreen2['household_3-5'], this.dataScreen2['household_>5']],
       chart: {
-        width: "65%",
+        width: 290,
         type: "pie"
       },
-      colors:["#9692F1","#FACC15"],
-      labels: [
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-      ],
-      theme: {
-        monochrome: {
-          enabled: true
-        }
-      },
+      colors:["#3AA0FF","#36CBCB","#FAD337"],
+      labels: ["<3", "3-5", ">5"],
       responsive: [
         {
           breakpoint: 480,
           options: {
             chart: {
-              width: 100
+              width: 200
             },
             legend: {
               position: "bottom"
@@ -288,13 +294,14 @@ score(){
         }
       ]
     };
+   
   }
 
   ageDistribution(){
     this.chartOptionsAge = {
       series: [
         {
-          name: "Net Profit",
+          name: "Age",
           data: [this.dataScreen2["age_0-25"], this.dataScreen2["age_25-40"], this.dataScreen2["age_40-50"],this.dataScreen2["age_50+"] ]
         }
       ],
@@ -339,7 +346,7 @@ score(){
       tooltip: {
         y: {
           formatter: function(val) {
-            return "$ " + val + " thousands";
+            return " " + val + " ";
           }
         }
       }
@@ -351,7 +358,7 @@ score(){
       series: [
         {
           name: "Net Profit",
-          data: [200, 200, 200, 1000, 800]
+          data: [this.dataScreen2['income_0-25000'], this.dataScreen2['income_25000-50000'], this.dataScreen2['income_50000-100000'], this.dataScreen2['income_100000+']]
         }
       ],
       chart: {
@@ -374,11 +381,10 @@ score(){
       },
       xaxis: {
         categories: [
-          "<25",
-          "25-50",
-          "50-75",
-          "75-100",
-          ">100"
+          "0-25000",
+          "25000-50000",
+          "500000-1000000",
+          "1000000+"
         ],
         title:{
           text: "Income Group (in Rs 1000)"
@@ -408,13 +414,14 @@ score(){
         series: [
           {
             name: "Net Profit",
-            data: [200, 300, 200, 500, 400, 100]
+            data: [this.dataScreen2['spend_<10'], this.dataScreen2['spend_10-30'], this.dataScreen2['spend_30-50'], this.dataScreen2['spend_>50']]
           }
         ],
         chart: {
           type: "bar",
           height: 150
         },
+        colors:["#9692F1"],
         plotOptions: {
           bar: {
             horizontal: false,
@@ -431,12 +438,10 @@ score(){
         },
         xaxis: {
           categories: [
-            "<100",
-            "100-200",
-            "200-300",
-            "300-400",
-            "400-500",
-            "<500"
+            "<10",
+            "10-30",
+            "30-50",
+            "50+"
           ],
           title:{
             text: "Income Group (in Rs 1000)"
@@ -466,13 +471,14 @@ score(){
       series: [
         {
           name: "Net Profit",
-          data: [230, 500, 150, 56]
+          data: [this.dataScreen2.freq_Never,this.dataScreen2['freq_Once a day'], this.dataScreen2['freq_< Once a week'], this.dataScreen2['freq_> Once a week']]
         }
       ],
       chart: {
         type: "bar",
         height: 150
       },
+      colors:["#9692F1"],
       plotOptions: {
         bar: {
           horizontal: false,
@@ -489,10 +495,11 @@ score(){
       },
       xaxis: {
         categories: [
-          "Once a day",
-          ">Once a week",
+          "Never",
+          "Once in a day",
           "<Once a week",
-          "Never"
+          ">Once a week",
+         
         ],
         title:{
           text: "Age Group"
@@ -520,27 +527,19 @@ score(){
 
   willingness(){
     this.chartOptionsWillingness = {
-      series: [25, 15, 44],
+      series: [this.dataScreen2['switchcount_Not Likely'], this.dataScreen2['switchcount_Somewhat Likely'], this.dataScreen2['switchcount_Very Likely'], this.dataScreen2['switchcount_Won\'t Mind']],
       chart: {
-        width: "85%",
+        width: 350,
         type: "pie"
       },
-      labels: [
-        "Very likely",
-        "Won't mind",
-        "Not likely"
-      ],
-      theme: {
-        monochrome: {
-          enabled: true
-        }
-      },
+      colors:["#3AA0FF","#36CBCB","#FAD337","#F2637B"],
+      labels: [ "Not Likely", "Somewhat Likely","Very Likely", "Won't Mind",],
       responsive: [
         {
           breakpoint: 480,
           options: {
             chart: {
-              width: 100
+              width: 200
             },
             legend: {
               position: "bottom"
@@ -549,6 +548,7 @@ score(){
         }
       ]
     };
+    
   }
 
   navigatetoAlgorithmSelection(){

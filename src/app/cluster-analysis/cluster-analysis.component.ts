@@ -267,6 +267,150 @@ export class ClusterAnalysisComponent implements OnInit {
   @ViewChild("chart17") chart17: ChartComponent;
   public chartOptionsIncome2: Partial<ChartOptionsIncome2>;
 
+  data={
+    "age": {
+      "0": {
+        "0-25": 7,
+        "25-40": 9,
+        "40-50": 3,
+        "50+": 11
+      },
+      "1": {
+        "25-40": 13,
+        "40-50": 2
+      },
+      "2": {
+        "0-25": 2,
+        "25-40": 3,
+        "40-50": 1,
+        "50+": 2
+      },
+      "3": {
+        "0-25": 2,
+        "25-40": 7,
+        "40-50": 2,
+        "50+": 3
+      },
+      "4": {
+        "0-25": 11,
+        "25-40": 1,
+        "40-50": 7,
+        "50+": 3
+      },
+      "5": {
+        "0-25": 3,
+        "25-40": 1,
+        "40-50": 4,
+        "50+": 3
+      }
+    },
+    "gender": {
+      "0": {
+        "Female": 17,
+        "Male": 13
+      },
+      "1": {
+        "Male": 15
+      },
+      "2": {
+        "Female": 3,
+        "Male": 5
+      },
+      "3": {
+        "Female": 10,
+        "Male": 4
+      },
+      "4": {
+        "Female": 11,
+        "Male": 11
+      },
+      "5": {
+        "Female": 2,
+        "Male": 9
+      }
+    },
+    "income": {
+      "0": {
+        "0-25000": 11,
+        "100000+": 6,
+        "25000-50000": 11,
+        "50000-100000": 2
+      },
+      "1": {
+        "25000-50000": 15
+      },
+      "2": {
+        "100000+": 3,
+        "25000-50000": 2,
+        "50000-100000": 3
+      },
+      "3": {
+        "0-25000": 4,
+        "100000+": 3,
+        "25000-50000": 1,
+        "50000-100000": 6
+      },
+      "4": {
+        "0-25000": 1,
+        "100000+": 6,
+        "25000-50000": 7,
+        "50000-100000": 8
+      },
+      "5": {
+        "0-25000": 7,
+        "100000+": 3,
+        "25000-50000": 1
+      }
+    },
+    "respondent": {
+      "Segment 0": 30,
+      "Segment 1": 15,
+      "Segment 2": 8,
+      "Segment 3": 14,
+      "Segment 4": 22,
+      "Segment 5": 11
+    },
+    "spend": {
+      "0": {
+        "10-30": 14,
+        "30-50": 2,
+        "<10": 5,
+        ">50": 9
+      },
+      "1": {
+        "30-50": 4,
+        ">50": 11
+      },
+      "2": {
+        "10-30": 3,
+        "30-50": 1,
+        ">50": 4
+      },
+      "3": {
+        "10-30": 1,
+        "30-50": 3,
+        "<10": 4,
+        ">50": 6
+      },
+      "4": {
+        "10-30": 5,
+        "30-50": 4,
+        "<10": 3,
+        ">50": 10
+      },
+      "5": {
+        "10-30": 2,
+        "30-50": 8,
+        "<10": 1
+      }
+    },
+    "switchcount": {
+      "1": {
+        "Very Likely": 15
+      }
+    }
+  }
+
   tableContent = [
     {name:"packet size", seg1:"0.5", seg2:"1.2", seg3:"1.1", seg4:"2.3", seg5:"0.1", seg6:"0.6" },
     {name:"Experiment", seg1:"1.3", seg2:"2.0", seg3:"3.4", seg4:"0.4", seg5:"0.56", seg6:"0.34" },
@@ -543,31 +687,37 @@ export class ClusterAnalysisComponent implements OnInit {
     };
   }
 
-  age(){
+  age() {
+    const ageData = this.data.age;
+    const ageKeys = Object.keys(ageData);
+    const categories = ageKeys.map((key) => `Seg ${parseInt(key) + 1}`);
+    const seriesData = {
+      "0-25": [],
+      "25-40": [],
+      "40-50": [],
+      "50+": []
+    };
+  
+   
+  
+    ageKeys.forEach((key) => {
+      const ageGroup = ageData[key];
+      Object.keys(ageGroup).forEach((range) => {
+        seriesData[range].push(ageGroup[range]);
+      });
+    });
+  
+   
+  
+    const series = Object.keys(seriesData).map((range) => ({
+      name: range,
+      data: seriesData[range]
+    }));
+  
+   
+  
     this.chartOptionsAge = {
-      series: [
-        {
-          name: "55+",
-          data: [44, 55, 41, 67, 22, 43]
-        },
-        {
-          name: "45-55",
-          data: [13, 23, 20, 8, 13, 27]
-        },
-        {
-          name: "35-45",
-          data: [11, 17, 15, 15, 21, 14]
-        },
-        {
-          name: "25-35",
-          data: [44, 55, 41, 67, 22, 43]
-        },
-        {
-          name: "15-25",
-          data: [13, 23, 20, 8, 13, 27]
-        }
-
-      ],
+      series: series,
       chart: {
         type: "bar",
         height: 150,
@@ -598,14 +748,7 @@ export class ClusterAnalysisComponent implements OnInit {
       },
       xaxis: {
         type: "category",
-        categories: [
-          "Seg 1",
-          "Seg 2",
-          "Seg 3",
-          "Seg 4",
-          "Seg 5",
-          "Seg 6"
-        ]
+        categories: categories
       },
       yaxis: {
         title: {
@@ -622,19 +765,37 @@ export class ClusterAnalysisComponent implements OnInit {
     };
   }
 
-  gender(){
+  gender() {
+    const genderData =this.data.gender
+   
+  
+    const genderKeys = Object.keys(genderData);
+    const categories = genderKeys.map((key) => `Seg ${parseInt(key) + 1}`);
+    const seriesData = {
+      Female: [],
+      Male: []
+    };
+  
+   
+  
+    genderKeys.forEach((key) => {
+      const genderGroup = genderData[key];
+      Object.keys(genderGroup).forEach((gender) => {
+        seriesData[gender].push(genderGroup[gender]);
+      });
+    });
+  
+   
+  
+    const series = Object.keys(seriesData).map((gender) => ({
+      name: gender,
+      data: seriesData[gender]
+    }));
+  
+   
+  
     this.chartOptionsGender = {
-      series: [
-        {
-          name: "Female",
-          data: [44, 55, 41, 67, 22, 43]
-        },
-        {
-          name: "Male",
-          data: [13, 23, 20, 8, 13, 27]
-        }
-
-      ],
+      series: series,
       chart: {
         type: "bar",
         height: 150,
@@ -665,14 +826,7 @@ export class ClusterAnalysisComponent implements OnInit {
       },
       xaxis: {
         type: "category",
-        categories: [
-          "Seg 1",
-          "Seg 2",
-          "Seg 3",
-          "Seg 4",
-          "Seg 5",
-          "Seg 6"
-        ]
+        categories: categories
       },
       yaxis: {
         title: {

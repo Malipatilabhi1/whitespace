@@ -1,21 +1,29 @@
 <div class="main">
     <h1 class="px-2"><b>Segment Characteristics Definition</b></h1>
     <div class="mx-3">
-    <div class="d-flex flex-row">
-        <div class="p-1 card me-1 mb-3 rounded-0" style="width: 25%; height: 500px; overflow-y: auto; background-color: white">
-            <ul class="list-group">
-            <li class="list-group-item m-2 my-div" style="border: 1px solid grey; cursor: pointer;"
-                    *ngFor="let segment of segments"
-                    [class.selected]="segment === selectedSegment"
-                    (click)="selectSegment(segment)">
-            <div class="segment-item">
-            <img class="m-1 rounded-pill" style="border-radius: 50%;" height="40" width="40" [src]="segment.image">
-            <span><b>{{ segment.name }}</b></span>
+        <div class="p-1 card me-1 mb-3 rounded-0" style="width: 100%; overflow-y: auto; background-color: white">
+            <ul class="list-group d-flex flex-row">
+            <div
+                  class="list-group-item m-2 my-div d-flex flex-row"
+                  style="border: 1px solid grey; cursor: pointer;"
+                  *ngFor="let segment of segments"
+                  [class.selected]="segment === selectedSegment"
+                  (click)="selectSegment(segment)"
+            >
+            <div class="tick-mark" [ngClass]="{ 'selected': segment === selectedSegment }">
+            <span class="tick"></span>
             </div>
-            </li>
+            <div class="segment-item d-flex flex-column">
+            <!-- <img class="m-1 rounded-pill" style="border-radius: 50%;" height="40" width="40" [src]="segment.image"> -->
+            <span><b>{{ segment.name }}</b><sub>{{ getSegmentStatus(segment) }}</sub></span>
+            
+            </div>
+            </div>
             </ul>
             </div>
-    <div class="p-1" style="width: 75%">
+    <div class="d-flex flex-row">
+       
+    <div class="p-1" style="width: 90%">
    <div class="card d-flex flex-column" *ngIf="selectedSegment">
     <div class="d-flex flex-row"  >
         <div class="d-flex flex-row" style="width:50%">
@@ -33,13 +41,13 @@
                  <label style="width:300px;border:1px solid rgb(212, 212, 247);border-radius: 10px;align-items: center;display: flex;padding: 10px;" *ngIf="!isMapped" >status: Yet to be Mapped</label>
                  <label style="width:300px;border:1px solid rgb(212, 212, 247);border-radius: 10px;align-items: center;display: flex;padding: 10px;background-color:rgb(212, 212, 247) ;" *ngIf="isMapped" >status: Mapped to product attribute</label>   
              </div>
-             <div class="p-2" style="display: flex;justify-content: center;height:50px">
+         <!--     <div class="p-2" style="display: flex;justify-content: center;height:50px">
                  <button style="width:230px" *ngIf="!isMapped" type="button" class="btn btn-primary" data-bs-toggle="modal"
                      data-bs-target="#exampleModal"> Map To Product Attribute</button>
                  <button *ngIf="isMapped" type="button" class="btn btn-light" data-bs-toggle="modal" style="width:230px;background-color: rgb(126, 126, 212);"
                      data-bs-target="#exampleModal"> Edit Mapped</button>
-             </div>
-         </div>
+             </div>-->
+         </div> 
     </div>  
     <div class=" d-flex flex-row" style="width:100%" >
         
@@ -85,11 +93,43 @@
     <div class="px-3 pt-3" style="display:flex;justify-content: end; cursor: pointer;"  >
      <img src="../../assets/images/chatBot.jpg" class="rouned-pill" style="border-radius: 50%;" height="50" width="50" alt="" data-bs-toggle="modal" data-bs-target="#myModal2" >
     </div>
+    <div class="p-2 mt-3" style="display:flex;justify-content: end;height:50px;align-items: center; ">
+        <button type="button" class="btn btn-primary"(click)="saveSegment()" >Save</button>
+    </div>
      <div class="p-2 mt-3" style="display:flex;justify-content: end;height:50px;align-items: center; ">
          <button type="button" class="btn btn-primary" routerLink="/whitespaceAnalysis" >Next</button>
      </div>
  </div>
     </div>
+    
+        <div class="card" style="width:30%;height:500px">
+            <div class="slider-container d-flex flex-row">
+                <p class="pt-4 px-2">aroma</p>
+                <ng5-slider [(value)]="sliderValues[0]" [options]="sliderOptions"></ng5-slider>
+            </div>
+            <div class="slider-container d-flex flex-row">
+                <p class="pt-4 px-2">clean&nbsp;scalp</p>
+                <ng5-slider [(value)]="sliderValues[1]" [options]="sliderOptions"></ng5-slider>
+            </div>
+            <div class="slider-container d-flex flex-row">
+                <p class="pt-4 px-2">long&nbsp;lasting&nbsp;hold</p>
+                <ng5-slider [(value)]="sliderValues[2]" [options]="sliderOptions"></ng5-slider>
+            </div>
+            <div class="slider-container d-flex flex-row">
+                <p class="pt-4 px-2">maintainance</p>
+                <ng5-slider [(value)]="sliderValues[3]" [options]="sliderOptions"></ng5-slider>
+            </div>
+            <div class="slider-container d-flex flex-row">
+                <p class="pt-4 px-2">volume&nbsp;and&nbsp;bounce</p>
+                <ng5-slider [(value)]="sliderValues[4]" [options]="sliderOptions"></ng5-slider>
+            </div>
+            <div class="slider-container d-flex flex-row">
+                <p class="pt-4 px-2">special&nbsp;purpose</p>
+                <ng5-slider [(value)]="sliderValues[5]" [options]="sliderOptions"></ng5-slider>
+            </div>
+        </div>
+  
+
     </div>
    
     </div>

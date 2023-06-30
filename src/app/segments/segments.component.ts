@@ -110,8 +110,35 @@ constructor(){
      this.isMapped=false;
   }
 
- 
+  saveSegment() {
+    this.isMapped = true;
+    if (this.selectedSegment) {
+  
+      this.selectedSegment.status = 'saved';
+  
+      console.log('Segment saved:', this.selectedSegment);
+  
+    }
+  
+  }
+  
+  
 
+  
+  getSegmentStatus(segment: any): string {
+  
+    if (segment === this.selectedSegment) {
+  
+      return 'In-progress';
+  
+    } else {
+  
+      return segment.status || 'Not started';
+  
+    }
+  
+  }
+  
   addCharacteristic(): void {
     this.selectedSegment.segmentCharacteristics.push('');
     this.saveData();

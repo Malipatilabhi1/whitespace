@@ -1,31 +1,30 @@
-import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
-// import {jsPDF} from 'jspdf'
-// import html2canvas from 'html2canvas';
+import { ElementRef, Injectable, ViewChild } from '@angular/core';
+import {jsPDF} from 'jspdf'
+import html2canvas from 'html2canvas';
 
-@Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+@Injectable({
+  providedIn: 'root'
 })
-export class AppComponent {
-  sideBarOpen = true;
-  @ViewChild('content', {static:false})el!:ElementRef;
-  @ViewChild('scroller1') scroller: ElementRef | any;
-  title = 'clustering';
-  ngOnInit(): void {
-    const div = this.scroller.nativeElement as HTMLDivElement;
-    div.addEventListener('mouseover', e => {
-      console.log('Mouse Over');
+export class GeneralServiceService {
+ 
+  constructor() { }
+  private capturedImages: string[] = [];
+
+  captureScreen(element: HTMLElement): Promise<string> {
+    return html2canvas(element).then((canvas) => {
+      const imageData = canvas.toDataURL('image/jpeg');
+      this.capturedImages.push(imageData);
+      console.log("con", this.capturedImages)
+      return imageData;
     });
-    div.addEventListener('mouseout', e => {
-      console.log('Mouse Out');
-    });
+  
   }
-  sideBarToggler() {
-    this.sideBarOpen = !this.sideBarOpen;
+
+  getCapturedImages(): string[] {
+    return this.capturedImages;
   }
-  // generatePdf22() {
-  //   let data = this.el.nativeElement
+  // generatePdf22(data:any) {
+  
   //   html2canvas(data, { allowTaint: true }).then(canvas => {
   //    let HTML_Width = canvas.width;
   //    let HTML_Height = canvas.height;
@@ -43,7 +42,7 @@ export class AppComponent {
   //      pdf.addPage([PDF_Width, PDF_Height], 'p');
   //      pdf.addImage(imgData, 'JPG', top_left_margin, -(PDF_Height * i) + (top_left_margin * 4), canvas_image_width, canvas_image_height);
   //    }
-  //     pdf.save("HTML-Document.pdf");
+  //      pdf.save("HTML-Document.pdf");
   //  });
   
   // } 

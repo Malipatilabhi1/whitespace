@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Options } from 'ng5-slider';
 import { Subject } from 'rxjs';
-
+import { GeneralServiceService } from '../general-service.service';
  
 
 @Component({
@@ -100,10 +100,18 @@ export class SegmentsComponent implements OnInit {
   ngOnInit(): void {
     this.loadSavedData();
   }
-constructor(){
+constructor(private gs: GeneralServiceService){
    this.selectedSegment = this.segments[0]
 }
- 
+@ViewChild('content', {static:false})el!:ElementRef;
+capture(){
+  this.captureScreen()
+}
+  private captureScreen() {
+    const element = this.el.nativeElement;
+    this.gs.captureScreen(element);
+  }
+
 
   selectSegment(segment: any): void {
     this.selectedSegment = segment ;

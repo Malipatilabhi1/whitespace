@@ -1,5 +1,5 @@
-<div class="main" id="clusterAnalysisComponent">
-    <div class="d-flex flex-row p-2" style="width:100%">
+<div class="main" id = "content" #content>
+    <div class="d-flex flex-row p-2" style="width:100%;background-color: white;">
       <div style="width:75%">
         <h1><b>Cluster Analysis & Selection</b></h1>
       </div>
@@ -7,30 +7,30 @@
         <!-- <button type="button" class="btn btn-primary">New Segment</button> -->
       </div>
       <div style="width:20%">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Detailed Segment View</button>
+        <button type="button" class="btn btn-light" style="background-color: #1890FF;color:white" data-bs-toggle="modal" data-bs-target="#exampleModal">Detailed Segment View</button>
       </div>
     </div>
     <div style="width:100%">
-        <mat-tab-group >
-            <mat-tab label="K Means"> 
+        <mat-tab-group style="background-color: white;">
+            <mat-tab label="K Means" > 
               <ng-template matTabContent>
-
+                <div class="mat-tab-body-content p-2" style="background-color: #F0F2F5;">
                 <div class="d-flex flex-column" style="width:100%">
                     <div class="row1graphs d-flex flex-row">
-                       <div class="card m-2" style="width:33%">
+                       <div class="card m-2" style="width:50%">
                         <h4 class="px-2 py-0 my-0"><b>Number of Respondents In Each Segment</b></h4>
                         <div id="chart">
-                            <apx-chart
-                              [series]="chartOptions.series"
-                              [chart]="chartOptions.chart"
-                              [dataLabels]="chartOptions.dataLabels"
-                              [plotOptions]="chartOptions.plotOptions"
-                              [title]="chartOptions.title"
-                              [legend]="chartOptions.legend"
-                            ></apx-chart>
-                          </div>
+                          <apx-chart
+                            [series]="chartOptions.series"
+                            [chart]="chartOptions.chart"
+                            [dataLabels]="chartOptions.dataLabels"
+                            [plotOptions]="chartOptions.plotOptions"
+                            [xaxis]="chartOptions.xaxis"
+                            [colors]="chartOptions.colors"
+                          ></apx-chart>
+                        </div>
                        </div>
-                       <div class="card m-2" style="width:33%">
+                       <div class="card m-2" style="width:50%">
                         <h4 class="px-2 py-0 my-0"><b>Willingness to Switch</b></h4>
                         <div id="chart1">
                             <apx-chart
@@ -43,10 +43,13 @@
                               [legend]="chartOptionsWillingness.legend"
                               [fill]="chartOptionsWillingness.fill"
                               [yaxis]="chartOptionsWillingness.yaxis"
+                              [colors]="chartOptionsWillingness.colors"
                             ></apx-chart>
                           </div>
                        </div>
-                       <div class="card m-2" style="width:33%">
+                    </div>
+                    <div class="row2graphs d-flex flex-row">
+                      <div class="card m-2" style="width:50%">
                         <h4 class="px-2 py-0 my-0"><b>Spend Per Month on Shampoo</b></h4>
                         <div id="chart2">
                             <apx-chart
@@ -59,12 +62,11 @@
                               [legend]="chartOptionsSpend.legend"
                               [fill]="chartOptionsSpend.fill"
                               [yaxis]="chartOptionsSpend.yaxis"
+                              [colors]="chartOptionsSpend.colors"
                             ></apx-chart>
                           </div>
                        </div>
-                    </div>
-                    <div class="row2graphs d-flex flex-row">
-                        <div class="card m-2" style="width:33%">
+                        <div class="card m-2" style="width:50%">
                             <h4 class="px-2 py-0 my-0"><b>Age Dstribution</b></h4>
                             <div id="chart3">
                                 <apx-chart
@@ -77,65 +79,70 @@
                                   [legend]="chartOptionsAge.legend"
                                   [fill]="chartOptionsAge.fill"
                                   [yaxis]="chartOptionsAge.yaxis"
+                                  [colors]="chartOptionsAge.colors"
                                 ></apx-chart>
                               </div>
                         </div>
-                        <div class="card m-2" style="width:33%">
-                         <h4 class="px-2 py-0 my-0"><b>Gender Dstribution</b></h4>
-                         <div id="chart4">
-                             <apx-chart
-                               [series]="chartOptionsGender.series"
-                               [chart]="chartOptionsGender.chart"
-                               [dataLabels]="chartOptionsGender.dataLabels"
-                               [plotOptions]="chartOptionsGender.plotOptions"
-                               [responsive]="chartOptionsGender.responsive"
-                               [xaxis]="chartOptionsGender.xaxis"
-                               [legend]="chartOptionsGender.legend"
-                               [fill]="chartOptionsGender.fill"
-                               [yaxis]="chartOptionsGender.yaxis"
-                             ></apx-chart>
-                           </div>
-                        </div>
-                        <div class="card m-2" style="width:33%">
-                         <h4 class="px-2 py-0 my-0"><b>Income Distribution</b></h4>
-                         <div id="chart5">
-                             <apx-chart
-                               [series]="chartOptionsIncome.series"
-                               [chart]="chartOptionsIncome.chart"
-                               [dataLabels]="chartOptionsIncome.dataLabels"
-                               [plotOptions]="chartOptionsIncome.plotOptions"
-                               [responsive]="chartOptionsIncome.responsive"
-                               [xaxis]="chartOptionsIncome.xaxis"
-                               [legend]="chartOptionsIncome.legend"
-                               [fill]="chartOptionsIncome.fill"
-                               [yaxis]="chartOptionsIncome.yaxis"
-                             ></apx-chart>
-                           </div>
-                        </div>
                      </div>
-
+                     <div class="row2graphs d-flex flex-row">
+                      <div class="card m-2" style="width:50%">
+                        <h4 class="px-2 py-0 my-0"><b>Gender Dstribution</b></h4>
+                        <div id="chart4">
+                            <apx-chart
+                              [series]="chartOptionsGender.series"
+                              [chart]="chartOptionsGender.chart"
+                              [dataLabels]="chartOptionsGender.dataLabels"
+                              [plotOptions]="chartOptionsGender.plotOptions"
+                              [responsive]="chartOptionsGender.responsive"
+                              [xaxis]="chartOptionsGender.xaxis"
+                              [legend]="chartOptionsGender.legend"
+                              [fill]="chartOptionsGender.fill"
+                              [yaxis]="chartOptionsGender.yaxis"
+                              [colors]="chartOptionsGender.colors"
+                            ></apx-chart>
+                          </div>
+                       </div>
+                       <div class="card m-2" style="width:50%">
+                        <h4 class="px-2 py-0 my-0"><b>Income Distribution</b></h4>
+                        <div id="chart5">
+                            <apx-chart
+                              [series]="chartOptionsIncome.series"
+                              [chart]="chartOptionsIncome.chart"
+                              [dataLabels]="chartOptionsIncome.dataLabels"
+                              [plotOptions]="chartOptionsIncome.plotOptions"
+                              [responsive]="chartOptionsIncome.responsive"
+                              [xaxis]="chartOptionsIncome.xaxis"
+                              [legend]="chartOptionsIncome.legend"
+                              [fill]="chartOptionsIncome.fill"
+                              [yaxis]="chartOptionsIncome.yaxis"
+                              [colors]="chartOptionsIncome.colors"
+                            ></apx-chart>
+                          </div>
+                       </div>
+                     </div>
+                </div>
                 </div>
                 </ng-template>
             </mat-tab>
             <mat-tab label="Agglomerative Hierarchical">
               <ng-template matTabContent>
-
+                <div class="mat-tab-body-content p-2" style="background-color: #F0F2F5;">
                 <div class="d-flex flex-column" style="width:100%">
                     <div class="row1graphs d-flex flex-row">
-                       <div class="card m-2" style="width:33%">
+                       <div class="card m-2" style="width:50%">
                         <h4 class="px-2 py-0 my-0"><b>Number of Respondents In Each Segment</b></h4>
                         <div id="chart6">
-                            <apx-chart
-                              [series]="chartOptions1.series"
-                              [chart]="chartOptions1.chart"
-                              [dataLabels]="chartOptions1.dataLabels"
-                              [plotOptions]="chartOptions1.plotOptions"
-                              [title]="chartOptions1.title"
-                              [legend]="chartOptions1.legend"
-                            ></apx-chart>
-                          </div>
+                          <apx-chart
+                            [series]="chartOptions1.series"
+                            [chart]="chartOptions1.chart"
+                            [dataLabels]="chartOptions1.dataLabels"
+                            [plotOptions]="chartOptions1.plotOptions"
+                            [xaxis]="chartOptions1.xaxis"
+                            [colors]="chartOptions1.colors"
+                          ></apx-chart>
+                        </div>
                        </div>
-                       <div class="card m-2" style="width:33%">
+                       <div class="card m-2" style="width:50%">
                         <h4 class="px-2 py-0 my-0"><b>Willingness to Switch</b></h4>
                         <div id="chart7">
                             <apx-chart
@@ -148,10 +155,14 @@
                               [legend]="chartOptionsWillingness1.legend"
                               [fill]="chartOptionsWillingness1.fill"
                               [yaxis]="chartOptionsWillingness1.yaxis"
+                              [colors]="chartOptionsWillingness1.colors"
                             ></apx-chart>
                           </div>
                        </div>
-                       <div class="card m-2" style="width:33%">
+                      
+                    </div>
+                    <div class="row2graphs d-flex flex-row">
+                      <div class="card m-2" style="width:50%">
                         <h4 class="px-2 py-0 my-0"><b>Spend Per Month on Shampoo</b></h4>
                         <div id="chart8">
                             <apx-chart
@@ -164,12 +175,11 @@
                               [legend]="chartOptionsSpend1.legend"
                               [fill]="chartOptionsSpend1.fill"
                               [yaxis]="chartOptionsSpend1.yaxis"
+                              [colors]="chartOptionsSpend1.colors"
                             ></apx-chart>
                           </div>
                        </div>
-                    </div>
-                    <div class="row2graphs d-flex flex-row">
-                        <div class="card m-2" style="width:33%">
+                        <div class="card m-2" style="width:50%">
                             <h4 class="px-2 py-0 my-0"><b>Age Dstribution</b></h4>
                             <div id="chart9">
                                 <apx-chart
@@ -182,65 +192,71 @@
                                   [legend]="chartOptionsAge1.legend"
                                   [fill]="chartOptionsAge1.fill"
                                   [yaxis]="chartOptionsAge1.yaxis"
+                                  [colors]="chartOptionsAge1.colors"
                                 ></apx-chart>
                               </div>
                         </div>
-                        <div class="card m-2" style="width:33%">
-                         <h4 class="px-2 py-0 my-0"><b>Gender Dstribution</b></h4>
-                         <div id="chart10">
-                             <apx-chart
-                               [series]="chartOptionsGender1.series"
-                               [chart]="chartOptionsGender1.chart"
-                               [dataLabels]="chartOptionsGender1.dataLabels"
-                               [plotOptions]="chartOptionsGender1.plotOptions"
-                               [responsive]="chartOptionsGender1.responsive"
-                               [xaxis]="chartOptionsGender1.xaxis"
-                               [legend]="chartOptionsGender1.legend"
-                               [fill]="chartOptionsGender1.fill"
-                               [yaxis]="chartOptionsGender1.yaxis"
-                             ></apx-chart>
-                           </div>
-                        </div>
-                        <div class="card m-2" style="width:33%">
-                         <h4 class="px-2 py-0 my-0"><b>Income Distribution</b></h4>
-                         <div id="chart11">
-                             <apx-chart
-                               [series]="chartOptionsIncome1.series"
-                               [chart]="chartOptionsIncome1.chart"
-                               [dataLabels]="chartOptionsIncome1.dataLabels"
-                               [plotOptions]="chartOptionsIncome1.plotOptions"
-                               [responsive]="chartOptionsIncome1.responsive"
-                               [xaxis]="chartOptionsIncome1.xaxis"
-                               [legend]="chartOptionsIncome1.legend"
-                               [fill]="chartOptionsIncome1.fill"
-                               [yaxis]="chartOptionsIncome1.yaxis"
-                             ></apx-chart>
-                           </div>
-                        </div>
                      </div>
-
+                    <div class="row2graphs d-flex flex-row">
+                      <div class="card m-2" style="width:50%">
+                        <h4 class="px-2 py-0 my-0"><b>Gender Dstribution</b></h4>
+                        <div id="chart10">
+                            <apx-chart
+                              [series]="chartOptionsGender1.series"
+                              [chart]="chartOptionsGender1.chart"
+                              [dataLabels]="chartOptionsGender1.dataLabels"
+                              [plotOptions]="chartOptionsGender1.plotOptions"
+                              [responsive]="chartOptionsGender1.responsive"
+                              [xaxis]="chartOptionsGender1.xaxis"
+                              [legend]="chartOptionsGender1.legend"
+                              [fill]="chartOptionsGender1.fill"
+                              [yaxis]="chartOptionsGender1.yaxis"
+                              [colors]="chartOptionsGender1.colors"
+                            ></apx-chart>
+                          </div>
+                       </div>
+                       <div class="card m-2" style="width:50%">
+                        <h4 class="px-2 py-0 my-0"><b>Income Distribution</b></h4>
+                        <div id="chart11">
+                            <apx-chart
+                              [series]="chartOptionsIncome1.series"
+                              [chart]="chartOptionsIncome1.chart"
+                              [dataLabels]="chartOptionsIncome1.dataLabels"
+                              [plotOptions]="chartOptionsIncome1.plotOptions"
+                              [responsive]="chartOptionsIncome1.responsive"
+                              [xaxis]="chartOptionsIncome1.xaxis"
+                              [legend]="chartOptionsIncome1.legend"
+                              [fill]="chartOptionsIncome1.fill"
+                              [yaxis]="chartOptionsIncome1.yaxis"
+                              [colors]="chartOptionsIncome1.colors"
+                            ></apx-chart>
+                          </div>
+                       </div>
+                    </div>
+                </div>
                 </div>
               </ng-template>
             </mat-tab>
             <mat-tab label="DB Scan">
+             
               <ng-template matTabContent>
-
+                <div class="mat-tab-body-content p-2" style="background-color: #F0F2F5;">
                 <div class="d-flex flex-column" style="width:100%">
                     <div class="row1graphs d-flex flex-row">
-                       <div class="card m-2" style="width:33%">
+                       <div class="card m-2" style="width:50%">
                         <h4 class="px-2 py-0 my-0"><b>Number of Respondents In Each Segment</b></h4>
                         <div id="chart12">
-                            <apx-chart
-                              [series]="chartOptions2.series"
-                              [chart]="chartOptions2.chart"
-                              [dataLabels]="chartOptions2.dataLabels"
-                              [plotOptions]="chartOptions2.plotOptions"
-                              [title]="chartOptions2.title"
-                              [legend]="chartOptions2.legend"
-                            ></apx-chart>
+                          <apx-chart
+                          [series]="chartOptions2.series"
+                          [chart]="chartOptions2.chart"
+                          [dataLabels]="chartOptions2.dataLabels"
+                          [plotOptions]="chartOptions2.plotOptions"
+                          [xaxis]="chartOptions2.xaxis"
+                          [colors]="chartOptions2.colors"
+                        ></apx-chart>
                           </div>
                        </div>
-                       <div class="card m-2" style="width:33%">
+                       <div class="card m-2" style="width:50%">
                         <h4 class="px-2 py-0 my-0"><b>Willingness to Switch</b></h4>
                         <div id="chart13">
                             <apx-chart
@@ -253,10 +269,14 @@
                               [legend]="chartOptionsWillingness2.legend"
                               [fill]="chartOptionsWillingness2.fill"
                               [yaxis]="chartOptionsWillingness2.yaxis"
+                              [colors]="chartOptionsWillingness2.colors"
                             ></apx-chart>
                           </div>
                        </div>
-                       <div class="card m-2" style="width:33%">
+                       
+                    </div>
+                    <div class="row2graphs d-flex flex-row">
+                      <div class="card m-2" style="width:50%">
                         <h4 class="px-2 py-0 my-0"><b>Spend Per Month on Shampoo</b></h4>
                         <div id="chart14">
                             <apx-chart
@@ -269,12 +289,11 @@
                               [legend]="chartOptionsSpend2.legend"
                               [fill]="chartOptionsSpend2.fill"
                               [yaxis]="chartOptionsSpend2.yaxis"
+                              [colors]="chartOptionsSpend2.colors"
                             ></apx-chart>
                           </div>
                        </div>
-                    </div>
-                    <div class="row2graphs d-flex flex-row">
-                        <div class="card m-2" style="width:33%">
+                        <div class="card m-2" style="width:50%">
                             <h4 class="px-2 py-0 my-0"><b>Age Dstribution</b></h4>
                             <div id="chart15">
                                 <apx-chart
@@ -287,49 +306,56 @@
                                   [legend]="chartOptionsAge2.legend"
                                   [fill]="chartOptionsAge2.fill"
                                   [yaxis]="chartOptionsAge2.yaxis"
+                                  [colors]="chartOptionsAge2.colors"
                                 ></apx-chart>
                               </div>
                         </div>
-                        <div class="card m-2" style="width:33%">
-                         <h4 class="px-2 py-0 my-0"><b>Gender Dstribution</b></h4>
-                         <div id="chart16">
-                             <apx-chart
-                               [series]="chartOptionsGender2.series"
-                               [chart]="chartOptionsGender2.chart"
-                               [dataLabels]="chartOptionsGender2.dataLabels"
-                               [plotOptions]="chartOptionsGender2.plotOptions"
-                               [responsive]="chartOptionsGender2.responsive"
-                               [xaxis]="chartOptionsGender2.xaxis"
-                               [legend]="chartOptionsGender2.legend"
-                               [fill]="chartOptionsGender2.fill"
-                               [yaxis]="chartOptionsGender2.yaxis"
-                             ></apx-chart>
-                           </div>
-                        </div>
-                        <div class="card m-2" style="width:33%">
-                         <h4 class="px-2 py-0 my-0"><b>Income Distribution</b></h4>
-                         <div id="chart17">
-                             <apx-chart
-                               [series]="chartOptionsIncome2.series"
-                               [chart]="chartOptionsIncome2.chart"
-                               [dataLabels]="chartOptionsIncome2.dataLabels"
-                               [plotOptions]="chartOptionsIncome2.plotOptions"
-                               [responsive]="chartOptionsIncome2.responsive"
-                               [xaxis]="chartOptionsIncome2.xaxis"
-                               [legend]="chartOptionsIncome2.legend"
-                               [fill]="chartOptionsIncome2.fill"
-                               [yaxis]="chartOptionsIncome2.yaxis"
-                             ></apx-chart>
-                           </div>
-                        </div>
+                     </div>
+                     <div class="row2graphs d-flex flex-row">
+                      <div class="card m-2" style="width:50%">
+                        <h4 class="px-2 py-0 my-0"><b>Gender Dstribution</b></h4>
+                        <div id="chart16">
+                            <apx-chart
+                              [series]="chartOptionsGender2.series"
+                              [chart]="chartOptionsGender2.chart"
+                              [dataLabels]="chartOptionsGender2.dataLabels"
+                              [plotOptions]="chartOptionsGender2.plotOptions"
+                              [responsive]="chartOptionsGender2.responsive"
+                              [xaxis]="chartOptionsGender2.xaxis"
+                              [legend]="chartOptionsGender2.legend"
+                              [fill]="chartOptionsGender2.fill"
+                              [yaxis]="chartOptionsGender2.yaxis"
+                              [colors]="chartOptionsGender2.colors"
+                            ></apx-chart>
+                          </div>
+                       </div>
+                       <div class="card m-2" style="width:50%">
+                        <h4 class="px-2 py-0 my-0"><b>Income Distribution</b></h4>
+                        <div id="chart17">
+                            <apx-chart
+                              [series]="chartOptionsIncome2.series"
+                              [chart]="chartOptionsIncome2.chart"
+                              [dataLabels]="chartOptionsIncome2.dataLabels"
+                              [plotOptions]="chartOptionsIncome2.plotOptions"
+                              [responsive]="chartOptionsIncome2.responsive"
+                              [xaxis]="chartOptionsIncome2.xaxis"
+                              [legend]="chartOptionsIncome2.legend"
+                              [fill]="chartOptionsIncome2.fill"
+                              [yaxis]="chartOptionsIncome2.yaxis"
+                              [colors]="chartOptionsIncome2.colors"
+                            ></apx-chart>
+                          </div>
+                       </div>
                      </div>
 
-                </div>   
-              </ng-template> 
+                </div> 
+                </div>  
+              </ng-template>
+            
             </mat-tab>
           </mat-tab-group>
-          <div style="display: flex; justify-content: end;">
-            <button type="button" routerLink="/segment" class="btn btn-primary">Confirm Segments and Personalize</button>
+          <div style="display: flex; justify-content: end;background-color: white;">
+            <button type="button" routerLink="/segment" class="btn btn-light" style="background-color: #23468C;color:white" (click)="capture()">Confirm Segments and Personalize</button>
           </div>
           
     </div>
@@ -344,10 +370,10 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <table class="table table-striped" style="border: 2px solid black">
+          <table class="table table-striped" >
           <thead>
-            <tr class="table-secondary">
-              <th></th>
+            <tr class="table-primary" >
+              <th>Features</th>
               <th>Segment 1</th>
               <th>Segment 2</th>
               <th>Segment 3</th>
@@ -358,7 +384,7 @@
           </thead>
           <tbody>
             <tr *ngFor="let tabData of tableContent">
-               <td>{{tabData.name}}</td>
+               <td style="color:#3F7FFF">{{tabData.name}}</td>
                <td>{{tabData.seg1}}</td>
                <td>{{tabData.seg2}}</td>
                <td>{{tabData.seg3}}</td>

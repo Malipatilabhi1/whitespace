@@ -1,4 +1,4 @@
-<div class="main d-flex flex-column" id="analysisComponent">
+<div class="main d-flex flex-column" id = "content" #content>
 <div class="px-3 my-0 py-0">
     <h1><b>Whitespace Analysis</b></h1>
 </div>
@@ -109,7 +109,7 @@
     </table>
     </div>
     <div class="px-4" style="display: flex; justify-content: end;">
-        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2" >Generate Report</button>
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2" (click)="capture()">Generate Report</button>
     </div>
     
     
@@ -117,11 +117,7 @@
 </div>
 
 
-<div id="clusterAnalysisComponent">
 
-  <!-- <app-cluster-analysis></app-cluster-analysis> -->
-
-</div>
 
 
 <!-- Modal -->
@@ -141,7 +137,7 @@
         </i>
         <h3><b>Generate Report</b></h3>
     
-        <button class="btn btn-primary" style="width:20em" (click)="downloadPDF()" >Download Report</button>
+        <button class="btn btn-primary" style="width:20em" (click)="generatePDF()" >Download Report</button>
     </div>
         </div>
         <div class="modal-footer">

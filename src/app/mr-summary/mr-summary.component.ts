@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ChartComponent } from "ng-apexcharts";
 import { Router } from '@angular/router';
+import { GeneralServiceService } from '../general-service.service';
 import {
   ApexNonAxisChartSeries,
   ApexResponsive,
@@ -146,7 +147,9 @@ export class MrSummaryComponent implements OnInit {
   @ViewChild("chart7") chart7: ChartComponent;
   public chartOptionsScore: Partial<ChartOptionsScore>;
 
-  constructor(private router: Router) { }
+  @ViewChild('content', {static:false})el!:ElementRef;
+
+  constructor(private router: Router, private gs: GeneralServiceService) { }
 
   ngOnInit(): void {
     this.householdComposition(),
@@ -552,7 +555,18 @@ score(){
   }
 
   navigatetoAlgorithmSelection(){
+    console.log("this", this.el.nativeElement)
+    // this.gs.generatePdf22(this.el.nativeElement);
+    this.captureScreen()
     this.router.navigate(['./algorithm'])
+
   }
+  
+  private captureScreen() {
+    const element = this.el.nativeElement;
+    this.gs.captureScreen(element);
+  }
+  
+  
   }
 

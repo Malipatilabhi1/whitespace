@@ -1,7 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import * as d3 from 'd3';
 declare var Plotly: any;
+import { GeneralServiceService } from '../general-service.service';
 interface MyNodeData {
   name: string;
   children?: MyNodeData[];
@@ -52,13 +53,14 @@ export type ChartOptions1 = {
   styleUrls: ['./algorithm-selection.component.css'],
 })
 export class AlgorithmSelectionComponent implements OnInit {
+  @ViewChild('content', {static:false})el!:ElementRef;
  display:boolean = false;
  @ViewChild("chart") chart: ChartComponent;
  public chartOptions: Partial<ChartOptions>;
 
  @ViewChild("chart1") chart1: ChartComponent;
  public chartOptions1: Partial<ChartOptions1>;
-  constructor(private router: Router) { }
+  constructor(private router: Router, private gs: GeneralServiceService) { }
 
   ngOnInit(): void {
     this.elbow()
@@ -81,7 +83,18 @@ export class AlgorithmSelectionComponent implements OnInit {
   rowData3: any = {}; 
   isDendrogramVisible = false;
   panelOpenState = false;
-    
+  iconClicked(event: Event): void {
+    // Code to handle icon click goes here
+    // You can choose to close the panel here if needed
+  }
+
+ 
+
+  runButtonClicked(event: Event): void {
+    event.stopPropagation();
+    // Code to handle "Run" button click goes here
+    // The panel will not close due to event.stopPropagation()
+  }
   
   showContent() 
   { 
@@ -92,6 +105,7 @@ export class AlgorithmSelectionComponent implements OnInit {
     console.log('DB Scan:', this.rowData3);
   } 
   gotoClusterAnalysis(){
+    this.captureScreen()
     this.router.navigate(['./analysis'])
   }
   elbow() {
@@ -367,7 +381,7 @@ export class AlgorithmSelectionComponent implements OnInit {
   }
   
   createDendrogram(): void {
-    const jsonData: MyNodeData = {
+    const data: MyNodeData = {
       name: 'Root',
       children: [
         { name: '3' },
@@ -387,60 +401,52 @@ export class AlgorithmSelectionComponent implements OnInit {
       ]
     };
 
-    const width = 400; // Adjust the width as needed
-    const height = 150; // Adjust the height as needed
+    const width = 300; // Adjust the width as needed
+    const height = 155; // Adjust the height as needed
 
     const svg = d3.select('#dendrogram')
-      .append('svg')
-      .attr('width', width)
-      .attr('height', height);
+  .append('svg')
+  .attr('width', width)
+  .attr('height', height + 5); // Increase the height to provide space for the complete circles
 
-    const cluster = d3.cluster<MyNodeData>()
-      .size([width - 100, height]); // Swap width and height
+    const tree = d3.tree<MyNodeData>()
+      .size([width - 100, height]) // Swap width and height for vertical layout
 
-    const root = d3.hierarchy<MyNodeData>(jsonData);
-
-    cluster(root);
+    const root = d3.hierarchy<MyNodeData>(data);
+    const treeData = tree(root);
 
     const link = svg.selectAll('path')
-      .data(root.links())
+      .data(treeData.links())
       .enter()
       .append('path')
-      .attr('d', (d) => {
-        return 'M' + (d.source as any).x + ',' + (d.source as any).y +
-          'H' + (d.target as any).x +
-          'V' + (d.target as any).y;
+      .attr('d', d => {
+        return 'M' + d.source.x + ',' + d.source.y + // Swap x and y
+          'H' + d.target.x + // Use horizontal line to connect nodes
+          'V' + d.target.y; // Vertical line to target node
       })
       .attr('fill', 'none')
       .attr('stroke', '#ccc');
 
-    const node = svg.selectAll('g')
-      .data(root.descendants())
+      const node = svg.selectAll('g')
+      .data(treeData.descendants())
       .enter()
       .append('g')
-      .attr('transform', (d) => 'translate(' + (d as any).x + ',' + (d as any).y + ')');
+      .attr('transform', d => 'translate(' + d.x + ',' + d.y + ')');
+      
 
-    node.append('circle')
-      .attr('r', (d) => {
-        if ((d as any).depth === 0 || !(d as any).children) {
-          return 6; // Root and bottom nodes
-        } else {
-          return 4; // Other nodes
-        }
-      })
+      node.append('circle')
+      .attr('r', (d)=>d.parent ? 5:0)
       .attr('fill', 'steelblue');
 
     node.append('text')
       .attr('dy', 3)
-      .attr('y', (d) => {
-        if ((d as any).depth === 0) {
-          return -12; // Adjust the positioning of the text for the root node
-        } else {
-          return -8; // Adjust the positioning of the text for other nodes
-        }
-      })
+      .attr('y', -8) // Adjust the positioning of the text
       .attr('text-anchor', 'middle')
-      .text((d) => (d as any).data.name);
+      .text(d => d.data.name);
   }
- 
+  
+  private captureScreen() {
+    const element = this.el.nativeElement;
+    this.gs.captureScreen(element);
+  }
 }

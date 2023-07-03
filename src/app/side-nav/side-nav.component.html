@@ -1,5 +1,5 @@
 <div class="card me-0 rounded-0  mx-auto text-center mx-auto" style="background-color:white;width: 17rem!important;min-height: 100%!important;box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.15);">
-<div class="d-flex flex-column mx-1 my-2 " style="height: 90%;">
+<div class="d-flex flex-column mx-1 my-2 " style="height: 100%;">
   <div  routerLink="/summary" [class.highlighted]="selectedOption === 'dashboard'" (click)="selectOption('dashboard')" class="d-flex flex-row px-1 " style="display: flex;align-items: center;cursor: pointer;">
    <div>
     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -12,7 +12,6 @@
     <h3 class="px-1 " style="color:#1890FF;">Dashboard</h3>
    </div>
   </div>
-
   <div routerLink="/algorithm" [class.highlighted]="selectedOption === 'algorithmSelection'" (click)="selectOption('algorithmSelection')" class="d-flex flex-row px-1 " style="display: flex;align-items: center;cursor: pointer;">
     <div>
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -30,13 +29,12 @@
         <path id="Vector_10" d="M10 7.1875C9.68939 7.1875 9.4375 6.93561 9.4375 6.625V4.9375C9.4375 4.62689 9.68939 4.375 10 4.375C10.3106 4.375 10.5625 4.62689 10.5625 4.9375V6.625C10.5625 6.93561 10.3106 7.1875 10 7.1875Z" fill="#1890FF"/>
         </g>
         </g>
-        </svg>
+      </svg>
     </div>
     <div style="align-items: center;margin-top: 20px;">
      <h3 class="px-1 " style="color:#1890FF;">Algorithm Selection</h3>
     </div>
    </div>
-
    <div routerLink="/analysis" [class.highlighted]="selectedOption === 'clusterAnalysis'" (click)="selectOption('clusterAnalysis')" class="d-flex flex-row px-1 " style="display: flex;align-items: center;cursor: pointer;">
     <div>
       <svg width="20" height="20" viewBox="0 0 20 20" fill="1890FF" xmlns="http://www.w3.org/2000/svg">
@@ -49,7 +47,6 @@
      <h3 class="px-1 " style="color:#1890FF;;">Cluster Analysis</h3>
     </div>
    </div>
-
    <div routerLink="/segment"  [class.highlighted]="selectedOption === 'segment'" (click)="selectOption('segment')" class="d-flex flex-row px-1 " style="display: flex;align-items: center;cursor: pointer;">
     <div>
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -65,34 +62,28 @@
         <rect width="20" height="20" fill="white"/>
         </clipPath>
         </defs>
-        </svg>
-        
+      </svg>
     </div>
     <div style="align-items: center;margin-top: 20px;">
      <h3 class="px-1 " style="color:#1890FF;;">Segment Characteristics</h3>
     </div>
    </div>
-
    <div routerLink="/whitespaceAnalysis" [class.highlighted]="selectedOption === 'whiteSpace'" (click)="selectOption('whiteSpace')" id="dashboard3" class="d-flex flex-row px-1" style="display: flex;align-items: center;cursor: pointer;">
     <div>
-      
       <svg width="18" height="17" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g id="Group 1">
         <path id="Vector" d="M17.1112 0.222168H0.94166C0.819835 0.222168 0.72016 0.300293 0.72016 0.395779V1.61106C0.72016 1.70654 0.819835 1.78467 0.94166 1.78467H17.1112C17.233 1.78467 17.3327 1.70654 17.3327 1.61106V0.395779C17.3327 0.300293 17.233 0.222168 17.1112 0.222168ZM17.1112 4.10913H0.72016C0.598335 4.10913 0.72016 6.46349 0.72016 6.55897V7.77425C0.72016 7.86974 0.819835 7.94786 0.94166 7.94786H17.1112C17.233 7.94786 17.3327 7.86974 17.3327 7.77425V4.28274C17.3327 4.18725 17.233 4.10913 17.1112 4.10913ZM17.1112 8.56515H0.94166C0.819835 8.56515 0.72016 8.64327 0.72016 8.73876V13.9374C0.72016 14.0329 0.819835 14.1111 0.94166 14.1111H17.1112C17.233 14.1111 17.3327 14.0329 17.3327 13.9374V8.73876C17.3327 8.64327 17.233 8.56515 17.1112 8.56515Z" fill="#1890FF"/>
         <path id="Vector_2" d="M17.1117 14.6665H0.942203C0.820378 14.6665 0.720703 14.7446 0.720703 14.8401V16.0554C0.720703 16.1509 0.820378 16.229 0.942203 16.229H17.1117C17.2335 16.229 17.3332 16.1509 17.3332 16.0554V14.8401C17.3332 14.7446 17.2335 14.6665 17.1117 14.6665Z" fill="#1890FF"/>
         </g>
-        </svg>
-        
+      </svg>       
     </div>
     <div style="align-items: center;margin-top: 20px;">
      <h3 class="px-1 " style="color:#1890FF;;">Whitespace Analysis</h3>
     </div>
    </div>
   </div>
- 
   <hr style="margin-top: 13em;">
-  <div class=" d-flex flex-row text-dark" style="cursor: pointer;">
-  
+  <div class=" d-flex flex-row text-dark mb-0 pb-0" style="cursor: pointer;">
     <div class="d-flex flex-row mx-2 ms-1 justify-content-center mt-1 ">
       <svg class="mt-1" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g id="icon/Logout" clip-path="url(#clip0_68_21249)">
@@ -103,12 +94,10 @@
         <rect width="20" height="20" fill="white"/>
         </clipPath>
         </defs>
-        </svg>
-        
+        </svg>      
       <h4 class="ms-1" style="font-size:1.5vw;padding-top: 0.1rem;"> Log Out</h4>
     </div>
   </div>
-
 </div>
     
 

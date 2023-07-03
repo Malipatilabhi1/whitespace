@@ -1,4 +1,4 @@
-<div class="main">
+<div class="main" id = "content" #content>
     <h1 class="px-2"><b>Segment Characteristics Definition</b></h1>
     <div class="mx-3">
         <div class="p-1 card me-1 mb-3 rounded-0" style="width: 100%; overflow-y: auto; background-color: white">
@@ -97,7 +97,7 @@
         <button type="button" class="btn btn-primary"(click)="saveSegment()" >Save</button>
     </div>
      <div class="p-2 mt-3" style="display:flex;justify-content: end;height:50px;align-items: center; ">
-         <button type="button" class="btn btn-primary" routerLink="/whitespaceAnalysis" >Next</button>
+         <button type="button" class="btn btn-primary" (click)="capture()" routerLink="/whitespaceAnalysis" >Next</button>
      </div>
  </div>
     </div>

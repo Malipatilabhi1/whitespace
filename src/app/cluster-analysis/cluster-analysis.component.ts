@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ApexYAxis, ChartComponent } from "ng-apexcharts";
 import html2canvas from 'html2canvas';
+import { GeneralServiceService } from '../general-service.service';
 import {
   ApexAxisChartSeries,
   ApexTitleSubtitle,
@@ -20,9 +21,9 @@ export type ChartOptions = {
   series: ApexAxisChartSeries;
   chart: ApexChart;
   dataLabels: ApexDataLabels;
-  title: ApexTitleSubtitle;
   plotOptions: ApexPlotOptions;
-  legend: ApexLegend;
+  xaxis: ApexXAxis;
+  colors:any;
 };
 export type ChartOptionsWillingness = {
   series: ApexAxisChartSeries;
@@ -34,6 +35,7 @@ export type ChartOptionsWillingness = {
   yaxis:ApexYAxis;
   legend: ApexLegend;
   fill: ApexFill;
+  colors:any;
 };
 
 export type ChartOptionsSpend = {
@@ -46,6 +48,7 @@ export type ChartOptionsSpend = {
   yaxis:ApexYAxis;
   legend: ApexLegend;
   fill: ApexFill;
+  colors:any
 };
 export type ChartOptionsAge = {
   series: ApexAxisChartSeries;
@@ -57,6 +60,7 @@ export type ChartOptionsAge = {
   legend: ApexLegend;
   fill: ApexFill;
   yaxis:ApexYAxis;
+  colors:any;
 };
 export type ChartOptionsGender = {
   series: ApexAxisChartSeries;
@@ -68,6 +72,7 @@ export type ChartOptionsGender = {
   legend: ApexLegend;
   fill: ApexFill;
   yaxis:ApexYAxis;
+  colors:any;
 };
 
 export type ChartOptionsIncome = {
@@ -80,6 +85,7 @@ export type ChartOptionsIncome = {
   legend: ApexLegend;
   fill: ApexFill;
   yaxis:ApexYAxis;
+  colors:any;
 };
 
 // algorithm2
@@ -87,9 +93,9 @@ export type ChartOptions1 = {
   series: ApexAxisChartSeries;
   chart: ApexChart;
   dataLabels: ApexDataLabels;
-  title: ApexTitleSubtitle;
   plotOptions: ApexPlotOptions;
-  legend: ApexLegend;
+  xaxis: ApexXAxis;
+  colors:any;
 };
 export type ChartOptionsWillingness1 = {
   series: ApexAxisChartSeries;
@@ -101,6 +107,7 @@ export type ChartOptionsWillingness1 = {
   yaxis:ApexYAxis;
   legend: ApexLegend;
   fill: ApexFill;
+  colors:any;
 };
 
 export type ChartOptionsSpend1= {
@@ -113,6 +120,7 @@ export type ChartOptionsSpend1= {
   yaxis:ApexYAxis;
   legend: ApexLegend;
   fill: ApexFill;
+  colors:any;
 };
 export type ChartOptionsAge1 = {
   series: ApexAxisChartSeries;
@@ -124,6 +132,7 @@ export type ChartOptionsAge1 = {
   legend: ApexLegend;
   fill: ApexFill;
   yaxis:ApexYAxis;
+  colors:any;
 };
 export type ChartOptionsGender1 = {
   series: ApexAxisChartSeries;
@@ -135,6 +144,7 @@ export type ChartOptionsGender1 = {
   legend: ApexLegend;
   fill: ApexFill;
   yaxis:ApexYAxis;
+  colors:any;
 };
 
 export type ChartOptionsIncome1 = {
@@ -147,6 +157,7 @@ export type ChartOptionsIncome1 = {
   legend: ApexLegend;
   fill: ApexFill;
   yaxis:ApexYAxis;
+  colors:any;
 }
 
 
@@ -155,9 +166,9 @@ export type ChartOptions2 = {
   series: ApexAxisChartSeries;
   chart: ApexChart;
   dataLabels: ApexDataLabels;
-  title: ApexTitleSubtitle;
   plotOptions: ApexPlotOptions;
-  legend: ApexLegend;
+  xaxis: ApexXAxis;
+  colors:any;
 };
 export type ChartOptionsWillingness2 = {
   series: ApexAxisChartSeries;
@@ -169,6 +180,7 @@ export type ChartOptionsWillingness2 = {
   yaxis:ApexYAxis;
   legend: ApexLegend;
   fill: ApexFill;
+  colors:any;
 };
 
 export type ChartOptionsSpend2 = {
@@ -181,6 +193,7 @@ export type ChartOptionsSpend2 = {
   yaxis:ApexYAxis;
   legend: ApexLegend;
   fill: ApexFill;
+  colors:any;
 };
 export type ChartOptionsAge2 = {
   series: ApexAxisChartSeries;
@@ -192,6 +205,7 @@ export type ChartOptionsAge2 = {
   legend: ApexLegend;
   fill: ApexFill;
   yaxis:ApexYAxis;
+  colors:any;
 };
 export type ChartOptionsGender2 = {
   series: ApexAxisChartSeries;
@@ -203,6 +217,7 @@ export type ChartOptionsGender2 = {
   legend: ApexLegend;
   fill: ApexFill;
   yaxis:ApexYAxis;
+  colors:any;
 };
 
 export type ChartOptionsIncome2 = {
@@ -215,6 +230,7 @@ export type ChartOptionsIncome2 = {
   legend: ApexLegend;
   fill: ApexFill;
   yaxis:ApexYAxis;
+  colors:any;
 }
 
 
@@ -266,6 +282,14 @@ export class ClusterAnalysisComponent implements OnInit {
   public chartOptionsGender2: Partial<ChartOptionsGender2>;
   @ViewChild("chart17") chart17: ChartComponent;
   public chartOptionsIncome2: Partial<ChartOptionsIncome2>;
+  @ViewChild('content', {static:false})el!:ElementRef;
+capture(){
+  this.captureScreen()
+}
+  private captureScreen() {
+    const element = this.el.nativeElement;
+    this.gs.captureScreen(element);
+  }
 
   data={
     "age": {
@@ -426,7 +450,7 @@ export class ClusterAnalysisComponent implements OnInit {
     {name:"Spurpose", seg1:"1.3", seg2:"2.0", seg3:"3.4", seg4:"0.4", seg5:"0.56", seg6:"0.34" },
    
 ]
-  constructor() { }
+  constructor(private gs: GeneralServiceService) { }
 
   ngOnInit(): void {
     // algorithm1
@@ -464,233 +488,125 @@ export class ClusterAnalysisComponent implements OnInit {
   }
 
 // algorithm1
-  numberOfRespondents(){
-    this.chartOptions = {
-      series: [
-        {
-          data: [
-            {
-              x: "Segment 1",
-              y: 200
-            },
-            {
-              x: "Segment 2",
-              y: 150
-            },
-            {
-              x: "Segment3",
-              y: 200
-            },
-            {
-              x: "Segment 4",
-              y: 150
-            },
-            {
-              x: "Segment 5",
-              y: 200
-            },
-            {
-              x: "Segment 6",
-              y: 100
-            }
-          ]
-        }
-      ],
-      legend: {
-        show: false
-      },
-      chart: {
-        height: 150,
-        type: "treemap"
+  numberOfRespondents() {
+  const respondentData = this.data.respondent;
+  const barData = Object.values(respondentData);
+  this.chartOptions = {
+    series: [
+      {
+        name: "",
+        data: barData
+      }
+    ],
+    chart: {
+      type: "bar",
+      height: 150
+    },
+    colors:["#91ADFD","#FFE0C2","#C0BBEB","#A3F5EC","#FDE68C","#D6D6D6"],
+    plotOptions: {
+      bar: {
+        horizontal: true,
+        distributed: true,
+      }
+    },
+    dataLabels: {
+      enabled: true,
+      offsetX: -6,
+      style: {
+        fontSize: "12px",
+        colors: ["#fff"]
       },
       
-      dataLabels: {
-        enabled: true,
-
-        offsetY: -3
-      },
-      plotOptions: {
-        treemap: {
-          enableShades: true,
-          shadeIntensity: 0.5,
-          reverseNegativeShade: true,
-          colorScale: {
-            ranges: [
-              {
-                from: -6,
-                to: 0,
-                color: "#CD363A"
-              },
-              {
-                from: 0.001,
-                to: 6,
-                color: "#52B12C"
-              }
-            ]
-          }
-        }
-      }
-    };
+    },
+    xaxis: {
+      categories: Object.keys(respondentData)
+    }
+  };
   }
-  
-  willngnessToSwtch(){
+
+  willngnessToSwtch() {
+    const switchcountData =this.data.switchcount;
+    const switchcountCategories = Object.keys(switchcountData).map(key => `Seg ${key}`);
+    const switchcountSeries = Object.entries(switchcountData).map(([_, data]) => {
+      return Object.values(data);
+    });
     this.chartOptionsWillingness = {
       series: [
-        {
-          name: "Not Likely",
-          data: [44, 55, 41, 67, 22, 43]
-        },
-        {
-          name: "Very Likely",
-          data: [13, 23, 20, 8, 13, 27]
-        },
-        {
-          name: "Wont Mind",
-          data: [11, 17, 15, 15, 21, 14]
-        }
+        { name: "Not Likely", data: switchcountSeries.map(data => data[0]) },
+        { name: "Very Likely", data: switchcountSeries.map(data => data[1]) },
+        { name: "Wont Mind", data: switchcountSeries.map(data => data[2]) }
       ],
       chart: {
         type: "bar",
         height: 150,
         stacked: true,
-        toolbar: {
-          show: true
-        },
-        zoom: {
-          enabled: true
-        }
+        toolbar: { show: true },
+        zoom: { enabled: true }
       },
+      colors:["#53AAFA","#3B9DF7","#086DC9"],
       responsive: [
         {
           breakpoint: 480,
           options: {
-            legend: {
-              position: "bottom",
-              offsetX: -10,
-              offsetY: 0
-            }
+            legend: { position: "bottom", offsetX: -10, offsetY: 0 }
           }
         }
       ],
-      plotOptions: {
-        bar: {
-          horizontal: false
-        }
-      },
-      xaxis: {
-        type: "category",
-        categories: [
-          "Seg 1",
-          "Seg 2",
-          "Seg 3",
-          "Seg 4",
-          "Seg 5",
-          "Seg 6"
-        ]
-      },
-      yaxis: {
-        title: {
-          text: "% of Respondents"
-        }
-      },
-      legend: {
-        position: "right",
-        offsetY: 40
-      },
-      fill: {
-        opacity: 1
-      }
+      plotOptions: { bar: { horizontal: false } },
+      xaxis: { type: "category", categories: switchcountCategories },
+      yaxis: { title: { text: "% of Respondents" } },
+      legend: { position: "right", offsetY: 40 },
+      fill: { opacity: 1 }
     };
-
   }
-
-  spend(){
+  spend() {
+    const spendData = this.data.spend;
+    const spendCategories = Object.keys(spendData).map(key => `Seg ${parseInt(key)}`);
+    const spendSeries = Object.entries(spendData).map(([_, data]) => {
+      return Object.values(data);
+    });
     this.chartOptionsSpend = {
       series: [
-        {
-          name: ">50",
-          data: [44, 55, 41, 67, 22, 43]
-        },
-        {
-          name: "400-500",
-          data: [13, 23, 20, 8, 13, 27]
-        },
-        {
-          name: "300-400",
-          data: [11, 17, 15, 15, 21, 14]
-        },
-        {
-          name: "200-300",
-          data: [44, 55, 41, 67, 22, 43]
-        },
-        {
-          name: "100-200",
-          data: [13, 23, 20, 8, 13, 27]
-        },
-        {
-          name: "<100",
-          data: [11, 17, 15, 15, 21, 14]
-        },
-
+        { name: ">50", data: spendSeries.map(data => data[3]) },
+        { name: "30-50", data: spendSeries.map(data => data[1]) },
+        { name: "<10", data: spendSeries.map(data => data[2]) },
+        { name: "10-30", data: spendSeries.map(data => data[0]) },
       ],
       chart: {
         type: "bar",
         height: 150,
         stacked: true,
-        toolbar: {
-          show: true
-        },
-        zoom: {
-          enabled: true
-        }
+        toolbar: { show: true },
+        zoom: { enabled: true }
       },
+      colors:["#6B68D8","#918EF1","#C0BEF7","#D5D3F9"],
       responsive: [
         {
           breakpoint: 480,
           options: {
-            legend: {
-              position: "bottom",
-              offsetX: -10,
-              offsetY: 0
-            }
+            legend: { position: "bottom", offsetX: -10, offsetY: 0 }
           }
         }
       ],
-      plotOptions: {
-        bar: {
-          horizontal: false
-        }
-      },
-      xaxis: {
-        type: "category",
-        categories: [
-          "Seg 1",
-          "Seg 2",
-          "Seg 3",
-          "Seg 4",
-          "Seg 5",
-          "Seg 6"
-        ]
-      },
-      yaxis: {
-        title: {
-          text: "% of Respondents"
-        }
-      },
-      legend: {
-        position: "right",
-        offsetY: 40
-      },
-      fill: {
-        opacity: 1
-      }
+      plotOptions: { bar: { horizontal: false } },
+      xaxis: { type: "category", categories: spendCategories },
+      yaxis: { title: { text: "% of Respondents" } },
+      legend: { position: "right", offsetY: 40 },
+      fill: { opacity: 1 }
     };
   }
-
   age() {
     const ageData = this.data.age;
     const ageKeys = Object.keys(ageData);
-    const categories = ageKeys.map((key) => `Seg ${parseInt(key) + 1}`);
+    const categories = ageKeys.map((key) => `Seg ${parseInt(key)}`);
+    const respondent= {
+      "Segment 0": 30,
+      "Segment 1": 15,
+      "Segment 2": 8,
+      "Segment 3": 14,
+      "Segment 4": 22,
+      "Segment 5": 11
+    };
     const seriesData = {
       "0-25": [],
       "25-40": [],
@@ -729,6 +645,7 @@ export class ClusterAnalysisComponent implements OnInit {
           enabled: true
         }
       },
+      colors:["#6B68D8","#918EF1","#C0BEF7","#D5D3F9"],
       responsive: [
         {
           breakpoint: 480,
@@ -770,7 +687,7 @@ export class ClusterAnalysisComponent implements OnInit {
    
   
     const genderKeys = Object.keys(genderData);
-    const categories = genderKeys.map((key) => `Seg ${parseInt(key) + 1}`);
+    const categories = genderKeys.map((key) => `Seg ${parseInt(key)}`);
     const seriesData = {
       Female: [],
       Male: []
@@ -807,6 +724,7 @@ export class ClusterAnalysisComponent implements OnInit {
           enabled: true
         }
       },
+      colors:["#A7C4FF","#7EA9FF"],
       responsive: [
         {
           breakpoint: 480,
@@ -842,158 +760,80 @@ export class ClusterAnalysisComponent implements OnInit {
       }
     };
   }
-  income(){
+  income() {
+    const incomeData = this.data.income;
+    const incomeCategories = Object.keys(incomeData).map(key => `Seg ${parseInt(key)}`);
+    const incomeSeries = Object.entries(incomeData).map(([_, data]) => {
+      return Object.values(data);
+    });
     this.chartOptionsIncome = {
       series: [
-        {
-          name: ">50",
-          data: [44, 55, 41, 67, 22, 43]
-        },
-        {
-          name: "400-500",
-          data: [13, 23, 20, 8, 13, 27]
-        },
-        {
-          name: "300-400",
-          data: [11, 17, 15, 15, 21, 14]
-        },
-        {
-          name: "200-300",
-          data: [44, 55, 41, 67, 22, 43]
-        },
-        {
-          name: "100-200",
-          data: [13, 23, 20, 8, 13, 27]
-        },
-        {
-          name: "<100",
-          data: [11, 17, 15, 15, 21, 14]
-        },
-
+        { name: ">50", data: incomeSeries.map(data => data[0]) },
+        { name: "400-500", data: incomeSeries.map(data => data[1]) },
+        { name: "300-400", data: incomeSeries.map(data => data[2]) },
+        { name: "200-300", data: incomeSeries.map(data => data[3]) },
+        { name: "100-200", data: incomeSeries.map(data => data[4]) },
+        { name: "<100", data: incomeSeries.map(data => data[5]) },
       ],
       chart: {
         type: "bar",
         height: 150,
         stacked: true,
-        toolbar: {
-          show: true
-        },
-        zoom: {
-          enabled: true
-        }
+        toolbar: { show: true },
+        zoom: { enabled: true }
       },
+      colors:["#C3D7FF","#A7C4FF","#6599FF","#3F7FFF","#3974E8","#3974E8"],
       responsive: [
         {
           breakpoint: 480,
           options: {
-            legend: {
-              position: "bottom",
-              offsetX: -10,
-              offsetY: 0
-            }
+            legend: { position: "bottom", offsetX: -10, offsetY: 0 }
           }
         }
       ],
-      plotOptions: {
-        bar: {
-          horizontal: false
-        }
-      },
-      xaxis: {
-        type: "category",
-        categories: [
-          "Seg 1",
-          "Seg 2",
-          "Seg 3",
-          "Seg 4",
-          "Seg 5",
-          "Seg 6"
-        ]
-      },
-      yaxis: {
-        title: {
-          text: "% of Respondents"
-        }
-      },
-      legend: {
-        position: "right",
-        offsetY: 40
-      },
-      fill: {
-        opacity: 1
-      }
+      plotOptions: { bar: { horizontal: false } },
+      xaxis: { type: "category", categories: incomeCategories },
+      yaxis: { title: { text: "% of Respondents" } },
+      legend: { position: "right", offsetY: 40 },
+      fill: { opacity: 1 }
     };
   }
-
 
 
 // algorithm2
 
   numberOfRespondents1(){
+    const respondentData = this.data.respondent;
+    const barData = Object.values(respondentData);
     this.chartOptions1 = {
       series: [
         {
-          data: [
-            {
-              x: "Segment 1",
-              y: 200
-            },
-            {
-              x: "Segment 2",
-              y: 150
-            },
-            {
-              x: "Segment3",
-              y: 200
-            },
-            {
-              x: "Segment 4",
-              y: 150
-            },
-            {
-              x: "Segment 5",
-              y: 200
-            },
-            {
-              x: "Segment 6",
-              y: 100
-            }
-          ]
+          name: "",
+          data: barData
         }
       ],
-      legend: {
-        show: false
-      },
       chart: {
-        height: 150,
-        type: "treemap"
+        type: "bar",
+        height: 150
       },
-      
+      colors:["#91ADFD","#FFE0C2","#C0BBEB","#A3F5EC","#FDE68C","#D6D6D6"],
+      plotOptions: {
+        bar: {
+          horizontal: true,
+          distributed: true,
+        }
+      },
       dataLabels: {
         enabled: true,
-
-        offsetY: -3
+        offsetX: -6,
+        style: {
+          fontSize: "12px",
+          colors: ["#fff"]
+        },
+        
       },
-      plotOptions: {
-        treemap: {
-          enableShades: true,
-          shadeIntensity: 0.5,
-          reverseNegativeShade: true,
-          colorScale: {
-            ranges: [
-              {
-                from: -6,
-                to: 0,
-                color: "#CD363A"
-              },
-              {
-                from: 0.001,
-                to: 6,
-                color: "#52B12C"
-              }
-            ]
-          }
-        }
+      xaxis: {
+        categories: Object.keys(respondentData)
       }
     };
   }
@@ -1025,6 +865,7 @@ export class ClusterAnalysisComponent implements OnInit {
           enabled: true
         }
       },
+      colors:["#53AAFA","#3B9DF7","#086DC9"],
       responsive: [
         {
           breakpoint: 480,
@@ -1109,6 +950,7 @@ export class ClusterAnalysisComponent implements OnInit {
           enabled: true
         }
       },
+      colors:["#6B68D8","#918EF1","#C0BEF7","#D5D3F9"],
       responsive: [
         {
           breakpoint: 480,
@@ -1188,6 +1030,7 @@ export class ClusterAnalysisComponent implements OnInit {
           enabled: true
         }
       },
+      colors:["#6B68D8","#918EF1","#C0BEF7","#D5D3F9"],
       responsive: [
         {
           breakpoint: 480,
@@ -1255,6 +1098,7 @@ export class ClusterAnalysisComponent implements OnInit {
           enabled: true
         }
       },
+      colors:["#A7C4FF","#7EA9FF"],
       responsive: [
         {
           breakpoint: 480,
@@ -1338,6 +1182,7 @@ export class ClusterAnalysisComponent implements OnInit {
           enabled: true
         }
       },
+      colors:["#C3D7FF","#A7C4FF","#6599FF","#3F7FFF","#3974E8","#3974E8"],
       responsive: [
         {
           breakpoint: 480,
@@ -1385,70 +1230,37 @@ export class ClusterAnalysisComponent implements OnInit {
   // algorithm3
 
   numberOfRespondents2(){
+    const respondentData = this.data.respondent;
+    const barData = Object.values(respondentData);
     this.chartOptions2 = {
       series: [
         {
-          data: [
-            {
-              x: "Segment 1",
-              y: 200
-            },
-            {
-              x: "Segment 2",
-              y: 150
-            },
-            {
-              x: "Segment3",
-              y: 200
-            },
-            {
-              x: "Segment 4",
-              y: 150
-            },
-            {
-              x: "Segment 5",
-              y: 200
-            },
-            {
-              x: "Segment 6",
-              y: 100
-            }
-          ]
+          name: "",
+          data: barData
         }
       ],
-      legend: {
-        show: false
-      },
       chart: {
-        height: 150,
-        type: "treemap"
+        type: "bar",
+        height: 150
       },
-      
+      colors:["#91ADFD","#FFE0C2","#C0BBEB","#A3F5EC","#FDE68C","#D6D6D6"],
+      plotOptions: {
+        bar: {
+          horizontal: true,
+          distributed: true,
+        }
+      },
       dataLabels: {
         enabled: true,
-
-        offsetY: -3
+        offsetX: -6,
+        style: {
+          fontSize: "12px",
+          colors: ["#fff"]
+        },
+        
       },
-      plotOptions: {
-        treemap: {
-          enableShades: true,
-          shadeIntensity: 0.5,
-          reverseNegativeShade: true,
-          colorScale: {
-            ranges: [
-              {
-                from: -6,
-                to: 0,
-                color: "#CD363A"
-              },
-              {
-                from: 0.001,
-                to: 6,
-                color: "#52B12C"
-              }
-            ]
-          }
-        }
+      xaxis: {
+        categories: Object.keys(respondentData)
       }
     };
   }
@@ -1480,6 +1292,7 @@ export class ClusterAnalysisComponent implements OnInit {
           enabled: true
         }
       },
+      colors:["#53AAFA","#3B9DF7","#086DC9"],
       responsive: [
         {
           breakpoint: 480,
@@ -1564,6 +1377,7 @@ export class ClusterAnalysisComponent implements OnInit {
           enabled: true
         }
       },
+      colors:["#6B68D8","#918EF1","#C0BEF7","#D5D3F9"],
       responsive: [
         {
           breakpoint: 480,
@@ -1643,6 +1457,7 @@ export class ClusterAnalysisComponent implements OnInit {
           enabled: true
         }
       },
+      colors:["#6B68D8","#918EF1","#C0BEF7","#D5D3F9"],
       responsive: [
         {
           breakpoint: 480,
@@ -1710,6 +1525,7 @@ export class ClusterAnalysisComponent implements OnInit {
           enabled: true
         }
       },
+      colors:["#A7C4FF","#7EA9FF"],
       responsive: [
         {
           breakpoint: 480,
@@ -1793,6 +1609,7 @@ export class ClusterAnalysisComponent implements OnInit {
           enabled: true
         }
       },
+      colors:["#C3D7FF","#A7C4FF","#6599FF","#3F7FFF","#3974E8","#3974E8"],
       responsive: [
         {
           breakpoint: 480,

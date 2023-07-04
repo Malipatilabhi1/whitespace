@@ -1,6 +1,111 @@
 <div class="main" id = "content" #content>
-    <h1 class="px-2"><b>Segment Characteristics Definition</b></h1>
-    <div class="mx-3">
+    <div style="background-color: white;">
+        <h1 class="px-2"><b>Segment Characteristics Definition</b></h1>
+    
+        <mat-tab-group style="background-color: white;">
+            <mat-tab *ngFor="let segment of data.clusters; let i = index" (click)="displaySegmentName(segment.name)">
+              <ng-template mat-tab-label>
+                <div class="tab-label">
+                  <div class="tab-icon">
+                    <mat-icon style="color: green">check_circle</mat-icon>
+                  </div>
+                  <div class="tab-name">{{ segmentNames[i] }}</div>
+                  <div class="tab-status">
+                    <span class="status-indicator">Active</span>
+                  </div>
+                </div>
+              </ng-template>
+              <div class="d-flex flex-row p-2" style="width: 100%; background-color: #F0F2F5;">
+                <div class="card d-flex flex-column m-1" style="width: 70%">
+                  <div class="d-flex flex-row topDiv" style="width:100%">
+                  <div style="width:10%">
+                    <img src="../../assets/images/girl.jpg" class="p-1 rounded-pill" style="border-radius: 50%;" height="70px" width="70px" alt="">
+                </div>
+                  
+                  <div style="display:flex;  justify-content: start; align-items: center;width:50%">
+                    <input class="name" [(ngModel)]="segment.name">
+                  </div>
+                  <div class="px-2" style="width:40%;display:flex;  justify-content: end; align-items: center;" >
+                    <button type="button" class="btn btn-dark" style="border-radius: 150px;background-color: #1A356B;font-size: 16px;font-family: Outfit;font-style: normal;font-weight: 500;">
+                        <i class="bi bi-arrow-repeat">
+                            <svg xmlns="http://www.w3.org/2000/svg" style="margin-right:5px" width="20" height="20" fill="currentColor" class="bi bi-arrow-repeat" viewBox="0 0 16 16">
+                                <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z"/>
+                                <path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z"/>
+                              </svg>
+                        </i>Regenerate</button>
+                  </div>
+                  </div>
+                  <div class="segment">
+                   <div class="d-flex flex-row" style="width:100%">
+                    <div class="p-1" style="width:50%;display:flex;justify-content: start;align-items: center;">
+                        <p  style="color: #222; font-size: 16px; font-family: Outfit; font-style: normal; font-weight: 600;align-items: center;">Segment Characteristics</p>
+                    </div>
+                    <div style="width:50%;display:flex;justify-content: end;align-items: center;">
+                        <button type="button" class="btn btn-light" style="border:none;background-color: white;font-size: 12px;font-family: Outfit;font-style: normal;font-weight: 600;color:#7672ED">
+                            <i class="bi bi-plus-circle">
+                                <svg xmlns="http://www.w3.org/2000/svg" style="margin-right:5px;" width="13" height="13" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                                  </svg>
+                            </i>Add More</button>
+                    </div>
+                   </div>
+                  </div>
+                </div>
+                <div class="card m-1" style="width: 30%">
+                    <div class="p-1">
+                        <div>
+                            <p style="color: #222; font-size: 16px;  font-family: Outfit; font-style: normal; font-weight: 600;">
+                                Map to product attribute
+                            </p>
+                            <hr>
+                        </div>
+                    <div  style="height:300px;overflow-y: scroll;">
+                        <div class="slider-container d-flex flex-column mb-2" >
+                            <p class="px-2 py-0 my-0 slide">Aroma</p>
+                            <ng5-slider [(value)]="sliderValues[0]" [options]="sliderOptions"></ng5-slider>
+                        </div>
+                        <div class="slider-container d-flex flex-column mb-2">
+                            <p class="px-2 py-0 my-0 slide">clean scalp</p>
+                            <ng5-slider [(value)]="sliderValues[1]" [options]="sliderOptions"></ng5-slider>
+                        </div>
+                        <div class="slider-container d-flex flex-column mb-2">
+                            <p class="px-2 py-0 my-0 slide">long lasting hold</p>
+                            <ng5-slider [(value)]="sliderValues[2]" [options]="sliderOptions"></ng5-slider>
+                        </div>
+                        <div class="slider-container d-flex flex-column mb-2">
+                            <p class="px-2 py-0 my-0 slide">maintainance</p>
+                            <ng5-slider [(value)]="sliderValues[3]" [options]="sliderOptions"></ng5-slider>
+                        </div>
+                        <div class="slider-container d-flex flex-column mb-2">
+                            <p class="px-2 py-0 my-0 slide">volume and bounce</p>
+                            <ng5-slider [(value)]="sliderValues[4]" [options]="sliderOptions"></ng5-slider>
+                        </div>
+                        <div class="slider-container d-flex flex-column mb-2">
+                            <p class="px-2 py-0 my-0 slide">special purpose</p>
+                            <ng5-slider [(value)]="sliderValues[5]" [options]="sliderOptions"></ng5-slider>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="px-3" style="display:flex;justify-content: end; cursor: pointer;"  >
+                        <img src="../../assets/images/bot.jpg" class="rouned-pill" style="border-radius: 50%;" height="50" width="50" alt="" (click)="openIframe()">
+                         <div *ngIf="showIframe">
+                            <iframe src="http://3.111.229.37:3003/bot/73ff8af9-94e6-488c-8ba2-ac53258f7ca4?mode=iframe" width="400" height="500" ></iframe>
+                          </div>
+                       </div>
+                    </div>
+                </div>
+              </div>
+            </mat-tab>
+          </mat-tab-group>
+          <!-- <div class="px-3 pt-3" style="display:flex;justify-content: end; cursor: pointer;"  >
+            <img src="../../assets/images/chatBot.jpg" class="rouned-pill" style="border-radius: 50%;" height="50" width="50" alt="" (click)="openIframe()">
+             <div *ngIf="showIframe">
+                <iframe src="http://3.111.229.37:3003/bot/73ff8af9-94e6-488c-8ba2-ac53258f7ca4?mode=iframe" width="400" height="500" ></iframe>
+              </div>
+           </div>  -->
+ </div>  
+    <!-- <div class="mx-3">
         <div class="p-1 card me-1 mb-3 rounded-0" style="width: 100%; overflow-y: auto; background-color: white">
             <ul class="list-group d-flex flex-row">
             <div
@@ -14,7 +119,7 @@
             <span class="tick"></span>
             </div>
             <div class="segment-item d-flex flex-column">
-            <!-- <img class="m-1 rounded-pill" style="border-radius: 50%;" height="40" width="40" [src]="segment.image"> -->
+       
             <span><b>{{ segment.name }}</b><sub>{{ getSegmentStatus(segment) }}</sub></span>
             
             </div>
@@ -31,7 +136,7 @@
              <img  [src]="selectedSegment.image"  class="rouned-pill" style="border-radius: 50%;" height="120" width="120"   >
             </div>
              <div class="input-group m-2 pt-5" style="width:230px;height:50px;align-items: center;">
-                <!-- display ename -->
+               
                  <input type="text" style="display: flex;justify-content: center;background-color: rgb(230, 230, 247);" class="form-control" [(ngModel)]="selectedSegment.ename">
                  
              </div>
@@ -41,12 +146,7 @@
                  <label style="width:300px;border:1px solid rgb(212, 212, 247);border-radius: 10px;align-items: center;display: flex;padding: 10px;" *ngIf="!isMapped" >status: Yet to be Mapped</label>
                  <label style="width:300px;border:1px solid rgb(212, 212, 247);border-radius: 10px;align-items: center;display: flex;padding: 10px;background-color:rgb(212, 212, 247) ;" *ngIf="isMapped" >status: Mapped to product attribute</label>   
              </div>
-         <!--     <div class="p-2" style="display: flex;justify-content: center;height:50px">
-                 <button style="width:230px" *ngIf="!isMapped" type="button" class="btn btn-primary" data-bs-toggle="modal"
-                     data-bs-target="#exampleModal"> Map To Product Attribute</button>
-                 <button *ngIf="isMapped" type="button" class="btn btn-light" data-bs-toggle="modal" style="width:230px;background-color: rgb(126, 126, 212);"
-                     data-bs-target="#exampleModal"> Edit Mapped</button>
-             </div>-->
+        
          </div> 
     </div>  
     <div class=" d-flex flex-row" style="width:100%" >
@@ -132,7 +232,7 @@
 
     </div>
    
-    </div>
+    </div> -->
     </div>
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

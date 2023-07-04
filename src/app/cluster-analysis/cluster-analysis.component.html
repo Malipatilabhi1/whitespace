@@ -1,5 +1,5 @@
-<div class="main" id = "content" #content>
-    <div class="d-flex flex-row p-2" style="width:100%;background-color: white;">
+<div class="main" id = "content" #content >
+    <div class="d-flex flex-row px-3 pt-1 mb-0" style="width:100%;background-color: white;">
       <div style="width:75%">
         <h1><b>Cluster Analysis & Selection</b></h1>
       </div>
@@ -11,7 +11,7 @@
       </div>
     </div>
     <div style="width:100%">
-        <mat-tab-group style="background-color: white;">
+        <mat-tab-group  class="py-0 my-0" style="background-color: white;">
             <mat-tab label="K Means" > 
               <ng-template matTabContent>
                 <div class="mat-tab-body-content p-2" style="background-color: #F0F2F5;">
@@ -354,7 +354,7 @@
             
             </mat-tab>
           </mat-tab-group>
-          <div style="display: flex; justify-content: end;background-color: white;">
+          <div class="p-2" style="display: flex; justify-content: end;background-color: white;">
             <button type="button" routerLink="/segment" class="btn btn-light" style="background-color: #23468C;color:white" (click)="capture()">Confirm Segments and Personalize</button>
           </div>
           
@@ -363,37 +363,36 @@
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
+    <div class="modal-dialog modal-xl" >
       <div class="modal-content" >
         <div class="modal-header">
           <h2 class="modal-title" id="exampleModalLabel"><b>Detailed Segment Details</b></h2>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body">
-          <table class="table table-striped" >
-          <thead>
-            <tr class="table-primary" >
-              <th>Features</th>
-              <th>Segment 1</th>
-              <th>Segment 2</th>
-              <th>Segment 3</th>
-              <th>Segment 4</th>
-              <th>Segment 5</th>
-              <th>Segment 6</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let tabData of tableContent">
-               <td style="color:#3F7FFF">{{tabData.name}}</td>
-               <td>{{tabData.seg1}}</td>
-               <td>{{tabData.seg2}}</td>
-               <td>{{tabData.seg3}}</td>
-               <td>{{tabData.seg4}}</td>
-               <td>{{tabData.seg5}}</td>
-               <td>{{tabData.seg6}}</td>
-            </tr>
-          </tbody>
+        <div class="modal-body table-content">
+          <table class="table table-bordered" >
+            <thead >
+              <tr class="table-primary">
+                <th>Features</th>
+                <th *ngFor="let segment of a">
+                  Segment {{ segment }}
+                </th>
+              </tr>
+            </thead>
+            <tbody class="table-body">
+              <tr *ngFor="let feature of b">
+                <td style="color: #3F7FFF;">{{ feature }}</td>
+                <td *ngFor="let segment of a" [ngStyle]="getCellStyles(segment, feature)">
+                  {{ tableContent[segment][feature] }}
+                </td>
+              </tr>
+            </tbody>
           </table>
+          
+          
+          
+          
+          
         </div>
         <!-- <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

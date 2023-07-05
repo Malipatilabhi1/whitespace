@@ -8,15 +8,32 @@
 
 .heading{
   font-size: 20px;
-font-family: Outfit;
-font-style: normal;
-font-weight: 500;
+  font-family: Outfit;
+  font-style: normal;
+  font-weight: 600;
 }
 
 .text{
   color: #666;
-font-size: 16px;
+  font-size: 16px;
+  font-family: Outfit;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.custom-label {
+  color: var(--foundation-blue-blue-500, #3F7FFF);
+font-size: 14px;
 font-family: Outfit;
 font-style: normal;
-font-weight: 400;
+font-weight: 500;
+line-height: 19.732px;
+}
+.custom-select {
+  color: #ff0000; /* Replace with your desired color */
+}
+
+.custom-select {
+  font-size: 14px;
+  color: #666;
 }

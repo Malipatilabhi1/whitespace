@@ -33,6 +33,7 @@ export type ChartOptions = {
   colors:any;
   tooltip:any;
   dataLabels:any
+  legend: ApexLegend;
 };
 
 export type ChartOptionsAge = {
@@ -46,6 +47,7 @@ export type ChartOptionsAge = {
   tooltip: ApexTooltip;
   stroke: ApexStroke;
   legend: ApexLegend;
+
 };
 
 export type ChartOptionsIncome = {
@@ -97,6 +99,8 @@ export type ChartOptionsWillingness = {
   theme: ApexTheme;
   title: ApexTitleSubtitle;
   colors:any;
+  dataLabels:any;
+  legend: ApexLegend;
 };
 
 export type ChartOptionsGender = {
@@ -105,6 +109,8 @@ export type ChartOptionsGender = {
   responsive: ApexResponsive[];
   labels: any;
   colors:any;
+  dataLabels:any;
+  legend: ApexLegend;
 };
 
 export type ChartOptionsScore = {
@@ -115,6 +121,8 @@ export type ChartOptionsScore = {
   grid: ApexGrid
   colors:any;
   labels: any;
+  dataLabels:any;
+  legend: ApexLegend;
 };
 
 @Component({
@@ -208,15 +216,27 @@ export class MrSummaryComponent implements OnInit {
     this.fileInput.click();
   }
 
-  gender(){
+  gender() {
+   
     this.chartOptionsGender = {
-      series:  [this.dataScreen2.respondent_Male, this.dataScreen2.respondent_Female ],
+      series: [this.dataScreen2.respondent_Male, this.dataScreen2.respondent_Female],
       chart: {
-        width: 250,
+        width: 290,
         type: "pie"
       },
-      colors:["#9692F1","#FACC15"],
+      colors: ["#9692F1", "#FACC15"],
       labels: ["Male", "Female"],
+      dataLabels: {
+        enabled: false
+      },
+      legend: {
+        show:true,
+        formatter: function (val, opts) {
+          const seriesIndex = opts.seriesIndex;
+          const percentage = (opts.w.globals.series[seriesIndex] / opts.w.globals.seriesTotals.reduce((a, b) => a + b, 0)) * 100;
+          return '<span style="font-size: 13px; font-family: Outfit; font-style: bold;">' + val + ': ' +  percentage.toFixed(1) + '%';
+        }
+      },
       responsive: [
         {
           breakpoint: 480,
@@ -224,24 +244,19 @@ export class MrSummaryComponent implements OnInit {
             chart: {
               width: 200
             },
-            legend: {
-              formatter: function(val, opts) {
-                const percentage = opts.w.globals.seriesPercent[opts.seriesIndex];
-                return val + ' (' + percentage.toFixed(1) + '%)';
-              }
-            },
           }
         }
       ]
     };
   }
   
+  
 score(){
   this.chartOptionsScore = {
     series: [this.dataScreen2.satisfaction_Yes, this.dataScreen2.satisfaction_Somewhat, this.dataScreen2.satisfaction_Yes],
     chart: {
-      width: 280,
-      height:180,
+      width: 300,
+      height:200,
       type: "donut"
     },
     colors:["#69C69B","#F9DA81","#E46B66"],
@@ -253,9 +268,20 @@ score(){
         offsetY: 1
       }
     },
+    dataLabels:{
+     enabled:false
+    },
     grid: {
       padding: {
         bottom: -10
+      }
+    },
+    legend: {
+      show:true,
+      formatter: function (val, opts) {
+        const seriesIndex = opts.seriesIndex;
+        const percentage = (opts.w.globals.series[seriesIndex] / opts.w.globals.seriesTotals.reduce((a, b) => a + b, 0)) * 100;
+        return '<span style="font-size: 13px; font-family: Outfit; font-style: bold;">' + val + ': ' +  percentage.toFixed(1) + '%';
       }
     },
     responsive: [
@@ -263,11 +289,9 @@ score(){
         breakpoint: 480,
         options: {
           chart: {
-            width: 150
+            width: 180
           },
-          legend: {
-            position: 'bottom'
-          }
+         
         }
       }
     ]
@@ -280,7 +304,7 @@ score(){
     this.chartOptions = {
       series: [this.dataScreen2['household_<3'], this.dataScreen2['household_3-5'], this.dataScreen2['household_>5']],
       chart: {
-        width: 290,
+        width: 330,
         type: "pie"
       },
       tooltip:{
@@ -289,7 +313,14 @@ score(){
       dataLabels:{
         enabled:false
       },
-
+      legend: {
+        show:true,
+        formatter: function (val, opts) {
+          const seriesIndex = opts.seriesIndex;
+          const percentage = (opts.w.globals.series[seriesIndex] / opts.w.globals.seriesTotals.reduce((a, b) => a + b, 0)) * 100;
+          return '<span style="font-size: 13px; font-family: Outfit; font-style: bold;">' + val + ': ' +  percentage.toFixed(1) + '%';
+        }
+      },
       colors:["#3AA0FF","#36CBCB","#FAD337"],
       labels: ["<3", "3-5", ">5"],
       responsive: [
@@ -297,11 +328,9 @@ score(){
           breakpoint: 480,
           options: {
             chart: {
-              width: 200
+              width: 220
             },
-            legend: {
-              position: "bottom"
-            }
+            
           }
         }
       ]
@@ -319,7 +348,7 @@ score(){
       ],
       chart: {
         type: "bar",
-        height: 150
+        height: 200
       },
       plotOptions: {
         bar: {
@@ -343,13 +372,26 @@ score(){
           "50+",
         ],
         title:{
-          text: "Age Group"
+          text: "Age Group",
+          style: {
+            color: '#666',
+           fontSize:'14px',
+           fontFamily:'Outfit',
+           fontWeight:400
+          }
         }
       },
       yaxis: {
         title: {
-          text: "No of Respondents"
-        }
+          text: "No of Respondents",
+          style: {
+            color: '#666',
+           fontSize:'14px',
+           fontFamily:'Outfit',
+           fontWeight:400
+          }
+        },
+        
       },
      
       fill: {
@@ -375,7 +417,7 @@ score(){
       ],
       chart: {
         type: "bar",
-        height: 150
+        height: 200
       },
       plotOptions: {
         bar: {
@@ -393,18 +435,30 @@ score(){
       },
       xaxis: {
         categories: [
-          "0-25000",
-          "25000-50000",
-          "500000-1000000",
-          "1000000+"
+          "0-25k",
+          "25k-50k",
+          "50k-1L",
+          "1L+"
         ],
         title:{
-          text: "Income Group (in Rs 1000)"
+          text: "Income Group (in Rs 1000)",
+          style: {
+            color: '#666',
+           fontSize:'14px',
+           fontFamily:'Outfit',
+           fontWeight:400
+          }
         }
       },
       yaxis: {
         title: {
-          text: "No of Respondents"
+          text: "No of Respondents",
+          style: {
+            color: '#666',
+           fontSize:'14px',
+           fontFamily:'Outfit',
+           fontWeight:400
+          }
         }
       },
      
@@ -431,7 +485,7 @@ score(){
         ],
         chart: {
           type: "bar",
-          height: 150
+          height: 200
         },
         colors:["#9692F1"],
         plotOptions: {
@@ -450,18 +504,30 @@ score(){
         },
         xaxis: {
           categories: [
-            "<10",
-            "10-30",
-            "30-50",
-            "50+"
+            "<10k",
+            "10k-30k",
+            "30k-50k",
+            "50k+"
           ],
           title:{
-            text: "Income Group (in Rs 1000)"
+            text: "Income Group (in Rs 1000)",
+            style: {
+              color: '#666',
+             fontSize:'14px',
+             fontFamily:'Outfit',
+             fontWeight:400
+            }
           }
         },
         yaxis: {
           title: {
-            text: "No of Respondents"
+            text: "No of Respondents",
+            style: {
+              color: '#666',
+             fontSize:'14px',
+             fontFamily:'Outfit',
+             fontWeight:400
+            }
           }
         },
        
@@ -488,7 +554,7 @@ score(){
       ],
       chart: {
         type: "bar",
-        height: 150
+        height: 200
       },
       colors:["#9692F1"],
       plotOptions: {
@@ -514,12 +580,24 @@ score(){
          
         ],
         title:{
-          text: "Age Group"
+          text: "Age Group",
+          style: {
+            color: '#666',
+           fontSize:'14px',
+           fontFamily:'Outfit',
+           fontWeight:400
+          }
         }
       },
       yaxis: {
         title: {
-          text: "No of Respondents"
+          text: "No of Respondents",
+          style: {
+            color: '#666',
+           fontSize:'14px',
+           fontFamily:'Outfit',
+           fontWeight:400
+          }
         }
       },
      
@@ -541,20 +619,28 @@ score(){
     this.chartOptionsWillingness = {
       series: [this.dataScreen2['switchcount_Not Likely'], this.dataScreen2['switchcount_Somewhat Likely'], this.dataScreen2['switchcount_Very Likely'], this.dataScreen2['switchcount_Won\'t Mind']],
       chart: {
-        width: 350,
+        width: 400,
         type: "pie"
+      },
+      dataLabels:{
+        enabled:false
       },
       colors:["#3AA0FF","#36CBCB","#FAD337","#F2637B"],
       labels: [ "Not Likely", "Somewhat Likely","Very Likely", "Won't Mind",],
+      legend: {
+        show:true,
+        formatter: function (val, opts) {
+          const seriesIndex = opts.seriesIndex;
+          const percentage = (opts.w.globals.series[seriesIndex] / opts.w.globals.seriesTotals.reduce((a, b) => a + b, 0)) * 100;
+          return '<span style="font-size: 13px; font-family: Outfit; font-style: bold;">' + val + ': ' +  percentage.toFixed(1) + '%';
+        }
+      },
       responsive: [
         {
           breakpoint: 480,
           options: {
             chart: {
               width: 200
-            },
-            legend: {
-              position: "bottom"
             }
           }
         }

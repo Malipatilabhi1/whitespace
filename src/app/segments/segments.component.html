@@ -1,4 +1,4 @@
-<div class="main" id = "content" #content>
+<div class="main" id = "content" #content style="height:100%;position:sticky">
     <div style="background-color: white;">
         <h1 class="px-2"><b>Segment Characteristics Definition</b></h1>
     
@@ -16,8 +16,8 @@
                 </div>
               </ng-template>
               <div class="d-flex flex-row p-2" style="width: 100%; background-color: #F0F2F5;">
-                <div class="card d-flex flex-column m-1" style="width: 70%">
-                  <div class="d-flex flex-row topDiv" style="width:100%">
+                <div class="card d-flex flex-column m-1" style="width: 68%;">
+                  <div class="d-flex flex-row topDiv" style="width:100%;">
                   <div style="width:10%">
                     <img src="../../assets/images/girl.jpg" class="p-1 rounded-pill" style="border-radius: 50%;" height="70px" width="70px" alt="">
                 </div>
@@ -35,22 +35,95 @@
                         </i>Regenerate</button>
                   </div>
                   </div>
-                  <div class="segment">
-                   <div class="d-flex flex-row" style="width:100%">
-                    <div class="p-1" style="width:50%;display:flex;justify-content: start;align-items: center;">
-                        <p  style="color: #222; font-size: 16px; font-family: Outfit; font-style: normal; font-weight: 600;align-items: center;">Segment Characteristics</p>
-                    </div>
-                    <div style="width:50%;display:flex;justify-content: end;align-items: center;">
-                        <button type="button" class="btn btn-light" style="border:none;background-color: white;font-size: 12px;font-family: Outfit;font-style: normal;font-weight: 600;color:#7672ED">
-                            <i class="bi bi-plus-circle">
+                 <div style="height:53vh;overflow-y: scroll;">
+                    <div class="segment" >
+                        <div class="d-flex flex-row p-2" style="width:100%">
+                         <div class="p-1" style="width:50%;display:flex;justify-content: start;align-items: center;">
+                             <p  style="color: #222; font-size: 16px; font-family: Outfit; font-style: normal; font-weight: 600;align-items: center;">Segment Characteristics</p>
+                         </div>
+                         <div style="width:50%;display:flex;justify-content: end;align-items: center;">
+                             <button (click)="addCharacteristic(segment)" type="button" class="btn btn-light" style="border:none;background-color: white;font-size: 12px;font-family: Outfit;font-style: normal;font-weight: 600;color:#7672ED">
+                                 <i class="bi bi-plus-circle">
+                                     <svg xmlns="http://www.w3.org/2000/svg" style="margin-right:5px;" width="13" height="13" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+                                         <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                         <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                                       </svg>
+                                 </i>Add More</button>
+                                 
+                         </div>
+                        
+                        </div>
+                        <div class="px-2" style="width:100%">
+                         <div  *ngFor="let characteristic of segment.characteristics; let j = index">
+                             <div class="input-group" >
+                                 <input class="form-control my-1" [value]="characteristic"  [readonly]="!isEditing" (click)="enableEditing()" >
+                                 <div class="input-group-append">
+                                   <button class="btn btn-outline-secondary mt-3" (click)="deleteCharacteristic(segment, j)"
+                                   style="height:15px;width:10px;border-radius: 60%;display:flex;align-items: center;right:40px" type="button">-</button>
+                                 </div>
+                               </div>
+                           </div>
+                        </div>
+                       </div>
+                       <div class="function">
+                         <div class="d-flex flex-row p-2" style="width:100%">
+                           <div class="p-1" style="width:50%;display:flex;justify-content: start;align-items: center;">
+                             <p style="color: #222; font-size: 16px; font-family: Outfit; font-style: normal; font-weight: 600;align-items: center;">Functional Needs</p>
+                           </div>
+                           <div style="width:50%;display:flex;justify-content: end;align-items: center;">
+                             <button (click)="addFunctionalNeed(segment)" type="button" class="btn btn-light"
+                               style="border:none;background-color: white;font-size: 12px;font-family: Outfit;font-style: normal;font-weight: 600;color:#7672ED">
+                               <i class="bi bi-plus-circle">
+                                 <svg xmlns="http://www.w3.org/2000/svg" style="margin-right:5px;" width="13" height="13" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+                                   <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                   <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                                 </svg>
+                               </i>Add More
+                             </button>
+                           </div>
+                         </div>
+                         <div class="px-2" style="width:100%">
+                           <div *ngFor="let need of segment.functional_need; let j = index">
+                             <div class="input-group">
+                               <input class="form-control my-1" [value]="need" [readonly]="!isEditing" (click)="enableEditing()" >
+                               <div class="input-group-append">
+                                 <button class="btn btn-outline-secondary mt-3" (click)="deleteFunctionalNeed(segment, j)"
+                                   style="height:15px;width:10px;border-radius: 60%;display:flex;align-items: center;right:40px" type="button">-</button>
+                               </div>
+                             </div>
+                           </div>
+                         </div>
+                       </div>
+                       <div class="emotional">
+                        <div class="d-flex flex-row p-2" style="width:100%">
+                          <div class="p-1" style="width:50%;display:flex;justify-content: start;align-items: center;">
+                            <p style="color: #222; font-size: 16px; font-family: Outfit; font-style: normal; font-weight: 600;align-items: center;">Emotional Needs</p>
+                          </div>
+                          <div style="width:50%;display:flex;justify-content: end;align-items: center;">
+                            <button (click)="addEmotionalNeed(segment)" type="button" class="btn btn-light" style="border:none;background-color: white;font-size: 12px;font-family: Outfit;font-style: normal;font-weight: 600;color:#7672ED">
+                              <i class="bi bi-plus-circle">
                                 <svg xmlns="http://www.w3.org/2000/svg" style="margin-right:5px;" width="13" height="13" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
-                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                                  </svg>
-                            </i>Add More</button>
-                    </div>
-                   </div>
-                  </div>
+                                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                  <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                                </svg>
+                              </i>Add More
+                            </button>
+                          </div>
+                        </div>
+                        <div class="px-2" style="width:100%">
+                          <div *ngFor="let need of segment.emotional_need; let j = index">
+                            <div class="input-group">
+                              <input class="form-control my-1" [value]="need" [readonly]="!isEditing" (click)="enableEditing()">
+                              <div class="input-group-append">
+                                <button class="btn btn-outline-secondary mt-3" (click)="deleteEmotionalNeed(segment, j)" style="height:15px;width:10px;border-radius: 60%;display:flex;align-items: center;right:40px" type="button">-</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                 </div>
+                  
                 </div>
                 <div class="card m-1" style="width: 30%">
                     <div class="p-1">
@@ -60,8 +133,70 @@
                             </p>
                             <hr>
                         </div>
-                    <div  style="height:39vh;overflow-y: scroll;">
-                        <div class="slider-container d-flex flex-column mb-2" >
+                        <div style="height: 46vh; overflow-y: scroll;">
+                            
+                                <div>
+                                    <p class="px-2 py-0 my-0 slide">Aroma</p>
+                                <mat-slider class="custom-slider" style="width: 285px;" min="0" max="100" step="1" [(ngModel)]="sliderValue"></mat-slider>
+                                <span style="color: #222; text-align: right; font-size: 16px; font-family: Outfit; font-style: normal; font-weight: 600;">{{ sliderValue }}</span>
+                                <div class="example-label-container py-0 my-0">
+                                  <label id="example-name-label" class="example-name-label">0</label>
+                                  <label class="example-value-label">100</label>
+                                </div>
+                                </div>
+                             
+                               <div>
+                                <p class="px-2 py-0 my-0 slide">long lasting hold</p>
+                                <mat-slider class="custom-slider" style="width: 285px;" min="0" max="100" step="1" [(ngModel)]="sliderValue1"></mat-slider>
+                                <span style="color: #222; text-align: right; font-size: 16px; font-family: Outfit; font-style: normal; font-weight: 600;">{{ sliderValue1 }}</span>
+                                <div class="example-label-container py-0 my-0">
+                                  <label id="example-name-label" class="example-name-label">0</label>
+                                  <label class="example-value-label">100</label>
+                                </div> 
+                                
+                                <div>
+                                    <p class="px-2 py-0 my-0 slide">clean scalp</p>
+                                <mat-slider class="custom-slider" style="width: 285px;" min="0" max="100" step="1" [(ngModel)]="sliderValue2"></mat-slider>
+                                <span style="color: #222; text-align: right; font-size: 16px; font-family: Outfit; font-style: normal; font-weight: 600;">{{ sliderValue2 }}</span>
+                                <div class="example-label-container py-0 my-0">
+                                  <label id="example-name-label" class="example-name-label">0</label>
+                                  <label class="example-value-label">100</label>
+                                </div>
+                                </div>
+
+                                <div>
+                                    <p class="px-2 py-0 my-0 slide">maintainance</p>
+                                <mat-slider class="custom-slider" style="width: 285px;" min="0" max="100" step="1" [(ngModel)]="sliderValue3"></mat-slider>
+                                <span style="color: #222; text-align: right; font-size: 16px; font-family: Outfit; font-style: normal; font-weight: 600;">{{ sliderValue3 }}</span>
+                                <div class="example-label-container py-0 my-0">
+                                  <label id="example-name-label" class="example-name-label">0</label>
+                                  <label class="example-value-label">100</label>
+                                </div>
+                                </div>
+
+                                <div>
+                                    <p class="px-2 py-0 my-0 slide">volume and bounce</p>
+                                <mat-slider class="custom-slider" style="width: 285px;" min="0" max="100" step="1" [(ngModel)]="sliderValue4"></mat-slider>
+                                <span style="color: #222; text-align: right; font-size: 16px; font-family: Outfit; font-style: normal; font-weight: 600;">{{ sliderValue4 }}</span>
+                                <div class="example-label-container py-0 my-0">
+                                  <label id="example-name-label" class="example-name-label">0</label>
+                                  <label class="example-value-label">100</label>
+                                </div>
+                                </div>
+
+                                <div>
+                                    <p class="px-2 py-0 my-0 slide">special purpose</p>
+                                <mat-slider class="custom-slider" style="width: 285px;" min="0" max="100" step="1" [(ngModel)]="sliderValue5"></mat-slider>
+                                <span style="color: #222; text-align: right; font-size: 16px; font-family: Outfit; font-style: normal; font-weight: 600;">{{ sliderValue5 }}</span>
+                                <div class="example-label-container py-0 my-0">
+                                  <label id="example-name-label" class="example-name-label">0</label>
+                                  <label class="example-value-label">100</label>
+                                </div>
+                                </div>
+            
+                               </div>
+
+                        <!-- <div class="slider-container d-flex flex-column mb-2" >
                             <p class="px-2 py-0 my-0 slide">Aroma</p>
                             <ng5-slider [(value)]="sliderValues[0]" [options]="sliderOptions"></ng5-slider>
                         </div>
@@ -81,24 +216,28 @@
                             <p class="px-2 py-0 my-0 slide">volume and bounce</p>
                             <ng5-slider [(value)]="sliderValues[4]" [options]="sliderOptions"></ng5-slider>
                         </div>
-                        <div class="slider-container d-flex flex-column mb-2">
+                        <div class="slider-container d-flex flex-column">
                             <p class="px-2 py-0 my-0 slide">special purpose</p>
                             <ng5-slider [(value)]="sliderValues[5]" [options]="sliderOptions"></ng5-slider>
-                        </div>
+                        </div> -->
+                       
                     </div>
-                    <hr>
-                    <div class="px-3" style="display:flex;justify-content: end; cursor: pointer;"  >
+                   <div style="height:7vh">
+                   
+                    <div class="px-3 py-0 my-0 " style="display:flex;justify-content: end; cursor: pointer;"  >
                         <img src="../../assets/images/bot.jpg" class="rouned-pill" style="border-radius: 50%;" height="50" width="50" alt="" (click)="openIframe()">
                          <div *ngIf="showIframe">
                             <iframe src="http://3.111.229.37:3003/bot/73ff8af9-94e6-488c-8ba2-ac53258f7ca4?mode=iframe" width="400" height="500" ></iframe>
                           </div>
                        </div>
+                   </div>
                     </div>
                 </div>
               </div>
             </mat-tab>
           </mat-tab-group>
-          <div class="p-2" style="display:flex;justify-content: end;height:50px;align-items: center; ">
+          <div class="p-2 sticky-bottom" >
+            <button type="button" class="btn btn-primary mx-2"  routerLink="/whitespaceAnalysis" >Done</button>
             <button type="button" class="btn btn-primary" (click)="capture()" routerLink="/whitespaceAnalysis" >Next</button>
         </div>
           <!-- <div class="px-3 pt-3" style="display:flex;justify-content: end; cursor: pointer;"  >

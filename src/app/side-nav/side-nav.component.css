@@ -1,8 +1,8 @@
 .highlighted{
     background: var(--daybreak-blue-1, #E6F7FF);
     box-shadow: -3px 0px 0px 0px #1890FF inset;
-    color:#1890FF
-    
+    color:#1890FF;
+    border-right: 43px solid blue;
 }
 .highlighted svg{
     fill: #1890FF;

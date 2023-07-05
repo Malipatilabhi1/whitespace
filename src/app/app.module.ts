@@ -32,7 +32,7 @@ import { SegmentsComponent } from './segments/segments.component';
 import { Ng5SliderModule } from 'ng5-slider';
 import { AnalysisComponent } from './analysis/analysis.component';
 import { ChatbotComponent } from './chatbot/chatbot.component';
-
+import {MatSliderModule} from '@angular/material/slider';
 
 @NgModule({
   declarations: [
@@ -70,7 +70,8 @@ import { ChatbotComponent } from './chatbot/chatbot.component';
     MatInputModule,
     MatCheckboxModule,
     MatTabsModule,
-    Ng5SliderModule
+    Ng5SliderModule,
+    MatSliderModule
   ],
   providers: [],
   bootstrap: [AppComponent]

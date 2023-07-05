@@ -1,4 +1,4 @@
-<!-- <div class="d-flex flex-column" style="background-color:#F6F7FB;">
+<div class="d-flex flex-column" style="background-color:#F6F7FB;">
   <div class="sticky-top" style="width: 100% !important;">
     <app-header ></app-header>
    
@@ -7,7 +7,7 @@
   <div class="d-flex" >
   
     <mat-drawer-container >
-      <mat-drawer mode="side" [opened]="sideBarOpen" >
+      <mat-drawer mode="side" [opened]="sideBarOpen" style="width:20vw">
       
          <app-side-nav ></app-side-nav>
       
@@ -25,11 +25,13 @@
   </div>
  
 </div>
- -->
- <app-header></app-header>
+
+ <!-- <app-header></app-header>
  <mat-drawer-container class="example-container">
 
-  <mat-drawer mode="side" opened style="width: 16vw;"><app-side-nav></app-side-nav></mat-drawer>
+  <mat-drawer mode="side" opened style="width: 16vw;">
+    <app-side-nav></app-side-nav>
+  </mat-drawer>
   <mat-drawer-content >
    
     <div  class="scroller" #scroller1>
@@ -37,4 +39,4 @@
       <router-outlet ></router-outlet>
     </div>
   </mat-drawer-content>
-</mat-drawer-container>
+</mat-drawer-container> -->

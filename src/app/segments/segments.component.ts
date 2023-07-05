@@ -62,8 +62,17 @@ selectedSegment: any;
    
   }
   
+  
+  sliderValue: number = 0;
+  sliderValue1: number = 0;
+  sliderValue2: number = 0;
+  sliderValue3: number = 0;
+  sliderValue4: number = 0;
+  sliderValue5: number = 0;
 
-
+  formatLabel(value: number) {
+    return value + '%'; // Example formatting, you can customize this as per your requirement
+  }
 constructor(private gs: GeneralServiceService){
   
  
@@ -84,11 +93,56 @@ openIframe() {
 displaySegmentName(segmentName: string) {
   this.selectedSegmentName = segmentName;
 }
+saveSegmentCharacteristics(segment: any) {
+  // Perform any necessary validation or saving logic here
+  console.log("Saved segment characteristics:", segment.characteristics);
+}
 
-
-
+enableEditing() {
+  this.isEditing = true;
+}
+deleteCharacteristic(segment: any, index: number) {
+  segment.characteristics.splice(index, 1);
+}
+addCharacteristic(segment: any) {
+  segment.characteristics.push(''); // Add an empty string as a new characteristic
+}
  
-  sliderValues: number[] = [50, 10, 20, 70, 30, 60];
+
+saveSegmentFunctionalNeeds(segment: any) {
+  // Perform any necessary validation or saving logic here
+  console.log("Saved segment functional needs:", segment.functional_need);
+}
+
+enableFunctionalNeedsEditing() {
+  this.isEditing = true;
+}
+
+deleteFunctionalNeed(segment: any, index: number) {
+  segment.functional_need.splice(index, 1);
+}
+
+addFunctionalNeed(segment: any) {
+  segment.functional_need.push(''); // Add an empty string as a new functional need
+}
+
+saveSegmentEmotionalNeeds(segment: any) {
+  // Perform any necessary validation or saving logic here
+  console.log("Saved segment emotional needs:", segment.emotional_need);
+}
+
+enableEmotionalNeedsEditing() {
+  this.isEditing = true;
+}
+
+deleteEmotionalNeed(segment: any, index: number) {
+  segment.emotional_need.splice(index, 1);
+}
+
+addEmotionalNeed(segment: any) {
+  segment.emotional_need.push(''); // Add an empty string as a new emotional need
+}
+  sliderValues: number[] = [0, 0, 0, 0, 0, 0];
   sliderOptions: Options = {
     floor: 0,
     ceil: 100,

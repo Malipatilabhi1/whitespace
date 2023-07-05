@@ -1,3 +1,4 @@
+
 #modal-dialog {
     position: fixed;
     margin: auto;
@@ -109,6 +110,7 @@ border:none;
 
   }
   .topDiv{
+   
     border-radius: 4px 4px 0px 0px;
 background: linear-gradient(270deg, #60B2F9 0%, #567EEB 67.38%), #FFF;
 
@@ -132,3 +134,42 @@ font-weight: 400;
    
     border: 1px solid #6599FF !important;
   }
+  .characteristic{
+    width:100%
+  }
+  .sticky-bottom{
+    position:fixed;
+    z-index:1;
+    bottom:1px;
+   background-color: white;
+   width:83%;
+   /* .btn{
+   display: flex;
+    justify-content: end;
+   } */
+   display: flex;
+    justify-content: end;
+   
+}
+.example-label-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0px 0;
+  max-width: 284px;
+  color: rgba(102, 102, 102, 0.80);
+font-size: 12px;
+font-family: Outfit;
+font-style: normal;
+font-weight: 400;
+}
+
+::ng-deep .custom-slider .mat-slider-track-wrapper {
+  height: 20px; /* Increase the height to increase the thickness */
+}
+
+::ng-deep .custom-slider  .mat-slider-thumb {
+  background-color: #6599FF; /* Change the color to your desired color */
+}
+::ng-deep .custom-slider .mat-slider-track-fill {
+  background-color: #6599FF; /* Change the color to your desired color */
+}

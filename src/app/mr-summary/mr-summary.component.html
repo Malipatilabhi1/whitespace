@@ -1,192 +1,12 @@
-<!-- <div class="main" style="background-color: #F6F7FB;">
-    <div class="header d-flex flex-row">
-        <div class="m-2" style="width:90%">
-            <h1 class="p-0 m-0"><b>MR Summary</b></h1>
-            <p class="p-0 m-0">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...</p>
-        </div>
-        <div class="p-2 m-2" style="width:10%">
-            <button class="p-2" style="background-color: black;color:white;" (click)="uploadButtonClicked()">Upload MR
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cloud-upload" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M4.406 1.342A5.53 5.53 0 0 1 8 0c2.69 0 4.923 2 5.166 4.579C14.758 4.804 16 6.137 16 7.773 16 9.569 14.502 11 12.687 11H10a.5.5 0 0 1 0-1h2.688C13.979 10 15 8.988 15 7.773c0-1.216-1.02-2.228-2.313-2.228h-.5v-.5C12.188 2.825 10.328 1 8 1a4.53 4.53 0 0 0-2.941 1.1c-.757.652-1.153 1.438-1.153 2.055v.448l-.445.049C2.064 4.805 1 5.952 1 7.318 1 8.785 2.23 10 3.781 10H6a.5.5 0 0 1 0 1H3.781C1.708 11 0 9.366 0 7.318c0-1.763 1.266-3.223 2.942-3.593.143-.863.698-1.723 1.464-2.383z"/>
-                    <path fill-rule="evenodd" d="M7.646 4.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V14.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3z"/>
-                  </svg>
-            </button>
-        </div>
-    </div>
-    <div class="content d-flex flex-column py-2" >
-        <div class="row1 d-flex flex-row" style="width:100%">
-            <div class="card mx-2 px-2" style="width: 25%;">
-                 <h4><b>No of Questions</b></h4>
-                 <p style="font-size: 40px;">{{dataScreen2.number_of_questions}}</p>
-            </div>
-            <div class="card mx-2 px-2" style="width: 25%;">
-                <h4><b>No of Respondents</b></h4>
-                <p style="font-size: 40px;">{{dataScreen2.number_of_respondents}}</p>
-           </div>
-           <div class="card mx-2 px-2" style="width: 25%;">
-            <h4 class=""><b>No of Respondents</b></h4>
-            <div class="d-flex" style="width:100%">
-                <div style="margin-left: 10px;width: 10em;margin-bottom: 5px;">
-                    <div class="range" > </div>
-                    <div  [ngStyle]="{'width': dataScreen2.respondent_Female*100 +'%'}" class="rangeValueRed"></div>
-                </div>
-            </div>
-            <div class="d-flex flex-row">
-                <div class="d-flex flex-row">
-                    <div class="card-rounded-4" style="height:10px; width:10px;background-color:#3F7EFF;border-radius:10px;margin-left:10px;margin-right:10px; margin-top:5px"></div>
-                    <div >
-                        <p>Female {{dataScreen2.respondent_Female}}</p>
-                    </div>
-                </div>
-                <div class="d-flex flex-row px-2">
-                    <div class="card-rounded-4" style="height:10px; width:10px;background-color:#B0B0B0;border-radius:10px;margin-left:10px;margin-right:10px; margin-top:5px"></div>
-                    <div >
-                        <p>Male {{dataScreen2.respondent_Male}}</p>
-                    </div>
-                </div>
-            </div>
-           
-            
-       </div>
-       <div class="card mx-2" style="width: 25%;">
-        <h4 class="px-2 py-0 my-0"><b>Satisfaction With Current Product</b></h4>
-        <div class="card d-flex flex-row">
-          <div class="d-flex flex-column px-4 mt-1">
-              <img src="../../assets/images/smilee.png" class="" height="30" width="30" alt=""   >
-              <h4 style="text-align: center;"><b>{{dataScreen2.satisfaction_Yes}}%</b></h4>
-          </div>
-          <div class="d-flex flex-column px-4 mt-1">
-              <img  src="../../assets/images/neutralFace.png" class="" height="30" width="30" alt=""   >
-              <h4 style="text-align: center;"><b>{{dataScreen2.satisfaction_Somewhat}}%</b></h4>
-          </div>
-          <div class="d-flex flex-column px-4 mt-1">
-              <img class="pt-1" src="../../assets/images/sadEmo.png" class="" height="30" width="30" alt=""   >
-              <h4 style="text-align: center;"><b>{{dataScreen2.satisfaction_No}}%</b></h4>
-          </div>
 
-        </div>
-       </div>
-        </div>
-        <div class="row2 d-flex flex-row" style="width:100%">
-            <div class="card m-2" style="width:33%">
-                <h4 class="px-2"><b>Age Distribution of All Respondents</b></h4>
-                <div id="chart1">
-                    <apx-chart
-                      [series]="chartOptionsAge.series"
-                      [chart]="chartOptionsAge.chart"
-                      [dataLabels]="chartOptionsAge.dataLabels"
-                      [plotOptions]="chartOptionsAge.plotOptions"
-                      [yaxis]="chartOptionsAge.yaxis"
-                      [legend]="chartOptionsAge.legend"
-                      [fill]="chartOptionsAge.fill"
-                      [stroke]="chartOptionsAge.stroke"
-                      [tooltip]="chartOptionsAge.tooltip"
-                      [xaxis]="chartOptionsAge.xaxis"
-                    ></apx-chart>
-                  </div>
-                  
-            </div>
-            <div class="card m-2" style="width:33%">
-                <h4 class="px-2"><b>Income Distribution of All Respondents</b></h4>
-                <div id="chart2">
-                    <apx-chart
-                      [series]="chartOptionsIncome.series"
-                      [chart]="chartOptionsIncome.chart"
-                      [dataLabels]="chartOptionsIncome.dataLabels"
-                      [plotOptions]="chartOptionsIncome.plotOptions"
-                      [yaxis]="chartOptionsIncome.yaxis"
-                      [legend]="chartOptionsIncome.legend"
-                      [fill]="chartOptionsIncome.fill"
-                      [stroke]="chartOptionsIncome.stroke"
-                      [tooltip]="chartOptionsIncome.tooltip"
-                      [xaxis]="chartOptionsIncome.xaxis"
-                    ></apx-chart>
-                  </div>
-            </div>
-            <div class="card m-2" style="width:33%">
-              <h4 class=" px-2 py-0 my-0"><b>Household Composition</b></h4>
-              <div id="chart">
-                 <apx-chart
-                   [series]="chartOptions.series"
-                   [chart]="chartOptions.chart"
-                   [labels]="chartOptions.labels"
-                   [title]="chartOptions.title"
-                   [theme]="chartOptions.theme"
-                   [responsive]="chartOptions.responsive"
-                 ></apx-chart>
-               </div>
-            
-            </div>
-
-        </div>
-        <div class="row3 d-flex flex-row" style="width:100%">
-            <div class="card m-2" style="width:33%">
-              <h4 class="px-2"><b>Average Spend Per Month</b></h4>
-              <div id="chart3">
-                <apx-chart
-                  [series]="chartOptionsAvgSpend.series"
-                  [chart]="chartOptionsAvgSpend.chart"
-                  [dataLabels]="chartOptionsAvgSpend.dataLabels"
-                  [plotOptions]="chartOptionsAvgSpend.plotOptions"
-                  [yaxis]="chartOptionsAvgSpend.yaxis"
-                  [legend]="chartOptionsAvgSpend.legend"
-                  [fill]="chartOptionsAvgSpend.fill"
-                  [stroke]="chartOptionsAvgSpend.stroke"
-                  [tooltip]="chartOptionsAvgSpend.tooltip"
-                  [xaxis]="chartOptionsAvgSpend.xaxis"
-                ></apx-chart>
-              </div>
-            </div>
-            <div class="card m-2" style="width:33%">
-                <h4 class="px-2"><b>Frequency Of Shampooing</b></h4>
-                <div id="chart4">
-                  <apx-chart
-                    [series]="chartOptionsFrequency.series"
-                    [chart]="chartOptionsFrequency.chart"
-                    [dataLabels]="chartOptionsFrequency.dataLabels"
-                    [plotOptions]="chartOptionsFrequency.plotOptions"
-                    [yaxis]="chartOptionsFrequency.yaxis"
-                    [legend]="chartOptionsFrequency.legend"
-                    [fill]="chartOptionsFrequency.fill"
-                    [stroke]="chartOptionsFrequency.stroke"
-                    [tooltip]="chartOptionsFrequency.tooltip"
-                    [xaxis]="chartOptionsFrequency.xaxis"
-                  ></apx-chart>
-                </div>
-            </div>
-            <div class="card m-2" style="width:33%">
-               <h4 class="px-2"><b>Willingness To Switch</b></h4>
-               <div id="chart5">
-                <apx-chart
-                  [series]="chartOptionsWillingness.series"
-                  [chart]="chartOptionsWillingness.chart"
-                  [labels]="chartOptionsWillingness.labels"
-                  [title]="chartOptionsWillingness.title"
-                  [theme]="chartOptionsWillingness.theme"
-                  [responsive]="chartOptionsWillingness.responsive"
-                ></apx-chart>
-              </div>
-            </div>
-
-        </div>
-        <div class="px-2" style="display: flex; justify-content: end;">
-            <button (click)="navigatetoAlgorithmSelection()" type="button" class="btn btn-primary">Next
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
-                  </svg>
-            </button>
-        </div>
-    </div>
-
-</div> -->
 <div id = "content" #content >
   
 <div class="sticky-top" >
   <div style="background-color: white;" class="d-flex flex-column "> 
     <div class="d-flex flex-row 1 pb-5 pt-1 mb-0" style="width:100%">
          <div style="display:flex;justify-content: start;width:50%">
-        <h2 class="left px-4 dashboard">
-         <b> MR Summary</b>
+        <h2 class="left px-2 dashboard">
+        MR Summary
       </h2>
        </div>
         <div class="right" style="display:flex;justify-content: end;width:50%">
@@ -290,7 +110,8 @@
           [labels]="chartOptionsGender.labels"
           [responsive]="chartOptionsGender.responsive"
           [colors]="chartOptionsGender.colors"
-          
+          [dataLabels]="chartOptionsGender.dataLabels"
+          [legend]="chartOptionsGender.legend"
         ></apx-chart>
       </div>
     </div>
@@ -303,6 +124,8 @@
           [plotOptions]="chartOptionsScore.plotOptions"
           [labels]="chartOptionsScore.labels"
           [colors]="chartOptionsScore.colors"
+          [dataLabels]="chartOptionsScore.dataLabels"
+          [legend]="chartOptionsScore.legend"
         ></apx-chart>
       </div>
     </div>
@@ -361,6 +184,8 @@
          [responsive]="chartOptions.responsive"
          [colors]="chartOptions.colors"
          [tooltip]="chartOptions.tooltip"
+         [legend]="chartOptions.legend"
+         [dataLabels]="chartOptions.dataLabels"
        ></apx-chart>
      </div>
   
@@ -414,6 +239,8 @@
         [theme]="chartOptionsWillingness.theme"
         [responsive]="chartOptionsWillingness.responsive"
         [colors]="chartOptionsWillingness.colors"
+        [dataLabels]="chartOptionsWillingness.dataLabels"
+        [legend]="chartOptionsWillingness.legend"
       ></apx-chart>
     </div>
   </div>
@@ -429,6 +256,7 @@
 
 </div>
 </div>
+
 <!-- <div style="background-color: white;" class="sticky-bottom">
   <button (click)="navigatetoAlgorithmSelection()" type="button" class="btn btn-primary">Next</button>
 </div> -->

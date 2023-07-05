@@ -181,7 +181,7 @@
 </div> -->
 <div id = "content" #content >
   
-<div class="sticky-top">
+<div class="sticky-top" >
   <div style="background-color: white;" class="d-flex flex-column "> 
     <div class="d-flex flex-row 1 pb-5 pt-1 mb-0" style="width:100%">
          <div style="display:flex;justify-content: start;width:50%">
@@ -360,6 +360,7 @@
          [theme]="chartOptions.theme"
          [responsive]="chartOptions.responsive"
          [colors]="chartOptions.colors"
+         [tooltip]="chartOptions.tooltip"
        ></apx-chart>
      </div>
   
@@ -383,7 +384,7 @@
     </div>
   </div>
 </div>
-<div class="row4 d-flex flex-row" style="width:100%">
+<div class="row4 d-flex flex-row mb-5 " style="width:100%">
   <div class="card m-2" style="width:50%">
       <h4 class="px-2"><b>Frequency Of Shampooing</b></h4>
       <div id="chart4">
@@ -416,15 +417,18 @@
       ></apx-chart>
     </div>
   </div>
-
+ 
 </div>
 
-  <div class="p-2  sticky-bottom" style="display: flex; justify-content: end;background-color: white;">
-    <button (click)="navigatetoAlgorithmSelection()" type="button" class="btn btn-primary">Next
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
-          </svg>
-    </button>
+<div class="sticky-bottom p-1" >
+  <button (click)="navigatetoAlgorithmSelection()" type="button" class="btn btn-primary">Next
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
+        </svg>
+  </button>
 
 </div>
 </div>
+<!-- <div style="background-color: white;" class="sticky-bottom">
+  <button (click)="navigatetoAlgorithmSelection()" type="button" class="btn btn-primary">Next</button>
+</div> -->

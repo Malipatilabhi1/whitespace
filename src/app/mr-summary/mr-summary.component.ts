@@ -31,6 +31,8 @@ export type ChartOptions = {
   theme: ApexTheme;
   title: ApexTitleSubtitle;
   colors:any;
+  tooltip:any;
+  dataLabels:any
 };
 
 export type ChartOptionsAge = {
@@ -281,6 +283,13 @@ score(){
         width: 290,
         type: "pie"
       },
+      tooltip:{
+        enabled:true
+      },
+      dataLabels:{
+        enabled:false
+      },
+
       colors:["#3AA0FF","#36CBCB","#FAD337"],
       labels: ["<3", "3-5", ">5"],
       responsive: [

@@ -91,3 +91,9 @@ font-size: 16px;
 font-family: Outfit;
 font-weight: 500;
 }
+.sticky-bottom{
+    position:fixed;
+    z-index:1;
+    bottom:1px;
+    right:25px;
+}

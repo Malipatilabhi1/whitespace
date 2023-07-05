@@ -1,18 +1,12 @@
-
-
-
-
-
-
-<div class="d-flex flex-column" style="background-color:#F6F7FB;height:100%">
+<!-- <div class="d-flex flex-column" style="background-color:#F6F7FB;">
   <div class="sticky-top" style="width: 100% !important;">
     <app-header ></app-header>
    
   </div>
  
   <div class="d-flex" >
-    <!-- <app-side-nav ></app-side-nav> -->
-    <mat-drawer-container>
+  
+    <mat-drawer-container >
       <mat-drawer mode="side" [opened]="sideBarOpen" >
       
          <app-side-nav ></app-side-nav>
@@ -24,15 +18,23 @@
     <div class="scroller" #scroller1 style="width: 100% !important;">
      <div id = "content" #content>
       <router-outlet class="scroll"></router-outlet>
-      <!-- <app-landing-screen></app-landing-screen> -->
-      <!-- <button class="btn btn-primary rounded-0 offset-10" (click)="generatePdf22()">click</button> -->
+    
 </div>
     </div>
 
   </div>
  
 </div>
+ -->
+ <app-header></app-header>
+ <mat-drawer-container class="example-container">
 
-<div class="sticky-bottom" style="margin-top: 0;">
-  <app-footer></app-footer>
-</div>
+  <mat-drawer mode="side" opened style="width: 16vw;"><app-side-nav></app-side-nav></mat-drawer>
+  <mat-drawer-content >
+   
+    <div  class="scroller" #scroller1>
+
+      <router-outlet ></router-outlet>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>

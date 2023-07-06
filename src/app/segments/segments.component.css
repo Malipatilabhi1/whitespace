@@ -2,7 +2,7 @@
 #modal-dialog {
     position: fixed;
     margin: auto;
-    width: 320px;
+    width: 420px;
     height: 80%;
     right: 20px;
     bottom:0px;
@@ -94,10 +94,22 @@ background: #FFF;
   
   .tab-name {
     flex-grow: 1;
+    font-family: Outfit;
+font-size: 16px;
+font-style: normal;
+font-weight: 500;
   }
   
   .tab-status {
     margin-left: 10px;
+  }
+  
+  .status-indicator{
+    font-family: Outfit;
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+color:#7672ED;
   }
   .name{
     color: #FFF;
@@ -163,13 +175,66 @@ font-style: normal;
 font-weight: 400;
 }
 
-::ng-deep .custom-slider .mat-slider-track-wrapper {
-  height: 20px; /* Increase the height to increase the thickness */
-}
 
-::ng-deep .custom-slider  .mat-slider-thumb {
-  background-color: #6599FF; /* Change the color to your desired color */
-}
 ::ng-deep .custom-slider .mat-slider-track-fill {
   background-color: #6599FF; /* Change the color to your desired color */
+
+}
+.done{
+  color: #FFF;
+text-align: center;
+font-family: Outfit;
+font-size: 16px;
+font-style: normal;
+font-weight: 500;
+height: 28px;
+display:flex;
+align-items: center;
+justify-content: end;
+
+}
+.btn-transparent {
+  background-color: transparent;
+  border-color: transparent;
+  color: #7672ED;
+  transition: background-color 0.3s;
+}
+
+.remove:hover {
+  background-color: transparent;
+  color: #7672ED;
+}
+
+.title{
+  font-family: Outfit;
+font-size: 20px;
+font-style: normal;
+font-weight: 500;
+}
+
+.inputText{
+  color: #666;
+font-family: Outfit;
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+}
+.nextButton{
+  width: 103px;
+height: 40px;
+padding: 8px 16px;
+justify-content: center;
+align-items: center;
+gap: 8px;
+border-radius: 0px;
+background-color: #ECF2FF;
+color:#1890FF;
+border:1px solid #1890FF;
+}
+.assistant{
+  color: #FFF;
+font-family: Outfit;
+font-size: 16px;
+font-style: normal;
+font-weight: 500;
 }

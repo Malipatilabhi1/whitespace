@@ -1,38 +1,37 @@
 <div class="main" id = "content" #content >
     <div class="d-flex flex-row px-3 pt-1 mb-0" style="width:100%;background-color: white;">
       <div class="py-0 my-0" style="width:75%">
-        <h1><b>Cluster Analysis & Selection</b></h1>
+        <h3 class="heading">Cluster Analysis</h3>
       </div>
       <div style="width:5%">
         <!-- <button type="button" class="btn btn-primary">New Segment</button> -->
       </div>
-      <!-- <div style="width:20%">
-        <button type="button" class="btn btn-light" style="background-color: #1890FF;color:white" data-bs-toggle="modal" data-bs-target="#exampleModal">Detailed Segment View</button>
-      </div> -->
+    
     </div>
     <div style="width:100%">
-        <mat-tab-group  class="py-0 my-0" style="background-color: white;">
-            <mat-tab label="K Means" > 
+        <mat-tab-group  class="py-0 my-0 custom-tab-group" style="background-color: white;">
+            <mat-tab class="custom-tab-group" label="K Means" > 
+         
+              
               <ng-template matTabContent >
-                <div  style="box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);height:45px">
-                  <div class="card border-0 flex-row p-1 mx-0" style="width:100%;display:flex;justify-content: end;background-color: #F0F2F5;">
-                    <div class="rounded-pill p-2" style="background-color: #C3D7FF;">
-                        <img src="../../assets/images/search-file 1.png" height="20" width="20" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                        style="cursor:pointer">
-                    </div>
-                    
-                    <div class="mx-2">
-                     <button type="button" routerLink="/segment" class="btn btn-light" style="background-color: #1890FF;color:white" (click)="capture()">Personalize</button>
-                    </div>
-                   </div>
-                </div>
-               
+              
+                <div class="card border-0 flex-row p-1 mx-0" style="width:100%;display:flex;justify-content: end;background-color: #F0F2F5;position:sticky">
+                  <div class="rounded-pill p-2" style="background-color: #C3D7FF;">
+                      <img src="../../assets/images/search-file 1.png" height="20" width="20" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                      style="cursor:pointer">
+                  </div>
+                  
+                  <div class="mx-2">
+                   <button type="button" routerLink="/segment" class="btn btn-light" style="background-color: #1890FF;color:white" (click)="capture()">Personalize</button>
+                  </div>
+                 </div>
+             
                 <div class="mat-tab-body-content p-2 sticky-top" style="background-color: #F0F2F5;">
                  
                 <div class="d-flex flex-column" style="width:100%">
                     <div class="row1graphs d-flex flex-row">
                        <div class="card m-2" style="width:50%">
-                        <h4 class="px-2 py-0 my-0"><b>Number of Respondents In Each Segment</b></h4>
+                        <h4 class="px-2 py-0 my-0">Number of Respondents In Each Segment</h4>
                         <div id="chart">
                           <apx-chart
                             [series]="chartOptions.series"
@@ -45,7 +44,7 @@
                         </div>
                        </div>
                        <div class="card m-2" style="width:50%">
-                        <h4 class="px-2 py-0 my-0"><b>Willingness to Switch</b></h4>
+                        <h4 class="px-2 py-0 my-0">Willingness to Switch</h4>
                         <div id="chart1">
                             <apx-chart
                               [series]="chartOptionsWillingness.series"
@@ -64,7 +63,7 @@
                     </div>
                     <div class="row2graphs d-flex flex-row">
                       <div class="card m-2" style="width:50%">
-                        <h4 class="px-2 py-0 my-0"><b>Spend Per Month on Shampoo</b></h4>
+                        <h4 class="px-2 py-0 my-0">Spend Per Month on Shampoo</h4>
                         <div id="chart2">
                             <apx-chart
                               [series]="chartOptionsSpend.series"
@@ -81,7 +80,7 @@
                           </div>
                        </div>
                         <div class="card m-2" style="width:50%">
-                            <h4 class="px-2 py-0 my-0"><b>Age Dstribution</b></h4>
+                            <h4 class="px-2 py-0 my-0">Age Dstribution</h4>
                             <div id="chart3">
                                 <apx-chart
                                   [series]="chartOptionsAge.series"
@@ -98,9 +97,9 @@
                               </div>
                         </div>
                      </div>
-                     <div class="row2graphs d-flex flex-row">
+                     <div class="row3graphs d-flex flex-row">
                       <div class="card m-2" style="width:50%">
-                        <h4 class="px-2 py-0 my-0"><b>Gender Dstribution</b></h4>
+                        <h4 class="px-2 py-0 my-0">Gender Dstribution</h4>
                         <div id="chart4">
                             <apx-chart
                               [series]="chartOptionsGender.series"
@@ -117,7 +116,7 @@
                           </div>
                        </div>
                        <div class="card m-2" style="width:50%">
-                        <h4 class="px-2 py-0 my-0"><b>Income Distribution</b></h4>
+                        <h4 class="px-2 py-0 my-0">Income Distribution</h4>
                         <div id="chart5">
                             <apx-chart
                               [series]="chartOptionsIncome.series"
@@ -136,15 +135,18 @@
                      </div>
                 </div>
                 </div>
+             
                 </ng-template>
+             
             </mat-tab>
             <mat-tab label="Agglomerative Hierarchical">
+             
               <ng-template matTabContent>
                 <div class="mat-tab-body-content p-2" style="background-color: #F0F2F5;">
                 <div class="d-flex flex-column" style="width:100%">
                     <div class="row1graphs d-flex flex-row">
                        <div class="card m-2" style="width:50%">
-                        <h4 class="px-2 py-0 my-0"><b>Number of Respondents In Each Segment</b></h4>
+                        <h4 class="px-2 py-0 my-0">Number of Respondents In Each Segment</h4>
                         <div id="chart6">
                           <apx-chart
                             [series]="chartOptions1.series"
@@ -157,7 +159,7 @@
                         </div>
                        </div>
                        <div class="card m-2" style="width:50%">
-                        <h4 class="px-2 py-0 my-0"><b>Willingness to Switch</b></h4>
+                        <h4 class="px-2 py-0 my-0">Willingness to Switch</h4>
                         <div id="chart7">
                             <apx-chart
                               [series]="chartOptionsWillingness1.series"
@@ -177,7 +179,7 @@
                     </div>
                     <div class="row2graphs d-flex flex-row">
                       <div class="card m-2" style="width:50%">
-                        <h4 class="px-2 py-0 my-0"><b>Spend Per Month on Shampoo</b></h4>
+                        <h4 class="px-2 py-0 my-0">Spend Per Month on Shampoo</h4>
                         <div id="chart8">
                             <apx-chart
                               [series]="chartOptionsSpend1.series"
@@ -194,7 +196,7 @@
                           </div>
                        </div>
                         <div class="card m-2" style="width:50%">
-                            <h4 class="px-2 py-0 my-0"><b>Age Dstribution</b></h4>
+                            <h4 class="px-2 py-0 my-0">Age Dstribution</h4>
                             <div id="chart9">
                                 <apx-chart
                                   [series]="chartOptionsAge1.series"
@@ -213,7 +215,7 @@
                      </div>
                     <div class="row2graphs d-flex flex-row">
                       <div class="card m-2" style="width:50%">
-                        <h4 class="px-2 py-0 my-0"><b>Gender Dstribution</b></h4>
+                        <h4 class="px-2 py-0 my-0">Gender Dstribution</h4>
                         <div id="chart10">
                             <apx-chart
                               [series]="chartOptionsGender1.series"
@@ -230,7 +232,7 @@
                           </div>
                        </div>
                        <div class="card m-2" style="width:50%">
-                        <h4 class="px-2 py-0 my-0"><b>Income Distribution</b></h4>
+                        <h4 class="px-2 py-0 my-0">Income Distribution</h4>
                         <div id="chart11">
                             <apx-chart
                               [series]="chartOptionsIncome1.series"
@@ -250,6 +252,7 @@
                 </div>
                 </div>
               </ng-template>
+           
             </mat-tab>
             <mat-tab label="DB Scan">
              
@@ -258,7 +261,7 @@
                 <div class="d-flex flex-column" style="width:100%">
                     <div class="row1graphs d-flex flex-row">
                        <div class="card m-2" style="width:50%">
-                        <h4 class="px-2 py-0 my-0"><b>Number of Respondents In Each Segment</b></h4>
+                        <h4 class="px-2 py-0 my-0">Number of Respondents In Each Segment</h4>
                         <div id="chart12">
                           <apx-chart
                           [series]="chartOptions2.series"
@@ -271,7 +274,7 @@
                           </div>
                        </div>
                        <div class="card m-2" style="width:50%">
-                        <h4 class="px-2 py-0 my-0"><b>Willingness to Switch</b></h4>
+                        <h4 class="px-2 py-0 my-0">Willingness to Switch</h4>
                         <div id="chart13">
                             <apx-chart
                               [series]="chartOptionsWillingness2.series"
@@ -291,7 +294,7 @@
                     </div>
                     <div class="row2graphs d-flex flex-row">
                       <div class="card m-2" style="width:50%">
-                        <h4 class="px-2 py-0 my-0"><b>Spend Per Month on Shampoo</b></h4>
+                        <h4 class="px-2 py-0 my-0">Spend Per Month on Shampoo</h4>
                         <div id="chart14">
                             <apx-chart
                               [series]="chartOptionsSpend2.series"
@@ -308,7 +311,7 @@
                           </div>
                        </div>
                         <div class="card m-2" style="width:50%">
-                            <h4 class="px-2 py-0 my-0"><b>Age Dstribution</b></h4>
+                            <h4 class="px-2 py-0 my-0">Age Dstribution</h4>
                             <div id="chart15">
                                 <apx-chart
                                   [series]="chartOptionsAge2.series"
@@ -327,7 +330,7 @@
                      </div>
                      <div class="row2graphs d-flex flex-row">
                       <div class="card m-2" style="width:50%">
-                        <h4 class="px-2 py-0 my-0"><b>Gender Dstribution</b></h4>
+                        <h4 class="px-2 py-0 my-0">Gender Dstribution</h4>
                         <div id="chart16">
                             <apx-chart
                               [series]="chartOptionsGender2.series"
@@ -344,7 +347,7 @@
                           </div>
                        </div>
                        <div class="card m-2" style="width:50%">
-                        <h4 class="px-2 py-0 my-0"><b>Income Distribution</b></h4>
+                        <h4 class="px-2 py-0 my-0">Income Distribution</h4>
                         <div id="chart17">
                             <apx-chart
                               [series]="chartOptionsIncome2.series"
@@ -365,7 +368,7 @@
                 </div> 
                 </div>  
               </ng-template>
-            
+           
             </mat-tab>
           </mat-tab-group>
           
@@ -379,7 +382,7 @@
     <div class="modal-dialog modal-xl" >
       <div class="modal-content" >
         <div class="modal-header">
-          <h2 class="modal-title" id="exampleModalLabel"><b>Detailed Segment Details</b></h2>
+          <h2 class="modal-title py-0 my-0" id="exampleModalLabel">Detailed Segment Details</h2>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body table-content">

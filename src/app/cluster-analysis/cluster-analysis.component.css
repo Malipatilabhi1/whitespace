@@ -5,7 +5,7 @@
     width: 100%;
     height: 90vh;
     background-color: #f2f2f2;
-    overflow: scroll;
+    /* overflow: scroll; */
   }
   
    .buttonNext{
@@ -15,48 +15,35 @@
     right:0px;
     background-color: white;
    }
+   
   
   /*.mat-tab-body-content:hover {
     overflow: auto;
     height: calc(100vh - 20px); 
   }
    */
-   .mat-tab-body-content {
-    overflow: show; /* Hide the scrollbar by default */
-    scrollbar-width: thin; /* For Firefox */
-    scrollbar-color: transparent transparent; /* For Firefox */
-  }
   
    
   
-  .mat-tab-body-content::-webkit-scrollbar {
-    width: 0.0em; /* For Chrome, Safari, and Opera */
-  }
+
   
    
   
-  .mat-tab-body-content::-webkit-scrollbar-thumb {
-    background-color: transparent; /* For Chrome, Safari, and Opera */
-  }
-  
-   
-  
-  .mat-tab-body-content:hover {
-    overflow: auto; /* Show the scrollbar on hover */
-  }
 th{
-    color: #666;
+    color: white;
 font-size: 14px;
 font-family: Outfit;
 font-style: normal;
 font-weight: 500;
+text-align: center;
 }
 td{
-    color: #222;
+color: #222;
 font-size: 14px;
 font-family: Outfit;
 font-style: normal;
 font-weight: 500;
+text-align: center;
 }
 .table-content{
   max-height:500px;
@@ -89,4 +76,24 @@ thead{
   border-radius: 20px !important;
  
   border: 1px solid #6599FF !important;
+}
+.heading{
+  font-size: 20px;
+  font-family: Outfit;
+  font-style: normal;
+  font-weight: 600;
+}
+h4{
+  color: #222;
+font-family: Outfit;
+font-size: 16px;
+font-style: normal;
+font-weight: 500;
+}
+
+.modal-title{
+  font-family: Outfit;
+font-size: 20px;
+font-style: normal;
+font-weight: 500;
 }

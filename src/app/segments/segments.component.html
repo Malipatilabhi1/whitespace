@@ -1,17 +1,17 @@
 <div class="main" id = "content" #content style="height:100%;position:sticky">
     <div style="background-color: white;">
-        <h1 class="px-2"><b>Segment Characteristics Definition</b></h1>
+        <p class="px-4 pb-2 pt-4 title">Segment Characteristics Definition</p>
     
         <mat-tab-group style="background-color: white;">
-            <mat-tab *ngFor="let segment of data.clusters; let i = index" (click)="displaySegmentName(segment.name)">
+            <mat-tab  *ngFor="let segment of data.clusters; let i = index" (click)="displaySegmentName(segment.name)">
               <ng-template mat-tab-label>
                 <div class="tab-label">
                   <div class="tab-icon">
-                    <mat-icon style="color: green">check_circle</mat-icon>
+                    <mat-icon style="color: green" *ngIf="segmentDone[i]">check_circle</mat-icon>
                   </div>
                   <div class="tab-name">{{ segmentNames[i] }}</div>
                   <div class="tab-status">
-                    <span class="status-indicator">Active</span>
+                    <span class="status-indicator">{{ segmentStatus[i] }}</span>
                   </div>
                 </div>
               </ng-template>
@@ -56,10 +56,18 @@
                         <div class="px-2" style="width:100%">
                          <div  *ngFor="let characteristic of segment.characteristics; let j = index">
                              <div class="input-group" >
-                                 <input class="form-control my-1" [value]="characteristic"  [readonly]="!isEditing" (click)="enableEditing()" >
+                                 <input class="form-control my-1 inputText" [value]="characteristic"  [readonly]="!isEditing" (click)="enableEditing()" >
                                  <div class="input-group-append">
-                                   <button class="btn btn-outline-secondary mt-3" (click)="deleteCharacteristic(segment, j)"
-                                   style="height:15px;width:10px;border-radius: 60%;display:flex;align-items: center;right:40px" type="button">-</button>
+                                  
+                                    <button class="btn btn-outline-secondary mt-3 border-0 remove"
+                                   style="height:1px;width:1px;border-radius: 60%;display:flex;align-items: center;right:40px" type="button">
+                                   <i class="bi bi-dash-circle" >
+                                    <svg xmlns="http://www.w3.org/2000/svg"  (click)="deleteCharacteristic(segment, j)" width="16" height="16" fill="currentColor" class="bi bi-dash-circle" viewBox="0 0 16 16">
+                                      <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                      <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
+                                    </svg>
+                                  </i>
+                                  </button>
                                  </div>
                                </div>
                            </div>
@@ -85,11 +93,23 @@
                          <div class="px-2" style="width:100%">
                            <div *ngFor="let need of segment.functional_need; let j = index">
                              <div class="input-group">
-                               <input class="form-control my-1" [value]="need" [readonly]="!isEditing" (click)="enableEditing()" >
+                               <input class="form-control my-1 inputText" [value]="need" [readonly]="!isEditing" (click)="enableEditing()" >
                                <div class="input-group-append">
+                                  
+                                <button class="btn btn-outline-secondary mt-3 border-0 remove"
+                               style="height:1px;width:1px;border-radius: 60%;display:flex;align-items: center;right:40px" type="button">
+                               <i class="bi bi-dash-circle" >
+                                <svg xmlns="http://www.w3.org/2000/svg"  (click)="deleteFunctionalNeed(segment, j)" width="16" height="16" fill="currentColor" class="bi bi-dash-circle" viewBox="0 0 16 16">
+                                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                  <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
+                                </svg>
+                              </i>
+                              </button>
+                             </div>
+                               <!-- <div class="input-group-append">
                                  <button class="btn btn-outline-secondary mt-3" (click)="deleteFunctionalNeed(segment, j)"
                                    style="height:15px;width:10px;border-radius: 60%;display:flex;align-items: center;right:40px" type="button">-</button>
-                               </div>
+                               </div> -->
                              </div>
                            </div>
                          </div>
@@ -113,10 +133,22 @@
                         <div class="px-2" style="width:100%">
                           <div *ngFor="let need of segment.emotional_need; let j = index">
                             <div class="input-group">
-                              <input class="form-control my-1" [value]="need" [readonly]="!isEditing" (click)="enableEditing()">
+                              <input class="form-control my-1 inputText" [value]="need" [readonly]="!isEditing" (click)="enableEditing()">
                               <div class="input-group-append">
+                                  
+                                <button class="btn btn-outline-secondary mt-3 border-0 remove"
+                               style="height:1px;width:1px;border-radius: 60%;display:flex;align-items: center;right:40px" type="button">
+                               <i class="bi bi-dash-circle" >
+                                <svg xmlns="http://www.w3.org/2000/svg"  (click)="deleteEmotionalNeed(segment, j)" width="16" height="16" fill="currentColor" class="bi bi-dash-circle" viewBox="0 0 16 16">
+                                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                  <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
+                                </svg>
+                              </i>
+                              </button>
+                             </div>
+                              <!-- <div class="input-group-append">
                                 <button class="btn btn-outline-secondary mt-3" (click)="deleteEmotionalNeed(segment, j)" style="height:15px;width:10px;border-radius: 60%;display:flex;align-items: center;right:40px" type="button">-</button>
-                              </div>
+                              </div> -->
                             </div>
                           </div>
                         </div>
@@ -127,17 +159,20 @@
                 </div>
                 <div class="card m-1" style="width: 30%">
                     <div class="p-1">
-                        <div>
-                            <p style="color: #222; font-size: 16px;  font-family: Outfit; font-style: normal; font-weight: 600;">
+                        <div class="d-flex flex-row" style="width: 100%;">
+                            <p style="color: #222; font-size: 16px;  font-family: Outfit; font-style: normal; font-weight: 600;width:70%">
                                 Map to product attribute
                             </p>
-                            <hr>
+                            <!-- <button (click)="markSegmentAsDone(i)" type="button" class="btn btn-primary mx-2 done"   >Done</button> -->
+                          
                         </div>
+                        <hr>
                         <div style="height: 46vh; overflow-y: scroll;">
                             
                                 <div>
                                     <p class="px-2 py-0 my-0 slide">Aroma</p>
-                                <mat-slider class="custom-slider" style="width: 285px;" min="0" max="100" step="1" [(ngModel)]="sliderValue"></mat-slider>
+                                <mat-slider class="custom-slider" thumbLabel discrete style="width: 285px;" min="0" max="100" step="1" [(ngModel)]="sliderValue">
+                                  <input matSliderThumb ></mat-slider>
                                 <span style="color: #222; text-align: right; font-size: 16px; font-family: Outfit; font-style: normal; font-weight: 600;">{{ sliderValue }}</span>
                                 <div class="example-label-container py-0 my-0">
                                   <label id="example-name-label" class="example-name-label">0</label>
@@ -147,7 +182,8 @@
                              
                                <div>
                                 <p class="px-2 py-0 my-0 slide">long lasting hold</p>
-                                <mat-slider class="custom-slider" style="width: 285px;" min="0" max="100" step="1" [(ngModel)]="sliderValue1"></mat-slider>
+                                <mat-slider class="custom-slider" thumbLabel discrete style="width: 285px;" min="0" max="100" step="1" [(ngModel)]="sliderValue1">
+                                  <input matSliderThumb ></mat-slider>
                                 <span style="color: #222; text-align: right; font-size: 16px; font-family: Outfit; font-style: normal; font-weight: 600;">{{ sliderValue1 }}</span>
                                 <div class="example-label-container py-0 my-0">
                                   <label id="example-name-label" class="example-name-label">0</label>
@@ -156,7 +192,8 @@
                                 
                                 <div>
                                     <p class="px-2 py-0 my-0 slide">clean scalp</p>
-                                <mat-slider class="custom-slider" style="width: 285px;" min="0" max="100" step="1" [(ngModel)]="sliderValue2"></mat-slider>
+                                    <mat-slider class="custom-slider" thumbLabel discrete style="width: 285px;" min="0" max="100" step="1" [(ngModel)]="sliderValue2">
+                                      <input matSliderThumb ></mat-slider>
                                 <span style="color: #222; text-align: right; font-size: 16px; font-family: Outfit; font-style: normal; font-weight: 600;">{{ sliderValue2 }}</span>
                                 <div class="example-label-container py-0 my-0">
                                   <label id="example-name-label" class="example-name-label">0</label>
@@ -166,7 +203,8 @@
 
                                 <div>
                                     <p class="px-2 py-0 my-0 slide">maintainance</p>
-                                <mat-slider class="custom-slider" style="width: 285px;" min="0" max="100" step="1" [(ngModel)]="sliderValue3"></mat-slider>
+                                    <mat-slider class="custom-slider" thumbLabel discrete style="width: 285px;" min="0" max="100" step="1" [(ngModel)]="sliderValue3">
+                                      <input matSliderThumb ></mat-slider>
                                 <span style="color: #222; text-align: right; font-size: 16px; font-family: Outfit; font-style: normal; font-weight: 600;">{{ sliderValue3 }}</span>
                                 <div class="example-label-container py-0 my-0">
                                   <label id="example-name-label" class="example-name-label">0</label>
@@ -176,7 +214,8 @@
 
                                 <div>
                                     <p class="px-2 py-0 my-0 slide">volume and bounce</p>
-                                <mat-slider class="custom-slider" style="width: 285px;" min="0" max="100" step="1" [(ngModel)]="sliderValue4"></mat-slider>
+                                    <mat-slider class="custom-slider" thumbLabel discrete style="width: 285px;" min="0" max="100" step="1" [(ngModel)]="sliderValue4">
+                                      <input matSliderThumb ></mat-slider>
                                 <span style="color: #222; text-align: right; font-size: 16px; font-family: Outfit; font-style: normal; font-weight: 600;">{{ sliderValue4 }}</span>
                                 <div class="example-label-container py-0 my-0">
                                   <label id="example-name-label" class="example-name-label">0</label>
@@ -186,7 +225,8 @@
 
                                 <div>
                                     <p class="px-2 py-0 my-0 slide">special purpose</p>
-                                <mat-slider class="custom-slider" style="width: 285px;" min="0" max="100" step="1" [(ngModel)]="sliderValue5"></mat-slider>
+                                    <mat-slider class="custom-slider" thumbLabel discrete style="width: 285px;" min="0" max="100" step="1" [(ngModel)]="sliderValue5">
+                                      <input matSliderThumb ></mat-slider>
                                 <span style="color: #222; text-align: right; font-size: 16px; font-family: Outfit; font-style: normal; font-weight: 600;">{{ sliderValue5 }}</span>
                                 <div class="example-label-container py-0 my-0">
                                   <label id="example-name-label" class="example-name-label">0</label>
@@ -196,39 +236,20 @@
             
                                </div>
 
-                        <!-- <div class="slider-container d-flex flex-column mb-2" >
-                            <p class="px-2 py-0 my-0 slide">Aroma</p>
-                            <ng5-slider [(value)]="sliderValues[0]" [options]="sliderOptions"></ng5-slider>
-                        </div>
-                        <div class="slider-container d-flex flex-column mb-2">
-                            <p class="px-2 py-0 my-0 slide">clean scalp</p>
-                            <ng5-slider [(value)]="sliderValues[1]" [options]="sliderOptions"></ng5-slider>
-                        </div>
-                        <div class="slider-container d-flex flex-column mb-2">
-                            <p class="px-2 py-0 my-0 slide">long lasting hold</p>
-                            <ng5-slider [(value)]="sliderValues[2]" [options]="sliderOptions"></ng5-slider>
-                        </div>
-                        <div class="slider-container d-flex flex-column mb-2">
-                            <p class="px-2 py-0 my-0 slide">maintainance</p>
-                            <ng5-slider [(value)]="sliderValues[3]" [options]="sliderOptions"></ng5-slider>
-                        </div>
-                        <div class="slider-container d-flex flex-column mb-2">
-                            <p class="px-2 py-0 my-0 slide">volume and bounce</p>
-                            <ng5-slider [(value)]="sliderValues[4]" [options]="sliderOptions"></ng5-slider>
-                        </div>
-                        <div class="slider-container d-flex flex-column">
-                            <p class="px-2 py-0 my-0 slide">special purpose</p>
-                            <ng5-slider [(value)]="sliderValues[5]" [options]="sliderOptions"></ng5-slider>
-                        </div> -->
+           
                        
                     </div>
                    <div style="height:7vh">
-                   
-                    <div class="px-3 py-0 my-0 " style="display:flex;justify-content: end; cursor: pointer;"  >
-                        <img src="../../assets/images/bot.jpg" class="rouned-pill" style="border-radius: 50%;" height="50" width="50" alt="" (click)="openIframe()">
-                         <div *ngIf="showIframe">
-                            <iframe src="http://3.111.229.37:3003/bot/73ff8af9-94e6-488c-8ba2-ac53258f7ca4?mode=iframe" width="400" height="500" ></iframe>
-                          </div>
+                  
+                    <div class="d-flex flex-row"  >
+                     <div class="p-2" style="display:flex;justify-content: start; cursor: pointer;width:10%">
+                      <button (click)="markSegmentAsDone(i)"  type="button" class="btn btn-primary done"   >Done</button>
+                     </div>
+                     <div  style="display:flex;justify-content: end; cursor: pointer;width:90%;">
+                      <img src="../../assets/images/bot.jpg" class="rouned-pill" style="border-radius: 50%;" height="50" width="50" alt="" (click)="openIframe()" data-bs-toggle="modal" data-bs-target="#myModal2">
+                     </div>
+                       
+                         
                        </div>
                    </div>
                     </div>
@@ -237,16 +258,118 @@
             </mat-tab>
           </mat-tab-group>
           <div class="p-2 sticky-bottom" >
-            <button type="button" class="btn btn-primary mx-2"  routerLink="/whitespaceAnalysis" >Done</button>
-            <button type="button" class="btn btn-primary" (click)="capture()" routerLink="/whitespaceAnalysis" >Next</button>
+           
+            <button type="button" class="btn btn-light nextButton" (click)="capture()" routerLink="/whitespaceAnalysis" >Next
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
+              </svg>
+            </button>
         </div>
-          <!-- <div class="px-3 pt-3" style="display:flex;justify-content: end; cursor: pointer;"  >
+         
+ </div>  
+  
+    </div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title" id="exampleModalLabel"><b>Cluster1</b></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="d-flex flex-row">
+                    <div class="d-flex flex-column" style="width:40%">
+                        <div>
+                            <h3 class="py-0 my-0"><b>Segment Characteristics</b></h3>
+                            <ul  *ngFor="let characteristic of selectedSegment?.segmentCharacteristics; let i = index;">
+                                <li> {{characteristic }}</li>
+                                
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="py-0 my-0"><b>Functional Needs</b></h3>
+                            <ul *ngFor="let need of selectedSegment?.functionalNeeds; let i = index" >
+                                <li> {{need}} </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="py-0 my-0"><b>Emotional Need</b></h3>
+                            <ul *ngFor="let need of selectedSegment?.functionalNeeds2; let i = index" class="input-group mx-1 my-3">
+                                <li>{{need}}  </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                    <div style="width:60%">
+                        <div class="slider-container d-flex flex-row">
+                            <p class="pt-4 px-2">aroma</p>
+                            <ng5-slider [(value)]="sliderValues[0]" [options]="sliderOptions"></ng5-slider>
+                        </div>
+                        <div class="slider-container d-flex flex-row">
+                            <p class="pt-4 px-2">clean&nbsp;scalp</p>
+                            <ng5-slider [(value)]="sliderValues[1]" [options]="sliderOptions"></ng5-slider>
+                        </div>
+                        <div class="slider-container d-flex flex-row">
+                            <p class="pt-4 px-2">long&nbsp;lasting&nbsp;hold</p>
+                            <ng5-slider [(value)]="sliderValues[2]" [options]="sliderOptions"></ng5-slider>
+                        </div>
+                        <div class="slider-container d-flex flex-row">
+                            <p class="pt-4 px-2">maintainance</p>
+                            <ng5-slider [(value)]="sliderValues[3]" [options]="sliderOptions"></ng5-slider>
+                        </div>
+                        <div class="slider-container d-flex flex-row">
+                            <p class="pt-4 px-2">volume&nbsp;and&nbsp;bounce</p>
+                            <ng5-slider [(value)]="sliderValues[4]" [options]="sliderOptions"></ng5-slider>
+                        </div>
+                        <div class="slider-container d-flex flex-row">
+                            <p class="pt-4 px-2">special&nbsp;purpose</p>
+                            <ng5-slider [(value)]="sliderValues[5]" [options]="sliderOptions"></ng5-slider>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                    (click)="logAllSliderValues()">Done</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+ <div class="modal fade" id="myModal2" tabindex="-1" aria-labelledby="myModalLabel2" >
+    <div class="modal-dialog" id="modal-dialog"  role="document">
+      <div class="modal-content" id="modal-content">
+        <div class="modal-header" style="background-color: #918EF1;height:5em">
+          <p class="assistant">Chatbot Assistant</p>
+            <button type="button border-0" style="background-color:#918EF1;color:white ;border:none;" class="close" data-bs-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+         
+        </div>
+        <div class="modal-body">
+            
+          <div *ngIf="showIframe">
+            <iframe src="http://3.111.229.37:3003/bot/73ff8af9-94e6-488c-8ba2-ac53258f7ca4?mode=iframe" width="400" height="300" ></iframe>
+          </div>
+       
+      </div>
+      <!-- <div class="modal-footer"style="background-color: silver;"> 
+    </div> -->
+    </div>
+</div>
+</div> 
+
+
+<!-- <div class="px-3 pt-3" style="display:flex;justify-content: end; cursor: pointer;"  >
             <img src="../../assets/images/chatBot.jpg" class="rouned-pill" style="border-radius: 50%;" height="50" width="50" alt="" (click)="openIframe()">
              <div *ngIf="showIframe">
                 <iframe src="http://3.111.229.37:3003/bot/73ff8af9-94e6-488c-8ba2-ac53258f7ca4?mode=iframe" width="400" height="500" ></iframe>
               </div>
            </div>  -->
- </div>  
     <!-- <div class="mx-3">
         <div class="p-1 card me-1 mb-3 rounded-0" style="width: 100%; overflow-y: auto; background-color: white">
             <ul class="list-group d-flex flex-row">
@@ -375,119 +498,28 @@
     </div>
    
     </div> -->
-    </div>
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title" id="exampleModalLabel"><b>Cluster1</b></h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="d-flex flex-row">
-                    <div class="d-flex flex-column" style="width:40%">
-                        <div>
-                            <h3 class="py-0 my-0"><b>Segment Characteristics</b></h3>
-                            <ul  *ngFor="let characteristic of selectedSegment?.segmentCharacteristics; let i = index;">
-                                <li> {{characteristic }}</li>
-                                
-                            </ul>
-                        </div>
-                        <div>
-                            <h3 class="py-0 my-0"><b>Functional Needs</b></h3>
-                            <ul *ngFor="let need of selectedSegment?.functionalNeeds; let i = index" >
-                                <li> {{need}} </li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h3 class="py-0 my-0"><b>Emotional Need</b></h3>
-                            <ul *ngFor="let need of selectedSegment?.functionalNeeds2; let i = index" class="input-group mx-1 my-3">
-                                <li>{{need}}  </li>
-                            </ul>
-                        </div>
 
-                    </div>
-                    <div style="width:60%">
-                        <div class="slider-container d-flex flex-row">
-                            <p class="pt-4 px-2">aroma</p>
+                 <!-- <div class="slider-container d-flex flex-column mb-2" >
+                            <p class="px-2 py-0 my-0 slide">Aroma</p>
                             <ng5-slider [(value)]="sliderValues[0]" [options]="sliderOptions"></ng5-slider>
                         </div>
-                        <div class="slider-container d-flex flex-row">
-                            <p class="pt-4 px-2">clean&nbsp;scalp</p>
+                        <div class="slider-container d-flex flex-column mb-2">
+                            <p class="px-2 py-0 my-0 slide">clean scalp</p>
                             <ng5-slider [(value)]="sliderValues[1]" [options]="sliderOptions"></ng5-slider>
                         </div>
-                        <div class="slider-container d-flex flex-row">
-                            <p class="pt-4 px-2">long&nbsp;lasting&nbsp;hold</p>
+                        <div class="slider-container d-flex flex-column mb-2">
+                            <p class="px-2 py-0 my-0 slide">long lasting hold</p>
                             <ng5-slider [(value)]="sliderValues[2]" [options]="sliderOptions"></ng5-slider>
                         </div>
-                        <div class="slider-container d-flex flex-row">
-                            <p class="pt-4 px-2">maintainance</p>
+                        <div class="slider-container d-flex flex-column mb-2">
+                            <p class="px-2 py-0 my-0 slide">maintainance</p>
                             <ng5-slider [(value)]="sliderValues[3]" [options]="sliderOptions"></ng5-slider>
                         </div>
-                        <div class="slider-container d-flex flex-row">
-                            <p class="pt-4 px-2">volume&nbsp;and&nbsp;bounce</p>
+                        <div class="slider-container d-flex flex-column mb-2">
+                            <p class="px-2 py-0 my-0 slide">volume and bounce</p>
                             <ng5-slider [(value)]="sliderValues[4]" [options]="sliderOptions"></ng5-slider>
                         </div>
-                        <div class="slider-container d-flex flex-row">
-                            <p class="pt-4 px-2">special&nbsp;purpose</p>
+                        <div class="slider-container d-flex flex-column">
+                            <p class="px-2 py-0 my-0 slide">special purpose</p>
                             <ng5-slider [(value)]="sliderValues[5]" [options]="sliderOptions"></ng5-slider>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <div class="modal-footer">
-                <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
-                    (click)="logAllSliderValues()">Done</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-
- <div class="modal fade" id="myModal2" tabindex="-1" aria-labelledby="myModalLabel2" >
-    <div class="modal-dialog" id="modal-dialog"  role="document">
-      <div class="modal-content" id="modal-content">
-        <div class="modal-header" style="background-color: silver;height:5em">
-           <div class="d-flex flex-row pt-3">
-            <div class="mr-2">
-                <i class="bi bi-chevron-left">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
-                      </svg>
-                </i>
-            </div>
-            <h3 class="modal-title" ><b>Chatbot Assistant</b></h3>
-           </div>
-            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-         
-        </div>
-        <div class="modal-body">
-            
-                <div class="d-flex flex-column" style="display:flex;margin-left:5px;width:100%">
-                 <label class="p-1 m-1" style="height:40px;background-color: rgb(226, 226, 245);align-items: center;display:flex; border-radius: 10px;width:70%" >What are you looking for?</label>
-                 <label class="p-1 m-1" style="height:40px;background-color: rgb(226, 226, 245);align-items: center;display:flex;align-self: flex-end; border-radius: 10px;width:70%" >Looking for your help</label>
-                 <label class="p-1 m-1" style="height:30px;background-color: rgb(226, 226, 245);align-items: center;display:flex; border-radius: 10px;width:20%" >...</label>
-                </div>
-       
-      </div>
-      <div class="modal-footer"style="background-color: silver;">
-        
-      
-        <div style="width:100%" class="d-flex flex-row">
-            <label style="text-align: start; width:90%"  > Type your message here</label>
-            <i class="bi bi-send-fill">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send-fill" viewBox="0 0 16 16">
-                    <path d="M15.964.686a.5.5 0 0 0-.65-.65L.767 5.855H.766l-.452.18a.5.5 0 0 0-.082.887l.41.26.001.002 4.995 3.178 3.178 4.995.002.002.26.41a.5.5 0 0 0 .886-.083l6-15Zm-1.833 1.89L6.637 10.07l-.215-.338a.5.5 0 0 0-.154-.154l-.338-.215 7.494-7.494 1.178-.471-.47 1.178Z"/>
-                  </svg>
-            </i>
-        </div>
-       
-       
-      
-    </div>
-    </div>
-</div>
-</div> 
+                        </div> -->

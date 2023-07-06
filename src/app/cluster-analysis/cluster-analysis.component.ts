@@ -429,9 +429,12 @@ capture(){
       }
     },
     "switchcount": {
-      "1": {
-        "Very Likely": 15
+      "0":{
+        "Very Likely":20
+       
       }
+      
+     
     }
   }
 
@@ -790,6 +793,7 @@ capture(){
       type: "bar",
       height: 150
     },
+   
     colors:["#91ADFD","#FFE0C2","#C0BBEB","#A3F5EC","#FDE68C","#D6D6D6"],
     plotOptions: {
       bar: {
@@ -798,17 +802,29 @@ capture(){
       }
     },
     dataLabels: {
-      enabled: true,
+      enabled: false,
       offsetX: -6,
       style: {
-        fontSize: "12px",
-        colors: ["#fff"]
+        fontSize: "14px",
+        colors: ["#fff"],
+          fontFamily:'Outfit',
+          fontWeight:400
+         
       },
       
     },
     xaxis: {
-      categories: Object.keys(respondentData)
+      categories: Object.keys(respondentData),
+      labels:{
+        style: {
+          fontSize:'10px',
+          fontFamily:'Outfit',
+          fontWeight:400
+         },
+      }
     }
+   
+
   };
   }
 
@@ -840,6 +856,9 @@ capture(){
         zoom: { enabled: true }
       },
       colors:["#53AAFA","#3B9DF7","#086DC9"],
+      dataLabels:{
+        enabled:false
+      },
       responsive: [
         {
           breakpoint: 480,
@@ -849,19 +868,37 @@ capture(){
         }
       ],
       plotOptions: { bar: { horizontal: false } },
-      xaxis: { type: "category", categories: switchcountCategories },
+      xaxis: { type: "category", categories: switchcountCategories,
+    labels:{
+      style: {
+        fontSize:'10px',
+        fontFamily:'Outfit',
+        fontWeight:400
+       },
+    } },
       yaxis: {
         title: {
-          text: "% of Respondents"
+          text: "% of Respondents",
+          style: {
+            fontSize:'14px',
+            fontFamily:'Outfit',
+            fontWeight:400
+           },
         },
         min: 0,
         max: 100,
         tickAmount: 4,
         labels: {
-          formatter: (value) => `${value}%`
+          formatter: (value) => `${value}%`,
+          style: {
+            fontSize:'10px',
+            fontFamily:'Outfit',
+            fontWeight:400
+           },
         }
       },
-      legend: { position: "right", offsetY: 40 },
+      legend: { position: "right", offsetY: 40,
+     },
       fill: { opacity: 1 }
     };
   }
@@ -896,6 +933,9 @@ capture(){
         toolbar: { show: true },
         zoom: { enabled: true }
       },
+      dataLabels:{
+        enabled:false
+      },
       colors:["#6B68D8","#918EF1","#C0BEF7","#D5D3F9"],
       responsive: [
         {
@@ -906,10 +946,22 @@ capture(){
         }
       ],
       plotOptions: { bar: { horizontal: false } },
-      xaxis: { type: "category", categories: spendCategories },
+      xaxis: { type: "category", categories: spendCategories,
+    labels:{
+      style: {
+        fontSize:'10px',
+        fontFamily:'Outfit',
+        fontWeight:400
+       },
+    } },
       yaxis: {
         title: {
-          text: "% of Respondents"
+          text: "% of Respondents",
+          style: {
+            fontSize:'14px',
+            fontFamily:'Outfit',
+            fontWeight:400
+           },
         },
         min: 0,
         max: 100,
@@ -966,6 +1018,9 @@ capture(){
           enabled: true
         }
       },
+      dataLabels:{
+        enabled:false
+      },
       colors: ["#6B68D8", "#918EF1", "#C0BEF7", "#D5D3F9"],
       responsive: [
         {
@@ -986,11 +1041,23 @@ capture(){
       },
       xaxis: {
         type: "category",
-        categories: categories
+        categories: categories,
+        labels:{
+          style: {
+            fontSize:'10px',
+            fontFamily:'Outfit',
+            fontWeight:400
+           },
+        }
       },
       yaxis: {
         title: {
-          text: "% of Respondents"
+          text: "% of Respondents",
+          style: {
+            fontSize:'14px',
+            fontFamily:'Outfit',
+            fontWeight:400
+           },
         },
         min: 0,
         max: 100,
@@ -1048,6 +1115,9 @@ capture(){
           enabled: true
         }
       },
+      dataLabels:{
+        enabled:false
+      },
       colors:["#A7C4FF","#7EA9FF"],
       responsive: [
         {
@@ -1068,11 +1138,23 @@ capture(){
       },
       xaxis: {
         type: "category",
-        categories: categories
+        categories: categories,
+        labels:{
+          style: {
+            fontSize:'10px',
+            fontFamily:'Outfit',
+            fontWeight:400
+           },
+        }
       },
       yaxis: {
         title: {
-          text: "% of Respondents"
+          text: "% of Respondents",
+          style: {
+            fontSize:'14px',
+            fontFamily:'Outfit',
+            fontWeight:400
+           },
         },
         min: 0,
         max: 100,
@@ -1122,6 +1204,9 @@ capture(){
         toolbar: { show: true },
         zoom: { enabled: true }
       },
+      dataLabels:{
+        enabled:false
+      },
       colors:["#C3D7FF","#A7C4FF","#6599FF","#3F7FFF","#3974E8","#3974E8"],
       responsive: [
         {
@@ -1132,10 +1217,22 @@ capture(){
         }
       ],
       plotOptions: { bar: { horizontal: false } },
-      xaxis: { type: "category", categories: incomeCategories },
+      xaxis: { type: "category", categories: incomeCategories ,
+    labels:{
+      style: {
+        fontSize:'10px',
+        fontFamily:'Outfit',
+        fontWeight:400
+       },
+    }},
       yaxis: {
         title: {
-          text: "% of Respondents"
+          text: "% of Respondents",
+          style: {
+            fontSize:'14px',
+            fontFamily:'Outfit',
+            fontWeight:400
+           },
         },
         min: 0,
         max: 100,
@@ -1174,7 +1271,7 @@ capture(){
         }
       },
       dataLabels: {
-        enabled: true,
+        enabled: false,
         offsetX: -6,
         style: {
           fontSize: "12px",
@@ -1183,397 +1280,437 @@ capture(){
         
       },
       xaxis: {
-        categories: Object.keys(respondentData)
+        categories: Object.keys(respondentData),
+        labels:{
+          style: {
+            fontSize:'10px',
+            fontFamily:'Outfit',
+            fontWeight:400
+           },
+        }
       }
     };
   }
   
   willngnessToSwtch1(){
+    const switchcountData = this.data.switchcount;
+    const switchcountCategories = Object.keys(switchcountData).map((key) => `Seg ${key}`);
+    const switchcountSeries = Object.entries(switchcountData).map(([_, data]) => {
+      return Object.values(data);
+    });
+  
+    const seriesData = [
+      { name: "Not Likely", data: [] },
+      { name: "Very Likely", data: [] },
+      { name: "Won't Mind", data: [] }
+    ];
+  
+    switchcountSeries.forEach((data, index) => {
+      const segmentTotal = data.reduce((total, value) => total + value, 0);
+      const formattedData = data.map((value) => parseFloat(((value / segmentTotal) * 100).toFixed(2)));
+      seriesData[index].data = formattedData;
+    });
     this.chartOptionsWillingness1 = {
-      series: [
-        {
-          name: "Not Likely",
-          data: [44, 55, 41, 67, 22, 43]
-        },
-        {
-          name: "Very Likely",
-          data: [13, 23, 20, 8, 13, 27]
-        },
-        {
-          name: "Wont Mind",
-          data: [11, 17, 15, 15, 21, 14]
-        }
-      ],
+      series:seriesData,
       chart: {
         type: "bar",
         height: 150,
         stacked: true,
-        toolbar: {
-          show: true
-        },
-        zoom: {
-          enabled: true
-        }
+        toolbar: { show: true },
+        zoom: { enabled: true }
       },
       colors:["#53AAFA","#3B9DF7","#086DC9"],
+      dataLabels:{
+        enabled:false
+      },
       responsive: [
         {
           breakpoint: 480,
           options: {
-            legend: {
-              position: "bottom",
-              offsetX: -10,
-              offsetY: 0
-            }
+            legend: { position: "bottom", offsetX: -10, offsetY: 0 }
           }
         }
       ],
-      plotOptions: {
-        bar: {
-          horizontal: false
-        }
-      },
-      xaxis: {
-        type: "category",
-        categories: [
-          "Seg 1",
-          "Seg 2",
-          "Seg 3",
-          "Seg 4",
-          "Seg 5",
-          "Seg 6"
-        ]
-      },
+      plotOptions: { bar: { horizontal: false } },
+      xaxis: { type: "category", categories: switchcountCategories,
+    labels:{
+      style: {
+        fontSize:'10px',
+        fontFamily:'Outfit',
+        fontWeight:400
+       },
+    } },
       yaxis: {
         title: {
-          text: "% of Respondents"
+          text: "% of Respondents",
+          style: {
+            fontSize:'14px',
+            fontFamily:'Outfit',
+            fontWeight:400
+           },
+        },
+        min: 0,
+        max: 100,
+        tickAmount: 4,
+        labels: {
+          formatter: (value) => `${value}%`,
+          style: {
+            fontSize:'10px',
+            fontFamily:'Outfit',
+            fontWeight:400
+           },
         }
       },
-      legend: {
-        position: "right",
-        offsetY: 40
-      },
-      fill: {
-        opacity: 1
-      }
+      legend: { position: "right", offsetY: 40,
+     },
+      fill: { opacity: 1 }
     };
-
   }
 
   spend1(){
-    this.chartOptionsSpend1 = {
-      series: [
-        {
-          name: ">50",
-          data: [44, 55, 41, 67, 22, 43]
-        },
-        {
-          name: "400-500",
-          data: [13, 23, 20, 8, 13, 27]
-        },
-        {
-          name: "300-400",
-          data: [11, 17, 15, 15, 21, 14]
-        },
-        {
-          name: "200-300",
-          data: [44, 55, 41, 67, 22, 43]
-        },
-        {
-          name: "100-200",
-          data: [13, 23, 20, 8, 13, 27]
-        },
-        {
-          name: "<100",
-          data: [11, 17, 15, 15, 21, 14]
-        },
+    const spendData = this.data.spend;
+    const spendCategories = Object.keys(spendData).map((key) => `Seg ${parseInt(key)}`);
+  const spendSeries = Object.entries(spendData).map(([_, data]) => {
+    return Object.values(data);
+  });
 
-      ],
+  const series = [
+    { name: ">50", data: [] },
+    { name: "30-50", data: [] },
+    { name: "<10", data: [] },
+    { name: "10-30", data: [] },
+  ];
+
+  spendSeries.forEach((data) => {
+    const segmentTotal = data.reduce((total, value) => total + value, 0);
+    series.forEach((range, index) => {
+      const percentage = (data[index] / segmentTotal) * 100;
+      range.data.push(parseFloat(percentage.toFixed(2)));
+    });
+  });
+  
+    this.chartOptionsSpend1 = {
+      series: series,
       chart: {
         type: "bar",
         height: 150,
         stacked: true,
-        toolbar: {
-          show: true
-        },
-        zoom: {
-          enabled: true
-        }
+        toolbar: { show: true },
+        zoom: { enabled: true }
+      },
+      dataLabels:{
+        enabled:false
       },
       colors:["#6B68D8","#918EF1","#C0BEF7","#D5D3F9"],
       responsive: [
         {
           breakpoint: 480,
           options: {
-            legend: {
-              position: "bottom",
-              offsetX: -10,
-              offsetY: 0
-            }
+            legend: { position: "bottom", offsetX: -10, offsetY: 0 }
           }
         }
       ],
-      plotOptions: {
-        bar: {
-          horizontal: false
-        }
-      },
-      xaxis: {
-        type: "category",
-        categories: [
-          "Seg 1",
-          "Seg 2",
-          "Seg 3",
-          "Seg 4",
-          "Seg 5",
-          "Seg 6"
-        ]
-      },
+      plotOptions: { bar: { horizontal: false } },
+      xaxis: { type: "category", categories: spendCategories,
+    labels:{
+      style: {
+        fontSize:'10px',
+        fontFamily:'Outfit',
+        fontWeight:400
+       },
+    } },
       yaxis: {
         title: {
-          text: "% of Respondents"
+          text: "% of Respondents",
+          style: {
+            fontSize:'14px',
+            fontFamily:'Outfit',
+            fontWeight:400
+           },
+        },
+        min: 0,
+        max: 100,
+        tickAmount: 4,
+        labels: {
+          formatter: (value) => `${value}%`
         }
       },
-      legend: {
-        position: "right",
-        offsetY: 40
-      },
-      fill: {
-        opacity: 1
-      }
+      legend: { position: "right", offsetY: 40 },
+      fill: { opacity: 1 }
     };
   }
 
   age1(){
-    this.chartOptionsAge1 = {
-      series: [
-        {
-          name: "55+",
-          data: [44, 55, 41, 67, 22, 43]
-        },
-        {
-          name: "45-55",
-          data: [13, 23, 20, 8, 13, 27]
-        },
-        {
-          name: "35-45",
-          data: [11, 17, 15, 15, 21, 14]
-        },
-        {
-          name: "25-35",
-          data: [44, 55, 41, 67, 22, 43]
-        },
-        {
-          name: "15-25",
-          data: [13, 23, 20, 8, 13, 27]
-        }
+    const ageData: { [key: string]: { [key: string]: number } } = this.data.age;
 
-      ],
-      chart: {
-        type: "bar",
-        height: 150,
-        stacked: true,
-        toolbar: {
-          show: true
+    const ageKeys = Object.keys(ageData);
+    const categories = ageKeys.map((key) => `Seg ${parseInt(key)}`);
+  
+    // Calculate the percentage for each segment
+    const seriesData = {
+      "0-25": [],
+      "25-40": [],
+      "40-50": [],
+      "50+": []
+    };
+  
+    ageKeys.forEach((key) => {
+      const ageGroup = ageData[key];
+  
+      // Calculate the total for the current segment
+      const segmentTotal = Object.values(ageGroup).reduce((total, value) => total + value, 0);
+  
+      // Calculate the percentage for each range in the current segment
+      Object.keys(ageGroup).forEach((range) => {
+        const percentage = (ageGroup[range] / segmentTotal) * 100;
+        seriesData[range].push(percentage.toFixed(2));
+      });
+    });
+  
+    const series = Object.keys(seriesData).map((range) => ({
+      name: range,
+      data: seriesData[range]
+    }));
+      this.chartOptionsAge1 = {
+        series: series,
+        chart: {
+          type: "bar",
+          height: 150,
+          stacked: true,
+          toolbar: {
+            show: true
+          },
+          zoom: {
+            enabled: true
+          }
         },
-        zoom: {
-          enabled: true
-        }
-      },
-      colors:["#6B68D8","#918EF1","#C0BEF7","#D5D3F9"],
-      responsive: [
-        {
-          breakpoint: 480,
-          options: {
-            legend: {
-              position: "bottom",
-              offsetX: -10,
-              offsetY: 0
+        dataLabels:{
+          enabled:false
+        },
+        colors: ["#6B68D8", "#918EF1", "#C0BEF7", "#D5D3F9"],
+        responsive: [
+          {
+            breakpoint: 480,
+            options: {
+              legend: {
+                position: "bottom",
+                offsetX: -10,
+                offsetY: 0
+              }
             }
           }
+        ],
+        plotOptions: {
+          bar: {
+            horizontal: false
+          }
+        },
+        xaxis: {
+          type: "category",
+          categories: categories,
+          labels:{
+            style: {
+              fontSize:'10px',
+              fontFamily:'Outfit',
+              fontWeight:400
+             },
+          }
+        },
+        yaxis: {
+          title: {
+            text: "% of Respondents",
+            style: {
+              fontSize:'14px',
+              fontFamily:'Outfit',
+              fontWeight:400
+             },
+          },
+          min: 0,
+          max: 100,
+          tickAmount: 4,
+          labels: {
+            formatter: (value) => `${value}%`
+          }
+        },
+        legend: {
+          position: "right",
+          offsetY: 40
+        },
+        fill: {
+          opacity: 1
         }
-      ],
-      plotOptions: {
-        bar: {
-          horizontal: false
-        }
-      },
-      xaxis: {
-        type: "category",
-        categories: [
-          "Seg 1",
-          "Seg 2",
-          "Seg 3",
-          "Seg 4",
-          "Seg 5",
-          "Seg 6"
-        ]
-      },
-      yaxis: {
-        title: {
-          text: "% of Respondents"
-        }
-      },
-      legend: {
-        position: "right",
-        offsetY: 40
-      },
-      fill: {
-        opacity: 1
-      }
-    };
-  }
-
+      };
+    }
   gender1(){
-    this.chartOptionsGender1 = {
-      series: [
-        {
-          name: "Female",
-          data: [44, 55, 41, 67, 22, 43]
-        },
-        {
-          name: "Male",
-          data: [13, 23, 20, 8, 13, 27]
-        }
+    const genderData = this.data.gender;
 
-      ],
-      chart: {
-        type: "bar",
-        height: 150,
-        stacked: true,
-        toolbar: {
-          show: true
+    const genderKeys = Object.keys(genderData);
+    const categories = genderKeys.map((key) => `Seg ${parseInt(key)}`);
+    const seriesData = {
+      Female: [],
+      Male: []
+    };
+  
+    genderKeys.forEach((key) => {
+      const genderGroup = genderData[key];
+      Object.keys(genderGroup).forEach((gender) => {
+        seriesData[gender].push(genderGroup[gender]);
+      });
+    });
+  
+    const series = Object.keys(seriesData).map((gender) => ({
+      name: gender,
+      data: seriesData[gender].map((value, index) => {
+        const segmentTotal = seriesData['Female'][index] + seriesData['Male'][index];
+        const percentage = (value / segmentTotal) * 100;
+        return parseFloat(percentage.toFixed(2));
+      })
+    }));
+  
+    
+      this.chartOptionsGender1 = {
+        series: series,
+        chart: {
+          type: "bar",
+          height: 150,
+          stacked: true,
+          toolbar: {
+            show: true
+          },
+          zoom: {
+            enabled: true
+          }
         },
-        zoom: {
-          enabled: true
-        }
-      },
-      colors:["#A7C4FF","#7EA9FF"],
-      responsive: [
-        {
-          breakpoint: 480,
-          options: {
-            legend: {
-              position: "bottom",
-              offsetX: -10,
-              offsetY: 0
+        dataLabels:{
+          enabled:false
+        },
+        colors:["#A7C4FF","#7EA9FF"],
+        responsive: [
+          {
+            breakpoint: 480,
+            options: {
+              legend: {
+                position: "bottom",
+                offsetX: -10,
+                offsetY: 0
+              }
             }
           }
+        ],
+        plotOptions: {
+          bar: {
+            horizontal: false
+          }
+        },
+        xaxis: {
+          type: "category",
+          categories: categories,
+          labels:{
+            style: {
+              fontSize:'10px',
+              fontFamily:'Outfit',
+              fontWeight:400
+             },
+          }
+        },
+        yaxis: {
+          title: {
+            text: "% of Respondents",
+            style: {
+              fontSize:'14px',
+              fontFamily:'Outfit',
+              fontWeight:400
+             },
+          },
+          min: 0,
+          max: 100,
+          tickAmount: 4,
+          labels: {
+            formatter: (value) => `${value}%`
+          }
+        },
+        legend: {
+          position: "right",
+          offsetY: 40
+        },
+        fill: {
+          opacity: 1
         }
-      ],
-      plotOptions: {
-        bar: {
-          horizontal: false
-        }
-      },
-      xaxis: {
-        type: "category",
-        categories: [
-          "Seg 1",
-          "Seg 2",
-          "Seg 3",
-          "Seg 4",
-          "Seg 5",
-          "Seg 6"
-        ]
-      },
-      yaxis: {
-        title: {
-          text: "% of Respondents"
-        }
-      },
-      legend: {
-        position: "right",
-        offsetY: 40
-      },
-      fill: {
-        opacity: 1
-      }
-    };
+      };
   }
 
   income1(){
-    this.chartOptionsIncome1 = {
-      series: [
-        {
-          name: ">50",
-          data: [44, 55, 41, 67, 22, 43]
+    const incomeData = this.data.income;
+    const incomeCategories = Object.keys(incomeData).map((key) => `Seg ${parseInt(key)}`);
+    const incomeSeries = Object.entries(incomeData).map(([_, data]) => {
+      return Object.values(data);
+    });
+  
+    const series = [
+      { name: ">50", data: [] },
+      { name: "400-500", data: [] },
+      { name: "300-400", data: [] },
+      { name: "200-300", data: [] },
+      { name: "100-200", data: [] },
+      { name: "<100", data: [] },
+    ];
+  
+    incomeSeries.forEach((data) => {
+      const segmentTotal = data.reduce((total, value) => total + value, 0);
+      series.forEach((range, index) => {
+        const percentage = (data[index] / segmentTotal) * 100;
+        range.data.push(parseFloat(percentage.toFixed(2)));
+      });
+    });
+      this.chartOptionsIncome1 = {
+        series:series,
+        chart: {
+          type: "bar",
+          height: 150,
+          stacked: true,
+          toolbar: { show: true },
+          zoom: { enabled: true }
         },
-        {
-          name: "400-500",
-          data: [13, 23, 20, 8, 13, 27]
+        dataLabels:{
+          enabled:false
         },
-        {
-          name: "300-400",
-          data: [11, 17, 15, 15, 21, 14]
-        },
-        {
-          name: "200-300",
-          data: [44, 55, 41, 67, 22, 43]
-        },
-        {
-          name: "100-200",
-          data: [13, 23, 20, 8, 13, 27]
-        },
-        {
-          name: "<100",
-          data: [11, 17, 15, 15, 21, 14]
-        },
-
-      ],
-      chart: {
-        type: "bar",
-        height: 150,
-        stacked: true,
-        toolbar: {
-          show: true
-        },
-        zoom: {
-          enabled: true
-        }
-      },
-      colors:["#C3D7FF","#A7C4FF","#6599FF","#3F7FFF","#3974E8","#3974E8"],
-      responsive: [
-        {
-          breakpoint: 480,
-          options: {
-            legend: {
-              position: "bottom",
-              offsetX: -10,
-              offsetY: 0
+        colors:["#C3D7FF","#A7C4FF","#6599FF","#3F7FFF","#3974E8","#3974E8"],
+        responsive: [
+          {
+            breakpoint: 480,
+            options: {
+              legend: { position: "bottom", offsetX: -10, offsetY: 0 }
             }
           }
-        }
-      ],
-      plotOptions: {
-        bar: {
-          horizontal: false
-        }
-      },
-      xaxis: {
-        type: "category",
-        categories: [
-          "Seg 1",
-          "Seg 2",
-          "Seg 3",
-          "Seg 4",
-          "Seg 5",
-          "Seg 6"
-        ]
-      },
-      yaxis: {
-        title: {
-          text: "% of Respondents"
-        }
-      },
-      legend: {
-        position: "right",
-        offsetY: 40
-      },
-      fill: {
-        opacity: 1
-      }
-    };
+        ],
+        plotOptions: { bar: { horizontal: false } },
+        xaxis: { type: "category", categories: incomeCategories ,
+      labels:{
+        style: {
+          fontSize:'10px',
+          fontFamily:'Outfit',
+          fontWeight:400
+         },
+      }},
+        yaxis: {
+          title: {
+            text: "% of Respondents",
+            style: {
+              fontSize:'14px',
+              fontFamily:'Outfit',
+              fontWeight:400
+             },
+          },
+          min: 0,
+          max: 100,
+          tickAmount: 4,
+          labels: {
+            formatter: (value) => `${value}%`
+          }
+        },
+        legend: { position: "right", offsetY: 40 },
+        fill: { opacity: 1 }
+      };
   }
 
 
@@ -1601,7 +1738,7 @@ capture(){
         }
       },
       dataLabels: {
-        enabled: true,
+        enabled: false,
         offsetX: -6,
         style: {
           fontSize: "12px",
@@ -1610,260 +1747,298 @@ capture(){
         
       },
       xaxis: {
-        categories: Object.keys(respondentData)
+        categories: Object.keys(respondentData),
+        labels:{
+          style: {
+            fontSize:'10px',
+            fontFamily:'Outfit',
+            fontWeight:400
+           },
+        }
       }
     };
   }
   
   willngnessToSwtch2(){
+    const switchcountData = this.data.switchcount;
+    const switchcountCategories = Object.keys(switchcountData).map((key) => `Seg ${key}`);
+    const switchcountSeries = Object.entries(switchcountData).map(([_, data]) => {
+      return Object.values(data);
+    });
+  
+    const seriesData = [
+      { name: "Not Likely", data: [] },
+      { name: "Very Likely", data: [] },
+      { name: "Won't Mind", data: [] }
+    ];
+  
+    switchcountSeries.forEach((data, index) => {
+      const segmentTotal = data.reduce((total, value) => total + value, 0);
+      const formattedData = data.map((value) => parseFloat(((value / segmentTotal) * 100).toFixed(2)));
+      seriesData[index].data = formattedData;
+    });
     this.chartOptionsWillingness2 = {
-      series: [
-        {
-          name: "Not Likely",
-          data: [44, 55, 41, 67, 22, 43]
-        },
-        {
-          name: "Very Likely",
-          data: [13, 23, 20, 8, 13, 27]
-        },
-        {
-          name: "Wont Mind",
-          data: [11, 17, 15, 15, 21, 14]
-        }
-      ],
+      series:seriesData,
       chart: {
         type: "bar",
         height: 150,
         stacked: true,
-        toolbar: {
-          show: true
-        },
-        zoom: {
-          enabled: true
-        }
+        toolbar: { show: true },
+        zoom: { enabled: true }
       },
       colors:["#53AAFA","#3B9DF7","#086DC9"],
+      dataLabels:{
+        enabled:false
+      },
       responsive: [
         {
           breakpoint: 480,
           options: {
-            legend: {
-              position: "bottom",
-              offsetX: -10,
-              offsetY: 0
-            }
+            legend: { position: "bottom", offsetX: -10, offsetY: 0 }
           }
         }
       ],
-      plotOptions: {
-        bar: {
-          horizontal: false
-        }
-      },
-      xaxis: {
-        type: "category",
-        categories: [
-          "Seg 1",
-          "Seg 2",
-          "Seg 3",
-          "Seg 4",
-          "Seg 5",
-          "Seg 6"
-        ]
-      },
+      plotOptions: { bar: { horizontal: false } },
+      xaxis: { type: "category", categories: switchcountCategories,
+    labels:{
+      style: {
+        fontSize:'10px',
+        fontFamily:'Outfit',
+        fontWeight:400
+       },
+    } },
       yaxis: {
         title: {
-          text: "% of Respondents"
+          text: "% of Respondents",
+          style: {
+            fontSize:'14px',
+            fontFamily:'Outfit',
+            fontWeight:400
+           },
+        },
+        min: 0,
+        max: 100,
+        tickAmount: 4,
+        labels: {
+          formatter: (value) => `${value}%`,
+          style: {
+            fontSize:'10px',
+            fontFamily:'Outfit',
+            fontWeight:400
+           },
         }
       },
-      legend: {
-        position: "right",
-        offsetY: 40
-      },
-      fill: {
-        opacity: 1
-      }
+      legend: { position: "right", offsetY: 40,
+     },
+      fill: { opacity: 1 }
     };
 
   }
 
   spend2(){
-    this.chartOptionsSpend2 = {
-      series: [
-        {
-          name: ">50",
-          data: [44, 55, 41, 67, 22, 43]
-        },
-        {
-          name: "400-500",
-          data: [13, 23, 20, 8, 13, 27]
-        },
-        {
-          name: "300-400",
-          data: [11, 17, 15, 15, 21, 14]
-        },
-        {
-          name: "200-300",
-          data: [44, 55, 41, 67, 22, 43]
-        },
-        {
-          name: "100-200",
-          data: [13, 23, 20, 8, 13, 27]
-        },
-        {
-          name: "<100",
-          data: [11, 17, 15, 15, 21, 14]
-        },
+    const spendData = this.data.spend;
+    const spendCategories = Object.keys(spendData).map((key) => `Seg ${parseInt(key)}`);
+  const spendSeries = Object.entries(spendData).map(([_, data]) => {
+    return Object.values(data);
+  });
 
-      ],
+  const series = [
+    { name: ">50", data: [] },
+    { name: "30-50", data: [] },
+    { name: "<10", data: [] },
+    { name: "10-30", data: [] },
+  ];
+
+  spendSeries.forEach((data) => {
+    const segmentTotal = data.reduce((total, value) => total + value, 0);
+    series.forEach((range, index) => {
+      const percentage = (data[index] / segmentTotal) * 100;
+      range.data.push(parseFloat(percentage.toFixed(2)));
+    });
+  });
+  
+    this.chartOptionsSpend2 = {
+      series: series,
       chart: {
         type: "bar",
         height: 150,
         stacked: true,
-        toolbar: {
-          show: true
-        },
-        zoom: {
-          enabled: true
-        }
+        toolbar: { show: true },
+        zoom: { enabled: true }
+      },
+      dataLabels:{
+        enabled:false
       },
       colors:["#6B68D8","#918EF1","#C0BEF7","#D5D3F9"],
       responsive: [
         {
           breakpoint: 480,
           options: {
-            legend: {
-              position: "bottom",
-              offsetX: -10,
-              offsetY: 0
-            }
+            legend: { position: "bottom", offsetX: -10, offsetY: 0 }
           }
         }
       ],
-      plotOptions: {
-        bar: {
-          horizontal: false
-        }
-      },
-      xaxis: {
-        type: "category",
-        categories: [
-          "Seg 1",
-          "Seg 2",
-          "Seg 3",
-          "Seg 4",
-          "Seg 5",
-          "Seg 6"
-        ]
-      },
+      plotOptions: { bar: { horizontal: false } },
+      xaxis: { type: "category", categories: spendCategories,
+    labels:{
+      style: {
+        fontSize:'10px',
+        fontFamily:'Outfit',
+        fontWeight:400
+       },
+    } },
       yaxis: {
         title: {
-          text: "% of Respondents"
+          text: "% of Respondents",
+          style: {
+            fontSize:'14px',
+            fontFamily:'Outfit',
+            fontWeight:400
+           },
+        },
+        min: 0,
+        max: 100,
+        tickAmount: 4,
+        labels: {
+          formatter: (value) => `${value}%`
         }
       },
-      legend: {
-        position: "right",
-        offsetY: 40
-      },
-      fill: {
-        opacity: 1
-      }
+      legend: { position: "right", offsetY: 40 },
+      fill: { opacity: 1 }
     };
   }
 
   age2(){
-    this.chartOptionsAge2 = {
-      series: [
-        {
-          name: "55+",
-          data: [44, 55, 41, 67, 22, 43]
-        },
-        {
-          name: "45-55",
-          data: [13, 23, 20, 8, 13, 27]
-        },
-        {
-          name: "35-45",
-          data: [11, 17, 15, 15, 21, 14]
-        },
-        {
-          name: "25-35",
-          data: [44, 55, 41, 67, 22, 43]
-        },
-        {
-          name: "15-25",
-          data: [13, 23, 20, 8, 13, 27]
-        }
+    const ageData: { [key: string]: { [key: string]: number } } = this.data.age;
 
-      ],
-      chart: {
-        type: "bar",
-        height: 150,
-        stacked: true,
-        toolbar: {
-          show: true
+    const ageKeys = Object.keys(ageData);
+    const categories = ageKeys.map((key) => `Seg ${parseInt(key)}`);
+  
+    // Calculate the percentage for each segment
+    const seriesData = {
+      "0-25": [],
+      "25-40": [],
+      "40-50": [],
+      "50+": []
+    };
+  
+    ageKeys.forEach((key) => {
+      const ageGroup = ageData[key];
+  
+      // Calculate the total for the current segment
+      const segmentTotal = Object.values(ageGroup).reduce((total, value) => total + value, 0);
+  
+      // Calculate the percentage for each range in the current segment
+      Object.keys(ageGroup).forEach((range) => {
+        const percentage = (ageGroup[range] / segmentTotal) * 100;
+        seriesData[range].push(percentage.toFixed(2));
+      });
+    });
+  
+    const series = Object.keys(seriesData).map((range) => ({
+      name: range,
+      data: seriesData[range]
+    }));
+      this.chartOptionsAge2 = {
+        series: series,
+        chart: {
+          type: "bar",
+          height: 150,
+          stacked: true,
+          toolbar: {
+            show: true
+          },
+          zoom: {
+            enabled: true
+          }
         },
-        zoom: {
-          enabled: true
-        }
-      },
-      colors:["#6B68D8","#918EF1","#C0BEF7","#D5D3F9"],
-      responsive: [
-        {
-          breakpoint: 480,
-          options: {
-            legend: {
-              position: "bottom",
-              offsetX: -10,
-              offsetY: 0
+        dataLabels:{
+          enabled:false
+        },
+        colors: ["#6B68D8", "#918EF1", "#C0BEF7", "#D5D3F9"],
+        responsive: [
+          {
+            breakpoint: 480,
+            options: {
+              legend: {
+                position: "bottom",
+                offsetX: -10,
+                offsetY: 0
+              }
             }
           }
+        ],
+        plotOptions: {
+          bar: {
+            horizontal: false
+          }
+        },
+        xaxis: {
+          type: "category",
+          categories: categories,
+          labels:{
+            style: {
+              fontSize:'10px',
+              fontFamily:'Outfit',
+              fontWeight:400
+             },
+          }
+        },
+        yaxis: {
+          title: {
+            text: "% of Respondents",
+            style: {
+              fontSize:'14px',
+              fontFamily:'Outfit',
+              fontWeight:400
+             },
+          },
+          min: 0,
+          max: 100,
+          tickAmount: 4,
+          labels: {
+            formatter: (value) => `${value}%`
+          }
+        },
+        legend: {
+          position: "right",
+          offsetY: 40
+        },
+        fill: {
+          opacity: 1
         }
-      ],
-      plotOptions: {
-        bar: {
-          horizontal: false
-        }
-      },
-      xaxis: {
-        type: "category",
-        categories: [
-          "Seg 1",
-          "Seg 2",
-          "Seg 3",
-          "Seg 4",
-          "Seg 5",
-          "Seg 6"
-        ]
-      },
-      yaxis: {
-        title: {
-          text: "% of Respondents"
-        }
-      },
-      legend: {
-        position: "right",
-        offsetY: 40
-      },
-      fill: {
-        opacity: 1
-      }
-    };
+      };
   }
 
   gender2(){
-    this.chartOptionsGender2 = {
-      series: [
-        {
-          name: "Female",
-          data: [44, 55, 41, 67, 22, 43]
-        },
-        {
-          name: "Male",
-          data: [13, 23, 20, 8, 13, 27]
-        }
+    const genderData = this.data.gender;
 
-      ],
+  const genderKeys = Object.keys(genderData);
+  const categories = genderKeys.map((key) => `Seg ${parseInt(key)}`);
+  const seriesData = {
+    Female: [],
+    Male: []
+  };
+
+  genderKeys.forEach((key) => {
+    const genderGroup = genderData[key];
+    Object.keys(genderGroup).forEach((gender) => {
+      seriesData[gender].push(genderGroup[gender]);
+    });
+  });
+
+  const series = Object.keys(seriesData).map((gender) => ({
+    name: gender,
+    data: seriesData[gender].map((value, index) => {
+      const segmentTotal = seriesData['Female'][index] + seriesData['Male'][index];
+      const percentage = (value / segmentTotal) * 100;
+      return parseFloat(percentage.toFixed(2));
+    })
+  }));
+
+  
+    this.chartOptionsGender2 = {
+      series: series,
       chart: {
         type: "bar",
         height: 150,
@@ -1874,6 +2049,9 @@ capture(){
         zoom: {
           enabled: true
         }
+      },
+      dataLabels:{
+        enabled:false
       },
       colors:["#A7C4FF","#7EA9FF"],
       responsive: [
@@ -1895,18 +2073,29 @@ capture(){
       },
       xaxis: {
         type: "category",
-        categories: [
-          "Seg 1",
-          "Seg 2",
-          "Seg 3",
-          "Seg 4",
-          "Seg 5",
-          "Seg 6"
-        ]
+        categories: categories,
+        labels:{
+          style: {
+            fontSize:'10px',
+            fontFamily:'Outfit',
+            fontWeight:400
+           },
+        }
       },
       yaxis: {
         title: {
-          text: "% of Respondents"
+          text: "% of Respondents",
+          style: {
+            fontSize:'14px',
+            fontFamily:'Outfit',
+            fontWeight:400
+           },
+        },
+        min: 0,
+        max: 100,
+        tickAmount: 4,
+        labels: {
+          formatter: (value) => `${value}%`
         }
       },
       legend: {
@@ -1920,86 +2109,76 @@ capture(){
   }
 
   income2(){
-    this.chartOptionsIncome2 = {
-      series: [
-        {
-          name: ">50",
-          data: [44, 55, 41, 67, 22, 43]
+    const incomeData = this.data.income;
+    const incomeCategories = Object.keys(incomeData).map((key) => `Seg ${parseInt(key)}`);
+    const incomeSeries = Object.entries(incomeData).map(([_, data]) => {
+      return Object.values(data);
+    });
+  
+    const series = [
+      { name: ">50", data: [] },
+      { name: "400-500", data: [] },
+      { name: "300-400", data: [] },
+      { name: "200-300", data: [] },
+      { name: "100-200", data: [] },
+      { name: "<100", data: [] },
+    ];
+  
+    incomeSeries.forEach((data) => {
+      const segmentTotal = data.reduce((total, value) => total + value, 0);
+      series.forEach((range, index) => {
+        const percentage = (data[index] / segmentTotal) * 100;
+        range.data.push(parseFloat(percentage.toFixed(2)));
+      });
+    });
+      this.chartOptionsIncome2 = {
+        series:series,
+        chart: {
+          type: "bar",
+          height: 150,
+          stacked: true,
+          toolbar: { show: true },
+          zoom: { enabled: true }
         },
-        {
-          name: "400-500",
-          data: [13, 23, 20, 8, 13, 27]
+        dataLabels:{
+          enabled:false
         },
-        {
-          name: "300-400",
-          data: [11, 17, 15, 15, 21, 14]
-        },
-        {
-          name: "200-300",
-          data: [44, 55, 41, 67, 22, 43]
-        },
-        {
-          name: "100-200",
-          data: [13, 23, 20, 8, 13, 27]
-        },
-        {
-          name: "<100",
-          data: [11, 17, 15, 15, 21, 14]
-        },
-
-      ],
-      chart: {
-        type: "bar",
-        height: 150,
-        stacked: true,
-        toolbar: {
-          show: true
-        },
-        zoom: {
-          enabled: true
-        }
-      },
-      colors:["#C3D7FF","#A7C4FF","#6599FF","#3F7FFF","#3974E8","#3974E8"],
-      responsive: [
-        {
-          breakpoint: 480,
-          options: {
-            legend: {
-              position: "bottom",
-              offsetX: -10,
-              offsetY: 0
+        colors:["#C3D7FF","#A7C4FF","#6599FF","#3F7FFF","#3974E8","#3974E8"],
+        responsive: [
+          {
+            breakpoint: 480,
+            options: {
+              legend: { position: "bottom", offsetX: -10, offsetY: 0 }
             }
           }
-        }
-      ],
-      plotOptions: {
-        bar: {
-          horizontal: false
-        }
-      },
-      xaxis: {
-        type: "category",
-        categories: [
-          "Seg 1",
-          "Seg 2",
-          "Seg 3",
-          "Seg 4",
-          "Seg 5",
-          "Seg 6"
-        ]
-      },
-      yaxis: {
-        title: {
-          text: "% of Respondents"
-        }
-      },
-      legend: {
-        position: "right",
-        offsetY: 40
-      },
-      fill: {
-        opacity: 1
-      }
-    };
+        ],
+        plotOptions: { bar: { horizontal: false } },
+        xaxis: { type: "category", categories: incomeCategories ,
+      labels:{
+        style: {
+          fontSize:'10px',
+          fontFamily:'Outfit',
+          fontWeight:400
+         },
+      }},
+        yaxis: {
+          title: {
+            text: "% of Respondents",
+            style: {
+              fontSize:'14px',
+              fontFamily:'Outfit',
+              fontWeight:400
+             },
+          },
+          min: 0,
+          max: 100,
+          tickAmount: 4,
+          labels: {
+            formatter: (value) => `${value}%`
+          }
+        },
+        legend: { position: "right", offsetY: 40 },
+        fill: { opacity: 1 }
+      };
   }
 }

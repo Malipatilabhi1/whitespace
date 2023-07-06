@@ -106,9 +106,46 @@ font-weight: 500;
     justify-content: end;
    
 }
+.btn{
+    background-color: #ECF2FF;
+    border: 1px solid #3F7FFF;
+    color:#3F7FFF;
+    width: 113px;
+height: 40px;
+border-radius: 0px;
+}
 .dashboard{
     font-size: 20px;
 font-family: Outfit;
 font-style: normal;
 font-weight: 600;
+}
+.yes{
+    color: #119446;
+font-family: Outfit;
+font-size: 16px;
+font-style: normal;
+font-weight: 700;
+}
+
+.sub{
+    color: #484848;
+font-family: Outfit;
+font-size: 12px;
+font-style: normal;
+font-weight: 500;
+}
+.no{
+    color: #DC4632;
+font-family: Outfit;
+font-size: 16px;
+font-style: normal;
+font-weight: 700;
+}
+.someWhat{
+    color: #F5A802;
+font-family: Outfit;
+font-size: 16px;
+font-style: normal;
+font-weight: 700;
 }

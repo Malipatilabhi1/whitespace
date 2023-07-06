@@ -33,7 +33,7 @@ import { Ng5SliderModule } from 'ng5-slider';
 import { AnalysisComponent } from './analysis/analysis.component';
 import { ChatbotComponent } from './chatbot/chatbot.component';
 import {MatSliderModule} from '@angular/material/slider';
-
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,6 +49,7 @@ import {MatSliderModule} from '@angular/material/slider';
     ChatbotComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -71,7 +72,8 @@ import {MatSliderModule} from '@angular/material/slider';
     MatCheckboxModule,
     MatTabsModule,
     Ng5SliderModule,
-    MatSliderModule
+    MatSliderModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

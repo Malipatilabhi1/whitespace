@@ -221,7 +221,7 @@ export class MrSummaryComponent implements OnInit {
     this.chartOptionsGender = {
       series: [this.dataScreen2.respondent_Male, this.dataScreen2.respondent_Female],
       chart: {
-        width: 290,
+        width: 270,
         type: "pie"
       },
       colors: ["#9692F1", "#FACC15"],

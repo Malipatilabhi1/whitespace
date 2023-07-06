@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Options } from 'ng5-slider';
 import { GeneralServiceService } from '../general-service.service';
- 
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-segments',
@@ -57,11 +57,18 @@ isEditing: boolean = false;
 segmentNames = this.data.clusters.map((segment, index) => `Segment ${index}`);
 
 selectedSegment: any;
-
+segmentStatus: string[] = [];
   ngOnInit(): void {
+    // this.getSegments();
+    this.segmentStatus = Array(this.data.clusters.length).fill('In Progress');
    
   }
-  
+  segmentDone: boolean[] = new Array(this.data.clusters.length).fill(false);
+
+  markSegmentAsDone(index: number) {
+    this.segmentDone[index] = true;
+    this.segmentStatus[index] = '';
+  }
   
   sliderValue: number = 0;
   sliderValue1: number = 0;
@@ -73,7 +80,7 @@ selectedSegment: any;
   formatLabel(value: number) {
     return value + '%'; // Example formatting, you can customize this as per your requirement
   }
-constructor(private gs: GeneralServiceService){
+constructor(private gs: GeneralServiceService, private http: HttpClient){
   
  
 }
@@ -81,6 +88,17 @@ constructor(private gs: GeneralServiceService){
 capture(){
   this.captureScreen()
 }
+
+// getSegments(){
+//   debugger
+//   this.http.post('http://3.111.229.37:5000/update_personas',{
+//   "query":"Give me a different name for cluster or segment 2. Output only the name."
+// }).subscribe(res=>{
+//     console.log("res", res)
+//   })
+// }
+
+
   private captureScreen() {
     const element = this.el.nativeElement;
     this.gs.captureScreen(element);

@@ -132,7 +132,7 @@ export class AlgorithmSelectionComponent implements OnInit {
       ],
       chart: {
         height: 190,
-        width: 330,
+        width: 250,
         type: "line",
         zoom: {
           enabled: false
@@ -146,7 +146,13 @@ export class AlgorithmSelectionComponent implements OnInit {
       },
       title: {
         text: "Elbow Graph",
-        align: "left"
+        align: "left",
+        style: {
+          color: '#222',
+         fontSize:'14px',
+         fontFamily:'Outfit',
+         fontWeight:500,
+        }
       },
       grid: {
         row: {
@@ -157,18 +163,43 @@ export class AlgorithmSelectionComponent implements OnInit {
       xaxis: {
         categories: [],
         title: {
-          text: "Number of Clusters"
+          text: "Number of Clusters",
+          style: {
+            color: '#666',
+           fontSize:'14px',
+           fontFamily:'Outfit',
+           fontWeight:200
+          }
+        },
+        labels:{
+          style: {
+            fontSize:'10px',
+            fontFamily:'Outfit',
+            fontWeight:400
+           },
         }
       },
       yaxis: {
         title: {
-          text: "WCSS"
+          text: "WCSS",
+          style: {
+            color: '#666',
+           fontSize:'14px',
+           fontFamily:'Outfit',
+           fontWeight:400
+          }
         },
         labels: {
+          style: {
+           fontSize:'10px',
+           fontFamily:'Outfit',
+           fontWeight:400
+          },
           formatter: function (value) {
             // Format the label with exponent and two decimal places
             return value.toExponential(2);
           },
+
         },
       },
       tooltip: {
@@ -315,7 +346,7 @@ export class AlgorithmSelectionComponent implements OnInit {
     const labels = [];
     // Loop through the data and add a label for every 30th value
    for (let i = 0; i < data.length; i++) {
-    if (i % 50 === 0) {
+    if (i % 100 === 0) {
       labels.push(i.toString());
     } else {
       labels.push('');
@@ -330,7 +361,7 @@ export class AlgorithmSelectionComponent implements OnInit {
       ],
       chart: {
         height: 190,
-        width: 330,
+        width: 250,
         type: "line",
         zoom: {
           enabled: false
@@ -345,7 +376,13 @@ export class AlgorithmSelectionComponent implements OnInit {
       },
       title: {
         text: "EPS Graph",
-        align: "left"
+        align: "left",
+        style: {
+          color: '#222',
+         fontSize:'14px',
+         fontFamily:'Outfit',
+         fontWeight:500,
+        }
       },
       grid: {
         row: {
@@ -356,14 +393,38 @@ export class AlgorithmSelectionComponent implements OnInit {
       xaxis: {
         categories: labels,
         title: {
-          text: "Number of Clusters"
-        }
+          text: "Number of Clusters",
+          style: {
+            color: '#666',
+           fontSize:'14px',
+           fontFamily:'Outfit',
+           fontWeight:400
+          }
+        },
+        labels:{
+          style: {
+            fontSize:'10px',
+            fontFamily:'Outfit',
+            fontWeight:400
+           },
+          }
       },
       yaxis: {
         title: {
-          text: "eps"
+          text: "eps",
+          style: {
+            color: '#666',
+           fontSize:'14px',
+           fontFamily:'Outfit',
+           fontWeight:400
+          }
         },
         labels: {
+          style: {
+            fontSize:'10px',
+            fontFamily:'Outfit',
+            fontWeight:400
+           },
           formatter: function (value) {
             // Format the label with exponent and two decimal places
             return value.toExponential(2);

@@ -1,20 +1,25 @@
 <div class="main" id = "content" #content style="height:100%;position:sticky">
     <div style="background-color: white;">
         <p class="px-4 pb-2 pt-4 title">Segment Characteristics Definition</p>
-    
+        <div *ngIf="isLoading" class="progress-bar">
+          <!-- Update your progress bar HTML here -->
+           Loading... {{ progressValue }}%
+            <!-- Display the progress value --> 
+         </div>
         <mat-tab-group style="background-color: white;">
-            <mat-tab  *ngFor="let segment of data.clusters; let i = index" (click)="displaySegmentName(segment.name)">
+            <mat-tab  *ngFor="let segment of data; let i = index" (click)="displaySegmentName(segment.name)">
               <ng-template mat-tab-label>
                 <div class="tab-label">
                   <div class="tab-icon">
                     <mat-icon style="color: green" *ngIf="segmentDone[i]">check_circle</mat-icon>
                   </div>
-                  <div class="tab-name">{{ segmentNames[i] }}</div>
+                  <div class="tab-name">Segment {{i}}</div>
                   <div class="tab-status">
-                    <span class="status-indicator">{{ segmentStatus[i] }}</span>
+                    <span *ngIf="!segmentDone[i]" class="status-indicator">(In-progress)</span>
                   </div>
                 </div>
               </ng-template>
+              
               <div class="d-flex flex-row p-2" style="width: 100%; background-color: #F0F2F5;">
                 <div class="card d-flex flex-column m-1" style="width: 68%;">
                   <div class="d-flex flex-row topDiv" style="width:100%;">
@@ -26,7 +31,7 @@
                     <input class="name" [(ngModel)]="segment.name">
                   </div>
                   <div class="px-2" style="width:40%;display:flex;  justify-content: end; align-items: center;" >
-                    <button type="button" class="btn btn-dark" style="border-radius: 150px;background-color: #1A356B;font-size: 16px;font-family: Outfit;font-style: normal;font-weight: 500;">
+                    <button type="button" class="btn btn-dark" style="border-radius: 150px;background-color: #1A356B;font-size: 16px;font-family: Outfit;font-style: normal;font-weight: 500;" (click)="updateSegment()">
                         <i class="bi bi-arrow-repeat">
                             <svg xmlns="http://www.w3.org/2000/svg" style="margin-right:5px" width="20" height="20" fill="currentColor" class="bi bi-arrow-repeat" viewBox="0 0 16 16">
                                 <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z"/>
@@ -171,7 +176,8 @@
                             
                                 <div>
                                     <p class="px-2 py-0 my-0 slide">Aroma</p>
-                                <mat-slider class="custom-slider" thumbLabel discrete style="width: 285px;" min="0" max="100" step="1" [(ngModel)]="sliderValue">
+                                <mat-slider class="custom-slider" thumbLabel discrete style="width: 285px;" min="0" max="100" step="1" [(ngModel)]="sliderValue"
+                                (click)="slidervalues(sliderValue)">
                                   <input matSliderThumb ></mat-slider>
                                 <span style="color: #222; text-align: right; font-size: 16px; font-family: Outfit; font-style: normal; font-weight: 600;">{{ sliderValue }}</span>
                                 <div class="example-label-container py-0 my-0">
@@ -260,9 +266,11 @@
           <div class="p-2 sticky-bottom" >
            
             <button type="button" class="btn btn-light nextButton" (click)="capture()" routerLink="/whitespaceAnalysis" >Next
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
-                <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
-              </svg>
+              <i class="bi bi-arrow-right">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="26" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+                </svg>
+              </i>
             </button>
         </div>
          

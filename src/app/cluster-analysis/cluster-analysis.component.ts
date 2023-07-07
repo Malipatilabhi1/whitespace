@@ -863,7 +863,10 @@ capture(){
         {
           breakpoint: 480,
           options: {
-            legend: { position: "bottom", offsetX: -10, offsetY: 0 }
+            legend: { position: "bottom", offsetX: -10, offsetY: 0,fontSize: "14px",
+            colors: ["#fff"],
+              fontFamily:'Outfit',
+              fontWeight:400 }
           }
         }
       ],

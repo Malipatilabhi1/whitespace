@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Options } from 'ng5-slider';
 import { GeneralServiceService } from '../general-service.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpEventType } from '@angular/common/http';
 
 @Component({
   selector: 'app-segments',
@@ -10,63 +10,148 @@ import { HttpClient } from '@angular/common/http';
 })
 export class SegmentsComponent implements OnInit {
 isMapped:boolean=false;
-selectedSegmentName: string;
+selectedSegmentName:string;
 
 isEditing: boolean = false;
   showIframe = false;
- data ={
-  "clusters": [
-    {
-      "name": "Ambitious Professionals",
-      "characteristics": ['Progressive individuals','higher income' ,' distinguished designation',' substantial expense', 'brand loyalty'],
-      "functional_need": ['High-quality',' performance-oriented shampoo products'],
-      "emotional_need": ['Confidence',' satisfaction in appearance']
-    },
-    {
-      "name": "Nature Enthusiasts",
-      "characteristics": ['Individuals inclined towards natural ingredients',' hair goals, satisfaction'],
-      "functional_need": ['Shampoos with natural ingredients', 'specific hair care benefits'],
-      "emotional_need": ['Connection to nature', 'promoting environmental sustainability']
-    },
-    {
-      "name": "Social Butterflies",
-      "characteristics": ['Sociable individuals, enjoy socializing', 'value company', 'frequent users'],
-      "functional_need": ['Shampoos that provide freshness',' long-lasting fragrance'],
-      "emotional_need": ['Refreshment', 'confidence during social interactions']
-    },
-    {
-      "name": "Value Seekers",
-      "characteristics": ['Budget-conscious individuals', 'consider income', 'expenditure', 'pack size'],
-      "functional_need": ['Cost-effective shampoos without compromising quality'],
-      "emotional_need": ['Feeling smart', 'practical in purchasing decisions']
-    },
-    {
-      "name": "Performance Seekers",
-      "characteristics": ['Performance-oriented individuals, brand loyalty', 'hair goals, satisfaction'],
-      "functional_need": ['Shampoos that deliver on specific hair care goals'],
-      "emotional_need": ['Feeling accomplished', 'satisfied with shampoo results']
-    },
-    {
-      "name": "Adventurous Explorers",
-      "characteristics": ['Carefree', 'spontaneous individuals', 'enjoy letting go', 'planning', 'experimentation'],
-      "functional_need": ['Shampoos with innovative features','unique benefits'],
-      "emotional_need": ['Freedom', 'the thrill of exploring new possibilities']
-    }
-  ]
-}
-segmentNames = this.data.clusters.map((segment, index) => `Segment ${index}`);
+//  data =
+//   [
+//     {
+//         "characteristics": [
+//             "Trendsetter with a preference for viscous shampoos",
+//             "Owns a car",
+//             "Gender-neutral",
+//             "Satisfied with current shampoo",
+//             "Non-judgemental"
+//         ],
+//         "emotional_need": [
+//             "Wants to stand out",
+//             "Seeks validation"
+//         ],
+//         "functional_need": [
+//             "Thick and heavy texture",
+//             "Long-lasting fragrance"
+//         ],
+//         "name": [
+//             "Viscous Trendsetter"
+//         ]
+//     },
+//     {
+//         "characteristics": [
+//             "Stylish individual with a preference for protein-infused shampoos",
+//             "Owns a car",
+//             "Lathers well",
+//             "Gender-neutral",
+//             "Values hair health"
+//         ],
+//         "emotional_need": [
+//             "Seeks admiration",
+//             "Desires healthy-looking hair"
+//         ],
+//         "functional_need": [
+//             "Enhanced hair appearance",
+//             "Strengthens hair"
+//         ],
+//         "name": [
+//             "Stylish Protein Lover"
+//         ]
+//     },
+//     {
+//         "characteristics": [
+//             "Individual with soft hair who reflects on their decisions",
+//             "Gender-neutral",
+//             "Non-judgemental",
+//             "Often regrets past actions",
+//             "Values pH balance"
+//         ],
+//         "emotional_need": [
+//             "Desires self-reflection",
+//             "Seeks emotional stability"
+//         ],
+//         "functional_need": [
+//             "Softens hair",
+//             "Maintains pH balance"
+//         ],
+//         "name": [
+//             "Soft and Reflective"
+//         ]
+//     },
+//     {
+//         "characteristics": [
+//             "Individual who plans ahead and enjoys aromatherapy",
+//             "Owns a car",
+//             "Prefers planning",
+//             "Gender-neutral",
+//             "Appreciates pleasant scents"
+//         ],
+//         "emotional_need": [
+//             "Values organization",
+//             "Seeks calming experiences"
+//         ],
+//         "functional_need": [
+//             "Long-term usage",
+//             "Aromatherapy benefits"
+//         ],
+//         "name": [
+//             "Planning Aromatherapist"
+//         ]
+//     },
+//     {
+//         "characteristics": [
+//             "Individual with dependents who fights oiliness",
+//             "Gender-neutral",
+//             "Varied income",
+//             "Has used the same brand for a while",
+//             "Values oil removal"
+//         ],
+//         "emotional_need": [
+//             "Cares for family",
+//             "Seeks oil-free hair"
+//         ],
+//         "functional_need": [
+//             "Efficient oil removal",
+//             "Suitable for regular use"
+//         ],
+//         "name": [
+//             "Dependent Oil Fighter"
+//         ]
+//     },
+//     {
+//         "characteristics": [
+//             "Free-spirited individual who regrets past decisions",
+//             "Gender-neutral",
+//             "Budget-conscious",
+//             "Often regrets past actions",
+//             "Values appearance"
+//         ],
+//         "emotional_need": [
+//             "Values freedom",
+//             "Seeks self-improvement"
+//         ],
+//         "functional_need": [
+//             "Affordable options",
+//             "Cleanses hair effectively"
+//         ],
+//         "name": [
+//             "Free-Spirited Regretter"
+//         ]
+//     }
+// ]
+    data:any=[];
+
 
 selectedSegment: any;
 segmentStatus: string[] = [];
+  progressValue: number=0;
   ngOnInit(): void {
-    // this.getSegments();
-    this.segmentStatus = Array(this.data.clusters.length).fill('In Progress');
-   
+           this.getSegments();
+        // this.updateSegment();
   }
-  segmentDone: boolean[] = new Array(this.data.clusters.length).fill(false);
+  segmentDone: boolean[] = new Array(this.data.length).fill(false);
 
   markSegmentAsDone(index: number) {
     this.segmentDone[index] = true;
+   
     this.segmentStatus[index] = '';
   }
   
@@ -76,7 +161,9 @@ segmentStatus: string[] = [];
   sliderValue3: number = 0;
   sliderValue4: number = 0;
   sliderValue5: number = 0;
-
+  slidervalues(value:any){
+    console.log(value)
+  }
   formatLabel(value: number) {
     return value + '%'; // Example formatting, you can customize this as per your requirement
   }
@@ -88,16 +175,57 @@ constructor(private gs: GeneralServiceService, private http: HttpClient){
 capture(){
   this.captureScreen()
 }
-
+data1:any=[];
+//  segmentNames:any;
 // getSegments(){
 //   debugger
-//   this.http.post('http://3.111.229.37:5000/update_personas',{
-//   "query":"Give me a different name for cluster or segment 2. Output only the name."
-// }).subscribe(res=>{
+//   this.http.get('http://3.111.229.37:5000/get_all_personas').subscribe(res=>{
 //     console.log("res", res)
+//     this.data1= res;
+//      this.data = this.data1.segments;
 //   })
 // }
+public isLoading: boolean = false;
+showLoading() { this.isLoading = true; } hideLoading() { this.isLoading = false; }
+getSegments() {
+  this.showLoading(); // Show progress bar
 
+  this.http.get('http://3.111.229.37:5000/get_all_personas', { observe: 'events', reportProgress: true }).subscribe(
+    event => {
+      if (event.type === HttpEventType.DownloadProgress) {
+        this.progressValue = Math.round(100 * event.loaded / event.total); // Update progress value
+      } else if (event.type === HttpEventType.Response) {
+        console.log("res", event.body);
+        this.data1 = event.body;
+        this.data = this.data1.segments;
+      }
+    },
+    error => {
+      console.error("Error occurred:", error);
+    },
+    () => {
+      this.hideLoading(); // Hide progress bar
+      this.progressValue = 0; // Reset progress value
+    }
+  );
+}
+updatedData:any=[];
+updateSegment(){
+  this.http.post('http://3.111.229.37:5000/update_personas',
+{
+    "query":"Can you re-generate the segment 2 deatils little differently."
+}
+  ).subscribe(res=>{
+    // this.updatedData = res;
+    this.data=[];
+    this.data1=[];
+    this.data1=res;
+    this.data = JSON.parse(this.data1.chatgpt_response).segments;
+    console.log(res);
+    console.log(this.data);
+    // chatgpt_response
+  })
+}
 
   private captureScreen() {
     const element = this.el.nativeElement;
@@ -108,7 +236,7 @@ openIframe() {
   this.showIframe = true;
 }
 
-displaySegmentName(segmentName: string) {
+displaySegmentName(segmentName: any) {
   this.selectedSegmentName = segmentName;
 }
 saveSegmentCharacteristics(segment: any) {

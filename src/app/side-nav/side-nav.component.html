@@ -1,6 +1,6 @@
 <div class="card border-0 me-0 rounded-0  mx-auto text-center mx-auto" style="background-color:white;box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.15);height:100%;">
 
-  <div  routerLink="/summary" [class.highlighted]="selectedOption === 'dashboard'" (click)="selectOption('dashboard')" class="d-flex flex-row px-1 mt-3 " style="display: flex;align-items: center;cursor: pointer;">
+  <div  routerLink="/summary" [class.active]="isActive('/summary')" [class.highlighted]="selectedOption === 'dashboard'" (click)="selectOption('dashboard')" class="d-flex flex-row px-1 mt-3 " style="display: flex;align-items: center;cursor: pointer;">
    <div>
     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g id="icon/Dashboard">
@@ -12,7 +12,7 @@
     <h3 class="px-1 my-2" >Dashboard</h3>
    </div>
   </div>
-  <div routerLink="/algorithm" [class.highlighted]="selectedOption === 'algorithmSelection'" (click)="selectOption('algorithmSelection')" class="d-flex flex-row px-1 mt-2" style="display: flex;align-items: center;cursor: pointer;">
+  <div routerLink="/algorithm" [class.active]="isActive('/algorithm')" [class.highlighted]="selectedOption === 'algorithmSelection'" (click)="selectOption('algorithmSelection')" class="d-flex flex-row px-1 mt-2" style="display: flex;align-items: center;cursor: pointer;">
     <div>
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g id="algorithm (1) 1">
@@ -35,7 +35,7 @@
      <h3 class="px-1 my-2" >Algorithm Selection</h3>
     </div>
    </div>
-   <div routerLink="/analysis" [class.highlighted]="selectedOption === 'clusterAnalysis'" (click)="selectOption('clusterAnalysis')" class="d-flex flex-row px-1 mt-2" style="display: flex;align-items: center;cursor: pointer;">
+   <div routerLink="/analysis" [class.active]="isActive('/analysis')" [class.highlighted]="selectedOption === 'clusterAnalysis'" (click)="selectOption('clusterAnalysis')" class="d-flex flex-row px-1 mt-2" style="display: flex;align-items: center;cursor: pointer;">
     <div>
       <svg width="20" height="20" viewBox="0 0 20 20" fill="1890FF" xmlns="http://www.w3.org/2000/svg">
         <g id="icon/PieChart">
@@ -47,7 +47,7 @@
      <h3 class="px-1 my-2" >Cluster Analysis</h3>
     </div>
    </div>
-   <div routerLink="/segment"  [class.highlighted]="selectedOption === 'segment'" (click)="selectOption('segment')" class="d-flex flex-row px-1 mt-2" style="display: flex;align-items: center;cursor: pointer;">
+   <div routerLink="/segment" [class.active]="isActive('/segment')"  [class.highlighted]="selectedOption === 'segment'" (click)="selectOption('segment')" class="d-flex flex-row px-1 mt-2" style="display: flex;align-items: center;cursor: pointer;">
     <div>
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g id="target-audience 1" clip-path="url(#clip0_68_21224)">
@@ -68,7 +68,7 @@
      <h3 class="px-1 my-2" >Segment Characteristics</h3>
     </div>
    </div>
-   <div routerLink="/whitespaceAnalysis" [class.highlighted]="selectedOption === 'whiteSpace'" (click)="selectOption('whiteSpace')" id="dashboard3" class="d-flex flex-row px-1 mt-2" style="display: flex;align-items: center;cursor: pointer;">
+   <div routerLink="/whitespaceAnalysis" [class.active]="isActive('/whitespaceAnalysis')" [class.highlighted]="selectedOption === 'whiteSpace'" (click)="selectOption('whiteSpace')" id="dashboard3" class="d-flex flex-row px-1 mt-2" style="display: flex;align-items: center;cursor: pointer;">
     <div>
       <svg width="18" height="17" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g id="Group 1">
@@ -81,9 +81,9 @@
      <h3 class="px-1 my-2" >Whitespace Analysis</h3>
     </div>
    </div>
-
-  <hr >
-  <div class=" d-flex flex-row text-dark logout" style="padding-top: 30px;">
+<div class="logout" style="border-top: 1px solid #858585;width:16%">
+ 
+  <div class=" d-flex flex-row text-dark " style="padding-top: 30px;">
     <div class="d-flex flex-row mx-1" >
       <svg class="mt-1" width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g id="icon/Logout" clip-path="url(#clip0_68_21249)">
@@ -98,6 +98,7 @@
       <h4 class="ms-1" > Log Out</h4>
     </div>
   </div>
+</div>
 </div>
     
 

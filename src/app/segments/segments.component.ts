@@ -14,137 +14,137 @@ selectedSegmentName:string;
 
 isEditing: boolean = false;
   showIframe = false;
-//  data =
-//   [
-//     {
-//         "characteristics": [
-//             "Trendsetter with a preference for viscous shampoos",
-//             "Owns a car",
-//             "Gender-neutral",
-//             "Satisfied with current shampoo",
-//             "Non-judgemental"
-//         ],
-//         "emotional_need": [
-//             "Wants to stand out",
-//             "Seeks validation"
-//         ],
-//         "functional_need": [
-//             "Thick and heavy texture",
-//             "Long-lasting fragrance"
-//         ],
-//         "name": [
-//             "Viscous Trendsetter"
-//         ]
-//     },
-//     {
-//         "characteristics": [
-//             "Stylish individual with a preference for protein-infused shampoos",
-//             "Owns a car",
-//             "Lathers well",
-//             "Gender-neutral",
-//             "Values hair health"
-//         ],
-//         "emotional_need": [
-//             "Seeks admiration",
-//             "Desires healthy-looking hair"
-//         ],
-//         "functional_need": [
-//             "Enhanced hair appearance",
-//             "Strengthens hair"
-//         ],
-//         "name": [
-//             "Stylish Protein Lover"
-//         ]
-//     },
-//     {
-//         "characteristics": [
-//             "Individual with soft hair who reflects on their decisions",
-//             "Gender-neutral",
-//             "Non-judgemental",
-//             "Often regrets past actions",
-//             "Values pH balance"
-//         ],
-//         "emotional_need": [
-//             "Desires self-reflection",
-//             "Seeks emotional stability"
-//         ],
-//         "functional_need": [
-//             "Softens hair",
-//             "Maintains pH balance"
-//         ],
-//         "name": [
-//             "Soft and Reflective"
-//         ]
-//     },
-//     {
-//         "characteristics": [
-//             "Individual who plans ahead and enjoys aromatherapy",
-//             "Owns a car",
-//             "Prefers planning",
-//             "Gender-neutral",
-//             "Appreciates pleasant scents"
-//         ],
-//         "emotional_need": [
-//             "Values organization",
-//             "Seeks calming experiences"
-//         ],
-//         "functional_need": [
-//             "Long-term usage",
-//             "Aromatherapy benefits"
-//         ],
-//         "name": [
-//             "Planning Aromatherapist"
-//         ]
-//     },
-//     {
-//         "characteristics": [
-//             "Individual with dependents who fights oiliness",
-//             "Gender-neutral",
-//             "Varied income",
-//             "Has used the same brand for a while",
-//             "Values oil removal"
-//         ],
-//         "emotional_need": [
-//             "Cares for family",
-//             "Seeks oil-free hair"
-//         ],
-//         "functional_need": [
-//             "Efficient oil removal",
-//             "Suitable for regular use"
-//         ],
-//         "name": [
-//             "Dependent Oil Fighter"
-//         ]
-//     },
-//     {
-//         "characteristics": [
-//             "Free-spirited individual who regrets past decisions",
-//             "Gender-neutral",
-//             "Budget-conscious",
-//             "Often regrets past actions",
-//             "Values appearance"
-//         ],
-//         "emotional_need": [
-//             "Values freedom",
-//             "Seeks self-improvement"
-//         ],
-//         "functional_need": [
-//             "Affordable options",
-//             "Cleanses hair effectively"
-//         ],
-//         "name": [
-//             "Free-Spirited Regretter"
-//         ]
-//     }
-// ]
-    data:any=[];
+ data =
+  [
+    {
+        "characteristics": [
+            "Trendsetter with a preference for viscous shampoos",
+            "Owns a car",
+            "Gender-neutral",
+            "Satisfied with current shampoo",
+            "Non-judgemental"
+        ],
+        "emotional_need": [
+            "Wants to stand out",
+            "Seeks validation"
+        ],
+        "functional_need": [
+            "Thick and heavy texture",
+            "Long-lasting fragrance"
+        ],
+        "name": [
+            "Viscous Trendsetter"
+        ]
+    },
+    {
+        "characteristics": [
+            "Stylish individual with a preference for protein-infused shampoos",
+            "Owns a car",
+            "Lathers well",
+            "Gender-neutral",
+            "Values hair health"
+        ],
+        "emotional_need": [
+            "Seeks admiration",
+            "Desires healthy-looking hair"
+        ],
+        "functional_need": [
+            "Enhanced hair appearance",
+            "Strengthens hair"
+        ],
+        "name": [
+            "Stylish Protein Lover"
+        ]
+    },
+    {
+        "characteristics": [
+            "Individual with soft hair who reflects on their decisions",
+            "Gender-neutral",
+            "Non-judgemental",
+            "Often regrets past actions",
+            "Values pH balance"
+        ],
+        "emotional_need": [
+            "Desires self-reflection",
+            "Seeks emotional stability"
+        ],
+        "functional_need": [
+            "Softens hair",
+            "Maintains pH balance"
+        ],
+        "name": [
+            "Soft and Reflective"
+        ]
+    },
+    {
+        "characteristics": [
+            "Individual who plans ahead and enjoys aromatherapy",
+            "Owns a car",
+            "Prefers planning",
+            "Gender-neutral",
+            "Appreciates pleasant scents"
+        ],
+        "emotional_need": [
+            "Values organization",
+            "Seeks calming experiences"
+        ],
+        "functional_need": [
+            "Long-term usage",
+            "Aromatherapy benefits"
+        ],
+        "name": [
+            "Planning Aromatherapist"
+        ]
+    },
+    {
+        "characteristics": [
+            "Individual with dependents who fights oiliness",
+            "Gender-neutral",
+            "Varied income",
+            "Has used the same brand for a while",
+            "Values oil removal"
+        ],
+        "emotional_need": [
+            "Cares for family",
+            "Seeks oil-free hair"
+        ],
+        "functional_need": [
+            "Efficient oil removal",
+            "Suitable for regular use"
+        ],
+        "name": [
+            "Dependent Oil Fighter"
+        ]
+    },
+    {
+        "characteristics": [
+            "Free-spirited individual who regrets past decisions",
+            "Gender-neutral",
+            "Budget-conscious",
+            "Often regrets past actions",
+            "Values appearance"
+        ],
+        "emotional_need": [
+            "Values freedom",
+            "Seeks self-improvement"
+        ],
+        "functional_need": [
+            "Affordable options",
+            "Cleanses hair effectively"
+        ],
+        "name": [
+            "Free-Spirited Regretter"
+        ]
+    }
+]
+    // data:any=[];
 
 
 selectedSegment: any;
 segmentStatus: string[] = [];
   progressValue: number=0;
   ngOnInit(): void {
-           this.getSegments();
+          //  this.getSegments();
         // this.updateSegment();
   }
   segmentDone: boolean[] = new Array(this.data.length).fill(false);
@@ -179,7 +179,7 @@ data1:any=[];
 //  segmentNames:any;
 // getSegments(){
 //   debugger
-//   this.http.get('http://3.111.229.37:5000/get_all_personas').subscribe(res=>{
+//   this.http.get('').subscribe(res=>{
 //     console.log("res", res)
 //     this.data1= res;
 //      this.data = this.data1.segments;
@@ -190,7 +190,7 @@ showLoading() { this.isLoading = true; } hideLoading() { this.isLoading = false;
 getSegments() {
   this.showLoading(); // Show progress bar
 
-  this.http.get('http://3.111.229.37:5000/get_all_personas', { observe: 'events', reportProgress: true }).subscribe(
+  this.http.get('', { observe: 'events', reportProgress: true }).subscribe(
     event => {
       if (event.type === HttpEventType.DownloadProgress) {
         this.progressValue = Math.round(100 * event.loaded / event.total); // Update progress value
@@ -211,7 +211,7 @@ getSegments() {
 }
 updatedData:any=[];
 updateSegment(){
-  this.http.post('http://3.111.229.37:5000/update_personas',
+  this.http.post('',
 {
     "query":"Can you re-generate the segment 2 deatils little differently."
 }

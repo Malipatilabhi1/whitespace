@@ -55,7 +55,7 @@ getEndPoint() {
         this.analysis=true;
         this.whitespaceAnalysis=false;
       }
-      if (this.currentRoute === "/segment;tab=K-Means" || this.currentRoute === "/segment;tab=Agglomerative%20Hierarchical" || this.currentRoute === "/segment;tab=DB%20Scan") {
+      if (this.currentRoute === "/segment" || this.currentRoute === "/segment;tab=K-Means" || this.currentRoute === "/segment;tab=Agglomerative%20Hierarchical" || this.currentRoute === "/segment;tab=DB%20Scan") {
         this.algorithm = false;
         this.summary = false;
         this.segment=true;

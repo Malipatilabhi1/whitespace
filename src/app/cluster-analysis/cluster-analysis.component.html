@@ -1,419 +1,386 @@
-<div class="main" id = "content" #content >
-    <div class="d-flex flex-row px-3 pt-1 mb-0" style="width:100%;background-color: white;">
-      <div class="py-0 my-0" style="width:75%">
-        <h3 class="heading">Cluster Analysis</h3>
-      </div>
-      <div style="width:5%">
-        <!-- <button type="button" class="btn btn-primary">New Segment</button> -->
-      </div>
-    
+<div class="main" id="content" #content>
+  <div class="d-flex flex-row px-3 pt-1 mb-0" style="width:100%;background-color: white;">
+    <div class="py-0 my-0" style="width:75%">
+      <h3 class="heading">Cluster Analysis</h3>
     </div>
-    <div style="width:100%">
-        <mat-tab-group  class="py-0 my-0 custom-tab-group" style="background-color: white;">
-            <mat-tab class="custom-tab-group" label="K Means" > 
-         
-              
-              <ng-template matTabContent >
-              
-                <div class="card border-0 flex-row p-1 mx-0" style="width:100%;display:flex;justify-content: end;background-color: #F0F2F5;position:sticky">
-                  <div class="rounded-pill p-2" style="background-color: #C3D7FF;">
-                      <img src="../../assets/images/search-file 1.png" height="20" width="20" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                      style="cursor:pointer">
-                  </div>
-                  
-                  <div class="mx-2">
-                   <button type="button" routerLink="/segment" class="btn btn-light" style="background-color: #1890FF;color:white" (click)="capture()">Personalize</button>
-                  </div>
-                 </div>
-             
-                <div class="mat-tab-body-content p-2 sticky-top" style="background-color: #F0F2F5;">
-                 
-                <div class="d-flex flex-column" style="width:100%">
-                    <div class="row1graphs d-flex flex-row">
-                       <div class="card m-2" style="width:50%">
-                        <h4 class="px-2 py-0 my-0">Number of Respondents In Each Segment</h4>
-                        <div id="chart">
-                          <apx-chart
-                            [series]="chartOptions.series"
-                            [chart]="chartOptions.chart"
-                            [dataLabels]="chartOptions.dataLabels"
-                            [plotOptions]="chartOptions.plotOptions"
-                            [xaxis]="chartOptions.xaxis"
-                            [colors]="chartOptions.colors"
-                          ></apx-chart>
-                        </div>
-                       </div>
-                       <div class="card m-2" style="width:50%">
-                        <h4 class="px-2 py-0 my-0">Willingness to Switch</h4>
-                        <div id="chart1">
-                            <apx-chart
-                              [series]="chartOptionsWillingness.series"
-                              [chart]="chartOptionsWillingness.chart"
-                              [dataLabels]="chartOptionsWillingness.dataLabels"
-                              [plotOptions]="chartOptionsWillingness.plotOptions"
-                              [responsive]="chartOptionsWillingness.responsive"
-                              [xaxis]="chartOptionsWillingness.xaxis"
-                              [legend]="chartOptionsWillingness.legend"
-                              [fill]="chartOptionsWillingness.fill"
-                              [yaxis]="chartOptionsWillingness.yaxis"
-                              [colors]="chartOptionsWillingness.colors"
-                            ></apx-chart>
-                          </div>
-                       </div>
-                    </div>
-                    <div class="row2graphs d-flex flex-row">
-                      <div class="card m-2" style="width:50%">
-                        <h4 class="px-2 py-0 my-0">Spend Per Month on Shampoo</h4>
-                        <div id="chart2">
-                            <apx-chart
-                              [series]="chartOptionsSpend.series"
-                              [chart]="chartOptionsSpend.chart"
-                              [dataLabels]="chartOptionsSpend.dataLabels"
-                              [plotOptions]="chartOptionsSpend.plotOptions"
-                              [responsive]="chartOptionsSpend.responsive"
-                              [xaxis]="chartOptionsSpend.xaxis"
-                              [legend]="chartOptionsSpend.legend"
-                              [fill]="chartOptionsSpend.fill"
-                              [yaxis]="chartOptionsSpend.yaxis"
-                              [colors]="chartOptionsSpend.colors"
-                            ></apx-chart>
-                          </div>
-                       </div>
-                        <div class="card m-2" style="width:50%">
-                            <h4 class="px-2 py-0 my-0">Age Dstribution</h4>
-                            <div id="chart3">
-                                <apx-chart
-                                  [series]="chartOptionsAge.series"
-                                  [chart]="chartOptionsAge.chart"
-                                  [dataLabels]="chartOptionsAge.dataLabels"
-                                  [plotOptions]="chartOptionsAge.plotOptions"
-                                  [responsive]="chartOptionsAge.responsive"
-                                  [xaxis]="chartOptionsAge.xaxis"
-                                  [legend]="chartOptionsAge.legend"
-                                  [fill]="chartOptionsAge.fill"
-                                  [yaxis]="chartOptionsAge.yaxis"
-                                  [colors]="chartOptionsAge.colors"
-                                ></apx-chart>
-                              </div>
-                        </div>
-                     </div>
-                     <div class="row3graphs d-flex flex-row">
-                      <div class="card m-2" style="width:50%">
-                        <h4 class="px-2 py-0 my-0">Gender Dstribution</h4>
-                        <div id="chart4">
-                            <apx-chart
-                              [series]="chartOptionsGender.series"
-                              [chart]="chartOptionsGender.chart"
-                              [dataLabels]="chartOptionsGender.dataLabels"
-                              [plotOptions]="chartOptionsGender.plotOptions"
-                              [responsive]="chartOptionsGender.responsive"
-                              [xaxis]="chartOptionsGender.xaxis"
-                              [legend]="chartOptionsGender.legend"
-                              [fill]="chartOptionsGender.fill"
-                              [yaxis]="chartOptionsGender.yaxis"
-                              [colors]="chartOptionsGender.colors"
-                            ></apx-chart>
-                          </div>
-                       </div>
-                       <div class="card m-2" style="width:50%">
-                        <h4 class="px-2 py-0 my-0">Income Distribution</h4>
-                        <div id="chart5">
-                            <apx-chart
-                              [series]="chartOptionsIncome.series"
-                              [chart]="chartOptionsIncome.chart"
-                              [dataLabels]="chartOptionsIncome.dataLabels"
-                              [plotOptions]="chartOptionsIncome.plotOptions"
-                              [responsive]="chartOptionsIncome.responsive"
-                              [xaxis]="chartOptionsIncome.xaxis"
-                              [legend]="chartOptionsIncome.legend"
-                              [fill]="chartOptionsIncome.fill"
-                              [yaxis]="chartOptionsIncome.yaxis"
-                              [colors]="chartOptionsIncome.colors"
-                            ></apx-chart>
-                          </div>
-                       </div>
-                     </div>
-                </div>
-                </div>
-             
-                </ng-template>
-             
-            </mat-tab>
-            <mat-tab label="Agglomerative Hierarchical">
-             
-              <ng-template matTabContent>
-                <div class="mat-tab-body-content p-2" style="background-color: #F0F2F5;">
-                <div class="d-flex flex-column" style="width:100%">
-                    <div class="row1graphs d-flex flex-row">
-                       <div class="card m-2" style="width:50%">
-                        <h4 class="px-2 py-0 my-0">Number of Respondents In Each Segment</h4>
-                        <div id="chart6">
-                          <apx-chart
-                            [series]="chartOptions1.series"
-                            [chart]="chartOptions1.chart"
-                            [dataLabels]="chartOptions1.dataLabels"
-                            [plotOptions]="chartOptions1.plotOptions"
-                            [xaxis]="chartOptions1.xaxis"
-                            [colors]="chartOptions1.colors"
-                          ></apx-chart>
-                        </div>
-                       </div>
-                       <div class="card m-2" style="width:50%">
-                        <h4 class="px-2 py-0 my-0">Willingness to Switch</h4>
-                        <div id="chart7">
-                            <apx-chart
-                              [series]="chartOptionsWillingness1.series"
-                              [chart]="chartOptionsWillingness1.chart"
-                              [dataLabels]="chartOptionsWillingness1.dataLabels"
-                              [plotOptions]="chartOptionsWillingness1.plotOptions"
-                              [responsive]="chartOptionsWillingness1.responsive"
-                              [xaxis]="chartOptionsWillingness1.xaxis"
-                              [legend]="chartOptionsWillingness1.legend"
-                              [fill]="chartOptionsWillingness1.fill"
-                              [yaxis]="chartOptionsWillingness1.yaxis"
-                              [colors]="chartOptionsWillingness1.colors"
-                            ></apx-chart>
-                          </div>
-                       </div>
-                      
-                    </div>
-                    <div class="row2graphs d-flex flex-row">
-                      <div class="card m-2" style="width:50%">
-                        <h4 class="px-2 py-0 my-0">Spend Per Month on Shampoo</h4>
-                        <div id="chart8">
-                            <apx-chart
-                              [series]="chartOptionsSpend1.series"
-                              [chart]="chartOptionsSpend1.chart"
-                              [dataLabels]="chartOptionsSpend1.dataLabels"
-                              [plotOptions]="chartOptionsSpend1.plotOptions"
-                              [responsive]="chartOptionsSpend1.responsive"
-                              [xaxis]="chartOptionsSpend1.xaxis"
-                              [legend]="chartOptionsSpend1.legend"
-                              [fill]="chartOptionsSpend1.fill"
-                              [yaxis]="chartOptionsSpend1.yaxis"
-                              [colors]="chartOptionsSpend1.colors"
-                            ></apx-chart>
-                          </div>
-                       </div>
-                        <div class="card m-2" style="width:50%">
-                            <h4 class="px-2 py-0 my-0">Age Dstribution</h4>
-                            <div id="chart9">
-                                <apx-chart
-                                  [series]="chartOptionsAge1.series"
-                                  [chart]="chartOptionsAge1.chart"
-                                  [dataLabels]="chartOptionsAge1.dataLabels"
-                                  [plotOptions]="chartOptionsAge1.plotOptions"
-                                  [responsive]="chartOptionsAge1.responsive"
-                                  [xaxis]="chartOptionsAge1.xaxis"
-                                  [legend]="chartOptionsAge1.legend"
-                                  [fill]="chartOptionsAge1.fill"
-                                  [yaxis]="chartOptionsAge1.yaxis"
-                                  [colors]="chartOptionsAge1.colors"
-                                ></apx-chart>
-                              </div>
-                        </div>
-                     </div>
-                    <div class="row2graphs d-flex flex-row">
-                      <div class="card m-2" style="width:50%">
-                        <h4 class="px-2 py-0 my-0">Gender Dstribution</h4>
-                        <div id="chart10">
-                            <apx-chart
-                              [series]="chartOptionsGender1.series"
-                              [chart]="chartOptionsGender1.chart"
-                              [dataLabels]="chartOptionsGender1.dataLabels"
-                              [plotOptions]="chartOptionsGender1.plotOptions"
-                              [responsive]="chartOptionsGender1.responsive"
-                              [xaxis]="chartOptionsGender1.xaxis"
-                              [legend]="chartOptionsGender1.legend"
-                              [fill]="chartOptionsGender1.fill"
-                              [yaxis]="chartOptionsGender1.yaxis"
-                              [colors]="chartOptionsGender1.colors"
-                            ></apx-chart>
-                          </div>
-                       </div>
-                       <div class="card m-2" style="width:50%">
-                        <h4 class="px-2 py-0 my-0">Income Distribution</h4>
-                        <div id="chart11">
-                            <apx-chart
-                              [series]="chartOptionsIncome1.series"
-                              [chart]="chartOptionsIncome1.chart"
-                              [dataLabels]="chartOptionsIncome1.dataLabels"
-                              [plotOptions]="chartOptionsIncome1.plotOptions"
-                              [responsive]="chartOptionsIncome1.responsive"
-                              [xaxis]="chartOptionsIncome1.xaxis"
-                              [legend]="chartOptionsIncome1.legend"
-                              [fill]="chartOptionsIncome1.fill"
-                              [yaxis]="chartOptionsIncome1.yaxis"
-                              [colors]="chartOptionsIncome1.colors"
-                            ></apx-chart>
-                          </div>
-                       </div>
-                    </div>
-                </div>
-                </div>
-              </ng-template>
-           
-            </mat-tab>
-            <mat-tab label="DB Scan">
-             
-              <ng-template matTabContent>
-                <div class="mat-tab-body-content p-2" style="background-color: #F0F2F5;">
-                <div class="d-flex flex-column" style="width:100%">
-                    <div class="row1graphs d-flex flex-row">
-                       <div class="card m-2" style="width:50%">
-                        <h4 class="px-2 py-0 my-0">Number of Respondents In Each Segment</h4>
-                        <div id="chart12">
-                          <apx-chart
-                          [series]="chartOptions2.series"
-                          [chart]="chartOptions2.chart"
-                          [dataLabels]="chartOptions2.dataLabels"
-                          [plotOptions]="chartOptions2.plotOptions"
-                          [xaxis]="chartOptions2.xaxis"
-                          [colors]="chartOptions2.colors"
-                        ></apx-chart>
-                          </div>
-                       </div>
-                       <div class="card m-2" style="width:50%">
-                        <h4 class="px-2 py-0 my-0">Willingness to Switch</h4>
-                        <div id="chart13">
-                            <apx-chart
-                              [series]="chartOptionsWillingness2.series"
-                              [chart]="chartOptionsWillingness2.chart"
-                              [dataLabels]="chartOptionsWillingness2.dataLabels"
-                              [plotOptions]="chartOptionsWillingness2.plotOptions"
-                              [responsive]="chartOptionsWillingness2.responsive"
-                              [xaxis]="chartOptionsWillingness2.xaxis"
-                              [legend]="chartOptionsWillingness2.legend"
-                              [fill]="chartOptionsWillingness2.fill"
-                              [yaxis]="chartOptionsWillingness2.yaxis"
-                              [colors]="chartOptionsWillingness2.colors"
-                            ></apx-chart>
-                          </div>
-                       </div>
-                       
-                    </div>
-                    <div class="row2graphs d-flex flex-row">
-                      <div class="card m-2" style="width:50%">
-                        <h4 class="px-2 py-0 my-0">Spend Per Month on Shampoo</h4>
-                        <div id="chart14">
-                            <apx-chart
-                              [series]="chartOptionsSpend2.series"
-                              [chart]="chartOptionsSpend2.chart"
-                              [dataLabels]="chartOptionsSpend2.dataLabels"
-                              [plotOptions]="chartOptionsSpend2.plotOptions"
-                              [responsive]="chartOptionsSpend2.responsive"
-                              [xaxis]="chartOptionsSpend2.xaxis"
-                              [legend]="chartOptionsSpend2.legend"
-                              [fill]="chartOptionsSpend2.fill"
-                              [yaxis]="chartOptionsSpend2.yaxis"
-                              [colors]="chartOptionsSpend2.colors"
-                            ></apx-chart>
-                          </div>
-                       </div>
-                        <div class="card m-2" style="width:50%">
-                            <h4 class="px-2 py-0 my-0">Age Dstribution</h4>
-                            <div id="chart15">
-                                <apx-chart
-                                  [series]="chartOptionsAge2.series"
-                                  [chart]="chartOptionsAge2.chart"
-                                  [dataLabels]="chartOptionsAge2.dataLabels"
-                                  [plotOptions]="chartOptionsAge2.plotOptions"
-                                  [responsive]="chartOptionsAge2.responsive"
-                                  [xaxis]="chartOptionsAge2.xaxis"
-                                  [legend]="chartOptionsAge2.legend"
-                                  [fill]="chartOptionsAge2.fill"
-                                  [yaxis]="chartOptionsAge2.yaxis"
-                                  [colors]="chartOptionsAge2.colors"
-                                ></apx-chart>
-                              </div>
-                        </div>
-                     </div>
-                     <div class="row2graphs d-flex flex-row">
-                      <div class="card m-2" style="width:50%">
-                        <h4 class="px-2 py-0 my-0">Gender Dstribution</h4>
-                        <div id="chart16">
-                            <apx-chart
-                              [series]="chartOptionsGender2.series"
-                              [chart]="chartOptionsGender2.chart"
-                              [dataLabels]="chartOptionsGender2.dataLabels"
-                              [plotOptions]="chartOptionsGender2.plotOptions"
-                              [responsive]="chartOptionsGender2.responsive"
-                              [xaxis]="chartOptionsGender2.xaxis"
-                              [legend]="chartOptionsGender2.legend"
-                              [fill]="chartOptionsGender2.fill"
-                              [yaxis]="chartOptionsGender2.yaxis"
-                              [colors]="chartOptionsGender2.colors"
-                            ></apx-chart>
-                          </div>
-                       </div>
-                       <div class="card m-2" style="width:50%">
-                        <h4 class="px-2 py-0 my-0">Income Distribution</h4>
-                        <div id="chart17">
-                            <apx-chart
-                              [series]="chartOptionsIncome2.series"
-                              [chart]="chartOptionsIncome2.chart"
-                              [dataLabels]="chartOptionsIncome2.dataLabels"
-                              [plotOptions]="chartOptionsIncome2.plotOptions"
-                              [responsive]="chartOptionsIncome2.responsive"
-                              [xaxis]="chartOptionsIncome2.xaxis"
-                              [legend]="chartOptionsIncome2.legend"
-                              [fill]="chartOptionsIncome2.fill"
-                              [yaxis]="chartOptionsIncome2.yaxis"
-                              [colors]="chartOptionsIncome2.colors"
-                            ></apx-chart>
-                          </div>
-                       </div>
-                     </div>
+    <div style="width:5%">
+      <!-- <button type="button" class="btn btn-primary">New Segment</button> -->
+    </div>
 
-                </div> 
-                </div>  
-              </ng-template>
+  </div>
+  <div style="width:100%">
+    <mat-tab-group class="py-0 my-0 custom-tab-group" style="background-color: white;">
+      <mat-tab class="custom-tab-group" >
+        <ng-template mat-tab-label>
+          <div class="rounded-pill p-2" >
+            <img src="../../assets/images/search-file 1.png" height="20" width="20" data-bs-toggle="modal"
+              data-bs-target="#exampleModal" style="cursor:pointer">
+          </div>
+          <span class="mat-tab-label-text">K Means</span>
+          
+          <div class="mx-2">
+            <button type="button" routerLink="/segment" class="btn btn-light"
+              style="background-color: #ECF2FF;color:#3F7FFF;"
+              (click)="capture();navigateToSegmentCharacteristics('K-Means')">Personalize</button>
+          </div>
+        </ng-template>
+
+        <ng-template matTabContent>
+
+          <div class="card border-0 flex-row px-1 mx-0"
+            style="width:100%;display:flex;justify-content: end;background-color: #F0F2F5;position:sticky">
+            
            
-            </mat-tab>
-          </mat-tab-group>
+          </div>
+
+          <div class="mat-tab-body-content p-2 sticky-top" style="background-color: #F0F2F5;">
+
+            <div class="d-flex flex-column" style="width:100%">
+              <div class="row1graphs d-flex flex-row">
+                <div class="card m-2" style="width:50%">
+                  <h4 class="px-2 py-0 my-0">Number of Respondents In Each Segment</h4>
+                  <div id="chart">
+                    <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart"
+                      [responsive]="chartOptions.responsive" [dataLabels]="chartOptions.dataLabels" [legend]="chartOptions.legend"
+                      [tooltip]="chartOptions.tooltip"></apx-chart>
+                  </div>
+
+                </div>
+                <div class="card m-2" style="width:50%">
+                  <h4 class="px-2 py-0 my-0">Willingness to Switch</h4>
+                  <div id="chart1">
+                    <apx-chart [series]="chartOptionsWillingness.series" [chart]="chartOptionsWillingness.chart"
+                    [dataLabels]="chartOptionsWillingness.dataLabels"
+                    [plotOptions]="chartOptionsWillingness.plotOptions"
+                    [responsive]="chartOptionsWillingness.responsive" [xaxis]="chartOptionsWillingness.xaxis"
+                    [legend]="chartOptionsWillingness.legend" [fill]="chartOptionsWillingness.fill" [colors]="chartOptionsWillingness.colors"
+                    [yaxis]="chartOptionsWillingness.yaxis"></apx-chart>
+                  </div>
+                </div>
+              </div>
+              <div class="row2graphs d-flex flex-row">
+                <div class="card m-2" style="width:50%">
+                  <h4 class="px-2 py-0 my-0">Spend Per Month on Shampoo</h4>
+                  <div id="chart2">
+                    <apx-chart [series]="chartOptionsSpend.series" [chart]="chartOptionsSpend.chart"
+                      [dataLabels]="chartOptionsSpend.dataLabels" [plotOptions]="chartOptionsSpend.plotOptions"
+                      [responsive]="chartOptionsSpend.responsive" [xaxis]="chartOptionsSpend.xaxis"
+                      [legend]="chartOptionsSpend.legend" [fill]="chartOptionsSpend.fill"
+                      [yaxis]="chartOptionsSpend.yaxis" [colors]="chartOptionsSpend.colors"></apx-chart>
+                  </div>
+                </div>
+                <div class="card m-2" style="width:50%">
+                  <h4 class="px-2 py-0 my-0">Age Dstribution</h4>
+                  <div id="chart3">
+                    <apx-chart [series]="chartOptionsAge.series" [chart]="chartOptionsAge.chart"
+                      [dataLabels]="chartOptionsAge.dataLabels" [plotOptions]="chartOptionsAge.plotOptions"
+                      [responsive]="chartOptionsAge.responsive" [xaxis]="chartOptionsAge.xaxis"
+                      [legend]="chartOptionsAge.legend" [fill]="chartOptionsAge.fill" [yaxis]="chartOptionsAge.yaxis"
+                      [colors]="chartOptionsAge.colors"></apx-chart>
+                  </div>
+                </div>
+              </div>
+              <div class="row3graphs d-flex flex-row">
+                <div class="card m-2" style="width:50%">
+                  <h4 class="px-2 py-0 my-0">Gender Dstribution</h4>
+                  <div id="chart4">
+                    <apx-chart [series]="chartOptionsGender.series" [chart]="chartOptionsGender.chart"
+                      [dataLabels]="chartOptionsGender.dataLabels" [plotOptions]="chartOptionsGender.plotOptions"
+                      [responsive]="chartOptionsGender.responsive" [xaxis]="chartOptionsGender.xaxis"
+                      [legend]="chartOptionsGender.legend" [fill]="chartOptionsGender.fill"
+                      [yaxis]="chartOptionsGender.yaxis" [colors]="chartOptionsGender.colors"></apx-chart>
+                  </div>
+                </div>
+                <div class="card m-2" style="width:50%">
+                  <h4 class="px-2 py-0 my-0">Income Distribution</h4>
+                  <div id="chart5">
+                    <apx-chart [series]="chartOptionsIncome.series" [chart]="chartOptionsIncome.chart"
+                      [dataLabels]="chartOptionsIncome.dataLabels" [plotOptions]="chartOptionsIncome.plotOptions"
+                      [responsive]="chartOptionsIncome.responsive" [xaxis]="chartOptionsIncome.xaxis"
+                      [legend]="chartOptionsIncome.legend" [fill]="chartOptionsIncome.fill"
+                      [yaxis]="chartOptionsIncome.yaxis" [colors]="chartOptionsIncome.colors"></apx-chart>
+                  </div>
+                </div>
+               
+              </div>
+            
+            </div>
+           
+          </div>
           
-         
+        </ng-template>
+
+      </mat-tab>
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <div class="rounded-pill p-2" >
+            <img src="../../assets/images/search-file 1.png" height="20" width="20" data-bs-toggle="modal"
+              data-bs-target="#exampleModal1" style="cursor:pointer">
+          </div>
+          <span class="mat-tab-label-text">Agglomerative Hierarchical</span>
           
-    </div>
+          <div class="mx-2">
+            <button type="button" routerLink="/segment" class="btn btn-light"
+              style="background-color: #ECF2FF;color:#3F7FFF;"
+              (click)="capture();navigateToSegmentCharacteristics('Agglomerative Hierarchical')">Personalize</button>
+          </div>
+        </ng-template>
+
+        <ng-template matTabContent>
+          
+          <div class="mat-tab-body-content p-2" style="background-color: #F0F2F5;">
+            <div class="d-flex flex-column" style="width:100%">
+              <div class="row1graphs d-flex flex-row">
+                <div class="card m-2" style="width:50%">
+                  <h4 class="px-2 py-0 my-0">Number of Respondents In Each Segment</h4>
+                  <div id="chart6">
+                    <apx-chart [series]="chartOptions1.series" [chart]="chartOptions1.chart"
+                    [responsive]="chartOptions1.responsive" [dataLabels]="chartOptions1.dataLabels"
+                    [legend]="chartOptions1.legend"></apx-chart>
+                   
+                  </div>
+                </div>
+                <div class="card m-2" style="width:50%">
+                  <h4 class="px-2 py-0 my-0">Willingness to Switch</h4>
+                  <div id="chart7">
+                    <apx-chart [series]="chartOptionsWillingness1.series" [chart]="chartOptionsWillingness1.chart"
+                      [dataLabels]="chartOptionsWillingness1.dataLabels"
+                      [plotOptions]="chartOptionsWillingness1.plotOptions"
+                      [responsive]="chartOptionsWillingness1.responsive" [xaxis]="chartOptionsWillingness1.xaxis"
+                      [legend]="chartOptionsWillingness1.legend" [fill]="chartOptionsWillingness1.fill" [colors]="chartOptionsWillingness1.colors"
+                      [yaxis]="chartOptionsWillingness1.yaxis"></apx-chart>
+
+                  </div>
+                </div>
+
+              </div>
+              <div class="row2graphs d-flex flex-row">
+                <div class="card m-2" style="width:50%">
+                  <h4 class="px-2 py-0 my-0">Spend Per Month on Shampoo</h4>
+                  <div id="chart8">
+                    <apx-chart [series]="chartOptionsSpend1.series" [chart]="chartOptionsSpend1.chart"
+                      [dataLabels]="chartOptionsSpend1.dataLabels" [plotOptions]="chartOptionsSpend1.plotOptions"
+                      [responsive]="chartOptionsSpend1.responsive" [xaxis]="chartOptionsSpend1.xaxis"
+                      [legend]="chartOptionsSpend1.legend" [fill]="chartOptionsSpend1.fill"
+                      [yaxis]="chartOptionsSpend1.yaxis" [colors]="chartOptionsSpend1.colors"></apx-chart>
+                  </div>
+                </div>
+                <div class="card m-2" style="width:50%">
+                  <h4 class="px-2 py-0 my-0">Age Dstribution</h4>
+                  <div id="chart9">
+                    <apx-chart [series]="chartOptionsAge1.series" [chart]="chartOptionsAge1.chart"
+                      [dataLabels]="chartOptionsAge1.dataLabels" [plotOptions]="chartOptionsAge1.plotOptions"
+                      [responsive]="chartOptionsAge1.responsive" [xaxis]="chartOptionsAge1.xaxis"
+                      [legend]="chartOptionsAge1.legend" [fill]="chartOptionsAge1.fill" [yaxis]="chartOptionsAge1.yaxis"
+                      [colors]="chartOptionsAge1.colors"></apx-chart>
+                  </div>
+                </div>
+              </div>
+              <div class="row2graphs d-flex flex-row">
+                <div class="card m-2" style="width:50%">
+                  <h4 class="px-2 py-0 my-0">Gender Dstribution</h4>
+                  <div id="chart10">
+                    <apx-chart [series]="chartOptionsGender1.series" [chart]="chartOptionsGender1.chart"
+                      [dataLabels]="chartOptionsGender1.dataLabels" [plotOptions]="chartOptionsGender1.plotOptions"
+                      [responsive]="chartOptionsGender1.responsive" [xaxis]="chartOptionsGender1.xaxis"
+                      [legend]="chartOptionsGender1.legend" [fill]="chartOptionsGender1.fill"
+                      [yaxis]="chartOptionsGender1.yaxis" [colors]="chartOptionsGender1.colors"></apx-chart>
+                  </div>
+                </div>
+                <div class="card m-2" style="width:50%">
+                  <h4 class="px-2 py-0 my-0">Income Distribution</h4>
+                  <div id="chart11">
+                    <apx-chart [series]="chartOptionsIncome1.series" [chart]="chartOptionsIncome1.chart"
+                      [dataLabels]="chartOptionsIncome1.dataLabels" [plotOptions]="chartOptionsIncome1.plotOptions"
+                      [responsive]="chartOptionsIncome1.responsive" [xaxis]="chartOptionsIncome1.xaxis"
+                      [legend]="chartOptionsIncome1.legend" [fill]="chartOptionsIncome1.fill"
+                      [yaxis]="chartOptionsIncome1.yaxis" [colors]="chartOptionsIncome1.colors"></apx-chart>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+
+      </mat-tab>
+      <mat-tab >
+        <ng-template mat-tab-label>
+          <div class="rounded-pill p-2" >
+            <img src="../../assets/images/search-file 1.png" height="20" width="20" data-bs-toggle="modal"
+              data-bs-target="#exampleModal1" style="cursor:pointer">
+          </div>
+          <span class="mat-tab-label-text">DB Scan</span>
+          
+          <div class="mx-2">
+            <button type="button" routerLink="/segment" class="btn btn-light"
+              style="background-color: #ECF2FF;color:#3F7FFF;"
+              (click)="capture();navigateToSegmentCharacteristics('DB Scan')">Personalize</button>
+          </div>
+        </ng-template>
+        <ng-template matTabContent>
+          
+          <div class="mat-tab-body-content p-2" style="background-color: #F0F2F5;">
+            <div class="d-flex flex-column" style="width:100%">
+              <div class="row1graphs d-flex flex-row">
+                <div class="card m-2" style="width:50%">
+                  <h4 class="px-2 py-0 my-0">Number of Respondents In Each Segment</h4>
+                  <div id="chart12">
+                    <apx-chart [series]="chartOptions2.series" [chart]="chartOptions2.chart"
+                      [responsive]="chartOptions2.responsive" [dataLabels]="chartOptions2.dataLabels"
+                      [legend]="chartOptions2.legend"></apx-chart>
+                  </div>
+                </div>
+                <div class="card m-2" style="width:50%">
+                  <h4 class="px-2 py-0 my-0">Willingness to Switch</h4>
+                  <div id="chart13">
+                    <apx-chart [series]="chartOptionsWillingness2.series" [chart]="chartOptionsWillingness2.chart"
+                      [dataLabels]="chartOptionsWillingness2.dataLabels"
+                      [plotOptions]="chartOptionsWillingness2.plotOptions"
+                      [responsive]="chartOptionsWillingness2.responsive" [xaxis]="chartOptionsWillingness2.xaxis"
+                      [legend]="chartOptionsWillingness2.legend" [fill]="chartOptionsWillingness2.fill" [colors]="chartOptionsWillingness2.colors"
+                      [yaxis]="chartOptionsWillingness2.yaxis"></apx-chart>
+                  </div>
+                </div>
+
+              </div>
+              <div class="row2graphs d-flex flex-row">
+                <div class="card m-2" style="width:50%">
+                  <h4 class="px-2 py-0 my-0">Spend Per Month on Shampoo</h4>
+                  <div id="chart14">
+                    <apx-chart [series]="chartOptionsSpend2.series" [chart]="chartOptionsSpend2.chart"
+                      [dataLabels]="chartOptionsSpend2.dataLabels" [plotOptions]="chartOptionsSpend2.plotOptions"
+                      [responsive]="chartOptionsSpend2.responsive" [xaxis]="chartOptionsSpend2.xaxis"
+                      [legend]="chartOptionsSpend2.legend" [fill]="chartOptionsSpend2.fill"
+                      [yaxis]="chartOptionsSpend2.yaxis" [colors]="chartOptionsSpend2.colors"></apx-chart>
+                  </div>
+                </div>
+                <div class="card m-2" style="width:50%">
+                  <h4 class="px-2 py-0 my-0">Age Dstribution</h4>
+                  <div id="chart15">
+                    <apx-chart [series]="chartOptionsAge2.series" [chart]="chartOptionsAge2.chart"
+                      [dataLabels]="chartOptionsAge2.dataLabels" [plotOptions]="chartOptionsAge2.plotOptions"
+                      [responsive]="chartOptionsAge2.responsive" [xaxis]="chartOptionsAge2.xaxis"
+                      [legend]="chartOptionsAge2.legend" [fill]="chartOptionsAge2.fill" [yaxis]="chartOptionsAge2.yaxis"
+                      [colors]="chartOptionsAge2.colors"></apx-chart>
+                  </div>
+                </div>
+              </div>
+              <div class="row2graphs d-flex flex-row">
+                <div class="card m-2" style="width:50%">
+                  <h4 class="px-2 py-0 my-0">Gender Dstribution</h4>
+                  <div id="chart16">
+                    <apx-chart [series]="chartOptionsGender2.series" [chart]="chartOptionsGender2.chart"
+                      [dataLabels]="chartOptionsGender2.dataLabels" [plotOptions]="chartOptionsGender2.plotOptions"
+                      [responsive]="chartOptionsGender2.responsive" [xaxis]="chartOptionsGender2.xaxis"
+                      [legend]="chartOptionsGender2.legend" [fill]="chartOptionsGender2.fill"
+                      [yaxis]="chartOptionsGender2.yaxis" [colors]="chartOptionsGender2.colors"></apx-chart>
+                  </div>
+                </div>
+                <div class="card m-2" style="width:50%">
+                  <h4 class="px-2 py-0 my-0">Income Distribution</h4>
+                  <div id="chart17">
+                    <apx-chart [series]="chartOptionsIncome2.series" [chart]="chartOptionsIncome2.chart"
+                      [dataLabels]="chartOptionsIncome2.dataLabels" [plotOptions]="chartOptionsIncome2.plotOptions"
+                      [responsive]="chartOptionsIncome2.responsive" [xaxis]="chartOptionsIncome2.xaxis"
+                      [legend]="chartOptionsIncome2.legend" [fill]="chartOptionsIncome2.fill"
+                      [yaxis]="chartOptionsIncome2.yaxis" [colors]="chartOptionsIncome2.colors"></apx-chart>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </ng-template>
+
+      </mat-tab>
+    </mat-tab-group>
+
+
+
+  </div>
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
-    <div class="modal-dialog modal-xl modal-dialog-centered" >
-      <div class="modal-content" style="border-radius: 0px;">
-        <div class="modal-header">
-          <h2 class="modal-title py-0 my-0" id="exampleModalLabel">Detailed Segment Details</h2>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body table-content">
-          <table class="table table-bordered" >
-            <thead >
-              <tr class="table-primary">
-                <th>Features</th>
-                <th *ngFor="let segment of a">
-                  Segment {{ segment }}
-                </th>
-              </tr>
-            </thead>
-            <tbody class="table-body">
-              <tr *ngFor="let feature of b">
-                <td style="color: #3F7FFF;">{{ feature }}</td>
-                <td *ngFor="let segment of a" [ngStyle]="getCellStyles(segment, feature)">
-                  {{ tableContent[segment][feature] }}
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          
-          
-          
-          
-          
-        </div>
-        <!-- <div class="modal-footer">
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+  data-backdrop="static">
+  <div class="modal-dialog modal-xl modal-dialog-centered">
+    <div class="modal-content" style="border-radius: 0px;">
+      <div class="modal-header">
+        <h2 class="modal-title py-0 my-0" id="exampleModalLabel">Segment Details</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body table-content">
+        <table class="table table-bordered">
+          <thead>
+            <tr class="table-primary">
+              <th>Features</th>
+              <th *ngFor="let segment of a">
+                Segment {{ segment }}
+              </th>
+            </tr>
+          </thead>
+          <tbody class="table-body">
+            <tr *ngFor="let feature of b">
+              <td style="color: #3F7FFF;">{{ feature }}</td>
+              <td *ngFor="let segment of a" [ngStyle]="getCellStyles(segment, feature)">
+                {{ tableContent[segment][feature] }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+
+
+
+
+      </div>
+      <!-- <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           <button type="button" class="btn btn-primary">Save changes</button>
         </div> -->
-      </div>
     </div>
   </div>
+</div>
+
+
+
+<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+  data-backdrop="static">
+  <div class="modal-dialog modal-xl modal-dialog-centered">
+    <div class="modal-content" style="border-radius: 0px;">
+      <div class="modal-header">
+        <h2 class="modal-title py-0 my-0" id="exampleModalLabel">Segment Details</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body table-content">
+        <table class="table table-bordered">
+          <thead>
+            <tr class="table-primary">
+              <th>Features</th>
+              <th *ngFor="let segment of c">
+                Segment {{ segment }}
+              </th>
+            </tr>
+          </thead>
+          <tbody class="table-body">
+            <tr *ngFor="let feature of d">
+              <td style="color: #3F7FFF;">{{ feature }}</td>
+              <td *ngFor="let segment of c" [ngStyle]="getCellStyles1(segment, feature)">
+                {{ tableContent[segment][feature] }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+
+
+
+
+      </div>
+      <!-- <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div> -->
+    </div>
+  </div>
+</div>

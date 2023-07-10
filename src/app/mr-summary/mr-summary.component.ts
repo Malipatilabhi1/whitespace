@@ -175,37 +175,38 @@ export class MrSummaryComponent implements OnInit {
   
 
   dataScreen2= {
-    "number_of_questions": 99,
-    "number_of_respondents": 100,
+    "number_of_questions": 43,
+    "number_of_respondenets": 1500,
     "respondent_Male": 0.57,
     "respondent_Female": 0.43,
     "household_<3": 0.4,
     "household_3-5": 0.3,
     "household_>5": 0.3,
-    "age_25-40": 34,
-    "age_0-25": 25,
-    "age_50+": 22,
-    "age_40-50": 19,
-    "income_25000-50000": 37,
-    "income_0-25000": 23,
-    "income_100000+": 21,
-    "income_50000-100000": 19,
+    "age_25-40": 510,
+    "age_0-25": 375,
+    "age_50+": 330,
+    "age_40-50": 285,
+    "income_25000-50000": 555,
+    "income_0-25000": 345,
+    "income_100000+": 315,
+    "income_50000-100000": 285,
     "satisfaction_No": 0.45,
     "satisfaction_Somewhat": 0.29,
     "satisfaction_Yes": 0.26,
-    "spend_>50": 40,
-    "spend_10-30": 25,
-    "spend_30-50": 22,
-    "spend_<10": 13,
-    "freq_Once a day": 29,
-    "freq_> Once a week": 29,
-    "freq_< Once a week": 25,
-    "freq_Never": 16,
-    "switchcount_Very Likely": 0.34,
-    "switchcount_Won't Mind": 0.28,
-    "switchcount_Not Likely": 0.2,
-    "switchcount_Somewhat Likely": 0.18
-  }
+    "spend_>50": 600,
+    "spend_10-30": 375,
+    "spend_30-50": 330,
+    "spend_<10": 195,
+    "freq_Once a day": 440,
+    "freq_> Once a week": 438,
+    "freq_< Once a week": 375,
+    "freq_Never": 247,
+    "switchcount_Very Likely": 0.37333333333333335,
+    "switchcount_Somewhat Likely": 0.21333333333333335,
+    "switchcount_Won't Mind": 0.21333333333333335,
+    "switchcount_Not Likely": 0.2
+}
+a = (this.dataScreen2.satisfaction_Somewhat * 100).toFixed(0)
   uploadButtonClicked() {
     // Create a hidden file input element dynamically
     this.fileInput = document.createElement('input');
@@ -342,7 +343,7 @@ score(){
     this.chartOptionsAge = {
       series: [
         {
-          name: "Age",
+          name: "Total",
           data: [this.dataScreen2["age_0-25"], this.dataScreen2["age_25-40"], this.dataScreen2["age_40-50"],this.dataScreen2["age_50+"] ]
         }
       ],
@@ -411,7 +412,7 @@ score(){
     this.chartOptionsIncome = {
       series: [
         {
-          name: "Net Profit",
+          name: "Income",
           data: [this.dataScreen2['income_0-25000'], this.dataScreen2['income_25000-50000'], this.dataScreen2['income_50000-100000'], this.dataScreen2['income_100000+']]
         }
       ],
@@ -479,7 +480,7 @@ score(){
       this.chartOptionsAvgSpend = {
         series: [
           {
-            name: "Net Profit",
+            name: "Average Spend",
             data: [this.dataScreen2['spend_<10'], this.dataScreen2['spend_10-30'], this.dataScreen2['spend_30-50'], this.dataScreen2['spend_>50']]
           }
         ],
@@ -548,7 +549,7 @@ score(){
     this.chartOptionsFrequency = {
       series: [
         {
-          name: "Net Profit",
+          name: "Frequency",
           data: [this.dataScreen2.freq_Never,this.dataScreen2['freq_Once a day'], this.dataScreen2['freq_< Once a week'], this.dataScreen2['freq_> Once a week']]
         }
       ],
@@ -607,7 +608,7 @@ score(){
       tooltip: {
         y: {
           formatter: function(val) {
-            return "$ " + val + " thousands";
+            return "" + val + "";
           }
         }
       }

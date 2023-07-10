@@ -2,13 +2,15 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ApexYAxis, ChartComponent } from "ng-apexcharts";
 import html2canvas from 'html2canvas';
 import { GeneralServiceService } from '../general-service.service';
+import { Router } from '@angular/router';
 import {
   ApexAxisChartSeries,
   ApexTitleSubtitle,
   ApexDataLabels,
   ApexChart,
   ApexPlotOptions,
-  ApexLegend
+  ApexLegend,
+  ApexNonAxisChartSeries
 } from "ng-apexcharts";
 import {
   ApexResponsive,
@@ -18,12 +20,14 @@ import {
 
 // algorithm1
 export type ChartOptions = {
-  series: ApexAxisChartSeries;
+  series: ApexNonAxisChartSeries;
   chart: ApexChart;
-  dataLabels: ApexDataLabels;
-  plotOptions: ApexPlotOptions;
-  xaxis: ApexXAxis;
+  responsive: ApexResponsive[];
+  labels: any;
   colors:any;
+  dataLabels:any;
+  legend:any;
+  tooltip:any;
 };
 export type ChartOptionsWillingness = {
   series: ApexAxisChartSeries;
@@ -32,10 +36,10 @@ export type ChartOptionsWillingness = {
   plotOptions: ApexPlotOptions;
   responsive: ApexResponsive[];
   xaxis: ApexXAxis;
-  yaxis:ApexYAxis;
   legend: ApexLegend;
   fill: ApexFill;
   colors:any;
+  yaxis:ApexYAxis;
 };
 
 export type ChartOptionsSpend = {
@@ -90,12 +94,13 @@ export type ChartOptionsIncome = {
 
 // algorithm2
 export type ChartOptions1 = {
-  series: ApexAxisChartSeries;
+  series: ApexNonAxisChartSeries;
   chart: ApexChart;
-  dataLabels: ApexDataLabels;
-  plotOptions: ApexPlotOptions;
-  xaxis: ApexXAxis;
+  responsive: ApexResponsive[];
+  labels: any;
   colors:any;
+  dataLabels:any;
+  legend:any;
 };
 export type ChartOptionsWillingness1 = {
   series: ApexAxisChartSeries;
@@ -104,10 +109,10 @@ export type ChartOptionsWillingness1 = {
   plotOptions: ApexPlotOptions;
   responsive: ApexResponsive[];
   xaxis: ApexXAxis;
-  yaxis:ApexYAxis;
   legend: ApexLegend;
   fill: ApexFill;
   colors:any;
+  yaxis:ApexYAxis;
 };
 
 export type ChartOptionsSpend1= {
@@ -163,12 +168,13 @@ export type ChartOptionsIncome1 = {
 
 // algorithm3
 export type ChartOptions2 = {
-  series: ApexAxisChartSeries;
+  series: ApexNonAxisChartSeries;
   chart: ApexChart;
-  dataLabels: ApexDataLabels;
-  plotOptions: ApexPlotOptions;
-  xaxis: ApexXAxis;
+  responsive: ApexResponsive[];
+  labels: any;
   colors:any;
+  dataLabels:any;
+  legend:any;
 };
 export type ChartOptionsWillingness2 = {
   series: ApexAxisChartSeries;
@@ -177,10 +183,11 @@ export type ChartOptionsWillingness2 = {
   plotOptions: ApexPlotOptions;
   responsive: ApexResponsive[];
   xaxis: ApexXAxis;
-  yaxis:ApexYAxis;
   legend: ApexLegend;
   fill: ApexFill;
   colors:any;
+  yaxis:ApexYAxis;
+  
 };
 
 export type ChartOptionsSpend2 = {
@@ -293,198 +300,767 @@ capture(){
 
   data={
     "age": {
-      "0": {
-        "0-25": 7,
-        "25-40": 9,
-        "40-50": 3,
-        "50+": 11
-      },
-      "1": {
-        "25-40": 13,
-        "40-50": 2
-      },
-      "2": {
-        "0-25": 2,
-        "25-40": 3,
-        "40-50": 1,
-        "50+": 2
-      },
-      "3": {
-        "0-25": 2,
-        "25-40": 7,
-        "40-50": 2,
-        "50+": 3
-      },
-      "4": {
-        "0-25": 11,
-        "25-40": 1,
-        "40-50": 7,
-        "50+": 3
-      },
-      "5": {
-        "0-25": 3,
-        "25-40": 1,
-        "40-50": 4,
-        "50+": 3
-      }
-    },
-    "gender": {
-      "0": {
-        "Female": 17,
-        "Male": 13
-      },
-      "1": {
-        "Male": 15
-      },
-      "2": {
-        "Female": 3,
-        "Male": 5
-      },
-      "3": {
-        "Female": 10,
-        "Male": 4
-      },
-      "4": {
-        "Female": 11,
-        "Male": 11
-      },
-      "5": {
-        "Female": 2,
-        "Male": 9
-      }
-    },
-    "income": {
-      "0": {
-        "0-25000": 11,
-        "100000+": 6,
-        "25000-50000": 11,
-        "50000-100000": 2
-      },
-      "1": {
-        "25000-50000": 15
-      },
-      "2": {
-        "100000+": 3,
-        "25000-50000": 2,
-        "50000-100000": 3
-      },
-      "3": {
-        "0-25000": 4,
-        "100000+": 3,
-        "25000-50000": 1,
-        "50000-100000": 6
-      },
-      "4": {
-        "0-25000": 1,
-        "100000+": 6,
-        "25000-50000": 7,
-        "50000-100000": 8
-      },
-      "5": {
-        "0-25000": 7,
-        "100000+": 3,
-        "25000-50000": 1
-      }
+        "Segment 1": {
+            "0-25": 0.07142857142857142,
+            "25-40": 0.05714285714285714,
+            "40-50": 0.02857142857142857,
+            "50+": 0.04285714285714286
+        },
+        "Segment 2": {
+            "25-40": 0.17333333333333334,
+            "40-50": 0.02666666666666667
+        },
+        "Segment 3": {
+            "0-25": 0.016666666666666666,
+            "25-40": 0.041666666666666664,
+            "40-50": 0.058333333333333334,
+            "50+": 0.08333333333333333
+        },
+        "Segment 4": {
+            "0-25": 0.07058823529411765,
+            "25-40": 0.07058823529411765,
+            "40-50": 0.047058823529411764,
+            "50+": 0.011764705882352941
+        },
+        "Segment 5": {
+            "0-25": 0.06666666666666667,
+            "25-40": 0.044444444444444446,
+            "40-50": 0.022222222222222223,
+            "50+": 0.06666666666666667
+        },
+        "Segment 6": {
+            "0-25": 0.1,
+            "25-40": 0.03333333333333333,
+            "40-50": 0.03333333333333333,
+            "50+": 0.03333333333333333
+        }
     },
     "respondent": {
-      "Segment 0": 30,
-      "Segment 1": 15,
-      "Segment 2": 8,
-      "Segment 3": 14,
-      "Segment 4": 22,
-      "Segment 5": 11
+      "Segment 1": 30,
+      "Segment 2": 15,
+      "Segment 3": 8,
+      "Segment 4": 14,
+      "Segment 5": 22,
+      "Segment 6": 11
+    },
+    "gender": {
+        "Segment 1": {
+            "Female": 0.05714285714285714,
+            "Male": 0.14285714285714285
+        },
+        "Segment 2": {
+            "Male": 0.2
+        },
+        "Segment 3": {
+            "Female": 0.15833333333333333,
+            "Male": 0.041666666666666664
+        },
+        "Segment 4": {
+            "Female": 0.07058823529411765,
+            "Male": 0.12941176470588237
+        },
+        "Segment 5": {
+            "Female": 0.1,
+            "Male": 0.1
+        },
+        "Segment 6": {
+            "Female": 0.08333333333333333,
+            "Male": 0.11666666666666667
+        }
+    },
+    "income": {
+        "Segment 1": {
+            "0-25000": 0.02857142857142857,
+            "100000+": 0.07142857142857142,
+            "25000-50000": 0.02857142857142857,
+            "50000-100000": 0.07142857142857142
+        },
+        "Segment 2": {
+            "25000-50000": 0.2
+        },
+        "Segment 3": {
+            "0-25000": 0.03333333333333333,
+            "100000+": 0.058333333333333334,
+            "25000-50000": 0.041666666666666664,
+            "50000-100000": 0.06666666666666667
+        },
+        "Segment 4": {
+            "0-25000": 0.09411764705882353,
+            "100000+": 0.03529411764705882,
+            "25000-50000": 0.023529411764705882,
+            "50000-100000": 0.047058823529411764
+        },
+        "Segment 5": {
+            "0-25000": 0.08888888888888889,
+            "100000+": 0.03333333333333333,
+            "25000-50000": 0.07777777777777778
+        },
+        "Segment 6": {
+            "0-25000": 0.016666666666666666,
+            "100000+": 0.05,
+            "25000-50000": 0.1,
+            "50000-100000": 0.03333333333333333
+        }
     },
     "spend": {
-      "0": {
-        "10-30": 14,
-        "30-50": 2,
-        "<10": 5,
-        ">50": 9
-      },
-      "1": {
-        "30-50": 4,
-        ">50": 11
-      },
-      "2": {
-        "10-30": 3,
-        "30-50": 1,
-        ">50": 4
-      },
-      "3": {
-        "10-30": 1,
-        "30-50": 3,
-        "<10": 4,
-        ">50": 6
-      },
-      "4": {
-        "10-30": 5,
-        "30-50": 4,
-        "<10": 3,
-        ">50": 10
-      },
-      "5": {
-        "10-30": 2,
-        "30-50": 8,
-        "<10": 1
-      }
+        "Segment 1": {
+            "10-30": 0.014285714285714285,
+            "30-50": 0.014285714285714285,
+            "<10": 0.05714285714285714,
+            ">50": 0.11428571428571428
+        },
+        "Segment 2": {
+            "30-50": 0.05333333333333334,
+            ">50": 0.14666666666666667
+        },
+        "Segment 3": {
+            "10-30": 0.06666666666666667,
+            "30-50": 0.025,
+            "<10": 0.025,
+            ">50": 0.08333333333333333
+        },
+        "Segment 4": {
+            "10-30": 0.023529411764705882,
+            "30-50": 0.07058823529411765,
+            "<10": 0.03529411764705882,
+            ">50": 0.07058823529411765
+        },
+        "Segment 5": {
+            "10-30": 0.1,
+            "30-50": 0.044444444444444446,
+            "<10": 0.03333333333333333,
+            ">50": 0.022222222222222223
+        },
+        "Segment 6": {
+            "10-30": 0.08333333333333333,
+            "30-50": 0.06666666666666667,
+            ">50": 0.05
+        }
     },
     "switchcount": {
-      "0":{
-        "Very Likely":20
-       
-      }
-      
-     
+        "Segment 1": {
+            "Not Likely": 0.04857142857142857,
+            "Somewhat Likely": 0.04476190476190476,
+            "Very Likely": 0.058095238095238096,
+            "Won't Mind": 0.04857142857142857
+        },
+        "Segment 2": {
+            "Very Likely": 0.2
+        },
+        "Segment 3": {
+            "Not Likely": 0.04666666666666667,
+            "Somewhat Likely": 0.04833333333333333,
+            "Very Likely": 0.055,
+            "Won't Mind": 0.05
+        },
+        "Segment 4": {
+            "Not Likely": 0.0392156862745098,
+            "Somewhat Likely": 0.05568627450980392,
+            "Very Likely": 0.04862745098039216,
+            "Won't Mind": 0.05647058823529412
+        },
+        "Segment 5": {
+            "Not Likely": 0.05703703703703704,
+            "Somewhat Likely": 0.054814814814814816,
+            "Very Likely": 0.045925925925925926,
+            "Won't Mind": 0.042222222222222223
+        },
+        "Segment 6": {
+            "Not Likely": 0.042222222222222223,
+            "Somewhat Likely": 0.04555555555555556,
+            "Very Likely": 0.056666666666666664,
+            "Won't Mind": 0.05555555555555555
+        }
     }
-  }
+}
 
+
+  dataAglo={
+    "age": {
+        "0": {
+            "0-25": 75,
+            "25-40": 165,
+            "40-50": 60,
+            "50+": 45
+        },
+        "1": {
+            "0-25": 30,
+            "40-50": 105,
+            "50+": 120
+        },
+        "2": {
+            "0-25": 90,
+            "25-40": 120,
+            "40-50": 30,
+            "50+": 90
+        },
+        "3": {
+            "25-40": 195,
+            "40-50": 30
+        },
+        "4": {
+            "0-25": 75,
+            "25-40": 30,
+            "40-50": 30,
+            "50+": 75
+        },
+        "5": {
+            "0-25": 105,
+            "40-50": 30
+        }
+    },
+    "gender": {
+        "0": {
+            "Female": 105,
+            "Male": 240
+        },
+        "1": {
+            "Female": 225,
+            "Male": 30
+        },
+        "2": {
+            "Female": 120,
+            "Male": 210
+        },
+        "3": {
+            "Male": 225
+        },
+        "4": {
+            "Female": 135,
+            "Male": 75
+        },
+        "5": {
+            "Female": 60,
+            "Male": 75
+        }
+    },
+    "income": {
+        "0": {
+            "0-25000": 120,
+            "100000+": 135,
+            "25000-50000": 15,
+            "50000-100000": 75
+        },
+        "1": {
+            "0-25000": 60,
+            "100000+": 75,
+            "25000-50000": 45,
+            "50000-100000": 75
+        },
+        "2": {
+            "0-25000": 120,
+            "100000+": 30,
+            "25000-50000": 105,
+            "50000-100000": 75
+        },
+        "3": {
+            "25000-50000": 225
+        },
+        "4": {
+            "0-25000": 30,
+            "100000+": 45,
+            "25000-50000": 105,
+            "50000-100000": 30
+        },
+        "5": {
+            "0-25000": 15,
+            "100000+": 30,
+            "25000-50000": 60,
+            "50000-100000": 30
+        }
+    },
+    "respondent": {
+        "Segment 1": 345,
+        "Segment 2": 255,
+        "Segment 3": 330,
+        "Segment 4": 225,
+        "Segment 5": 210,
+        "Segment 6": 135
+    },
+    "spend": {
+        "0": {
+            "10-30": 75,
+            "30-50": 120,
+            "<10": 30,
+            ">50": 120
+        },
+        "1": {
+            "10-30": 60,
+            "30-50": 30,
+            "<10": 45,
+            ">50": 120
+        },
+        "2": {
+            "10-30": 120,
+            "30-50": 45,
+            "<10": 90,
+            ">50": 75
+        },
+        "3": {
+            "30-50": 60,
+            ">50": 165
+        },
+        "4": {
+            "10-30": 105,
+            "30-50": 30,
+            ">50": 75
+        },
+        "5": {
+            "10-30": 15,
+            "30-50": 45,
+            "<10": 30,
+            ">50": 45
+        }
+    },
+    "switchcount": {
+        "0": {
+            "Not Likely": 81,
+            "Somewhat Likely": 94,
+            "Very Likely": 85,
+            "Won't Mind": 85
+        },
+        "1": {
+            "Not Likely": 56,
+            "Somewhat Likely": 59,
+            "Very Likely": 67,
+            "Won't Mind": 73
+        },
+        "2": {
+            "Not Likely": 86,
+            "Somewhat Likely": 83,
+            "Very Likely": 87,
+            "Won't Mind": 74
+        },
+        "3": {
+          "Not Likely": 0,
+          "Somewhat Likely": 0,
+            "Very Likely": 225,
+            "Won't Mind": 0
+        },
+        "4": {
+            "Not Likely": 47,
+            "Somewhat Likely": 60,
+            "Very Likely": 58,
+            "Won't Mind": 45
+        },
+        "5": {
+            "Not Likely": 30,
+            "Somewhat Likely": 24,
+            "Very Likely": 38,
+            "Won't Mind": 43
+        }
+    }
+}
   tableContent ={
     "0": {
-      "age": 0.99,
-      "aroma": 0.82,
-      "bubble": 0.71,
-      "car": 0.5,
-      "dependent": 0.61,
-      "designation": 0.98,
-      "expense": 1.14,
-      "experiment": 0.66,
-      "family": 0.51,
-      "freedom": 0.71,
-      "freq": 0.67,
-      "gender": 0.41,
-      "income": 0.82,
-      "judgement": 0.64,
-      "lather": 0.43,
-      "letgo": 0.61,
-      "looks": 0.5,
-      "natural": 0.71,
-      "packsize": 0.76,
-      "pbrand": 1.89,
-      "pgoal": 1.0,
-      "ph": 0.43,
-      "planning": 0.61,
-      "ppurpose": 1.51,
-      "praise": 0.79,
-      "protein": 0.49,
-      "regret": 0.61,
-      "removes_oil": 0.86,
-      "satisfaction": 0.61,
-      "sbrand": 1.22,
-      "scalp_irritation": 0.8,
-      "sgoal": 0.93,
-      "soccompany": 1.1,
-      "socialize": 0.85,
-      "softness": 0.53,
-      "spend": 1.23,
-      "spurpose": 1.14,
-      "stickiness": 0.55,
-      "switchcount": 1.03,
-      "usemonth": 0.55,
-      "viscocity": 0.56,
-      "vitamin": 0.51,
-      "workhours": 0.77
+        "age": 0.99,
+        "aroma": 0.82,
+        "bubble": 0.71,
+        "car": 0.5,
+        "dependent": 0.61,
+        "designation": 0.98,
+        "expense": 1.14,
+        "experiment": 0.66,
+        "family": 0.51,
+        "freedom": 0.71,
+        "freq": 0.67,
+        "gender": 0.41,
+        "income": 0.82,
+        "judgement": 0.64,
+        "lather": 0.43,
+        "letgo": 0.61,
+        "looks": 0.5,
+        "natural": 0.71,
+        "packsize": 0.76,
+        "pbrand": 1.89,
+        "pgoal": 1.0,
+        "ph": 0.43,
+        "planning": 0.61,
+        "ppurpose": 1.51,
+        "praise": 0.79,
+        "protein": 0.49,
+        "regret": 0.61,
+        "removes_oil": 0.86,
+        "satisfaction": 0.61,
+        "sbrand": 1.22,
+        "scalp_irritation": 0.8,
+        "sgoal": 0.93,
+        "soccompany": 1.1,
+        "socialize": 0.85,
+        "softness": 0.53,
+        "spend": 1.23,
+        "spurpose": 1.14,
+        "stickiness": 0.55,
+        "switchcount": 1.03,
+        "usemonth": 0.55,
+        "viscocity": 0.56,
+        "vitamin": 0.51,
+        "workhours": 0.77
     },
     "1": {
+        "age": 0.23,
+        "aroma": 0.23,
+        "bubble": 0.0,
+        "car": 0.0,
+        "dependent": 0.0,
+        "designation": 0.12,
+        "expense": 0.43,
+        "experiment": 0.12,
+        "family": 0.0,
+        "freedom": 0.53,
+        "freq": 0.51,
+        "gender": 0.0,
+        "income": 0.0,
+        "judgement": 0.39,
+        "lather": 0.0,
+        "letgo": 0.57,
+        "looks": 0.48,
+        "natural": 0.0,
+        "packsize": 0.0,
+        "pbrand": 1.24,
+        "pgoal": 0.0,
+        "ph": 0.0,
+        "planning": 0.48,
+        "ppurpose": 0.0,
+        "praise": 0.5,
+        "protein": 0.12,
+        "regret": 0.56,
+        "removes_oil": 0.0,
+        "satisfaction": 0.12,
+        "sbrand": 1.6,
+        "scalp_irritation": 0.12,
+        "sgoal": 0.0,
+        "soccompany": 0.23,
+        "socialize": 0.23,
+        "softness": 0.0,
+        "spend": 0.39,
+        "spurpose": 0.0,
+        "stickiness": 0.0,
+        "switchcount": 0.0,
+        "usemonth": 0.0,
+        "viscocity": 0.65,
+        "vitamin": 0.0,
+        "workhours": 0.37
+    },
+    "2": {
+        "age": 0.8,
+        "aroma": 0.59,
+        "bubble": 0.61,
+        "car": 0.49,
+        "dependent": 0.66,
+        "designation": 0.73,
+        "expense": 1.04,
+        "experiment": 0.62,
+        "family": 0.75,
+        "freedom": 0.69,
+        "freq": 0.79,
+        "gender": 0.33,
+        "income": 0.9,
+        "judgement": 0.83,
+        "lather": 0.79,
+        "letgo": 0.8,
+        "looks": 0.56,
+        "natural": 0.8,
+        "packsize": 0.84,
+        "pbrand": 1.99,
+        "pgoal": 1.04,
+        "ph": 0.62,
+        "planning": 0.78,
+        "ppurpose": 0.72,
+        "praise": 0.62,
+        "protein": 0.46,
+        "regret": 0.76,
+        "removes_oil": 0.56,
+        "satisfaction": 0.72,
+        "sbrand": 1.65,
+        "scalp_irritation": 0.72,
+        "sgoal": 1.17,
+        "soccompany": 0.77,
+        "socialize": 1.02,
+        "softness": 0.62,
+        "spend": 1.01,
+        "spurpose": 1.12,
+        "stickiness": 0.49,
+        "switchcount": 1.01,
+        "usemonth": 0.71,
+        "viscocity": 0.69,
+        "vitamin": 0.67,
+        "workhours": 1.01
+    },
+    "3": {
+        "age": 0.71,
+        "aroma": 0.5,
+        "bubble": 0.78,
+        "car": 0.5,
+        "dependent": 0.66,
+        "designation": 1.29,
+        "expense": 0.84,
+        "experiment": 0.76,
+        "family": 0.71,
+        "freedom": 0.66,
+        "freq": 0.93,
+        "gender": 0.46,
+        "income": 1.08,
+        "judgement": 0.44,
+        "lather": 0.89,
+        "letgo": 0.83,
+        "looks": 0.73,
+        "natural": 0.75,
+        "packsize": 0.8,
+        "pbrand": 2.03,
+        "pgoal": 1.36,
+        "ph": 0.69,
+        "planning": 0.56,
+        "ppurpose": 1.45,
+        "praise": 0.83,
+        "protein": 0.55,
+        "regret": 0.47,
+        "removes_oil": 0.83,
+        "satisfaction": 0.63,
+        "sbrand": 1.88,
+        "scalp_irritation": 0.66,
+        "sgoal": 1.34,
+        "soccompany": 1.09,
+        "socialize": 0.75,
+        "softness": 0.44,
+        "spend": 0.87,
+        "spurpose": 0.94,
+        "stickiness": 0.78,
+        "switchcount": 0.94,
+        "usemonth": 0.42,
+        "viscocity": 0.47,
+        "vitamin": 0.69,
+        "workhours": 0.85
+    },
+    "4": {
+        "age": 1.16,
+        "aroma": 0.74,
+        "bubble": 0.46,
+        "car": 0.28,
+        "dependent": 0.72,
+        "designation": 0.94,
+        "expense": 1.08,
+        "experiment": 0.56,
+        "family": 0.67,
+        "freedom": 0.89,
+        "freq": 1.09,
+        "gender": 0.5,
+        "income": 0.79,
+        "judgement": 0.48,
+        "lather": 0.56,
+        "letgo": 0.49,
+        "looks": 0.64,
+        "natural": 0.56,
+        "packsize": 1.06,
+        "pbrand": 1.83,
+        "pgoal": 1.5,
+        "ph": 0.69,
+        "planning": 0.49,
+        "ppurpose": 0.81,
+        "praise": 0.78,
+        "protein": 0.86,
+        "regret": 0.67,
+        "removes_oil": 0.69,
+        "satisfaction": 0.59,
+        "sbrand": 1.25,
+        "scalp_irritation": 0.8,
+        "sgoal": 1.06,
+        "soccompany": 1.19,
+        "socialize": 1.04,
+        "softness": 0.84,
+        "spend": 0.7,
+        "spurpose": 0.97,
+        "stickiness": 0.75,
+        "switchcount": 1.0,
+        "usemonth": 0.74,
+        "viscocity": 0.69,
+        "vitamin": 0.64,
+        "workhours": 1.11
+    },
+    "5": {
+        "age": 1.0,
+        "aroma": 0.61,
+        "bubble": 0.75,
+        "car": 0.28,
+        "dependent": 0.46,
+        "designation": 0.85,
+        "expense": 0.99,
+        "experiment": 0.67,
+        "family": 0.61,
+        "freedom": 0.69,
+        "freq": 0.86,
+        "gender": 0.49,
+        "income": 0.85,
+        "judgement": 0.68,
+        "lather": 0.46,
+        "letgo": 0.78,
+        "looks": 0.56,
+        "natural": 0.92,
+        "packsize": 0.89,
+        "pbrand": 1.5,
+        "pgoal": 0.83,
+        "ph": 0.78,
+        "planning": 0.75,
+        "ppurpose": 1.53,
+        "praise": 0.76,
+        "protein": 0.78,
+        "regret": 0.78,
+        "removes_oil": 0.62,
+        "satisfaction": 0.78,
+        "sbrand": 1.53,
+        "scalp_irritation": 0.42,
+        "sgoal": 1.28,
+        "soccompany": 0.83,
+        "socialize": 0.92,
+        "softness": 0.76,
+        "spend": 0.69,
+        "spurpose": 1.25,
+        "stickiness": 0.42,
+        "switchcount": 0.98,
+        "usemonth": 0.78,
+        "viscocity": 0.46,
+        "vitamin": 0.56,
+        "workhours": 0.71
+    }
+}
+
+tableContent1={
+  "0": {
+      "age": 0.74,
+      "aroma": 0.67,
+      "bubble": 0.91,
+      "car": 0.5,
+      "dependent": 0.65,
+      "designation": 1.02,
+      "expense": 0.93,
+      "experiment": 0.68,
+      "family": 0.58,
+      "freedom": 0.74,
+      "freq": 0.84,
+      "gender": 0.42,
+      "income": 1.21,
+      "judgement": 0.64,
+      "lather": 0.72,
+      "letgo": 0.79,
+      "looks": 0.43,
+      "natural": 0.87,
+      "packsize": 0.76,
+      "pbrand": 1.83,
+      "pgoal": 1.33,
+      "ph": 0.57,
+      "planning": 0.83,
+      "ppurpose": 1.4,
+      "praise": 0.85,
+      "protein": 0.48,
+      "regret": 0.56,
+      "removes_oil": 0.79,
+      "satisfaction": 0.61,
+      "sbrand": 1.54,
+      "scalp_irritation": 0.68,
+      "sgoal": 1.45,
+      "soccompany": 1.09,
+      "socialize": 1.1,
+      "softness": 0.54,
+      "spend": 0.76,
+      "spurpose": 1.33,
+      "stickiness": 0.68,
+      "switchcount": 0.98,
+      "usemonth": 0.52,
+      "viscocity": 0.58,
+      "vitamin": 0.56,
+      "workhours": 0.66
+  },
+  "1": {
+      "age": 0.72,
+      "aroma": 0.66,
+      "bubble": 0.58,
+      "car": 0.5,
+      "dependent": 0.5,
+      "designation": 0.66,
+      "expense": 0.9,
+      "experiment": 0.55,
+      "family": 0.89,
+      "freedom": 0.55,
+      "freq": 0.85,
+      "gender": 0.21,
+      "income": 1.0,
+      "judgement": 0.83,
+      "lather": 0.62,
+      "letgo": 0.73,
+      "looks": 0.58,
+      "natural": 0.83,
+      "packsize": 0.69,
+      "pbrand": 1.87,
+      "pgoal": 0.93,
+      "ph": 0.58,
+      "planning": 0.76,
+      "ppurpose": 0.94,
+      "praise": 0.66,
+      "protein": 0.47,
+      "regret": 0.73,
+      "removes_oil": 0.63,
+      "satisfaction": 0.76,
+      "sbrand": 1.4,
+      "scalp_irritation": 0.72,
+      "sgoal": 1.0,
+      "soccompany": 0.62,
+      "socialize": 1.03,
+      "softness": 0.62,
+      "spend": 1.08,
+      "spurpose": 1.2,
+      "stickiness": 0.63,
+      "switchcount": 0.97,
+      "usemonth": 0.78,
+      "viscocity": 0.61,
+      "vitamin": 0.72,
+      "workhours": 1.07
+  },
+  "2": {
+      "age": 1.01,
+      "aroma": 0.73,
+      "bubble": 0.61,
+      "car": 0.35,
+      "dependent": 0.74,
+      "designation": 1.0,
+      "expense": 1.26,
+      "experiment": 0.64,
+      "family": 0.6,
+      "freedom": 0.74,
+      "freq": 0.98,
+      "gender": 0.46,
+      "income": 0.79,
+      "judgement": 0.56,
+      "lather": 0.74,
+      "letgo": 0.48,
+      "looks": 0.63,
+      "natural": 0.52,
+      "packsize": 1.0,
+      "pbrand": 1.85,
+      "pgoal": 1.51,
+      "ph": 0.74,
+      "planning": 0.43,
+      "ppurpose": 1.2,
+      "praise": 0.79,
+      "protein": 0.74,
+      "regret": 0.69,
+      "removes_oil": 0.83,
+      "satisfaction": 0.6,
+      "sbrand": 1.61,
+      "scalp_irritation": 0.87,
+      "sgoal": 1.24,
+      "soccompany": 1.16,
+      "socialize": 0.99,
+      "softness": 0.83,
+      "spend": 0.95,
+      "spurpose": 0.74,
+      "stickiness": 0.94,
+      "switchcount": 1.02,
+      "usemonth": 0.74,
+      "viscocity": 0.55,
+      "vitamin": 0.64,
+      "workhours": 1.16
+  },
+  "3": {
       "age": 0.23,
       "aroma": 0.23,
       "bubble": 0.0,
@@ -528,197 +1104,114 @@ capture(){
       "viscocity": 0.65,
       "vitamin": 0.0,
       "workhours": 0.37
-    },
-    "2": {
-      "age": 0.8,
-      "aroma": 0.59,
-      "bubble": 0.61,
-      "car": 0.49,
-      "dependent": 0.66,
-      "designation": 0.73,
-      "expense": 1.04,
-      "experiment": 0.62,
-      "family": 0.75,
-      "freedom": 0.69,
-      "freq": 0.79,
-      "gender": 0.33,
-      "income": 0.9,
-      "judgement": 0.83,
-      "lather": 0.79,
-      "letgo": 0.8,
-      "looks": 0.56,
-      "natural": 0.8,
-      "packsize": 0.84,
-      "pbrand": 1.99,
-      "pgoal": 1.04,
-      "ph": 0.62,
-      "planning": 0.78,
-      "ppurpose": 0.72,
-      "praise": 0.62,
-      "protein": 0.46,
-      "regret": 0.76,
-      "removes_oil": 0.56,
-      "satisfaction": 0.72,
-      "sbrand": 1.65,
-      "scalp_irritation": 0.72,
-      "sgoal": 1.17,
-      "soccompany": 0.77,
-      "socialize": 1.02,
-      "softness": 0.62,
-      "spend": 1.01,
-      "spurpose": 1.12,
-      "stickiness": 0.49,
-      "switchcount": 1.01,
-      "usemonth": 0.71,
-      "viscocity": 0.69,
-      "vitamin": 0.67,
-      "workhours": 1.01
-    },
-    "3": {
-      "age": 0.71,
-      "aroma": 0.5,
-      "bubble": 0.78,
-      "car": 0.5,
-      "dependent": 0.66,
-      "designation": 1.29,
-      "expense": 0.84,
-      "experiment": 0.76,
-      "family": 0.71,
-      "freedom": 0.66,
-      "freq": 0.93,
-      "gender": 0.46,
-      "income": 1.08,
-      "judgement": 0.44,
-      "lather": 0.89,
-      "letgo": 0.83,
-      "looks": 0.73,
-      "natural": 0.75,
-      "packsize": 0.8,
-      "pbrand": 2.03,
-      "pgoal": 1.36,
-      "ph": 0.69,
-      "planning": 0.56,
-      "ppurpose": 1.45,
-      "praise": 0.83,
-      "protein": 0.55,
-      "regret": 0.47,
-      "removes_oil": 0.83,
-      "satisfaction": 0.63,
-      "sbrand": 1.88,
-      "scalp_irritation": 0.66,
-      "sgoal": 1.34,
-      "soccompany": 1.09,
-      "socialize": 0.75,
-      "softness": 0.44,
-      "spend": 0.87,
-      "spurpose": 0.94,
-      "stickiness": 0.78,
-      "switchcount": 0.94,
-      "usemonth": 0.42,
-      "viscocity": 0.47,
-      "vitamin": 0.69,
-      "workhours": 0.85
-    },
-    "4": {
-      "age": 1.16,
-      "aroma": 0.74,
-      "bubble": 0.46,
-      "car": 0.28,
-      "dependent": 0.72,
-      "designation": 0.94,
-      "expense": 1.08,
-      "experiment": 0.56,
-      "family": 0.67,
-      "freedom": 0.89,
-      "freq": 1.09,
-      "gender": 0.5,
-      "income": 0.79,
-      "judgement": 0.48,
-      "lather": 0.56,
-      "letgo": 0.49,
-      "looks": 0.64,
-      "natural": 0.56,
-      "packsize": 1.06,
-      "pbrand": 1.83,
-      "pgoal": 1.5,
-      "ph": 0.69,
-      "planning": 0.49,
-      "ppurpose": 0.81,
-      "praise": 0.78,
-      "protein": 0.86,
-      "regret": 0.67,
-      "removes_oil": 0.69,
-      "satisfaction": 0.59,
-      "sbrand": 1.25,
-      "scalp_irritation": 0.8,
-      "sgoal": 1.06,
-      "soccompany": 1.19,
-      "socialize": 1.04,
-      "softness": 0.84,
-      "spend": 0.7,
-      "spurpose": 0.97,
-      "stickiness": 0.75,
-      "switchcount": 1.0,
-      "usemonth": 0.74,
-      "viscocity": 0.69,
-      "vitamin": 0.64,
-      "workhours": 1.11
-    },
-    "5": {
-      "age": 1.0,
-      "aroma": 0.61,
-      "bubble": 0.75,
-      "car": 0.28,
-      "dependent": 0.46,
-      "designation": 0.85,
-      "expense": 0.99,
-      "experiment": 0.67,
+  },
+  "4": {
+      "age": 1.21,
+      "aroma": 0.66,
+      "bubble": 0.67,
+      "car": 0.41,
+      "dependent": 0.53,
+      "designation": 0.93,
+      "expense": 0.93,
+      "experiment": 0.61,
       "family": 0.61,
-      "freedom": 0.69,
-      "freq": 0.86,
-      "gender": 0.49,
-      "income": 0.85,
-      "judgement": 0.68,
-      "lather": 0.46,
-      "letgo": 0.78,
-      "looks": 0.56,
-      "natural": 0.92,
-      "packsize": 0.89,
+      "freedom": 0.73,
+      "freq": 0.66,
+      "gender": 0.46,
+      "income": 0.84,
+      "judgement": 0.56,
+      "lather": 0.66,
+      "letgo": 0.8,
+      "looks": 0.53,
+      "natural": 0.73,
+      "packsize": 0.96,
       "pbrand": 1.5,
-      "pgoal": 0.83,
-      "ph": 0.78,
-      "planning": 0.75,
-      "ppurpose": 1.53,
-      "praise": 0.76,
-      "protein": 0.78,
-      "regret": 0.78,
-      "removes_oil": 0.62,
-      "satisfaction": 0.78,
-      "sbrand": 1.53,
-      "scalp_irritation": 0.42,
-      "sgoal": 1.28,
-      "soccompany": 0.83,
-      "socialize": 0.92,
-      "softness": 0.76,
-      "spend": 0.69,
-      "spurpose": 1.25,
-      "stickiness": 0.42,
-      "switchcount": 0.98,
-      "usemonth": 0.78,
-      "viscocity": 0.46,
-      "vitamin": 0.56,
-      "workhours": 0.71
-    }
+      "pgoal": 0.73,
+      "ph": 0.67,
+      "planning": 0.73,
+      "ppurpose": 1.06,
+      "praise": 0.57,
+      "protein": 0.64,
+      "regret": 0.57,
+      "removes_oil": 0.41,
+      "satisfaction": 0.73,
+      "sbrand": 1.39,
+      "scalp_irritation": 0.29,
+      "sgoal": 1.16,
+      "soccompany": 1.06,
+      "socialize": 1.0,
+      "softness": 0.8,
+      "spend": 0.86,
+      "spurpose": 1.14,
+      "stickiness": 0.45,
+      "switchcount": 1.0,
+      "usemonth": 0.8,
+      "viscocity": 0.61,
+      "vitamin": 0.57,
+      "workhours": 0.86
+  },
+  "5": {
+      "age": 0.69,
+      "aroma": 0.74,
+      "bubble": 0.2,
+      "car": 0.35,
+      "dependent": 0.35,
+      "designation": 1.04,
+      "expense": 1.11,
+      "experiment": 0.59,
+      "family": 0.59,
+      "freedom": 0.74,
+      "freq": 0.84,
+      "gender": 0.49,
+      "income": 0.84,
+      "judgement": 0.62,
+      "lather": 0.44,
+      "letgo": 0.86,
+      "looks": 0.99,
+      "natural": 0.74,
+      "packsize": 0.74,
+      "pbrand": 1.93,
+      "pgoal": 1.38,
+      "ph": 0.49,
+      "planning": 0.79,
+      "ppurpose": 1.28,
+      "praise": 0.59,
+      "protein": 0.59,
+      "regret": 0.0,
+      "removes_oil": 0.89,
+      "satisfaction": 0.44,
+      "sbrand": 1.19,
+      "scalp_irritation": 0.52,
+      "sgoal": 0.89,
+      "soccompany": 1.14,
+      "socialize": 0.84,
+      "softness": 0.59,
+      "spend": 0.96,
+      "spurpose": 1.16,
+      "stickiness": 0.59,
+      "switchcount": 0.97,
+      "usemonth": 0.62,
+      "viscocity": 0.69,
+      "vitamin": 0.69,
+      "workhours": 0.67
   }
+}
+
   a = Object.keys(this.tableContent)
   b=Object.keys(this.tableContent['0'])
-  getCellStyles(segment: string, feature: string) {
-    const value = this.tableContent[segment][feature];
+
+  c = Object.keys(this.tableContent1)
+  d=Object.keys(this.tableContent1['0'])
+
+
+
+  getCellStyles1(segment: string, feature: string) {
+    const value = this.tableContent1[segment][feature];
     let cellStyles = {};
     // Add different colors based on the feature values
     if (value < 0.5) {
       cellStyles = {
-        'background-color': '#C3D7FF',
+        'background-color': '#6599FF',
         color: 'white'
       };
     } else if (value < 1) {
@@ -728,7 +1221,34 @@ capture(){
       };
     }else{
       cellStyles = {
+        'background-color': '#C3D7FF',
+        color: 'white'
+      };
+    }
+    // Add more conditions for other feature values
+
+    return cellStyles;
+  }
+
+
+
+  getCellStyles(segment: string, feature: string) {
+    const value = this.tableContent[segment][feature];
+    let cellStyles = {};
+    // Add different colors based on the feature values
+    if (value < 0.5) {
+      cellStyles = {
         'background-color': '#6599FF',
+        color: 'white'
+      };
+    } else if (value < 1) {
+      cellStyles = {
+        'background-color': '#A7C4FF',
+        color: 'white'
+      };
+    }else{
+      cellStyles = {
+        'background-color': '#C3D7FF',
         color: 'white'
       };
     }
@@ -741,8 +1261,10 @@ capture(){
 
 
 
-  constructor(private gs: GeneralServiceService) { }
-
+  constructor(private gs: GeneralServiceService, private router: Router) { }
+  navigateToSegmentCharacteristics(tabName: string) {
+    this.router.navigate(['/segment', { tab: tabName }]);
+  }
   ngOnInit(): void {
     // algorithm1
     this.numberOfRespondents()
@@ -782,80 +1304,77 @@ capture(){
   numberOfRespondents() {
   const respondentData = this.data.respondent;
   const barData = Object.values(respondentData);
+  const barDataKey = Object.keys(respondentData);
   this.chartOptions = {
-    series: [
-      {
-        name: "",
-        data: barData
-      }
-    ],
+    series: barData,
     chart: {
-      type: "bar",
-      height: 150
+      width: 300,
+      type: "pie"
     },
-   
-    colors:["#91ADFD","#FFE0C2","#C0BBEB","#A3F5EC","#FDE68C","#D6D6D6"],
-    plotOptions: {
-      bar: {
-        horizontal: true,
-        distributed: true,
+    colors:["#3AA0FF", "#36CBCB", "#FAD337", "#F2637B", "#8F60FA", "#A3A1F3"],
+    dataLabels:{
+      enabled:false
+    },
+    labels: barDataKey.map((key) => `${key}: {y}`),
+    legend: {
+      show: true,
+      formatter: function (seriesName: string, opts: any) {
+        return barDataKey[opts.seriesIndex];
       }
     },
-    dataLabels: {
-      enabled: false,
-      offsetX: -6,
-      style: {
-        fontSize: "14px",
-        colors: ["#fff"],
-          fontFamily:'Outfit',
-          fontWeight:400
+    tooltip: {
+      enabled: true,
+      y: {
+        formatter: function (value: any, opts: any) {
+          return barDataKey[opts.seriesIndex]; // Return the value directly without series name
+        }
+      }
+    },
+    responsive: [
+      {
+        breakpoint: 480,
+        options: {
+          chart: {
+            width: 200
+          },
          
-      },
-      
-    },
-    xaxis: {
-      categories: Object.keys(respondentData),
-      labels:{
-        style: {
-          fontSize:'10px',
-          fontFamily:'Outfit',
-          fontWeight:400
-         },
+        }
       }
-    }
-   
-
+    ]
   };
   }
 
   willngnessToSwtch() {
-    const switchcountData = this.data.switchcount;
-    const switchcountCategories = Object.keys(switchcountData).map((key) => `Seg ${key}`);
-    const switchcountSeries = Object.entries(switchcountData).map(([_, data]) => {
-      return Object.values(data);
+    const spendData = this.dataAglo.switchcount;
+    const spendCategories = Object.keys(spendData).map((key) => `Seg ${parseInt(key)+1}`);
+  const spendSeries = Object.entries(spendData).map(([_, data]) => {
+    return Object.values(data);
+  });
+
+  const series = [
+    { name: "Not Likely", data: [] },
+    { name: "Somewhat Likely", data: [] },
+    { name:"Very Likely", data:[]},
+    { name: "Won't Mind", data: [] }
+  ];
+
+  spendSeries.forEach((data) => {
+    const segmentTotal = data.reduce((total, value) => total + value, 0);
+    series.forEach((range, index) => {
+      const percentage = (data[index] / segmentTotal) * 100;
+      range.data.push(parseFloat(percentage.toFixed(2)));
     });
+  });
   
-    const seriesData = [
-      { name: "Not Likely", data: [] },
-      { name: "Very Likely", data: [] },
-      { name: "Won't Mind", data: [] }
-    ];
-  
-    switchcountSeries.forEach((data, index) => {
-      const segmentTotal = data.reduce((total, value) => total + value, 0);
-      const formattedData = data.map((value) => parseFloat(((value / segmentTotal) * 100).toFixed(2)));
-      seriesData[index].data = formattedData;
-    });
     this.chartOptionsWillingness = {
-      series:seriesData,
+      series: series,
       chart: {
         type: "bar",
         height: 150,
         stacked: true,
-        toolbar: { show: true },
-        zoom: { enabled: true }
+        stackType: "100%"
       },
-      colors:["#53AAFA","#3B9DF7","#086DC9"],
+      colors:["#C3D7FF","#A7C4FF","#6599FF","#3F7FFF"],
       dataLabels:{
         enabled:false
       },
@@ -863,22 +1382,24 @@ capture(){
         {
           breakpoint: 480,
           options: {
-            legend: { position: "bottom", offsetX: -10, offsetY: 0,fontSize: "14px",
-            colors: ["#fff"],
-              fontFamily:'Outfit',
-              fontWeight:400 }
+            legend: {
+              position: "bottom",
+              offsetX: -10,
+              offsetY: 0
+            }
           }
         }
       ],
-      plotOptions: { bar: { horizontal: false } },
-      xaxis: { type: "category", categories: switchcountCategories,
-    labels:{
-      style: {
-        fontSize:'10px',
-        fontFamily:'Outfit',
-        fontWeight:400
-       },
-    } },
+      xaxis: {
+        categories: spendCategories,
+        labels:{
+          style: {
+            fontSize:'10px',
+            fontFamily:'Outfit',
+            fontWeight:400
+           },
+        }
+      },
       yaxis: {
         title: {
           text: "% of Respondents",
@@ -892,23 +1413,22 @@ capture(){
         max: 100,
         tickAmount: 4,
         labels: {
-          formatter: (value) => `${value}%`,
-          style: {
-            fontSize:'10px',
-            fontFamily:'Outfit',
-            fontWeight:400
-           },
+          formatter: (value) => `${value}%`
         }
       },
-      legend: { position: "right", offsetY: 40,
-     },
-      fill: { opacity: 1 }
+      fill: {
+        opacity: 1
+      },
+      legend: {
+        position: "right",
+        offsetX: 0,
+        offsetY: 50
+      }
     };
   }
   spend() {
-    const spendData = this.data.spend;
-    const spendCategories = Object.keys(spendData).map((key) => `Seg ${parseInt(key)}`);
-  const spendSeries = Object.entries(spendData).map(([_, data]) => {
+    const spendCategories = Object.keys(this.dataAglo.spend).map((_, index) => `Seg ${index + 1}`);
+  const spendSeries = Object.entries(this.dataAglo.spend).map(([_, data]) => {
     return Object.values(data);
   });
 
@@ -926,6 +1446,7 @@ capture(){
       range.data.push(parseFloat(percentage.toFixed(2)));
     });
   });
+
   
     this.chartOptionsSpend = {
       series: series,
@@ -981,7 +1502,8 @@ capture(){
     const ageData: { [key: string]: { [key: string]: number } } = this.data.age;
 
   const ageKeys = Object.keys(ageData);
-  const categories = ageKeys.map((key) => `Seg ${parseInt(key)}`);
+  const categories = Object.keys(this.dataAglo.age).map((_, index) => `Seg ${index + 1}`);
+  
 
   // Calculate the percentage for each segment
   const seriesData = {
@@ -1082,7 +1604,7 @@ capture(){
     const genderData = this.data.gender;
 
   const genderKeys = Object.keys(genderData);
-  const categories = genderKeys.map((key) => `Seg ${parseInt(key)}`);
+  const categories = Object.keys(this.dataAglo.gender).map((_, index) => `Seg ${index + 1}`);
   const seriesData = {
     Female: [],
     Male: []
@@ -1177,7 +1699,7 @@ capture(){
   }
   income() {
     const incomeData = this.data.income;
-  const incomeCategories = Object.keys(incomeData).map((key) => `Seg ${parseInt(key)}`);
+  const incomeCategories = Object.keys(this.dataAglo.income).map((_, index) => `Seg ${index + 1}`);
   const incomeSeries = Object.entries(incomeData).map(([_, data]) => {
     return Object.values(data);
   });
@@ -1253,76 +1775,70 @@ capture(){
 // algorithm2
 
   numberOfRespondents1(){
-    const respondentData = this.data.respondent;
-    const barData = Object.values(respondentData);
-    this.chartOptions1 = {
-      series: [
-        {
-          name: "",
-          data: barData
-        }
-      ],
-      chart: {
-        type: "bar",
-        height: 150
-      },
-      colors:["#91ADFD","#FFE0C2","#C0BBEB","#A3F5EC","#FDE68C","#D6D6D6"],
-      plotOptions: {
-        bar: {
-          horizontal: true,
-          distributed: true,
-        }
-      },
-      dataLabels: {
-        enabled: false,
-        offsetX: -6,
-        style: {
-          fontSize: "12px",
-          colors: ["#fff"]
-        },
-        
-      },
-      xaxis: {
-        categories: Object.keys(respondentData),
-        labels:{
-          style: {
-            fontSize:'10px',
-            fontFamily:'Outfit',
-            fontWeight:400
-           },
+    const respondentData = this.dataAglo.respondent;
+  const barData = Object.values(respondentData);
+  const barDataKey = Object.keys(respondentData);
+  this.chartOptions1 = {
+    series: barData,
+    chart: {
+      width: 300,
+      type: "pie"
+    },
+    colors:["#3AA0FF", "#36CBCB", "#FAD337", "#F2637B", "#8F60FA", "#A3A1F3"],
+    dataLabels:{
+      enabled:false
+    },
+    labels: barDataKey,
+    legend: {
+      show: true,
+      formatter: function (seriesName: string, opts: any) {
+        return barDataKey[opts.seriesIndex];
+      }
+    },
+    responsive: [
+      {
+        breakpoint: 480,
+        options: {
+          chart: {
+            width: 200
+          }
         }
       }
-    };
+    ]
+  };
   }
   
-  willngnessToSwtch1(){
-    const switchcountData = this.data.switchcount;
-    const switchcountCategories = Object.keys(switchcountData).map((key) => `Seg ${key}`);
-    const switchcountSeries = Object.entries(switchcountData).map(([_, data]) => {
-      return Object.values(data);
+  willngnessToSwtch1() {
+    const spendData = this.dataAglo.switchcount;
+    const spendCategories = Object.keys(spendData).map((key) => `Seg ${parseInt(key)+1}`);
+  const spendSeries = Object.entries(spendData).map(([_, data]) => {
+    return Object.values(data);
+  });
+
+  const series = [
+    { name: "Not Likely", data: [] },
+    { name: "Somewhat Likely", data: [] },
+    { name:"Very Likely", data:[]},
+    { name: "Won't Mind", data: [] }
+  ];
+
+  spendSeries.forEach((data) => {
+    const segmentTotal = data.reduce((total, value) => total + value, 0);
+    series.forEach((range, index) => {
+      const percentage = (data[index] / segmentTotal) * 100;
+      range.data.push(parseFloat(percentage.toFixed(2)));
     });
+  });
   
-    const seriesData = [
-      { name: "Not Likely", data: [] },
-      { name: "Very Likely", data: [] },
-      { name: "Won't Mind", data: [] }
-    ];
-  
-    switchcountSeries.forEach((data, index) => {
-      const segmentTotal = data.reduce((total, value) => total + value, 0);
-      const formattedData = data.map((value) => parseFloat(((value / segmentTotal) * 100).toFixed(2)));
-      seriesData[index].data = formattedData;
-    });
     this.chartOptionsWillingness1 = {
-      series:seriesData,
+      series: series,
       chart: {
         type: "bar",
         height: 150,
         stacked: true,
-        toolbar: { show: true },
-        zoom: { enabled: true }
+        stackType: "100%"
       },
-      colors:["#53AAFA","#3B9DF7","#086DC9"],
+      colors:["#C3D7FF","#A7C4FF","#6599FF","#3F7FFF"],
       dataLabels:{
         enabled:false
       },
@@ -1330,19 +1846,24 @@ capture(){
         {
           breakpoint: 480,
           options: {
-            legend: { position: "bottom", offsetX: -10, offsetY: 0 }
+            legend: {
+              position: "bottom",
+              offsetX: -10,
+              offsetY: 0
+            }
           }
         }
       ],
-      plotOptions: { bar: { horizontal: false } },
-      xaxis: { type: "category", categories: switchcountCategories,
-    labels:{
-      style: {
-        fontSize:'10px',
-        fontFamily:'Outfit',
-        fontWeight:400
-       },
-    } },
+      xaxis: {
+        categories: spendCategories,
+        labels:{
+          style: {
+            fontSize:'10px',
+            fontFamily:'Outfit',
+            fontWeight:400
+           },
+        }
+      },
       yaxis: {
         title: {
           text: "% of Respondents",
@@ -1356,23 +1877,24 @@ capture(){
         max: 100,
         tickAmount: 4,
         labels: {
-          formatter: (value) => `${value}%`,
-          style: {
-            fontSize:'10px',
-            fontFamily:'Outfit',
-            fontWeight:400
-           },
+          formatter: (value) => `${value}%`
         }
       },
-      legend: { position: "right", offsetY: 40,
-     },
-      fill: { opacity: 1 }
+      fill: {
+        opacity: 1
+      },
+      legend: {
+        position: "right",
+        offsetX: 0,
+        offsetY: 50
+      }
     };
   }
+  
 
   spend1(){
-    const spendData = this.data.spend;
-    const spendCategories = Object.keys(spendData).map((key) => `Seg ${parseInt(key)}`);
+    const spendData = this.dataAglo.spend;
+    const spendCategories = Object.keys(spendData).map((key) => `Seg ${parseInt(key)+1}`);
   const spendSeries = Object.entries(spendData).map(([_, data]) => {
     return Object.values(data);
   });
@@ -1444,10 +1966,10 @@ capture(){
   }
 
   age1(){
-    const ageData: { [key: string]: { [key: string]: number } } = this.data.age;
+    const ageData: { [key: string]: { [key: string]: number } } = this.dataAglo.age;
 
     const ageKeys = Object.keys(ageData);
-    const categories = ageKeys.map((key) => `Seg ${parseInt(key)}`);
+    const categories = ageKeys.map((key) => `Seg ${parseInt(key)+1}`);
   
     // Calculate the percentage for each segment
     const seriesData = {
@@ -1545,10 +2067,10 @@ capture(){
       };
     }
   gender1(){
-    const genderData = this.data.gender;
+    const genderData = this.dataAglo.gender;
 
     const genderKeys = Object.keys(genderData);
-    const categories = genderKeys.map((key) => `Seg ${parseInt(key)}`);
+    const categories = genderKeys.map((key) => `Seg ${parseInt(key)+1}`);
     const seriesData = {
       Female: [],
       Male: []
@@ -1643,8 +2165,8 @@ capture(){
   }
 
   income1(){
-    const incomeData = this.data.income;
-    const incomeCategories = Object.keys(incomeData).map((key) => `Seg ${parseInt(key)}`);
+    const incomeData = this.dataAglo.income;
+    const incomeCategories = Object.keys(incomeData).map((key) => `Seg ${parseInt(key)+1}`);
     const incomeSeries = Object.entries(incomeData).map(([_, data]) => {
       return Object.values(data);
     });
@@ -1722,74 +2244,69 @@ capture(){
   numberOfRespondents2(){
     const respondentData = this.data.respondent;
     const barData = Object.values(respondentData);
+    const barDataKey = Object.keys(respondentData);
     this.chartOptions2 = {
-      series: [
-        {
-          name: "",
-          data: barData
-        }
-      ],
+      series: barData,
       chart: {
-        type: "bar",
-        height: 150
+        width: 300,
+        type: "pie"
       },
-      colors:["#91ADFD","#FFE0C2","#C0BBEB","#A3F5EC","#FDE68C","#D6D6D6"],
-      plotOptions: {
-        bar: {
-          horizontal: true,
-          distributed: true,
+      colors:["#3AA0FF", "#36CBCB", "#FAD337", "#F2637B", "#8F60FA", "#A3A1F3"],
+      dataLabels:{
+        enabled:false
+      },
+      labels: barDataKey,
+      legend: {
+        show: true,
+        formatter: function (seriesName: string, opts: any) {
+          return barDataKey[opts.seriesIndex];
         }
       },
-      dataLabels: {
-        enabled: false,
-        offsetX: -6,
-        style: {
-          fontSize: "12px",
-          colors: ["#fff"]
-        },
-        
-      },
-      xaxis: {
-        categories: Object.keys(respondentData),
-        labels:{
-          style: {
-            fontSize:'10px',
-            fontFamily:'Outfit',
-            fontWeight:400
-           },
+      responsive: [
+        {
+          breakpoint: 480,
+          options: {
+            chart: {
+              width: 200
+            }
+          }
         }
-      }
+      ]
     };
   }
   
   willngnessToSwtch2(){
-    const switchcountData = this.data.switchcount;
-    const switchcountCategories = Object.keys(switchcountData).map((key) => `Seg ${key}`);
-    const switchcountSeries = Object.entries(switchcountData).map(([_, data]) => {
-      return Object.values(data);
+   
+    const spendData = this.dataAglo.switchcount;
+    const spendCategories = Object.keys(spendData).map((key) => `Seg ${parseInt(key)+1}`);
+  const spendSeries = Object.entries(spendData).map(([_, data]) => {
+    return Object.values(data);
+  });
+
+  const series = [
+    { name: "Not Likely", data: [] },
+    { name: "Somewhat Likely", data: [] },
+    { name:"Very Likely", data:[]},
+    { name: "Won't Mind", data: [] }
+  ];
+
+  spendSeries.forEach((data) => {
+    const segmentTotal = data.reduce((total, value) => total + value, 0);
+    series.forEach((range, index) => {
+      const percentage = (data[index] / segmentTotal) * 100;
+      range.data.push(parseFloat(percentage.toFixed(2)));
     });
+  });
   
-    const seriesData = [
-      { name: "Not Likely", data: [] },
-      { name: "Very Likely", data: [] },
-      { name: "Won't Mind", data: [] }
-    ];
-  
-    switchcountSeries.forEach((data, index) => {
-      const segmentTotal = data.reduce((total, value) => total + value, 0);
-      const formattedData = data.map((value) => parseFloat(((value / segmentTotal) * 100).toFixed(2)));
-      seriesData[index].data = formattedData;
-    });
     this.chartOptionsWillingness2 = {
-      series:seriesData,
+      series: series,
       chart: {
         type: "bar",
         height: 150,
         stacked: true,
-        toolbar: { show: true },
-        zoom: { enabled: true }
+        stackType: "100%"
       },
-      colors:["#53AAFA","#3B9DF7","#086DC9"],
+      colors:["#C3D7FF","#A7C4FF","#6599FF","#3F7FFF"],
       dataLabels:{
         enabled:false
       },
@@ -1797,19 +2314,24 @@ capture(){
         {
           breakpoint: 480,
           options: {
-            legend: { position: "bottom", offsetX: -10, offsetY: 0 }
+            legend: {
+              position: "bottom",
+              offsetX: -10,
+              offsetY: 0
+            }
           }
         }
       ],
-      plotOptions: { bar: { horizontal: false } },
-      xaxis: { type: "category", categories: switchcountCategories,
-    labels:{
-      style: {
-        fontSize:'10px',
-        fontFamily:'Outfit',
-        fontWeight:400
-       },
-    } },
+      xaxis: {
+        categories: spendCategories,
+        labels:{
+          style: {
+            fontSize:'10px',
+            fontFamily:'Outfit',
+            fontWeight:400
+           },
+        }
+      },
       yaxis: {
         title: {
           text: "% of Respondents",
@@ -1823,24 +2345,25 @@ capture(){
         max: 100,
         tickAmount: 4,
         labels: {
-          formatter: (value) => `${value}%`,
-          style: {
-            fontSize:'10px',
-            fontFamily:'Outfit',
-            fontWeight:400
-           },
+          formatter: (value) => `${value}%`
         }
       },
-      legend: { position: "right", offsetY: 40,
-     },
-      fill: { opacity: 1 }
+      fill: {
+        opacity: 1
+      },
+      legend: {
+        position: "right",
+        offsetX: 0,
+        offsetY: 50
+      }
     };
 
   }
 
   spend2(){
     const spendData = this.data.spend;
-    const spendCategories = Object.keys(spendData).map((key) => `Seg ${parseInt(key)}`);
+    const spendCategories = Object.keys(spendData).map((_, index) => `Seg ${index + 1}`);
+  
   const spendSeries = Object.entries(spendData).map(([_, data]) => {
     return Object.values(data);
   });
@@ -1915,7 +2438,7 @@ capture(){
     const ageData: { [key: string]: { [key: string]: number } } = this.data.age;
 
     const ageKeys = Object.keys(ageData);
-    const categories = ageKeys.map((key) => `Seg ${parseInt(key)}`);
+    const categories = Object.keys(ageData).map((_, index) => `Seg ${index + 1}`);
   
     // Calculate the percentage for each segment
     const seriesData = {
@@ -2017,7 +2540,7 @@ capture(){
     const genderData = this.data.gender;
 
   const genderKeys = Object.keys(genderData);
-  const categories = genderKeys.map((key) => `Seg ${parseInt(key)}`);
+  const categories = Object.keys(genderData).map((_, index) => `Seg ${index + 1}`);
   const seriesData = {
     Female: [],
     Male: []
@@ -2113,7 +2636,7 @@ capture(){
 
   income2(){
     const incomeData = this.data.income;
-    const incomeCategories = Object.keys(incomeData).map((key) => `Seg ${parseInt(key)}`);
+    const incomeCategories = Object.keys(incomeData).map((_, index) => `Seg ${index + 1}`);
     const incomeSeries = Object.entries(incomeData).map(([_, data]) => {
       return Object.values(data);
     });

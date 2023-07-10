@@ -1,30 +1,31 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Component } from '@angular/core';
+
+interface Message {
+  content: string;
+  sender: 'user' | 'bot';
+}
+
 @Component({
   selector: 'app-chatbot',
   templateUrl: './chatbot.component.html',
   styleUrls: ['./chatbot.component.css']
 })
-export class ChatbotComponent implements OnInit {
-  userInput: string;
-  constructor(private http: HttpClient) { }
+export class ChatbotComponent {
+  messages: Message[] = [];
+  userMessage = '';
 
-  ngOnInit(): void {
+  sendMessage(): void {
+    if (this.userMessage.trim() === '') {
+      return;
+    }
+
+    this.messages.push({ content: this.userMessage, sender: 'user' });
+
+    // Simulate bot response
+    setTimeout(() => {
+      this.messages.push({ content: 'This is a bot response.', sender: 'bot' });
+    }, 500);
+
+    this.userMessage = '';
   }
-widgetVisible = false;
-toggleWidgetVisibility(){
-  this.widgetVisible = !this.widgetVisible;
-}
-sendMessage() {
-  const requestBody = {
-    text: this.userInput
-  };
-
-  this.http.post<any>('http://localhost:5000/dialogflow/rest/text', requestBody)
-    .subscribe(response => {
-      const result = response.text;
-      // Process the result and update the chat messages
-      // You can append the result to the chat-messages div
-    });
-}
 }

@@ -2,6 +2,19 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Options } from 'ng5-slider';
 import { GeneralServiceService } from '../general-service.service';
 import { HttpClient, HttpEventType } from '@angular/common/http';
+import { ActivatedRoute } from '@angular/router';
+import { MatTabChangeEvent } from '@angular/material/tabs';
+import { MatTabGroup } from '@angular/material/tabs';
+interface Message {
+  content: string;
+  sender: 'user' | 'bot';
+}
+
+interface FAQ {
+  question: string;
+  answer: string;
+}
+
 
 @Component({
   selector: 'app-segments',
@@ -17,136 +30,139 @@ isEditing: boolean = false;
  data =
   [
     {
-        "characteristics": [
-            "Trendsetter with a preference for viscous shampoos",
-            "Owns a car",
-            "Gender-neutral",
-            "Satisfied with current shampoo",
-            "Non-judgemental"
-        ],
-        "emotional_need": [
-            "Wants to stand out",
-            "Seeks validation"
-        ],
-        "functional_need": [
-            "Thick and heavy texture",
-            "Long-lasting fragrance"
-        ],
-        "name": [
-            "Viscous Trendsetter"
-        ]
+      "name": "Dynamic Achiever",
+      "characteristics": [
+        "Highly discerning about viscosity",
+        "Owns a car",
+        "Male gender dominant",
+        "Seeks high satisfaction",
+        "Tends to be judgemental"
+      ],
+      "functional_need": [
+        "Effective cleansing",
+        "Visibly thicker hair"
+      ],
+      "emotional_need": [
+        "Desires validation and recognition"
+      ]
     },
     {
-        "characteristics": [
-            "Stylish individual with a preference for protein-infused shampoos",
-            "Owns a car",
-            "Lathers well",
-            "Gender-neutral",
-            "Values hair health"
-        ],
-        "emotional_need": [
-            "Seeks admiration",
-            "Desires healthy-looking hair"
-        ],
-        "functional_need": [
-            "Enhanced hair appearance",
-            "Strengthens hair"
-        ],
-        "name": [
-            "Stylish Protein Lover"
-        ]
+      "name": "Fashionable Trendsetter",
+      "characteristics": [
+        "Highly conscious about looks",
+        "Owns a car",
+        "Prefers voluminous lather",
+        "Female gender dominant",
+        "Looks for protein in products"
+      ],
+      "functional_need": [
+        "Enhanced hair appearance",
+        "Ample foam and lather"
+      ],
+      "emotional_need": [
+        "Seeks admiration and attention"
+      ]
     },
     {
-        "characteristics": [
-            "Individual with soft hair who reflects on their decisions",
-            "Gender-neutral",
-            "Non-judgemental",
-            "Often regrets past actions",
-            "Values pH balance"
-        ],
-        "emotional_need": [
-            "Desires self-reflection",
-            "Seeks emotional stability"
-        ],
-        "functional_need": [
-            "Softens hair",
-            "Maintains pH balance"
-        ],
-        "name": [
-            "Soft and Reflective"
-        ]
+      "name": "Nurturing Optimist",
+      "characteristics": [
+        "Values softness and gentleness",
+        "Both genders present",
+        "Tends to be non-judgemental",
+        "Experiences occasional regret",
+        "Considers pH balance"
+      ],
+      "functional_need": [
+        "Nourishing and gentle care",
+        "Improves hair softness"
+      ],
+      "emotional_need": [
+        "Seeks emotional well-being"
+      ]
     },
     {
-        "characteristics": [
-            "Individual who plans ahead and enjoys aromatherapy",
-            "Owns a car",
-            "Prefers planning",
-            "Gender-neutral",
-            "Appreciates pleasant scents"
-        ],
-        "emotional_need": [
-            "Values organization",
-            "Seeks calming experiences"
-        ],
-        "functional_need": [
-            "Long-term usage",
-            "Aromatherapy benefits"
-        ],
-        "name": [
-            "Planning Aromatherapist"
-        ]
+      "name": "Adventurous Explorer",
+      "characteristics": [
+        "Prefers variety in product usage",
+        "Owns a car",
+        "Enjoys planning ahead",
+        "Both genders present",
+        "Attracted by aromas"
+      ],
+      "functional_need": [
+        "Exploration of new products",
+        "Unique and pleasant scent"
+      ],
+      "emotional_need": [
+        "Seeks excitement and novelty"
+      ]
     },
     {
-        "characteristics": [
-            "Individual with dependents who fights oiliness",
-            "Gender-neutral",
-            "Varied income",
-            "Has used the same brand for a while",
-            "Values oil removal"
-        ],
-        "emotional_need": [
-            "Cares for family",
-            "Seeks oil-free hair"
-        ],
-        "functional_need": [
-            "Efficient oil removal",
-            "Suitable for regular use"
-        ],
-        "name": [
-            "Dependent Oil Fighter"
-        ]
+      "name": "Balanced Provider",
+      "characteristics": [
+        "Has dependents in the family",
+        "Both genders present",
+        "Varied income levels",
+        "Consistent product usage duration",
+        "Values oil removal properties"
+      ],
+      "functional_need": [
+        "Gentle cleansing",
+        "Effective oil removal"
+      ],
+      "emotional_need": [
+        "Desires stability and care for loved ones"
+      ]
     },
     {
-        "characteristics": [
-            "Free-spirited individual who regrets past decisions",
-            "Gender-neutral",
-            "Budget-conscious",
-            "Often regrets past actions",
-            "Values appearance"
-        ],
-        "emotional_need": [
-            "Values freedom",
-            "Seeks self-improvement"
-        ],
-        "functional_need": [
-            "Affordable options",
-            "Cleanses hair effectively"
-        ],
-        "name": [
-            "Free-Spirited Regretter"
-        ]
+      "name": "Free-spirited Enthusiast",
+      "characteristics": [
+        "Believes in letting go of things",
+        "Both genders present",
+        "Considers shampoo spend",
+        "Occasionally experiences regret",
+        "Values good looks"
+      ],
+      "functional_need": [
+        "Refreshing and invigorating cleanse",
+        "Enhanced appearance"
+      ],
+      "emotional_need": [
+        "Seeks liberation and self-expression"
+      ]
     }
 ]
     // data:any=[];
 
-
+    questions: FAQ[] = [
+      {
+        question: 'How can I place an order?',
+        answer: 'To place an order, ...'
+      },
+      {
+        question: 'What are the shipping options?',
+        answer: 'We offer several shipping options, ...'
+      },
+      {
+        question: 'How do I return an item?',
+        answer: 'To return an item, ...'
+      }
+    ];
 selectedSegment: any;
 segmentStatus: string[] = [];
   progressValue: number=0;
+  selectedTab: string;
+
   ngOnInit(): void {
-          //  this.getSegments();
-        // this.updateSegment();
-  }
+            //  this.getSegments();
+          // this.updateSegment();
+        this.route.paramMap.subscribe(params => {
+          this.selectedTab = params.get('tab');
+          console.log( this.selectedTab)
+        });
+      }
+      
+  
   segmentDone: boolean[] = new Array(this.data.length).fill(false);
 
   markSegmentAsDone(index: number) {
@@ -164,13 +180,39 @@ segmentStatus: string[] = [];
   slidervalues(value:any){
     console.log(value)
   }
+  @ViewChild('tabGroup') tabGroup: MatTabGroup;
+  onTabChange(event: number) {
+    // Reset slider values to zero when changing the tab
+    this.sliderValue = 0;
+    this.sliderValue1 = 0;
+    this.sliderValue2 = 0;
+    this.sliderValue3 = 0;
+    this.sliderValue4 = 0;
+  }
   formatLabel(value: number) {
     return value + '%'; // Example formatting, you can customize this as per your requirement
   }
-constructor(private gs: GeneralServiceService, private http: HttpClient){
+constructor(private gs: GeneralServiceService, private http: HttpClient, private route: ActivatedRoute){
   
  
 }
+selectQuestion(question: string): void {
+  // Send the selected question to the backend API
+  const selectedQuestion = this.questions.find((q) => q.question === question);
+  if (selectedQuestion) {
+    this.http.post('API_URL', { question: selectedQuestion.question }).subscribe(
+      (response) => {
+        // Handle the API response as needed
+        console.log('API response:', response);
+      },
+      (error) => {
+        console.log('Error sending question:', error);
+      }
+    );
+  }
+}
+
+
 @ViewChild('content', {static:false})el!:ElementRef;
 capture(){
   this.captureScreen()
@@ -210,21 +252,40 @@ getSegments() {
   );
 }
 updatedData:any=[];
-updateSegment(){
-  this.http.post('',
-{
-    "query":"Can you re-generate the segment 2 deatils little differently."
-}
-  ).subscribe(res=>{
-    // this.updatedData = res;
+updateSegment(segmentNumber: number){
+
+//   this.http.post('',
+// {
+//     "query":"Can you re-generate the segment 1 details only little differently."
+// }
+//   ).subscribe(res=>{
+   
+//     this.data=[];
+//     this.data1=[];
+//     this.data1=res;
+//     this.data = JSON.parse(this.data1.chatgpt_response).segments;
+//     console.log(res);
+//     console.log(this.data);
+    
+//   })
+const apiUrl = 'http://3.111.229.37:5000/faq_hardcoded_ReGenerateSegment';
+const requestBody = { "seg_num": segmentNumber };
+
+this.http.post(apiUrl, requestBody).subscribe(
+  (response) => {
+    // Handle the response if needed
+    console.log('API response Regenerate:', response);
     this.data=[];
     this.data1=[];
-    this.data1=res;
-    this.data = JSON.parse(this.data1.chatgpt_response).segments;
-    console.log(res);
-    console.log(this.data);
-    // chatgpt_response
-  })
+    this.data1=response;
+    this.data= this.data1.segments;
+    console.log("rege", this.data1.segments)
+  },
+  (error) => {
+    // Handle errors if the API call fails
+    console.error('API error:', error);
+  }
+);
 }
 
   private captureScreen() {
@@ -232,6 +293,47 @@ updateSegment(){
     this.gs.captureScreen(element);
   }
 
+
+  userMessage = '';
+  messages: Message[] = [];
+  apiUrl = 'http://3.111.229.37:5000/faq_updateDetails';
+
+
+  sendMessage(): void {
+    if (this.userMessage.trim() === '') {
+      return;
+    }
+  
+    this.messages.push({ content: this.userMessage, sender: 'user' });
+  
+    // Send the user message to the backend API
+    this.http.post<any>(this.apiUrl, { query: this.userMessage }).subscribe(
+      (response) => {
+        // Handle the API response as needed
+        console.log('API response:', response);
+  
+        const keys = Object.keys(response);
+        keys.forEach((key) => {
+          if (Array.isArray(response[key]) && response[key].length > 0) {
+            const joinedContent = response[key].join(', ');
+            const botResponse: Message = {
+              content: joinedContent,
+              sender: 'bot'
+            };
+            this.messages.push(botResponse);
+          }
+        });
+      },
+      (error) => {
+        console.log('Error sending question:', error);
+      }
+    );
+  
+    this.userMessage = '';
+  }
+  
+ 
+  
 openIframe() {
   this.showIframe = true;
 }

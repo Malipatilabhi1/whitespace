@@ -1,19 +1,19 @@
 <div class="main" id = "content" #content style="height:100%;position:sticky">
     <div style="background-color: white;">
-        <p class="px-4 pb-2 pt-4 title">Segment Characteristics Definition</p>
+        <p class="px-4 py-0 my-0 pt-4 title">Segment Characteristics Definition <sub>{{ selectedTab }}</sub> </p>
         <div *ngIf="isLoading" class="progress-bar">
           <!-- Update your progress bar HTML here -->
            Loading... {{ progressValue }}%
             <!-- Display the progress value --> 
          </div>
-        <mat-tab-group style="background-color: white;">
-            <mat-tab  *ngFor="let segment of data; let i = index" (click)="displaySegmentName(segment.name)">
+        <mat-tab-group style="background-color: white;" (selectedIndexChange)="onTabChange($event)" #tabGroup>
+            <mat-tab  *ngFor="let segment of data; let i = index" (click)="displaySegmentName(segment.name);" >
               <ng-template mat-tab-label>
                 <div class="tab-label">
                   <div class="tab-icon">
                     <mat-icon style="color: green" *ngIf="segmentDone[i]">check_circle</mat-icon>
                   </div>
-                  <div class="tab-name">Segment {{i}}</div>
+                  <div class="tab-name">Segment {{i+1}}</div>
                   <div class="tab-status">
                     <span *ngIf="!segmentDone[i]" class="status-indicator">(In-progress)</span>
                   </div>
@@ -31,7 +31,7 @@
                     <input class="name" [(ngModel)]="segment.name">
                   </div>
                   <div class="px-2" style="width:40%;display:flex;  justify-content: end; align-items: center;" >
-                    <button type="button" class="btn btn-dark" style="border-radius: 150px;background-color: #1A356B;font-size: 16px;font-family: Outfit;font-style: normal;font-weight: 500;" (click)="updateSegment()">
+                    <button type="button" class="btn btn-dark" style="border-radius: 150px;background-color: #1A356B;font-size: 16px;font-family: Outfit;font-style: normal;font-weight: 500;" (click)="updateSegment(i)">
                         <i class="bi bi-arrow-repeat">
                             <svg xmlns="http://www.w3.org/2000/svg" style="margin-right:5px" width="20" height="20" fill="currentColor" class="bi bi-arrow-repeat" viewBox="0 0 16 16">
                                 <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z"/>
@@ -164,7 +164,7 @@
                 </div>
                 <div class="card m-1" style="width: 30%">
                     <div class="p-1">
-                        <div class="d-flex flex-row" style="width: 100%;">
+                        <div class="d-flex flex-row py-0 my-0" style="width: 100%;">
                             <p style="color: #222; font-size: 16px;  font-family: Outfit; font-style: normal; font-weight: 600;width:70%">
                                 Map to product attribute
                             </p>
@@ -172,79 +172,104 @@
                           
                         </div>
                         <hr>
-                        <div style="height: 46vh; overflow-y: scroll;">
+                        <div style="height: 46vh; overflow-y: scroll;" class="py-0">
                             
-                                <div>
-                                    <p class="px-2 py-0 my-0 slide">Aroma</p>
-                                <mat-slider class="custom-slider" thumbLabel discrete style="width: 285px;" min="0" max="100" step="1" [(ngModel)]="sliderValue"
+                                <div class="d-flex flex-row py-0 my-0" style="width:100%">
+                                  <div style="width:40%">
+                                    <p class="px-1 py-0 slide" style="margin-top: 10px;">Aroma</p>
+                                   </div>
+                               <div class="py-0 my-0" style="width:60%;">
+                                <mat-slider class="custom-slider" thumbLabel discrete style="width: 155px;" min="0" max="100" step="1" [(ngModel)]="sliderValue"
                                 (click)="slidervalues(sliderValue)">
                                   <input matSliderThumb ></mat-slider>
-                                <span style="color: #222; text-align: right; font-size: 16px; font-family: Outfit; font-style: normal; font-weight: 600;">{{ sliderValue }}</span>
-                                <div class="example-label-container py-0 my-0">
-                                  <label id="example-name-label" class="example-name-label">0</label>
-                                  <label class="example-value-label">100</label>
+                                <span style="color: #222; text-align: right; font-size: 16px; font-family: Outfit; font-style: normal; font-weight: 600;">{{ sliderValue }}%</span>
+                                <div class="example-label-container" style="margin-top:-10px">
+                                  <label id="example-name-label" class="example-name-label py-0 my-0">0</label>
+                                  <label class="example-value-label last ">100</label>
                                 </div>
+                               </div>
                                 </div>
                              
-                               <div>
-                                <p class="px-2 py-0 my-0 slide">long lasting hold</p>
-                                <mat-slider class="custom-slider" thumbLabel discrete style="width: 285px;" min="0" max="100" step="1" [(ngModel)]="sliderValue1">
+                               <div class="d-flex flex-row" style="width:100%">
+                               <div style="width:40%">
+                                <p class="px-1 py-0 my-0 slide">long lasting hold</p>
+                               </div>
+                               <div style="width:60%; margin-top: -10px;">
+                                <mat-slider class="custom-slider" thumbLabel discrete style="width: 150px;" min="0" max="100" step="1" [(ngModel)]="sliderValue1">
                                   <input matSliderThumb ></mat-slider>
-                                <span style="color: #222; text-align: right; font-size: 16px; font-family: Outfit; font-style: normal; font-weight: 600;">{{ sliderValue1 }}</span>
-                                <div class="example-label-container py-0 my-0">
+                                <span style="color: #222; text-align: right; font-size: 16px; font-family: Outfit; font-style: normal; font-weight: 600;">{{ sliderValue1 }}%</span>
+                                <div class="example-label-container" style="margin-top:-10px">
                                   <label id="example-name-label" class="example-name-label">0</label>
-                                  <label class="example-value-label">100</label>
+                                  <label class="example-value-label last">100</label>
                                 </div> 
+                               </div>
+                             </div>  
                                 
-                                <div>
-                                    <p class="px-2 py-0 my-0 slide">clean scalp</p>
-                                    <mat-slider class="custom-slider" thumbLabel discrete style="width: 285px;" min="0" max="100" step="1" [(ngModel)]="sliderValue2">
+                                <div class="d-flex flex-row" style="width:100%">
+                                    <div style="width:40%">
+                                      <p class="px-1 py-0 my-0 slide">clean scalp</p>
+                                    </div>
+                                   <div style="width:60%; margin-top: -10px;">
+                                    <mat-slider class="custom-slider" thumbLabel discrete style="width: 150px;" min="0" max="100" step="1" [(ngModel)]="sliderValue2">
                                       <input matSliderThumb ></mat-slider>
-                                <span style="color: #222; text-align: right; font-size: 16px; font-family: Outfit; font-style: normal; font-weight: 600;">{{ sliderValue2 }}</span>
-                                <div class="example-label-container py-0 my-0">
+                                <span style="color: #222; text-align: right; font-size: 16px; font-family: Outfit; font-style: normal; font-weight: 600;">{{ sliderValue2 }}%</span>
+                                <div class="example-label-container" style="margin-top:-10px">
                                   <label id="example-name-label" class="example-name-label">0</label>
-                                  <label class="example-value-label">100</label>
+                                  <label class="example-value-label last">100</label>
                                 </div>
-                                </div>
+                                   </div>
+                               </div>
 
-                                <div>
-                                    <p class="px-2 py-0 my-0 slide">maintainance</p>
-                                    <mat-slider class="custom-slider" thumbLabel discrete style="width: 285px;" min="0" max="100" step="1" [(ngModel)]="sliderValue3">
+                                <div class="d-flex flex-row" style="width:100%">
+                                   <div style="width:40%">
+                                    <p class="px-1 py-0 my-0 slide">maintainance</p>
+                                   </div>
+                                   <div style="width:60%; margin-top: -10px;">
+                                    <mat-slider class="custom-slider" thumbLabel discrete style="width: 150px;" min="0" max="100" step="1" [(ngModel)]="sliderValue3">
                                       <input matSliderThumb ></mat-slider>
-                                <span style="color: #222; text-align: right; font-size: 16px; font-family: Outfit; font-style: normal; font-weight: 600;">{{ sliderValue3 }}</span>
-                                <div class="example-label-container py-0 my-0">
+                                <span style="color: #222; text-align: right; font-size: 16px; font-family: Outfit; font-style: normal; font-weight: 600;">{{ sliderValue3 }}%</span>
+                                <div class="example-label-container " style="margin-top:-10px">
                                   <label id="example-name-label" class="example-name-label">0</label>
-                                  <label class="example-value-label">100</label>
+                                  <label class="example-value-label last">100</label>
                                 </div>
-                                </div>
+                                   </div>
+                            </div>
 
-                                <div>
-                                    <p class="px-2 py-0 my-0 slide">volume and bounce</p>
-                                    <mat-slider class="custom-slider" thumbLabel discrete style="width: 285px;" min="0" max="100" step="1" [(ngModel)]="sliderValue4">
+                                <div class="d-flex flex-row" style="width:100%">
+                                   <div style="width:40%">
+                                    <p class="px-1 py-0 my-0 slide">volume and bounce</p>
+                                   </div>
+                                   <div style="width:60%; margin-top: -10px;">
+                                    <mat-slider class="custom-slider" thumbLabel discrete style="width: 150px;" min="0" max="100" step="1" [(ngModel)]="sliderValue4">
                                       <input matSliderThumb ></mat-slider>
-                                <span style="color: #222; text-align: right; font-size: 16px; font-family: Outfit; font-style: normal; font-weight: 600;">{{ sliderValue4 }}</span>
-                                <div class="example-label-container py-0 my-0">
+                                <span style="color: #222; text-align: right; font-size: 16px; font-family: Outfit; font-style: normal; font-weight: 600;">{{ sliderValue4 }}%</span>
+                                <div class="example-label-container" style="margin-top:-10px">
                                   <label id="example-name-label" class="example-name-label">0</label>
-                                  <label class="example-value-label">100</label>
+                                  <label class="example-value-label last">100</label> 
+                                   </div>
                                 </div>
                                 </div>
+                                <!-- <div class="d-flex flex-row" style="width:100%">
+                                  <div style="width:40%">
+                                   <p class="px-1 py-0 my-0 slide">volume and bounce</p>
+                                  </div>
+                                  <div style="width:60%;margin-top: -10px;">
+                                   <mat-slider class="custom-slider" thumbLabel discrete style="width: 150px;" min="0" max="100" step="1" [(ngModel)]="sliderValue4">
+                                     <input matSliderThumb ></mat-slider>
+                               <span style="color: #222; text-align: right; font-size: 16px; font-family: Outfit; font-style: normal; font-weight: 600;">{{ sliderValue4 }}</span>
+                               <div class="example-label-container" style="margin-top:-10px">
+                                 <label id="example-name-label" class="example-name-label">0</label>
+                                 <label class="example-value-label last">100</label> 
+                                  </div>
+                               </div>
+                               </div> -->
 
-                                <div>
-                                    <p class="px-2 py-0 my-0 slide">special purpose</p>
-                                    <mat-slider class="custom-slider" thumbLabel discrete style="width: 285px;" min="0" max="100" step="1" [(ngModel)]="sliderValue5">
-                                      <input matSliderThumb ></mat-slider>
-                                <span style="color: #222; text-align: right; font-size: 16px; font-family: Outfit; font-style: normal; font-weight: 600;">{{ sliderValue5 }}</span>
-                                <div class="example-label-container py-0 my-0">
-                                  <label id="example-name-label" class="example-name-label">0</label>
-                                  <label class="example-value-label">100</label>
-                                </div>
-                                </div>
-            
+                               <hr>
                                </div>
 
            
                        
-                    </div>
+       
                    <div style="height:7vh">
                   
                     <div class="d-flex flex-row"  >
@@ -278,74 +303,7 @@
   
     </div>
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title" id="exampleModalLabel"><b>Cluster1</b></h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="d-flex flex-row">
-                    <div class="d-flex flex-column" style="width:40%">
-                        <div>
-                            <h3 class="py-0 my-0"><b>Segment Characteristics</b></h3>
-                            <ul  *ngFor="let characteristic of selectedSegment?.segmentCharacteristics; let i = index;">
-                                <li> {{characteristic }}</li>
-                                
-                            </ul>
-                        </div>
-                        <div>
-                            <h3 class="py-0 my-0"><b>Functional Needs</b></h3>
-                            <ul *ngFor="let need of selectedSegment?.functionalNeeds; let i = index" >
-                                <li> {{need}} </li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h3 class="py-0 my-0"><b>Emotional Need</b></h3>
-                            <ul *ngFor="let need of selectedSegment?.functionalNeeds2; let i = index" class="input-group mx-1 my-3">
-                                <li>{{need}}  </li>
-                            </ul>
-                        </div>
 
-                    </div>
-                    <div style="width:60%">
-                        <div class="slider-container d-flex flex-row">
-                            <p class="pt-4 px-2">aroma</p>
-                            <ng5-slider [(value)]="sliderValues[0]" [options]="sliderOptions"></ng5-slider>
-                        </div>
-                        <div class="slider-container d-flex flex-row">
-                            <p class="pt-4 px-2">clean&nbsp;scalp</p>
-                            <ng5-slider [(value)]="sliderValues[1]" [options]="sliderOptions"></ng5-slider>
-                        </div>
-                        <div class="slider-container d-flex flex-row">
-                            <p class="pt-4 px-2">long&nbsp;lasting&nbsp;hold</p>
-                            <ng5-slider [(value)]="sliderValues[2]" [options]="sliderOptions"></ng5-slider>
-                        </div>
-                        <div class="slider-container d-flex flex-row">
-                            <p class="pt-4 px-2">maintainance</p>
-                            <ng5-slider [(value)]="sliderValues[3]" [options]="sliderOptions"></ng5-slider>
-                        </div>
-                        <div class="slider-container d-flex flex-row">
-                            <p class="pt-4 px-2">volume&nbsp;and&nbsp;bounce</p>
-                            <ng5-slider [(value)]="sliderValues[4]" [options]="sliderOptions"></ng5-slider>
-                        </div>
-                        <div class="slider-container d-flex flex-row">
-                            <p class="pt-4 px-2">special&nbsp;purpose</p>
-                            <ng5-slider [(value)]="sliderValues[5]" [options]="sliderOptions"></ng5-slider>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <div class="modal-footer">
-                <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
-                    (click)="logAllSliderValues()">Done</button>
-            </div>
-        </div>
-    </div>
-</div>
 
 
  <div class="modal fade" id="myModal2" tabindex="-1" aria-labelledby="myModalLabel2" >
@@ -360,13 +318,34 @@
         </div>
         <div class="modal-body">
             
-          <div *ngIf="showIframe">
+          <!-- <div *ngIf="showIframe">
             <iframe src="http://3.111.229.37:3003/bot/73ff8af9-94e6-488c-8ba2-ac53258f7ca4?mode=iframe" width="400" height="300" ></iframe>
+          </div> -->
+          <div class="chat-container">
+            <div class="chat-messages">
+              <div *ngFor="let message of messages" [ngClass]="{ 'user-message': message.sender === 'user', 'bot-message': message.sender === 'bot' }">
+                <div *ngIf="message.sender === 'bot'" class="response-content d-flex flex-row message-container right" >
+                  <div class="response-image" style="margin-right:10px">
+                    <img src="../../assets/images/chatBot.jpg" height="20px" width="20px" alt="Bot Image">
+                  </div>
+                  <div class="bot-response " >{{ message.content }}</div>
+                 
+                </div>
+                <div *ngIf="message.sender === 'user'" class="user-message">{{ message.content }}</div>
+              </div>
+            </div>
           </div>
-       
+          
       </div>
-      <!-- <div class="modal-footer"style="background-color: silver;"> 
-    </div> -->
+      
+      <div class="modal-footerchat-container"> 
+        
+        <div class="chat-input">
+          <input [(ngModel)]="userMessage" placeholder="Type your message..." />
+          <button (click)="sendMessage()">Send</button>
+        </div>
+    </div>
+
     </div>
 </div>
 </div> 

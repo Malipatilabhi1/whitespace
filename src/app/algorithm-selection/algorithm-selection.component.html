@@ -15,11 +15,19 @@
           <mat-expansion-panel-header>
             <mat-panel-title>
               <div class="d-flex flex-row" style="width:100%">
-                <select style="border:none; color:  #3F7FFF;font-family: Outfit;font-size: 14px;font-weight: 500;" (click)="runButtonClicked($event)" class="hide-dropdown-icon">
-                  <option value="option1" selected>KMeans</option>
-                  <option value="option2">Option 2</option>
-                  <option value="option3">Option 3</option>
-                  <option value="option4">Option 4</option>
+                <select style="border:none; color:  #3F7FFF;font-family: Outfit;font-size: 14px;font-weight: 500;" 
+                (click)="runButtonClicked($event)" class="hide-dropdown-icon" [(ngModel)]="selectedAlgorithm">
+                  <option value="option" selected>Select Algorithm</option>
+                  <option value="option1" >K-Means</option>
+                  <option value="option2">Agglomerative Clustering</option>
+                  <option value="option3">DBSCAN</option>
+                  <option value="option4">BIRCH</option>
+                  <option value="option4">Affinity Propagation</option>
+                  <option value="option4">Mini-Batch K-Means</option>
+                  <option value="option4">Mean Shift</option>
+                  <option value="option4">OPTICS</option>
+                  <option value="option4">Spectral Clustering</option>
+                  <option value="option4">Mixture of Gaussians</option>
                 </select>
                 
               </div>
@@ -30,44 +38,37 @@
               <button type="button" style="height:30px;align-items: center;display:flex;font-size: 14px;
               font-family: Roboto;
               font-style: normal;
-              font-weight: 400;background-color:#7672ED;color:white" (click)="runButtonClicked($event)" class="btn btn-light">Run</button>
+              font-weight: 400;background-color:#7672ED;color:white" (click)="runButtonClicked1($event)"
+              [disabled]="!selectedAlgorithm || !selectedInitMethod || !selectedClusterRange || !selectedIterations" class="btn btn-light">Run</button>
              </div>
             </mat-panel-description>
           </mat-expansion-panel-header>
           <div style="overflow-y: scroll;height:57vh">
             <div class="d-flex flex-column">
             <label class="lab">Init Method</label>
-            <select class="drop" >
-              <option value="option1" selected>KMeans++</option>
-              <option value="option2">Option 2</option>
-              <option value="option3">Option 3</option>
-              <option value="option4">Option 4</option>
+            <select class="drop" [(ngModel)]="selectedInitMethod">
+              <option value="" ></option>
+              <option value="option1">KMeans++</option>
             </select>
           </div>
-          <div class="d-flex flex-column my-3">
-            <label class="lab">Cluster Range</label>
-            <select class="drop" >
-              <option value="option1" selected>2-10</option>
-              <option value="option2">Option 2</option>
-              <option value="option3">Option 3</option>
-              <option value="option4">Option 4</option>
-            </select>
-          </div>
-          <div class="d-flex flex-column">
-            <label class="lab"># of iterations</label>
-            <select class="drop" >
-              <option value="option1" selected>10</option>
-              <option value="option2">Option 2</option>
-              <option value="option3">Option 3</option>
-              <option value="option4">Option 4</option>
-            </select>
-          </div>
+         <div class="d-flex flex-row" style="width:100%">
+            <div class="d-flex flex-column px-1" style="width:50%">
+              <label class="lab">Cluster Range</label>
+            <input  [(ngModel)]="selectedClusterRange" class="drop" type="text" placeholder="">
+            </div>
+            <div class="d-flex flex-column px-1" style="width:50%">
+              <label class="lab"># of iterations</label>
+            <input  [(ngModel)]="selectedIterations" class="drop" type="text" placeholder="">
+            </div>
          
-          <div class="p-1"style="background-color: #F8F8F8;width:100%;">
+       
+         </div>
+         
+          <div *ngIf="clickbutton" class="p-1"style="background-color: #F8F8F8;width:100%;">
            
               <div class="card border-0 " style="background-color: white;margin:1em;">
                 
-                <div  id="chart" class="py-0 my-0">
+                <div   id="chart" class="py-0 my-0">
                   <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [xaxis]="chartOptions.xaxis"
                     [yaxis]="chartOptions.yaxis" [dataLabels]="chartOptions.dataLabels" [grid]="chartOptions.grid"
                     [stroke]="chartOptions.stroke" [title]="chartOptions.title" [tooltip]="chartOptions.tooltip"></apx-chart>
@@ -92,11 +93,18 @@
             <mat-panel-title>
               <div class="d-flex flex-row" style="width:100%">
                 <select style="border:none; color:  #3F7FFF;font-family: Outfit;font-size: 14px;font-weight: 500;" 
-                (click)="runButtonClicked($event)" class="hide-dropdown-icon">
-                  <option value="option1" selected>Agglomerative Hierarchical</option>
-                  <option value="option2">Option 2</option>
-                  <option value="option3">Option 3</option>
-                  <option value="option4">Option 4</option>
+                (click)="runButtonClicked($event)" class="hide-dropdown-icon" [(ngModel)]="selectedAlgorithm1">
+                <option value="option" >Select Algorithm</option>
+                <option value="option2">Agglomerative Clustering</option>
+                <option value="option1" >K-Means</option>          
+                <option value="option3">DBSCAN</option>
+                <option value="option4">BIRCH</option>
+                <option value="option4">Affinity Propagation</option>
+                <option value="option4">Mini-Batch K-Means</option>
+                <option value="option4">Mean Shift</option>
+                <option value="option4">OPTICS</option>
+                <option value="option4">Spectral Clustering</option>
+                <option value="option4">Mixture of Gaussians</option>
                 </select>
                 
               </div>
@@ -107,29 +115,39 @@
               <button type="button" style="height:30px;align-items: center;display:flex;font-size: 14px;
               font-family: Roboto;
               font-style: normal;
-              font-weight: 400;background-color:#7672ED;color:white" (click)="runButtonClicked($event)" class="btn btn-light">Run</button>
+              font-weight: 400;background-color:#7672ED;color:white" (click)="runButtonClickedDendro($event)" 
+              [disabled]="!selectedAlgorithm1 || !selectedClusteringMethod1 || !selectedClusterMetric "  class="btn btn-light">Run</button>
              </div>
             </mat-panel-description>
           </mat-expansion-panel-header>
           <div style="overflow-y: scroll;height:57vh" >
-            <div class="d-flex flex-column" style="padding-bottom: 8em;">
+            <div class="d-flex flex-column">
             <label class="lab">Clustering Method</label>
-            <select class="drop" >
+            <select class="drop" [(ngModel)]="selectedClusteringMethod1">
+              <option value=""></option>
               <option value="option1" selected>Ward</option>
-              <option value="option2">Option 2</option>
-              <option value="option3">Option 3</option>
-              <option value="option4">Option 4</option>
+              <option value="option2">Complete</option>
+              <option value="option3">Single</option>
+            </select>
+          </div>
+          <div class="d-flex flex-column my-1">
+            <label class="lab">Metric</label>
+            <select class="drop" [(ngModel)]="selectedClusterMetric">
+              <option value=""></option>
+              <option value="option1" selected>Euclidean</option>
+              
+             
             </select>
           </div>
         
          
-          <div class="p-1"style="background-color: #F8F8F8;width:100%;">
+          <div class="p-1"style="background-color: #F8F8F8;width:100%;" *ngIf="clickbuttonDendro">
            
               <div class="card border-0 " style="background-color: white;margin:1em;">
                 
                 <div >
                   <p class="px-2 dendo">Dendrogram</p>
-                  <div  class="pt-3"  id="dendrogram"></div>
+                  <img *ngIf="imageSource" [src]="imageSource" width="250px" height="170px" alt="">
                 </div>
               
               </div>
@@ -149,11 +167,20 @@
           <mat-expansion-panel-header>
             <mat-panel-title>
               <div class="d-flex flex-row" style="width:100%">
-                <select style="border:none; color:  #3F7FFF;font-family: Outfit;font-size: 14px;font-weight: 500;" (click)="runButtonClicked($event)" class="hide-dropdown-icon">
-                  <option value="option1" selected>DB Scan</option>
-                  <option value="option2">Option 2</option>
-                  <option value="option3">Option 3</option>
-                  <option value="option4">Option 4</option>
+                <select style="border:none; color:  #3F7FFF;font-family: Outfit;font-size: 14px;font-weight: 500;" 
+                (click)="runButtonClicked($event)" class="hide-dropdown-icon" [(ngModel)]="selectedAlgorithm2">
+                  <option value="option" >Select Algorithm</option>
+                  <option value="option3">DBSCAN</option>
+                <option value="option2">Agglomerative Clustering</option>
+                <option value="option1" >K-Means</option>          
+                
+                <option value="option4">BIRCH</option>
+                <option value="option4">Affinity Propagation</option>
+                <option value="option4">Mini-Batch K-Means</option>
+                <option value="option4">Mean Shift</option>
+                <option value="option4">OPTICS</option>
+                <option value="option4">Spectral Clustering</option>
+                <option value="option4">Mixture of Gaussians</option>
                 </select>
                 
               </div>
@@ -164,23 +191,23 @@
               <button type="button" style="height:30px;align-items: center;display:flex;font-size: 14px;
               font-family: Roboto;
               font-style: normal;
-              font-weight: 400;background-color:#7672ED;color:white" (click)="runButtonClicked($event)" class="btn btn-light">Run</button>
+              font-weight: 400;background-color:#7672ED;color:white" (click)="runButtonClickedDB($event)" 
+               [disabled]="!selectedAlgorithm2 || !selectedParam" class="btn btn-light">Run</button>
              </div>
             </mat-panel-description>
           </mat-expansion-panel-header>
           <div style="overflow-y: scroll;height:57vh">
-            <div class="d-flex flex-column" style="padding-bottom: 8em;">
+            <div class="d-flex flex-column" style="padding-bottom: 2.5em;" >
             <label class="lab">Param1</label>
-            <select class="drop" >
-              <option value="option1" selected>8</option>
-              <option value="option2">Option 2</option>
-              <option value="option3">Option 3</option>
-              <option value="option4">Option 4</option>
+            <select class="drop" [(ngModel)]="selectedParam">
+              <option value="" ></option>
+              <option value="option1" >8</option>
+             
             </select>
           </div>
          
          
-          <div class="p-1"style="background-color: #F8F8F8;width:100%;">
+          <div class="p-1"style="background-color: #F8F8F8;width:100%;" *ngIf="clickbuttonDB">
            
               <div class="card border-0 " style="background-color: white;margin:1em;">
                 

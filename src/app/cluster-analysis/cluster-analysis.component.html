@@ -1,7 +1,14 @@
 <div class="main" id="content" #content>
+  <div *ngIf="isLoading" class="loading-container">
+    <div class="d-flex justify-content-center">
+      <!-- <div class="spinner-border" role="status" > -->
+        <span class="sr-only" id="loading"></span>
+      <!-- </div> -->
+    </div>
+  </div>
   <div class="d-flex flex-row px-3 pt-1 mb-0" style="width:100%;background-color: white;">
     <div class="py-0 my-0" style="width:75%">
-      <h3 class="heading">Cluster Analysis</h3>
+      <p class="heading">Cluster Analysis</p>
     </div>
     <div style="width:5%">
       <!-- <button type="button" class="btn btn-primary">New Segment</button> -->
@@ -40,9 +47,15 @@
                 <div class="card m-2" style="width:50%">
                   <h4 class="px-2 py-0 my-0">Number of Respondents In Each Segment</h4>
                   <div id="chart">
-                    <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart"
-                      [responsive]="chartOptions.responsive" [dataLabels]="chartOptions.dataLabels" [legend]="chartOptions.legend"
-                      [tooltip]="chartOptions.tooltip"></apx-chart>
+                    <apx-chart
+                    [series]="chartOptions.series"
+                    [chart]="chartOptions.chart"
+                    [labels]="chartOptions.labels"
+                    [title]="chartOptions.title"
+                    [theme]="chartOptions.theme"
+                    [responsive]="chartOptions.responsive"
+                    [dataLabels]="chartOptions.dataLabels"
+                  ></apx-chart>
                   </div>
 
                 </div>
@@ -134,9 +147,13 @@
                 <div class="card m-2" style="width:50%">
                   <h4 class="px-2 py-0 my-0">Number of Respondents In Each Segment</h4>
                   <div id="chart6">
-                    <apx-chart [series]="chartOptions1.series" [chart]="chartOptions1.chart"
-                    [responsive]="chartOptions1.responsive" [dataLabels]="chartOptions1.dataLabels"
-                    [legend]="chartOptions1.legend"></apx-chart>
+                    <apx-chart [series]="chartOptions1.series"
+                    [chart]="chartOptions1.chart"
+                    [labels]="chartOptions1.labels"
+                    [title]="chartOptions1.title"
+                    [theme]="chartOptions1.theme"
+                    [responsive]="chartOptions1.responsive"
+                    [dataLabels]="chartOptions1.dataLabels"></apx-chart>
                    
                   </div>
                 </div>
@@ -225,9 +242,13 @@
                 <div class="card m-2" style="width:50%">
                   <h4 class="px-2 py-0 my-0">Number of Respondents In Each Segment</h4>
                   <div id="chart12">
-                    <apx-chart [series]="chartOptions2.series" [chart]="chartOptions2.chart"
-                      [responsive]="chartOptions2.responsive" [dataLabels]="chartOptions2.dataLabels"
-                      [legend]="chartOptions2.legend"></apx-chart>
+                    <apx-chart  [series]="chartOptions2.series"
+                    [chart]="chartOptions2.chart"
+                    [labels]="chartOptions2.labels"
+                    [title]="chartOptions2.title"
+                    [theme]="chartOptions2.theme"
+                    [responsive]="chartOptions2.responsive"
+                    [dataLabels]="chartOptions2.dataLabels"></apx-chart>
                   </div>
                 </div>
                 <div class="card m-2" style="width:50%">

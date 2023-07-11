@@ -173,7 +173,7 @@ export class MrSummaryComponent implements OnInit {
     this.score()
   }
   
-
+  isLoading = false;
   dataScreen2= {
     "number_of_questions": 43,
     "number_of_respondenets": 1500,
@@ -649,14 +649,18 @@ score(){
     };
     
   }
-
-  navigatetoAlgorithmSelection(){
-    console.log("this", this.el.nativeElement)
-    // this.gs.generatePdf22(this.el.nativeElement);
+  navigateToAlgorithmSelection() {
     this.captureScreen()
-    this.router.navigate(['./algorithm'])
-
+    this.isLoading = true; // Show the progress bar
+  
+    setTimeout(() => {
+      this.router.navigate(['./algorithm']).then(() => {
+        this.isLoading = false; // Hide the progress bar when navigation is complete
+      });
+    }, 3000); // Delay of 3 seconds
   }
+  
+ 
   
   private captureScreen() {
     const element = this.el.nativeElement;

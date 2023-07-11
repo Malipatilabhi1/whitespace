@@ -2,7 +2,7 @@
 #modal-dialog {
     position: fixed;
     margin: auto;
-    width: 420px;
+    width: 470px;
     height: 90%;
     right: 20px;
     bottom:0px;
@@ -212,7 +212,7 @@ justify-content: end;
   font-family: Outfit;
 font-size: 20px;
 font-style: normal;
-font-weight: 500;
+font-weight: 600;
 }
 
 .inputText{
@@ -223,7 +223,7 @@ font-style: normal;
 font-weight: 400;
 }
 .nextButton{
-  width: 103px;
+  /* width: 103px; */
 height: 40px;
 padding: 8px 16px;
 justify-content: center;
@@ -260,6 +260,7 @@ font-weight: 500;
   padding: 10px;
   margin-bottom: 5px;
   border-radius: 5px;
+  width:70%;
   align-self: flex-start;
 }
 
@@ -268,21 +269,29 @@ font-weight: 500;
   padding: 10px;
   margin-bottom: 5px;
   border-radius: 5px;
+  width:70%;
   align-self: flex-end;
+  position:relative;
+  right:-100px;
+  justify-content: end;
+
 }
 
 .chat-input {
   display: flex;
-  margin-top: 10px;
-  width:100%;
-  padding:20px;
+  /* margin-top: 10px; */
+  width:93%;
+  padding:5px;
+  margin:20px;
+  border: 1px solid #918EF1;
+  /* border-radius: 10%; */
 }
 
 .chat-input input {
   flex: 1;
   padding: 5px;
   border-radius: 3px;
-  border: 1px solid #ccc;
+  border: none;
 }
 
 .chat-input button {

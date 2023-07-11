@@ -18,6 +18,7 @@ export class SideNavComponent implements OnInit {
    segment: boolean = false;
    analysis: boolean = false;
    whitespaceAnalysis: boolean = false;
+   LandingScreenComponent:boolean=false;
 
   ngOnInit(): void {
   }
@@ -33,7 +34,15 @@ getEndPoint() {
       // Hide loading indicator
       this.currentRoute = event.url;
       console.log(this.currentRoute);
-      if (this.currentRoute === "/summary" || this.currentRoute === "/") {
+      if ( this.currentRoute === "/") {
+        this.summary = false;
+        this.algorithm = false;
+        this.segment=false;
+        this.analysis=false;
+        this.whitespaceAnalysis=false;
+        this.LandingScreenComponent=true;
+      }
+      if (this.currentRoute === "/summary" ) {
         this.summary = true;
         this.algorithm = false;
         this.segment=false;

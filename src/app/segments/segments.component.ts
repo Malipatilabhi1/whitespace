@@ -5,6 +5,7 @@ import { HttpClient, HttpEventType } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { MatTabGroup } from '@angular/material/tabs';
+
 interface Message {
   content: string;
   sender: 'user' | 'bot';
@@ -160,41 +161,53 @@ segmentStatus: string[] = [];
           this.selectedTab = params.get('tab');
           console.log( this.selectedTab)
         });
-      }
-      
+
+        const storedSegmentDone = localStorage.getItem('segmentDone');
+    if (storedSegmentDone) {
+      this.segmentDone = JSON.parse(storedSegmentDone);
+    } else {
+      this.segmentDone = Array(this.data.length).fill(false);
+    }
+    this.sliderValues = Array(this.data.length).fill(0);
+   }
+   allSegmentsDone: boolean = false;
+   
+   checkAllSegmentsDone() {
+     this.allSegmentsDone = this.segmentDone.every(done => done);
+   }
+   
   
-  segmentDone: boolean[] = new Array(this.data.length).fill(false);
+   
+      
+      segmentDone: boolean[] = [];
+  // segmentDone: boolean[] = new Array(this.data.length).fill(false);
 
   markSegmentAsDone(index: number) {
     this.segmentDone[index] = true;
-   
+    this.checkAllSegmentsDone();
+    // Store segmentDone array in localStorage
+    localStorage.setItem('segmentDone', JSON.stringify(this.segmentDone));
     this.segmentStatus[index] = '';
   }
+  isSegmentDone(index: number) {
+    return this.segmentDone[index];
+  }
   
-  sliderValue: number = 0;
-  sliderValue1: number = 0;
-  sliderValue2: number = 0;
-  sliderValue3: number = 0;
-  sliderValue4: number = 0;
-  sliderValue5: number = 0;
-  slidervalues(value:any){
+  
+  slidervalue(value:any){
     console.log(value)
   }
   @ViewChild('tabGroup') tabGroup: MatTabGroup;
   onTabChange(event: number) {
-    // Reset slider values to zero when changing the tab
-    this.sliderValue = 0;
-    this.sliderValue1 = 0;
-    this.sliderValue2 = 0;
-    this.sliderValue3 = 0;
-    this.sliderValue4 = 0;
+    
+    this.sliderValues =[0]
   }
   formatLabel(value: number) {
     return value + '%'; // Example formatting, you can customize this as per your requirement
   }
 constructor(private gs: GeneralServiceService, private http: HttpClient, private route: ActivatedRoute){
   
- 
+  this.segmentDone = Array(this.data.length).fill(false);
 }
 selectQuestion(question: string): void {
   // Send the selected question to the backend API
@@ -218,6 +231,18 @@ capture(){
   this.captureScreen()
 }
 data1:any=[];
+segments: any[] = [
+  { name: 'Aroma' },
+  { name: 'Long Lasting Hold' },
+  { name: 'Clean Scalp' },
+  { name: 'Maintenance' },
+  { name: 'Volume and Bounce' }
+];
+sliderValues: number[] = [];
+
+slidervalues(value: number) {
+  console.log(value);
+}
 //  segmentNames:any;
 // getSegments(){
 //   debugger
@@ -390,7 +415,7 @@ deleteEmotionalNeed(segment: any, index: number) {
 addEmotionalNeed(segment: any) {
   segment.emotional_need.push(''); // Add an empty string as a new emotional need
 }
-  sliderValues: number[] = [0, 0, 0, 0, 0, 0];
+  // sliderValues: number[] = [0, 0, 0, 0, 0, 0];
   sliderOptions: Options = {
     floor: 0,
     ceil: 100,

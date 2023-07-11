@@ -10,7 +10,8 @@ import {
   ApexChart,
   ApexPlotOptions,
   ApexLegend,
-  ApexNonAxisChartSeries
+  ApexNonAxisChartSeries,
+  ApexTheme
 } from "ng-apexcharts";
 import {
   ApexResponsive,
@@ -24,10 +25,9 @@ export type ChartOptions = {
   chart: ApexChart;
   responsive: ApexResponsive[];
   labels: any;
-  colors:any;
+  theme: ApexTheme;
+  title: ApexTitleSubtitle;
   dataLabels:any;
-  legend:any;
-  tooltip:any;
 };
 export type ChartOptionsWillingness = {
   series: ApexAxisChartSeries;
@@ -98,9 +98,9 @@ export type ChartOptions1 = {
   chart: ApexChart;
   responsive: ApexResponsive[];
   labels: any;
-  colors:any;
+  theme: ApexTheme;
+  title: ApexTitleSubtitle;
   dataLabels:any;
-  legend:any;
 };
 export type ChartOptionsWillingness1 = {
   series: ApexAxisChartSeries;
@@ -172,9 +172,9 @@ export type ChartOptions2 = {
   chart: ApexChart;
   responsive: ApexResponsive[];
   labels: any;
-  colors:any;
+  theme: ApexTheme;
+  title: ApexTitleSubtitle;
   dataLabels:any;
-  legend:any;
 };
 export type ChartOptionsWillingness2 = {
   series: ApexAxisChartSeries;
@@ -1259,10 +1259,11 @@ tableContent1={
 
 
 
-
+  isLoading = false;
 
   constructor(private gs: GeneralServiceService, private router: Router) { }
   navigateToSegmentCharacteristics(tabName: string) {
+    
     this.router.navigate(['/segment', { tab: tabName }]);
   }
   ngOnInit(): void {
@@ -1308,27 +1309,17 @@ tableContent1={
   this.chartOptions = {
     series: barData,
     chart: {
-      width: 300,
+      width: "60%",
       type: "pie"
     },
-    colors:["#3AA0FF", "#36CBCB", "#FAD337", "#F2637B", "#8F60FA", "#A3A1F3"],
+    labels: barDataKey,
+    theme: {
+      monochrome: {
+        enabled: true
+      }
+    },
     dataLabels:{
-      enabled:false
-    },
-    labels: barDataKey.map((key) => `${key}: {y}`),
-    legend: {
-      show: true,
-      formatter: function (seriesName: string, opts: any) {
-        return barDataKey[opts.seriesIndex];
-      }
-    },
-    tooltip: {
-      enabled: true,
-      y: {
-        formatter: function (value: any, opts: any) {
-          return barDataKey[opts.seriesIndex]; // Return the value directly without series name
-        }
-      }
+       enabled:false
     },
     responsive: [
       {
@@ -1337,7 +1328,9 @@ tableContent1={
           chart: {
             width: 200
           },
-         
+          legend: {
+            position: "bottom"
+          }
         }
       }
     ]
@@ -1346,25 +1339,25 @@ tableContent1={
 
   willngnessToSwtch() {
     const spendData = this.dataAglo.switchcount;
-    const spendCategories = Object.keys(spendData).map((key) => `Seg ${parseInt(key)+1}`);
-  const spendSeries = Object.entries(spendData).map(([_, data]) => {
-    return Object.values(data);
-  });
-
-  const series = [
-    { name: "Not Likely", data: [] },
-    { name: "Somewhat Likely", data: [] },
-    { name:"Very Likely", data:[]},
-    { name: "Won't Mind", data: [] }
-  ];
-
-  spendSeries.forEach((data) => {
-    const segmentTotal = data.reduce((total, value) => total + value, 0);
-    series.forEach((range, index) => {
-      const percentage = (data[index] / segmentTotal) * 100;
-      range.data.push(parseFloat(percentage.toFixed(2)));
+    const spendCategories = Object.keys(spendData).map((_, index) => `Seg ${index + 1}`);
+    const spendSeries = Object.entries(spendData).map(([_, data]) => {
+      return Object.values(data);
     });
-  });
+  
+    const series = [
+      { name: "Not Likely", data: [] },
+      { name: "Somewhat Likely", data: [] },
+      { name: "Very Likely", data: [] },
+      { name: "Won't Mind", data: [] }
+    ];
+  
+    spendSeries.forEach((data) => {
+      const segmentTotal = data.reduce((total, value) => total + value, 0);
+      series.forEach((range, index) => {
+        const percentage = (data[index] / segmentTotal) * 100;
+        range.data.push(parseFloat(percentage.toFixed(2)));
+      });
+    });
   
     this.chartOptionsWillingness = {
       series: series,
@@ -1390,7 +1383,13 @@ tableContent1={
           }
         }
       ],
+      plotOptions: {
+        bar: {
+          horizontal: false
+        }
+      },
       xaxis: {
+        type: "category",
         categories: spendCategories,
         labels:{
           style: {
@@ -1422,13 +1421,17 @@ tableContent1={
       legend: {
         position: "right",
         offsetX: 0,
-        offsetY: 50
+        offsetY: 50,
+        formatter: function (seriesName, opts) {
+          return seriesName !== undefined ? seriesName : "";
+        }
       }
     };
   }
+  
   spend() {
-    const spendCategories = Object.keys(this.dataAglo.spend).map((_, index) => `Seg ${index + 1}`);
-  const spendSeries = Object.entries(this.dataAglo.spend).map(([_, data]) => {
+    const spendCategories = Object.keys(this.data.spend).map((_, index) => `Seg ${index + 1}`);
+  const spendSeries = Object.entries(this.data.spend).map(([_, data]) => {
     return Object.values(data);
   });
 
@@ -1499,37 +1502,29 @@ tableContent1={
     };
   }
   age(){
-    const ageData: { [key: string]: { [key: string]: number } } = this.data.age;
-
-  const ageKeys = Object.keys(ageData);
-  const categories = Object.keys(this.dataAglo.age).map((_, index) => `Seg ${index + 1}`);
-  
-
-  // Calculate the percentage for each segment
-  const seriesData = {
-    "0-25": [],
-    "25-40": [],
-    "40-50": [],
-    "50+": []
-  };
-
-  ageKeys.forEach((key) => {
-    const ageGroup = ageData[key];
-
-    // Calculate the total for the current segment
-    const segmentTotal = Object.values(ageGroup).reduce((total, value) => total + value, 0);
-
-    // Calculate the percentage for each range in the current segment
-    Object.keys(ageGroup).forEach((range) => {
-      const percentage = (ageGroup[range] / segmentTotal) * 100;
-      seriesData[range].push(percentage.toFixed(2));
-    });
+    const ageData = this.data.age;
+    const ageCategories = Object.keys(this.data.age).map((_, index) => `Seg ${index + 1}`);
+  const ageSeries = Object.entries(ageData).map(([_, data]) => {
+    return Object.values(data);
   });
 
-  const series = Object.keys(seriesData).map((range) => ({
-    name: range,
-    data: seriesData[range]
-  }));
+  const series = [
+    { name: "0-25", data: [] },
+    { name: "25-40", data: [] },
+    { name:"40-50", data:[]},
+    { name: "50+", data: [] }
+  ];
+
+  ageSeries.forEach((data) => {
+    const segmentTotal = data.reduce((total, value) => total + value, 0);
+    series.forEach((range, index) => {
+      const percentage = (data[index] / segmentTotal) * 100;
+      range.data.push(parseFloat(percentage.toFixed(2)));
+    });
+  });
+  
+    
+ 
     this.chartOptionsAge = {
       series: series,
       chart: {
@@ -1566,7 +1561,7 @@ tableContent1={
       },
       xaxis: {
         type: "category",
-        categories: categories,
+        categories: ageCategories,
         labels:{
           style: {
             fontSize:'10px',
@@ -1603,17 +1598,18 @@ tableContent1={
   gender() {
     const genderData = this.data.gender;
 
+  
   const genderKeys = Object.keys(genderData);
-  const categories = Object.keys(this.dataAglo.gender).map((_, index) => `Seg ${index + 1}`);
+  const categories = Object.keys(this.data.gender).map((_, index) => `Seg ${index + 1}`);
   const seriesData = {
-    Female: [],
-    Male: []
+    Female: Array(genderKeys.length).fill(0),
+    Male: Array(genderKeys.length).fill(0)
   };
 
-  genderKeys.forEach((key) => {
+  genderKeys.forEach((key, index) => {
     const genderGroup = genderData[key];
     Object.keys(genderGroup).forEach((gender) => {
-      seriesData[gender].push(genderGroup[gender]);
+      seriesData[gender][index] = genderGroup[gender];
     });
   });
 
@@ -1699,7 +1695,7 @@ tableContent1={
   }
   income() {
     const incomeData = this.data.income;
-  const incomeCategories = Object.keys(this.dataAglo.income).map((_, index) => `Seg ${index + 1}`);
+  const incomeCategories = Object.keys(this.data.income).map((_, index) => `Seg ${index + 1}`);
   const incomeSeries = Object.entries(incomeData).map(([_, data]) => {
     return Object.values(data);
   });
@@ -1781,19 +1777,17 @@ tableContent1={
   this.chartOptions1 = {
     series: barData,
     chart: {
-      width: 300,
+      width: "60%",
       type: "pie"
     },
-    colors:["#3AA0FF", "#36CBCB", "#FAD337", "#F2637B", "#8F60FA", "#A3A1F3"],
-    dataLabels:{
-      enabled:false
-    },
     labels: barDataKey,
-    legend: {
-      show: true,
-      formatter: function (seriesName: string, opts: any) {
-        return barDataKey[opts.seriesIndex];
+    theme: {
+      monochrome: {
+        enabled: true
       }
+    },
+    dataLabels:{
+       enabled:false
     },
     responsive: [
       {
@@ -1801,6 +1795,9 @@ tableContent1={
         options: {
           chart: {
             width: 200
+          },
+          legend: {
+            position: "bottom"
           }
         }
       }
@@ -2248,19 +2245,17 @@ tableContent1={
     this.chartOptions2 = {
       series: barData,
       chart: {
-        width: 300,
+        width: "60%",
         type: "pie"
       },
-      colors:["#3AA0FF", "#36CBCB", "#FAD337", "#F2637B", "#8F60FA", "#A3A1F3"],
-      dataLabels:{
-        enabled:false
-      },
       labels: barDataKey,
-      legend: {
-        show: true,
-        formatter: function (seriesName: string, opts: any) {
-          return barDataKey[opts.seriesIndex];
+      theme: {
+        monochrome: {
+          enabled: true
         }
+      },
+      dataLabels:{
+         enabled:false
       },
       responsive: [
         {
@@ -2268,6 +2263,9 @@ tableContent1={
           options: {
             chart: {
               width: 200
+            },
+            legend: {
+              position: "bottom"
             }
           }
         }

@@ -1,6 +1,13 @@
 
 
 <div class="d-flex flex-column" id = "content" #content >
+  <div *ngIf="isLoading1" class="loading-container">
+    <div class="d-flex justify-content-center">
+      <!-- <div class="spinner-border" role="status" > -->
+        <span class="sr-only" id="loading"></span>
+      <!-- </div> -->
+    </div>
+  </div>
   <div class="row1 d-flex flex-row p-2" style="width:100%;background-color: white;">
     <div style="width:60%">
       <p class="heading">Algorithm Selection</p>
@@ -16,8 +23,8 @@
             <mat-panel-title>
               <div class="d-flex flex-row" style="width:100%">
                 <select style="border:none; color:  #3F7FFF;font-family: Outfit;font-size: 14px;font-weight: 500;" 
-                (click)="runButtonClicked($event)" class="hide-dropdown-icon" [(ngModel)]="selectedAlgorithm">
-                  <option value="option" selected>Select Algorithm</option>
+                (click)="runButtonClicked($event)" (change)="onSelectAlgorithm()" class="hide-dropdown-icon" [(ngModel)]="selectedAlgorithm">
+                <option [ngValue]="null" disabled selected hidden>Select Algorithm</option>
                   <option value="option1" >K-Means</option>
                   <option value="option2">Agglomerative Clustering</option>
                   <option value="option3">DBSCAN</option>
@@ -34,16 +41,15 @@
             </mat-panel-title>
             <mat-panel-description>
               <div style="width:80%"></div>
-             <div style="display: flex;justify-content: end;width:20%">
-              <button type="button" style="height:30px;align-items: center;display:flex;font-size: 14px;
-              font-family: Roboto;
-              font-style: normal;
-              font-weight: 400;background-color:#7672ED;color:white" (click)="runButtonClicked1($event)"
-              [disabled]="!selectedAlgorithm || !selectedInitMethod || !selectedClusterRange || !selectedIterations" class="btn btn-light">Run</button>
-             </div>
+              <div style="display: flex; justify-content: end; width: 20%">
+                <button type="button" 
+                  (click)="runButtonClicked1($event)" [disabled]="!selectedAlgorithm || !selectedInitMethod ||
+                  !selectedClusterRange || !selectedIterations" class="btn btn-light run-button">Run</button>
+              </div>
+              
             </mat-panel-description>
           </mat-expansion-panel-header>
-          <div style="overflow-y: scroll;height:57vh">
+          <div style="overflow-y: scroll;height:57vh" *ngIf="isOptionSelectedA1">
             <div class="d-flex flex-column">
             <label class="lab">Init Method</label>
             <select class="drop" [(ngModel)]="selectedInitMethod">
@@ -63,8 +69,14 @@
          
        
          </div>
-         
-          <div *ngIf="clickbutton" class="p-1"style="background-color: #F8F8F8;width:100%;">
+         <div *ngIf="isLoadingKM && clickbutton">
+          <div class="d-flex justify-content-center">
+            <!-- <div class="spinner-border" role="status" > -->
+              <span class="sr-only" id="loading"></span>
+            <!-- </div> -->
+          </div>
+        </div>
+          <div *ngIf="!isLoadingKM && clickbutton" class="p-1"style="background-color: #F8F8F8;width:100%;">
            
               <div class="card border-0 " style="background-color: white;margin:1em;">
                 
@@ -77,7 +89,7 @@
               </div>
               <div class="d-flex flex-column" style="width:50%">
                 <label class="lab"># of clusters</label>
-              <input class="drop" type="text" placeholder="">
+              <input class="drop" type="text" placeholder="" required [(ngModel)]="clusterKm">
               </div>
             
           </div>
@@ -93,8 +105,8 @@
             <mat-panel-title>
               <div class="d-flex flex-row" style="width:100%">
                 <select style="border:none; color:  #3F7FFF;font-family: Outfit;font-size: 14px;font-weight: 500;" 
-                (click)="runButtonClicked($event)" class="hide-dropdown-icon" [(ngModel)]="selectedAlgorithm1">
-                <option value="option" >Select Algorithm</option>
+                (click)="runButtonClicked($event)" (change)="onSelectAlgorithm1()" class="hide-dropdown-icon" [(ngModel)]="selectedAlgorithm1">
+                <option [ngValue]="null" disabled selected hidden>Select Algorithm</option>
                 <option value="option2">Agglomerative Clustering</option>
                 <option value="option1" >K-Means</option>          
                 <option value="option3">DBSCAN</option>
@@ -112,15 +124,12 @@
             <mat-panel-description>
               <div style="width:80%"></div>
              <div style="display: flex;justify-content: end;width:20%">
-              <button type="button" style="height:30px;align-items: center;display:flex;font-size: 14px;
-              font-family: Roboto;
-              font-style: normal;
-              font-weight: 400;background-color:#7672ED;color:white" (click)="runButtonClickedDendro($event)" 
-              [disabled]="!selectedAlgorithm1 || !selectedClusteringMethod1 || !selectedClusterMetric "  class="btn btn-light">Run</button>
+              <button type="button"  (click)="runButtonClickedDendro($event)" 
+              [disabled]="!selectedAlgorithm1 || !selectedClusteringMethod1 || !selectedClusterMetric "  class="btn btn-light run-button">Run</button>
              </div>
             </mat-panel-description>
           </mat-expansion-panel-header>
-          <div style="overflow-y: scroll;height:57vh" >
+          <div style="overflow-y: scroll;height:57vh"  *ngIf="isOptionSelectedA2">
             <div class="d-flex flex-column">
             <label class="lab">Clustering Method</label>
             <select class="drop" [(ngModel)]="selectedClusteringMethod1">
@@ -139,9 +148,15 @@
              
             </select>
           </div>
-        
+          <div *ngIf="isLoadingDendro && clickbuttonDendro">
+            <div class="d-flex justify-content-center">
+              <!-- <div class="spinner-border" role="status" > -->
+                <span class="sr-only" id="loading"></span>
+              <!-- </div> -->
+            </div>
+          </div>
          
-          <div class="p-1"style="background-color: #F8F8F8;width:100%;" *ngIf="clickbuttonDendro">
+          <div class="p-1"style="background-color: #F8F8F8;width:100%;" *ngIf="!isLoadingDendro &&clickbuttonDendro">
            
               <div class="card border-0 " style="background-color: white;margin:1em;">
                 
@@ -153,7 +168,7 @@
               </div>
               <div class="d-flex flex-column" style="width:50%">
                 <label class="lab"># of clusters</label>
-              <input class="drop" type="text" placeholder="">
+              <input class="drop" type="text" placeholder="" required [(ngModel)]="clusterAg">
               </div>
             
           </div>
@@ -167,70 +182,70 @@
           <mat-expansion-panel-header>
             <mat-panel-title>
               <div class="d-flex flex-row" style="width:100%">
-                <select style="border:none; color:  #3F7FFF;font-family: Outfit;font-size: 14px;font-weight: 500;" 
-                (click)="runButtonClicked($event)" class="hide-dropdown-icon" [(ngModel)]="selectedAlgorithm2">
-                  <option value="option" >Select Algorithm</option>
+                <select style="border:none; color: #3F7FFF; font-family: Outfit; font-size: 14px; font-weight: 500;" 
+                  (click)="runButtonClicked($event)" (change)="onSelectAlgorithm2()" class="hide-dropdown-icon" [(ngModel)]="selectedAlgorithm2">
+                  <option [ngValue]="null" disabled selected hidden>Select Algorithm</option>
                   <option value="option3">DBSCAN</option>
-                <option value="option2">Agglomerative Clustering</option>
-                <option value="option1" >K-Means</option>          
-                
-                <option value="option4">BIRCH</option>
-                <option value="option4">Affinity Propagation</option>
-                <option value="option4">Mini-Batch K-Means</option>
-                <option value="option4">Mean Shift</option>
-                <option value="option4">OPTICS</option>
-                <option value="option4">Spectral Clustering</option>
-                <option value="option4">Mixture of Gaussians</option>
+                  <option value="option2">Agglomerative Clustering</option>
+                  <option value="option1">K-Means</option>          
+                  <option value="option4">BIRCH</option>
+                  <option value="option4">Affinity Propagation</option>
+                  <option value="option4">Mini-Batch K-Means</option>
+                  <option value="option4">Mean Shift</option>
+                  <option value="option4">OPTICS</option>
+                  <option value="option4">Spectral Clustering</option>
+                  <option value="option4">Mixture of Gaussians</option>
                 </select>
-                
               </div>
+              
             </mat-panel-title>
             <mat-panel-description>
               <div style="width:80%"></div>
              <div style="display: flex;justify-content: end;width:20%">
-              <button type="button" style="height:30px;align-items: center;display:flex;font-size: 14px;
-              font-family: Roboto;
-              font-style: normal;
-              font-weight: 400;background-color:#7672ED;color:white" (click)="runButtonClickedDB($event)" 
-               [disabled]="!selectedAlgorithm2 || !selectedParam" class="btn btn-light">Run</button>
+              <button type="button"  (click)="runButtonClickedDB($event)" 
+               [disabled]="!selectedAlgorithm2 || !selectedParam" class="btn btn-light run-button">Run</button>
              </div>
             </mat-panel-description>
           </mat-expansion-panel-header>
-          <div style="overflow-y: scroll;height:57vh">
-            <div class="d-flex flex-column" style="padding-bottom: 2.5em;" >
-            <label class="lab">Param1</label>
-            <select class="drop" [(ngModel)]="selectedParam">
-              <option value="" ></option>
-              <option value="option1" >8</option>
-             
-            </select>
-          </div>
-         
-         
-          <div class="p-1"style="background-color: #F8F8F8;width:100%;" *ngIf="clickbuttonDB">
+          <div style="overflow-y: scroll;height:57vh" *ngIf="isOptionSelectedA3">
+            <div class="d-flex flex-column px-1" style="padding-bottom: 2.5em;" >
+              <label class="lab">n_neighbors</label>
+            <input [(ngModel)]="selectedParam" class="drop" type="text" placeholder="">
+            </div>
            
-              <div class="card border-0 " style="background-color: white;margin:1em;">
-                
-                <div id="chart1">
-                  <apx-chart [series]="chartOptions1.series" [chart]="chartOptions1.chart" [xaxis]="chartOptions1.xaxis"
-                    [yaxis]="chartOptions1.yaxis" [dataLabels]="chartOptions1.dataLabels" [grid]="chartOptions1.grid"
-                    [stroke]="chartOptions1.stroke" [title]="chartOptions1.title"
-                    [tooltip]="chartOptions1.tooltip"></apx-chart>
-                </div>
-              
+         
+         
+            <div *ngIf="isLoading && clickbuttonDB">
+              <div class="d-flex justify-content-center">
+                <!-- <div class="spinner-border" role="status" > -->
+                  <span class="sr-only" id="loading"></span>
+                <!-- </div> -->
               </div>
-              <div class="d-flex flex-row"  style="width:10px">
-                <div  >
-                  <label class="lab">EPS Value</label>
-                 <input class="drop" style="width:140px" type="text" placeholder="">
-                </div>
-                <div   style="width:80px;">
-                  <label style="margin-left:10px" class="lab">Min Samples</label>
-                 <input class="drop" style="width:140px;margin-left:10px" type="text" placeholder="">
-                </div>
-              </div>
+            </div>
             
-          </div>
+            <div *ngIf="!isLoading && clickbuttonDB">
+              <div class="p-1" style="background-color: #F8F8F8; width: 100%;">
+                <div class="card border-0" style="background-color: white; margin: 1em;">
+                  <div id="chart1">
+                    <apx-chart [series]="chartOptions1.series" [chart]="chartOptions1.chart" [xaxis]="chartOptions1.xaxis"
+                      [yaxis]="chartOptions1.yaxis" [dataLabels]="chartOptions1.dataLabels" [grid]="chartOptions1.grid"
+                      [stroke]="chartOptions1.stroke" [title]="chartOptions1.title"
+                      [tooltip]="chartOptions1.tooltip"></apx-chart>
+                  </div>
+                  <div class="d-flex flex-row" style="width:10px">
+                    <div>
+                      <label class="lab">EPS Value</label>
+                      <input class="drop" style="width:125px" type="text" placeholder="" required [(ngModel)]="epsValue">
+                    </div>
+                    <div style="width:80px;">
+                      <label style="margin-left:10px" class="lab">Min Samples</label>
+                      <input class="drop" style="width:125px;margin-left:10px" type="text" placeholder="" required [(ngModel)]="minSamples">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
         </div>
         </mat-expansion-panel>
       </mat-accordion>
@@ -238,7 +253,7 @@
    
    </div>
   <div class="sticky-bottom p-1" >
-    <button (click)="gotoClusterAnalysis()" type="button" class="btn btn-light btn1">Cluster Analysis
+    <button (click)="gotoClusterAnalysis()" type="button" class="btn btn-light btn1" [disabled]=" !epsValue && !minSamples && !clusterKm && !clusterAg">Cluster Analysis
       <i class="bi bi-arrow-right">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="26" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
           <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>

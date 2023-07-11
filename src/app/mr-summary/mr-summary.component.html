@@ -1,13 +1,13 @@
 
 <div id = "content" #content >
-  
+  <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
 <div class="sticky-top" >
   <div style="background-color: white;" class="d-flex flex-column "> 
     <div class="d-flex flex-row 1 pb-5 pt-1 mb-0" style="width:100%">
          <div style="display:flex;justify-content: start;width:50%">
-        <h2 class="left px-2 dashboard">
+        <p class="left px-2 dashboard">
         MR Summary
-      </h2>
+        </p>
        </div>
         <div class="right" style="display:flex;justify-content: end;width:50%">
           <button style="background-color: #1890FF;color:white;border-color: #1890FF;height:40px;width:147px;margin-right: 10px;" (click)="uploadButtonClicked()">Upload MR
@@ -217,7 +217,7 @@
     </div>
   </div>
 </div>
-<div class="row4 d-flex flex-row mb-5 " style="width:100%">
+<div class="row4 d-flex flex-row " style="width:100%;margin-bottom: 8em;">
   <div class="card m-2" style="width:50%">
       <h4 class="px-2">Frequency Of Shampooing</h4>
       <div id="chart4">
@@ -256,7 +256,7 @@
 </div>
 
 <div class="sticky-bottom p-1">
-  <button (click)="navigatetoAlgorithmSelection()" type="button" class="btn btn-light">Next
+  <button (click)="navigateToAlgorithmSelection()" type="button" class="btn btn-light">Select Algorithm
     <i class="bi bi-arrow-right">
       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="26" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
         <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>

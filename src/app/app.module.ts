@@ -33,6 +33,8 @@ import { AnalysisComponent } from './analysis/analysis.component';
 import { ChatbotComponent } from './chatbot/chatbot.component';
 import {MatSliderModule} from '@angular/material/slider';
 import { HttpClientModule } from '@angular/common/http';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,6 +50,7 @@ import { HttpClientModule } from '@angular/common/http';
     ChatbotComponent
   ],
   imports: [
+    MatProgressBarModule,
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,

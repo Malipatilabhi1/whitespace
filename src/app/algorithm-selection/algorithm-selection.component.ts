@@ -61,8 +61,9 @@ export class AlgorithmSelectionComponent implements OnInit {
  @ViewChild("chart1") chart1: ChartComponent;
  public chartOptions1: Partial<ChartOptions1>;
   constructor(private router: Router, private gs: GeneralServiceService) { }
-
+ 
   ngOnInit(): void {
+    
     this.elbow()
     this.eps()
     this.createDendrogram();
@@ -73,24 +74,64 @@ export class AlgorithmSelectionComponent implements OnInit {
   rowData3: any = {}; 
   isDendrogramVisible = false;
   panelOpenState = false;
-  selectedAlgorithm: string = 'option';
+  selectedAlgorithm: string = null;
 
   selectedInitMethod: string;
   selectedClusterRange: string;
   selectedIterations: string;
 
-  selectedAlgorithm1: string = 'option';
+  selectedAlgorithm1: string = null;
   selectedClusteringMethod1: string;
   selectedClusterMetric: string;
 
-  selectedAlgorithm2: string = 'option';
+  selectedAlgorithm2: string = null;
   selectedParam: string;
   imageSource: string;
 
   clickbutton:boolean=false;
   clickbuttonDB:boolean=false;
   clickbuttonDendro:boolean=false;
+  isOptionSelectedA1 = false;
+  isOptionSelectedA2 = false;
+  isOptionSelectedA3 = false;
 
+  epsValue: string;
+minSamples: string;
+clusterAg:string;
+clusterKm:string;
+  onSelectAlgorithm() {
+    if (this.selectedAlgorithm !== '') {
+      this.isOptionSelectedA1 = true;
+      
+    } else {
+      this.isOptionSelectedA1 = false;
+     
+    }
+  }
+
+  onSelectAlgorithm1(){
+    if (this.selectedAlgorithm1 !== '') {
+      
+      this.isOptionSelectedA2 = true;
+      
+    } else {
+      this.isOptionSelectedA2 = false;
+      
+    }
+   
+  }
+
+  onSelectAlgorithm2(){
+    if (this.selectedAlgorithm2 !== '') {
+      
+      this.isOptionSelectedA3 = true;
+      
+    } else {
+      this.isOptionSelectedA3 = false;
+      
+    }
+   
+  }
   iconClicked(event: Event): void {
     // Code to handle icon click goes here
     // You can choose to close the panel here if needed
@@ -104,24 +145,34 @@ export class AlgorithmSelectionComponent implements OnInit {
     // Code to handle "Run" button click goes here
     // The panel will not close due to event.stopPropagation()
   }
-
+  isLoadingKM = true;
   runButtonClicked1(event: Event): void {
     event.stopPropagation();
     this.clickbutton=true;
-    // Code to handle "Run" button click goes here
-    // The panel will not close due to event.stopPropagation()
+    setTimeout(() => {
+      this.isLoadingKM = false;
+    }, 3000); // 3 seconds delay
+   
   }
   
-
+  isLoading = true;
   runButtonClickedDB(event: Event): void {
     event.stopPropagation();
     this.clickbuttonDB=true;
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 3000); // 3 seconds delay
     // Code to handle "Run" button click goes here
     // The panel will not close due to event.stopPropagation()
   }
 
+  isLoadingDendro = true;
   runButtonClickedDendro(event: Event): void {
     event.stopPropagation();
+    this.clickbuttonDendro=true;
+    setTimeout(() => {
+      this.isLoadingDendro = false;
+    }, 3000); // 3 seconds delay
     this.clickbuttonDendro=true;
     if (this.selectedClusteringMethod1 === 'option1') {
       this.imageSource = '../../assets/images/d3.png';
@@ -132,6 +183,7 @@ export class AlgorithmSelectionComponent implements OnInit {
     } else {
       this.imageSource = ''; // Set a default image source if needed
     }
+    
   }
   
   showContent() 
@@ -142,9 +194,16 @@ export class AlgorithmSelectionComponent implements OnInit {
     console.log('Agglomerative Hierarchical:', this.rowData2); 
     console.log('DB Scan:', this.rowData3);
   } 
+  isLoading1 = false;
   gotoClusterAnalysis(){
     this.captureScreen()
-    this.router.navigate(['./analysis'])
+    this.isLoading1 = true;
+    setTimeout(() => {
+      this.router.navigate(['./analysis']).then(() => {
+        this.isLoading1 = false;
+      });
+    }, 3000); // Delay of 3 seconds
+   
   }
   elbow() {
     const data = [

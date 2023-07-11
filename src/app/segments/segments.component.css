@@ -373,3 +373,8 @@ font-weight: 500;
   *:focus {
     outline: none;
 }
+mat-progress-bar {
+  width: 100%; /* Adjust the desired width */
+  height:10px;
+  background-color:#1890FF;
+}

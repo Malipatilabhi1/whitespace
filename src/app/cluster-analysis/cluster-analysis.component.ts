@@ -440,7 +440,10 @@ capture(){
             "Not Likely": 1
         },
         "1": {
-            "Very Likely": 20
+          "Won't Mind": 0,
+            "Very Likely": 20,
+            "Somewhat Likely": 0,
+            "Not Likely": 0
         },
         "2": {
             "Very Likely": 361,
@@ -1343,7 +1346,7 @@ tableContent1={
   }
 
   willngnessToSwtch() {
-    const spendData = this.dataAglo.switchcount;
+    const spendData = this.data.switchcount;
     const spendCategories = Object.keys(spendData).map((_, index) => `Seg ${index + 1}`);
     const spendSeries = Object.entries(spendData).map(([_, data]) => {
       return Object.values(data);
@@ -1966,36 +1969,26 @@ tableContent1={
   }
 
   age1(){
-    const ageData: { [key: string]: { [key: string]: number } } = this.dataAglo.age;
+    const ageData = this.dataAglo.age;
+    const ageCategories = Object.keys(this.dataAglo.age).map((_, index) => `Seg ${index + 1}`);
+  const ageSeries = Object.entries(ageData).map(([_, data]) => {
+    return Object.values(data);
+  });
 
-    const ageKeys = Object.keys(ageData);
-    const categories = ageKeys.map((key) => `Seg ${parseInt(key)+1}`);
-  
-    // Calculate the percentage for each segment
-    const seriesData = {
-      "0-25": [],
-      "25-40": [],
-      "40-50": [],
-      "50+": []
-    };
-  
-    ageKeys.forEach((key) => {
-      const ageGroup = ageData[key];
-  
-      // Calculate the total for the current segment
-      const segmentTotal = Object.values(ageGroup).reduce((total, value) => total + value, 0);
-  
-      // Calculate the percentage for each range in the current segment
-      Object.keys(ageGroup).forEach((range) => {
-        const percentage = (ageGroup[range] / segmentTotal) * 100;
-        seriesData[range].push(percentage.toFixed(2));
-      });
+  const series = [
+    { name: "0-25", data: [] },
+    { name: "25-40", data: [] },
+    { name:"40-50", data:[]},
+    { name: "50+", data: [] }
+  ];
+
+  ageSeries.forEach((data) => {
+    const segmentTotal = data.reduce((total, value) => total + value, 0);
+    series.forEach((range, index) => {
+      const percentage = (data[index] / segmentTotal) * 100;
+      range.data.push(parseFloat(percentage.toFixed(2)));
     });
-  
-    const series = Object.keys(seriesData).map((range) => ({
-      name: range,
-      data: seriesData[range]
-    }));
+  });
       this.chartOptionsAge1 = {
         series: series,
         chart: {
@@ -2032,7 +2025,7 @@ tableContent1={
         },
         xaxis: {
           type: "category",
-          categories: categories,
+          categories: ageCategories,
           labels:{
             style: {
               fontSize:'10px',
@@ -2433,36 +2426,28 @@ tableContent1={
   }
 
   age2(){
-    const ageData: { [key: string]: { [key: string]: number } } = this.data.age;
+    const ageData = this.data.age;
+    const ageCategories = Object.keys(this.data.age).map((_, index) => `Seg ${index + 1}`);
+  const ageSeries = Object.entries(ageData).map(([_, data]) => {
+    return Object.values(data);
+  });
 
-    const ageKeys = Object.keys(ageData);
-    const categories = Object.keys(ageData).map((_, index) => `Seg ${index + 1}`);
-  
-    // Calculate the percentage for each segment
-    const seriesData = {
-      "0-25": [],
-      "25-40": [],
-      "40-50": [],
-      "50+": []
-    };
-  
-    ageKeys.forEach((key) => {
-      const ageGroup = ageData[key];
-  
-      // Calculate the total for the current segment
-      const segmentTotal = Object.values(ageGroup).reduce((total, value) => total + value, 0);
-  
-      // Calculate the percentage for each range in the current segment
-      Object.keys(ageGroup).forEach((range) => {
-        const percentage = (ageGroup[range] / segmentTotal) * 100;
-        seriesData[range].push(percentage.toFixed(2));
-      });
+  const series = [
+    { name: "0-25", data: [] },
+    { name: "25-40", data: [] },
+    { name:"40-50", data:[]},
+    { name: "50+", data: [] }
+  ];
+
+  ageSeries.forEach((data) => {
+    const segmentTotal = data.reduce((total, value) => total + value, 0);
+    series.forEach((range, index) => {
+      const percentage = (data[index] / segmentTotal) * 100;
+      range.data.push(parseFloat(percentage.toFixed(2)));
     });
+  });
   
-    const series = Object.keys(seriesData).map((range) => ({
-      name: range,
-      data: seriesData[range]
-    }));
+    
       this.chartOptionsAge2 = {
         series: series,
         chart: {
@@ -2499,7 +2484,7 @@ tableContent1={
         },
         xaxis: {
           type: "category",
-          categories: categories,
+          categories: ageCategories,
           labels:{
             style: {
               fontSize:'10px',

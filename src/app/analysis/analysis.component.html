@@ -15,7 +15,7 @@
     </div>
 </div>
 <div class="card border-0 px-2 mx-2 my-2 py-2" style="justify-content: center;width:100%">
-    <table class="p-2" style="width:99%">
+    <table class="p-2" style="width:99%;height:80vh">
     <tr >
         <td rowspan="2" class="diagonal-cell" style="width:15em; height:2em; background-color: #A7C4FF;">
             <div class="top-segment d-flex flex-row" style="height:1em">
@@ -56,7 +56,7 @@
     </tr>
     <tr >
         <td style="width:15em;background-color: #ECF2FF;height:30px">
-           Self Obsessed Flamboyant
+          {{data[0]}}
         </td>
         <td *ngFor="let value of flamboyant; let i = index" [ngStyle]="{ 'background-color': getBackgroundColor(value) }">
            <ng-container *ngIf="i === flamboyant.length - 1">{{value}}</ng-container>
@@ -64,7 +64,7 @@
     </tr>
     <tr>
         <td style="width:15em;background-color: #ECF2FF;height:30px">
-            Neutralising Shampoo
+            {{data[1]}}
         </td>
        
         <td *ngFor="let value of neutralising; let i = index" [ngStyle]="{ 'background-color': getBackgroundColor(value) }">
@@ -73,7 +73,7 @@
     </tr>
     <tr >
         <td style="width:15em;background-color: #ECF2FF;height:30px">
-           Out an Out Purist
+            {{data[2]}}
         </td>
         <td *ngFor="let value of purist; let i = index" [ngStyle]="{ 'background-color': getBackgroundColor(value) }">
             <ng-container *ngIf="i === purist.length - 1">{{value}}</ng-container>
@@ -81,7 +81,7 @@
     </tr>
     <tr >
         <td style="width:15em;background-color: #ECF2FF;height:30px">
-           Focused Sensible
+            {{data[3]}}
         </td>
         <td *ngFor="let value of sensible; let i = index" [ngStyle]="{ 'background-color': getBackgroundColor(value) }">
             <ng-container *ngIf="i === sensible.length - 1">{{value}}</ng-container>
@@ -89,7 +89,7 @@
     </tr>
     <tr >
         <td style="width:15em;background-color: #ECF2FF;height:30px">
-           Frugal Aspirant
+            {{data[4]}}
         </td>
         <td *ngFor="let value of aspirant; let i = index" [ngStyle]="{ 'background-color': getBackgroundColor(value) }">
             <ng-container *ngIf="i === aspirant.length - 1">{{value}}</ng-container>
@@ -97,7 +97,7 @@
     </tr>
     <tr >
         <td style="width:15em;background-color: #ECF2FF;height:30px">
-           Perpetual Hoverer
+       {{data[5]}}
         </td>
         <td *ngFor="let value of hoverer; let i = index" [ngStyle]="{ 'background-color': getBackgroundColor(value) }">
             <ng-container *ngIf="i === hoverer.length - 1">{{value}}</ng-container>

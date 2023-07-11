@@ -28,6 +28,7 @@ export type ChartOptions = {
   theme: ApexTheme;
   title: ApexTitleSubtitle;
   dataLabels:any;
+  colors:any;
 };
 export type ChartOptionsWillingness = {
   series: ApexAxisChartSeries;
@@ -101,6 +102,7 @@ export type ChartOptions1 = {
   theme: ApexTheme;
   title: ApexTitleSubtitle;
   dataLabels:any;
+  colors:any;
 };
 export type ChartOptionsWillingness1 = {
   series: ApexAxisChartSeries;
@@ -175,6 +177,7 @@ export type ChartOptions2 = {
   theme: ApexTheme;
   title: ApexTitleSubtitle;
   dataLabels:any;
+  colors:any;
 };
 export type ChartOptionsWillingness2 = {
   series: ApexAxisChartSeries;
@@ -1262,9 +1265,15 @@ tableContent1={
   isLoading = false;
 
   constructor(private gs: GeneralServiceService, private router: Router) { }
+  
   navigateToSegmentCharacteristics(tabName: string) {
-    
-    this.router.navigate(['/segment', { tab: tabName }]);
+    // this.router.navigate(['/segment', { tab: tabName }]);
+    this.isLoading = true; 
+    setTimeout(() => {
+      this.router.navigate(['/segment', { tab: tabName }]).then(() => {
+        this.isLoading = false; 
+      });
+    }, 3000); 
   }
   ngOnInit(): void {
     // algorithm1
@@ -1309,15 +1318,12 @@ tableContent1={
   this.chartOptions = {
     series: barData,
     chart: {
-      width: "60%",
+      width: "55%",
       type: "pie"
     },
+    colors:["#91ADFD","#FFE0C2","#C0BBEB","#A3F5EC","#FDE68C","#D6D6D6"],
     labels: barDataKey,
-    theme: {
-      monochrome: {
-        enabled: true
-      }
-    },
+   
     dataLabels:{
        enabled:false
     },
@@ -1777,18 +1783,16 @@ tableContent1={
   this.chartOptions1 = {
     series: barData,
     chart: {
-      width: "60%",
+      width: "55%",
       type: "pie"
     },
+    colors:["#91ADFD","#FFE0C2","#C0BBEB","#A3F5EC","#FDE68C","#D6D6D6"],
     labels: barDataKey,
-    theme: {
-      monochrome: {
-        enabled: true
-      }
-    },
+   
     dataLabels:{
        enabled:false
     },
+   
     responsive: [
       {
         breakpoint: 480,
@@ -2245,15 +2249,12 @@ tableContent1={
     this.chartOptions2 = {
       series: barData,
       chart: {
-        width: "60%",
+        width: "55%",
         type: "pie"
       },
       labels: barDataKey,
-      theme: {
-        monochrome: {
-          enabled: true
-        }
-      },
+     
+      colors:["#91ADFD","#FFE0C2","#C0BBEB","#A3F5EC","#FDE68C","#D6D6D6"],
       dataLabels:{
          enabled:false
       },

@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { GeneralServiceService } from '../general-service.service';
 import {jsPDF} from 'jspdf';
+import { HttpClient, HttpEventType } from '@angular/common/http';
 @Component({
   selector: 'app-analysis',
   templateUrl: './analysis.component.html',
@@ -9,7 +10,7 @@ import {jsPDF} from 'jspdf';
 export class AnalysisComponent implements OnInit {
 
 
-  constructor(private gs: GeneralServiceService) { }
+  constructor(private gs: GeneralServiceService,  private http: HttpClient) { }
 
   
   @ViewChild('content', {static:false})el!:ElementRef;
@@ -22,7 +23,7 @@ export class AnalysisComponent implements OnInit {
     }
   
   ngOnInit() {
-   
+   this.getPersonas()
   }
 
   generatePDF() {
@@ -75,5 +76,15 @@ export class AnalysisComponent implements OnInit {
     }
     return ""; // Return empty string for no background color
   }
-
+  data1:any=[];
+  data:any=[];
+getPersonas(){
+  debugger
+  this.http.get('http://3.111.229.37:5000/get_personas').subscribe(res=>{
+    console.log("res", res)
+    this.data1= res;
+     this.data = this.data1.personas;
+     console.log(this.data)
+  })
+}
 }

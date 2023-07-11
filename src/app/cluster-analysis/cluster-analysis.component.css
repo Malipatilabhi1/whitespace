@@ -135,4 +135,9 @@ font-weight: 500;
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
   }
+  mat-progress-bar {
+    width: 100%; /* Adjust the desired width */
+    height:10px;
+    background-color:#1890FF;
+  }
 

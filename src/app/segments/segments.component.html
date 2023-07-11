@@ -1,13 +1,13 @@
 <div class="main" id = "content" #content style="height:100%;position:sticky">
+  <div>
+    <mat-progress-bar color="accent" *ngIf="isLoading1" mode="indeterminate"></mat-progress-bar>
+   </div>
     <div style="background-color: white;">
-        <p class="px-4 py-0 my-0 pt-2 title">Segment Characteristics Definition <sub>{{ selectedTab }}</sub> </p>
-        <div *ngIf="isLoading" class="progress-bar">
-          <!-- Update your progress bar HTML here -->
-           Loading... {{ progressValue }}%
-            <!-- Display the progress value --> 
-         </div>
+        <p class="px-4 py-0 my-0 pt-2 title">Segment Characteristics Definition <span class="subSpan">({{ selectedTab }})</span> </p>
+        
         <mat-tab-group style="background-color: white;" (selectedIndexChange)="onTabChange($event)" #tabGroup disableRipple animationDuration="0">
             <mat-tab  *ngFor="let segment of data; let i = index" (click)="displaySegmentName(segment.name);" >
+             
               <ng-template mat-tab-label>
                 <div class="tab-label">
                   <div class="tab-icon">
@@ -19,7 +19,11 @@
                   </div>
                 </div>
               </ng-template>
+             
               <ng-template matTabContent>
+                <div>
+                  <mat-progress-bar color="accent" *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+                 </div>
               <div class="d-flex flex-row p-2" style="width: 100%; background-color: #F0F2F5;">
                 <div class="card d-flex flex-column m-1" style="width: 68%;">
                   <div class="d-flex flex-row topDiv" style="width:100%;">
@@ -40,7 +44,7 @@
                         </i>Regenerate</button>
                   </div>
                   </div>
-                 <div style="height:53vh;overflow-y: scroll;">
+                 <div style="height:57.3vh;overflow-y: scroll;">
                     <div class="segment" >
                         <div class="d-flex flex-row p-2" style="width:100%">
                          <div class="p-1" style="width:50%;display:flex;justify-content: start;align-items: center;">
@@ -172,27 +176,114 @@
                           
                         </div>
                         <hr>
-                        <div style="height: 46vh; overflow-y: scroll;" class="py-0">
-                          <div *ngFor="let segment of segments; let i = index" class="d-flex flex-row py-0 my-0" style="width:100%">
-                            <div style="width:50%" class="py-0 my-0">
+                        <div *ngIf="i == 0" style="height: 46vh; overflow-y: scroll;" class="py-0">
+                          <div *ngFor="let segment of segments1; let i = index" class="d-flex flex-row py-0 my-0" style="width:100%">
+                            <div style="width:45%" class="py-0 my-0">
                               <p class="px-1 py-0 slide" style="margin-top: 10px;">{{ segment.name }}</p>
                             </div>
-                            <div class="py-0 my-0" style="width:50%;">
-                              <mat-slider class="custom-slider" thumbLabel discrete style="width: 100px;" min="0" max="100" step="1" [(ngModel)]="sliderValues[i]" (change)="slidervalues(sliderValues[i])">
+                            <div class="py-0 my-0" style="width:55%;">
+                              <mat-slider class="custom-slider" thumbLabel discrete style="width: 100px;" min="0" max="5" step="1" [(ngModel)]="segment.value" (change)="slidervalues(sliderValues[i])">
                                 <input matSliderThumb>
                               </mat-slider>
-                              <span style="color: #222; text-align: right; font-size: 16px; font-family: Outfit; font-style: normal; font-weight: 600;">{{ sliderValues[i] }}%</span>
+                              <span style="color: #222; text-align: right; font-size: 12px; font-family: Outfit; font-style: normal; font-weight: 600;">{{ segment.value }}%</span>
                               <div class="example-label-container" style="margin-top:-10px">
                                 <label id="example-name-label" class="example-name-label py-0 my-0">0</label>
-                                <label class="example-value-label last ">100</label>
+                                <label class="example-value-label last ">5</label>
                               </div>
                             </div>
                           </div>
                        
                         </div>
-                        
-           
+                        <div *ngIf="i == 1" style="height: 46vh; overflow-y: scroll;" class="py-0">
+                          <div *ngFor="let segment of segments2; let i = index" class="d-flex flex-row py-0 my-0" style="width:100%">
+                            <div style="width:45%" class="py-0 my-0">
+                              <p class="px-1 py-0 slide" style="margin-top: 10px;">{{ segment.name }}</p>
+                            </div>
+                            <div class="py-0 my-0" style="width:55%;">
+                              <mat-slider class="custom-slider" thumbLabel discrete style="width: 100px;" min="0" max="5" step="1" [(ngModel)]="segment.value" (change)="slidervalues(sliderValues[i])">
+                                <input matSliderThumb>
+                              </mat-slider>
+                              <span style="color: #222; text-align: right; font-size: 12px; font-family: Outfit; font-style: normal; font-weight: 600;">{{ segment.value }}%</span>
+                              <div class="example-label-container" style="margin-top:-10px">
+                                <label id="example-name-label" class="example-name-label py-0 my-0">0</label>
+                                <label class="example-value-label last ">5</label>
+                              </div>
+                            </div>
+                          </div>
                        
+                        </div>
+                        <div *ngIf="i == 2" style="height: 46vh; overflow-y: scroll;" class="py-0">
+                          <div *ngFor="let segment of segments3; let i = index" class="d-flex flex-row py-0 my-0" style="width:100%">
+                            <div style="width:45%" class="py-0 my-0">
+                              <p class="px-1 py-0 slide" style="margin-top: 10px;">{{ segment.name }}</p>
+                            </div>
+                            <div class="py-0 my-0" style="width:55%;">
+                              <mat-slider class="custom-slider" thumbLabel discrete style="width: 100px;" min="0" max="5" step="1" [(ngModel)]="segment.value" (change)="slidervalues(sliderValues[i])">
+                                <input matSliderThumb>
+                              </mat-slider>
+                              <span style="color: #222; text-align: right; font-size: 12px; font-family: Outfit; font-style: normal; font-weight: 600;">{{ segment.value }}%</span>
+                              <div class="example-label-container" style="margin-top:-10px">
+                                <label id="example-name-label" class="example-name-label py-0 my-0">0</label>
+                                <label class="example-value-label last ">5</label>
+                              </div>
+                            </div>
+                          </div>
+                       
+                        </div>
+                        <div *ngIf="i == 3" style="height: 46vh; overflow-y: scroll;" class="py-0">
+                          <div *ngFor="let segment of segments4; let i = index" class="d-flex flex-row py-0 my-0" style="width:100%">
+                            <div style="width:45%" class="py-0 my-0">
+                              <p class="px-1 py-0 slide" style="margin-top: 10px;">{{ segment.name }}</p>
+                            </div>
+                            <div class="py-0 my-0" style="width:55%;">
+                              <mat-slider class="custom-slider" thumbLabel discrete style="width: 100px;" min="0" max="5" step="1" [(ngModel)]="segment.value" (change)="slidervalues(sliderValues[i])">
+                                <input matSliderThumb>
+                              </mat-slider>
+                              <span style="color: #222; text-align: right; font-size: 12px; font-family: Outfit; font-style: normal; font-weight: 600;">{{ segment.value }}%</span>
+                              <div class="example-label-container" style="margin-top:-10px">
+                                <label id="example-name-label" class="example-name-label py-0 my-0">0</label>
+                                <label class="example-value-label last ">5</label>
+                              </div>
+                            </div>
+                          </div>
+                       
+                        </div>
+                        <div *ngIf="i == 4" style="height: 46vh; overflow-y: scroll;" class="py-0">
+                          <div *ngFor="let segment of segments5; let i = index" class="d-flex flex-row py-0 my-0" style="width:100%">
+                            <div style="width:45%" class="py-0 my-0">
+                              <p class="px-1 py-0 slide" style="margin-top: 10px;">{{ segment.name }}</p>
+                            </div>
+                            <div class="py-0 my-0" style="width:55%;">
+                              <mat-slider class="custom-slider" thumbLabel discrete style="width: 100px;" min="0" max="5" step="1" [(ngModel)]="segment.value" (change)="slidervalues(sliderValues[i])">
+                                <input matSliderThumb>
+                              </mat-slider>
+                              <span style="color: #222; text-align: right; font-size: 12px; font-family: Outfit; font-style: normal; font-weight: 600;">{{ segment.value }}%</span>
+                              <div class="example-label-container" style="margin-top:-10px">
+                                <label id="example-name-label" class="example-name-label py-0 my-0">0</label>
+                                <label class="example-value-label last ">5</label>
+                              </div>
+                            </div>
+                          </div>
+                       
+                        </div>
+                        <div *ngIf="i == 5" style="height: 46vh; overflow-y: scroll;" class="py-0">
+                          <div *ngFor="let segment of segments6; let i = index" class="d-flex flex-row py-0 my-0" style="width:100%">
+                            <div style="width:45%" class="py-0 my-0">
+                              <p class="px-1 py-0 slide" style="margin-top: 10px;">{{ segment.name }}</p>
+                            </div>
+                            <div class="py-0 my-0" style="width:55%;">
+                              <mat-slider class="custom-slider" thumbLabel discrete style="width: 100px;" min="0" max="5" step="1" [(ngModel)]="segment.value" (change)="slidervalues(sliderValues[i])">
+                                <input matSliderThumb>
+                              </mat-slider>
+                              <span style="color: #222; text-align: right; font-size: 12px; font-family: Outfit; font-style: normal; font-weight: 600;">{{ segment.value }}%</span>
+                              <div class="example-label-container" style="margin-top:-10px">
+                                <label id="example-name-label" class="example-name-label py-0 my-0">0</label>
+                                <label class="example-value-label last ">5</label>
+                              </div>
+                            </div>
+                          </div>
+                       
+                        </div>
                         <hr class="py-0 my-0">
                    <div style="height:7vh">
                   
@@ -215,7 +306,7 @@
           </mat-tab-group>
           <div class="p-2 sticky-bottom" >
            
-            <button type="button" class="btn btn-light nextButton"  (click)="capture()" routerLink="/whitespaceAnalysis" [disabled]="!allSegmentsDone">Whitespace Analysis
+            <button type="button" class="btn btn-light nextButton"  (click)="capture();nextPage()"  [disabled]="!allSegmentsDone">Whitespace Analysis
               <i class="bi bi-arrow-right">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="26" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
                   <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
@@ -236,8 +327,13 @@
       <div class="modal-content" id="modal-content">
         <div class="modal-header" style="background-color: #918EF1;height:5em">
           <p class="assistant">Chatbot Assistant</p>
-            <button type="button border-0" style="background-color:#918EF1;color:white ;border:none;" class="close" data-bs-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
+            <button type="button border-0" style="background-color:#918EF1;color:white ;border:none;height:50px;width:50px" class="close" data-bs-dismiss="modal" aria-label="Close">
+              <i class="bi bi-x-lg">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                  <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+                </svg>
+              </i>
+              <!-- <span  aria-hidden="true">&times;</span> -->
             </button>
          
         </div>
@@ -266,7 +362,7 @@
       <div class="modal-footerchat-container"> 
         
         <div class="chat-input rounded-pill">
-          <input [(ngModel)]="userMessage" placeholder="Type your message..." />
+          <input [(ngModel)]="userMessage"  placeholder="Type your message..." />
           <!-- <button (click)="sendMessage()">Send</button> -->
           <div style="background-color: #7672ED;height:30px;width:30px" class="rounded-pill">
               <img (click)="sendMessage()" style="margin-left: 8px;margin-top: 8px;" src="../../assets/images/Send.png" height="15px" width="15px" alt="">

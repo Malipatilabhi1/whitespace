@@ -5,7 +5,7 @@ import { HttpClient, HttpEventType } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { MatTabGroup } from '@angular/material/tabs';
-
+import { Router } from '@angular/router';
 interface Message {
   content: string;
   sender: 'user' | 'bot';
@@ -162,12 +162,12 @@ segmentStatus: string[] = [];
           console.log( this.selectedTab)
         });
 
-        const storedSegmentDone = localStorage.getItem('segmentDone');
-    if (storedSegmentDone) {
-      this.segmentDone = JSON.parse(storedSegmentDone);
-    } else {
-      this.segmentDone = Array(this.data.length).fill(false);
-    }
+    //     const storedSegmentDone = localStorage.getItem('segmentDone');
+    // if (storedSegmentDone) {
+    //   this.segmentDone = JSON.parse(storedSegmentDone);
+    // } else {
+    //   this.segmentDone = Array(this.data.length).fill(false);
+    // }
     this.sliderValues = Array(this.data.length).fill(0);
    }
    allSegmentsDone: boolean = false;
@@ -205,7 +205,7 @@ segmentStatus: string[] = [];
   formatLabel(value: number) {
     return value + '%'; // Example formatting, you can customize this as per your requirement
   }
-constructor(private gs: GeneralServiceService, private http: HttpClient, private route: ActivatedRoute){
+constructor(private gs: GeneralServiceService, private http: HttpClient, private route: ActivatedRoute, private router: Router){
   
   this.segmentDone = Array(this.data.length).fill(false);
 }
@@ -231,12 +231,48 @@ capture(){
   this.captureScreen()
 }
 data1:any=[];
-segments: any[] = [
-  { name: 'Aroma' },
-  { name: 'Long Lasting Hold' },
-  { name: 'Clean Scalp' },
-  { name: 'Maintenance' },
-  { name: 'Volume and Bounce' }
+segments1: any[] = [
+  { name: 'Aroma', value:0.76 },
+  { name: 'Long Lasting Hold', value:0.6 },
+  { name: 'Clean Scalp', value:0.62 },
+  { name: 'Maintenance', value:0.67 },
+  { name: 'Volume and Bounce', value:0.64 }
+];
+segments2: any[] = [
+  { name: 'Aroma', value:0.76 },
+  { name: 'Long Lasting Hold', value:0.6 },
+  { name: 'Clean Scalp', value:0.62 },
+  { name: 'Maintenance', value:0.67 },
+  { name: 'Volume and Bounce', value:0.64 }
+];
+
+segments3: any[] = [
+  { name: 'Aroma', value:0.76 },
+  { name: 'Long Lasting Hold', value:0.6 },
+  { name: 'Clean Scalp', value:0.62 },
+  { name: 'Maintenance', value:0.67 },
+  { name: 'Volume and Bounce', value:0.64 }
+];
+segments4: any[] = [
+  { name: 'Aroma', value:0.76 },
+  { name: 'Long Lasting Hold', value:0.6 },
+  { name: 'Clean Scalp', value:0.62 },
+  { name: 'Maintenance', value:0.67 },
+  { name: 'Volume and Bounce', value:0.64 }
+];
+segments5: any[] = [
+  { name: 'Aroma', value:0.76 },
+  { name: 'Long Lasting Hold', value:0.6 },
+  { name: 'Clean Scalp', value:0.62 },
+  { name: 'Maintenance', value:0.67 },
+  { name: 'Volume and Bounce', value:0.64 }
+];
+segments6: any[] = [
+  { name: 'Aroma', value:0.76 },
+  { name: 'Long Lasting Hold', value:0.6 },
+  { name: 'Clean Scalp', value:0.62 },
+  { name: 'Maintenance', value:0.67 },
+  { name: 'Volume and Bounce', value:0.64 }
 ];
 sliderValues: number[] = [];
 
@@ -252,65 +288,65 @@ slidervalues(value: number) {
 //      this.data = this.data1.segments;
 //   })
 // }
-public isLoading: boolean = false;
-showLoading() { this.isLoading = true; } hideLoading() { this.isLoading = false; }
-getSegments() {
-  this.showLoading(); // Show progress bar
+// public isLoading: boolean = false;
+// showLoading() { this.isLoading = true; } hideLoading() { this.isLoading = false; }
+// getSegments() {
+//   this.showLoading(); 
 
-  this.http.get('', { observe: 'events', reportProgress: true }).subscribe(
-    event => {
-      if (event.type === HttpEventType.DownloadProgress) {
-        this.progressValue = Math.round(100 * event.loaded / event.total); // Update progress value
-      } else if (event.type === HttpEventType.Response) {
-        console.log("res", event.body);
-        this.data1 = event.body;
-        this.data = this.data1.segments;
-      }
+//   this.http.get('', { observe: 'events', reportProgress: true }).subscribe(
+//     event => {
+//       if (event.type === HttpEventType.DownloadProgress) {
+//         this.progressValue = Math.round(100 * event.loaded / event.total); 
+//       } else if (event.type === HttpEventType.Response) {
+//         console.log("res", event.body);
+//         this.data1 = event.body;
+//         this.data = this.data1.segments;
+//       }
+//     },
+//     error => {
+//       console.error("Error occurred:", error);
+//     },
+//     () => {
+//       this.hideLoading(); // Hide progress bar
+//       this.progressValue = 0; // Reset progress value
+//     }
+//   );
+// }
+updatedData:any=[];
+isLoading: boolean = false;
+
+delay(ms: number) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+updateSegment(segmentNumber: number) {
+  this.isLoading = true; // Display the loader
+
+  const apiUrl = 'http://3.111.229.37:5000/faq_hardcoded_ReGenerateSegment';
+  const requestBody = { "seg_num": segmentNumber };
+
+  this.http.post(apiUrl, requestBody).subscribe(
+    async (response) => {
+      // Handle the response if needed
+      console.log('API response Regenerate:', response);
+       // Simulate the delay for 3 seconds
+       await this.delay(3000);
+
+      this.data = [];
+      this.data1 = [];
+      this.data1 = response;
+      this.data = this.data1.segments;
+      console.log("rege", this.data1.segments);
+
+     
+      this.isLoading = false; // Hide the loader
     },
-    error => {
-      console.error("Error occurred:", error);
-    },
-    () => {
-      this.hideLoading(); // Hide progress bar
-      this.progressValue = 0; // Reset progress value
+    (error) => {
+      // Handle errors if the API call fails
+      console.error('API error:', error);
+      this.isLoading = false; // Hide the loader in case of error
     }
   );
-}
-updatedData:any=[];
-updateSegment(segmentNumber: number){
-
-//   this.http.post('',
-// {
-//     "query":"Can you re-generate the segment 1 details only little differently."
-// }
-//   ).subscribe(res=>{
-   
-//     this.data=[];
-//     this.data1=[];
-//     this.data1=res;
-//     this.data = JSON.parse(this.data1.chatgpt_response).segments;
-//     console.log(res);
-//     console.log(this.data);
-    
-//   })
-const apiUrl = 'http://3.111.229.37:5000/faq_hardcoded_ReGenerateSegment';
-const requestBody = { "seg_num": segmentNumber };
-
-this.http.post(apiUrl, requestBody).subscribe(
-  (response) => {
-    // Handle the response if needed
-    console.log('API response Regenerate:', response);
-    this.data=[];
-    this.data1=[];
-    this.data1=response;
-    this.data= this.data1.segments;
-    console.log("rege", this.data1.segments)
-  },
-  (error) => {
-    // Handle errors if the API call fails
-    console.error('API error:', error);
-  }
-);
 }
 
   private captureScreen() {
@@ -433,5 +469,16 @@ addEmotionalNeed(segment: any) {
   logAllSliderValues() {
     console.log('Slider Values:', this.sliderValues);
     this.isMapped = true;
+  }
+  isLoading1 = false;
+  nextPage(){
+    this.isLoading1 = true; // Show the progress bar
+  
+    setTimeout(() => {
+      this.router.navigate(['./whitespaceAnalysis']).then(() => {
+        this.isLoading1 = false; // Hide the progress bar when navigation is complete
+      });
+    }, 3000); // Delay of 3 seconds
+   
   }
 }

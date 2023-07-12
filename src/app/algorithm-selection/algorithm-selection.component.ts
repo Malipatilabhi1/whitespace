@@ -145,8 +145,9 @@ clusterKm:string;
     // Code to handle "Run" button click goes here
     // The panel will not close due to event.stopPropagation()
   }
-  isLoadingKM = true;
+  isLoadingKM = false;
   runButtonClicked1(event: Event): void {
+    this.isLoadingKM = true;
     event.stopPropagation();
     this.clickbutton=true;
     setTimeout(() => {
@@ -155,8 +156,9 @@ clusterKm:string;
    
   }
   
-  isLoading = true;
+  isLoading = false;
   runButtonClickedDB(event: Event): void {
+    this. isLoading = true;
     event.stopPropagation();
     this.clickbuttonDB=true;
     setTimeout(() => {
@@ -166,8 +168,9 @@ clusterKm:string;
     // The panel will not close due to event.stopPropagation()
   }
 
-  isLoadingDendro = true;
+  isLoadingDendro = false;
   runButtonClickedDendro(event: Event): void {
+    this.isLoadingDendro = true;
     event.stopPropagation();
     this.clickbuttonDendro=true;
     setTimeout(() => {

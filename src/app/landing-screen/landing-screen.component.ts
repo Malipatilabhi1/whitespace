@@ -22,7 +22,7 @@ export class LandingScreenComponent implements OnInit {
     this.fileInput = document.createElement('input');
     this.fileInput.type = 'file';
     this.fileInput.style.display = 'none';
-    this.fileInput.accept = '.txt';
+    this.fileInput.accept = '*';
 
  
 

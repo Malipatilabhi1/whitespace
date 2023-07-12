@@ -288,7 +288,7 @@
                    <div style="height:7vh; align-items: center;">
                   
                     <div class="d-flex flex-row" style="align-items: center;" >
-                     <div class="p-2" style="display:flex;justify-content: start; cursor: pointer;width:10%;vertical-align: center;align-items: center;">
+                     <div class="p-2" style="display:flex;cursor: pointer;vertical-align: center;align-items: center;">
                       <button (click)="markSegmentAsDone(i)"  type="button" class="btn btn-primary done"   >Done</button>
                      </div>
                      <div  style="display:flex;justify-content: end; cursor: pointer;width:90%;">
@@ -344,7 +344,7 @@
           </div> -->
           <div class="chat-container">
             <div class="chat-messages">
-              <div *ngFor="let message of messages" [ngClass]="{ 'user-message': message.sender === 'user', 'bot-message': message.sender === 'bot' }">
+              <div *ngFor="let message of messages.slice().reverse()" [ngClass]="{ 'user-message': message.sender === 'user', 'bot-message': message.sender === 'bot' }">
                 <div *ngIf="message.sender === 'bot'" class="response-content d-flex flex-row message-container right" >
                   <div class="response-image" style="margin-right:10px">
                     <img src="../../assets/images/chatBot.jpg" height="20px" width="20px" alt="Bot Image">

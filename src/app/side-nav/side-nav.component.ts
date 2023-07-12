@@ -19,6 +19,7 @@ export class SideNavComponent implements OnInit {
    analysis: boolean = false;
    whitespaceAnalysis: boolean = false;
    LandingScreenComponent:boolean=false;
+   product:boolean=false;
 
   ngOnInit(): void {
   }
@@ -40,6 +41,7 @@ getEndPoint() {
         this.segment=false;
         this.analysis=false;
         this.whitespaceAnalysis=false;
+        this.product=false;
         this.LandingScreenComponent=true;
       }
       if (this.currentRoute === "/summary" ) {
@@ -47,6 +49,7 @@ getEndPoint() {
         this.algorithm = false;
         this.segment=false;
         this.analysis=false;
+        this.product=false;
         this.whitespaceAnalysis=false;
       }
       if (this.currentRoute === "/algorithm") {
@@ -54,6 +57,7 @@ getEndPoint() {
         this.summary = false;
         this.segment=false;
         this.analysis=false;
+        this.product=false;
         this.whitespaceAnalysis=false;
       }
       
@@ -62,6 +66,7 @@ getEndPoint() {
         this.summary = false;
         this.segment=false;
         this.analysis=true;
+        this.product=false;
         this.whitespaceAnalysis=false;
       }
       if (this.currentRoute === "/segment" || this.currentRoute === "/segment;tab=K-Means" || this.currentRoute === "/segment;tab=Agglomerative%20Hierarchical" || this.currentRoute === "/segment;tab=DB%20Scan") {
@@ -69,6 +74,7 @@ getEndPoint() {
         this.summary = false;
         this.segment=true;
         this.analysis=false;
+        this.product=false;
         this.whitespaceAnalysis=false;
       }
       if (this.currentRoute === "/whitespaceAnalysis") {
@@ -76,7 +82,16 @@ getEndPoint() {
         this.summary = false;
         this.segment=false;
         this.analysis=false;
+        this.product=false;
         this.whitespaceAnalysis=true;
+      }
+      if (this.currentRoute === "/product") {
+        this.algorithm = false;
+        this.summary = false;
+        this.segment=false;
+        this.analysis=false;
+        this.product=true;
+        this.whitespaceAnalysis=false;
       }
     }
   });

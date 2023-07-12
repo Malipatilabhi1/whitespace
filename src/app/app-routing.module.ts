@@ -6,6 +6,8 @@ import { AlgorithmSelectionComponent } from './algorithm-selection/algorithm-sel
 import { ClusterAnalysisComponent } from './cluster-analysis/cluster-analysis.component';
 import { SegmentsComponent } from './segments/segments.component';
 import { AnalysisComponent } from './analysis/analysis.component';
+import { ProductCharacteristicsComponent } from './product-characteristics/product-characteristics.component';
+import { SplashScreenComponent } from './splash-screen/splash-screen.component';
 
 const routes: Routes = [
   {
@@ -36,6 +38,16 @@ const routes: Routes = [
   {
     path:"whitespaceAnalysis",
     component: AnalysisComponent,
+    pathMatch:"full"
+  },
+  {
+    path:"product",
+    component: ProductCharacteristicsComponent,
+    pathMatch:"full"
+  },
+  {
+    path:"splash",
+    component: SplashScreenComponent,
     pathMatch:"full"
   },
 ];

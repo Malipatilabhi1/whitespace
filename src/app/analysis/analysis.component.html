@@ -39,7 +39,7 @@
     <td colspan="2" style="background-color: #C0BEF7;height:30px">Keratin Shampoo</td>
     <td colspan="2" style="background-color: #C0BEF7;height:30px">Volumizing Shampoo</td>
     <td colspan="2" style="background-color: #C0BEF7;height:30px">Dry Shampoo</td>
-    <td rowspan="2" style="width:6em; height:6em; background-color: #918EF1;">Score</td>
+    <td rowspan="2" style="width:7em; height:6em; background-color: #918EF1;">Score&nbsp;&nbsp;&nbsp;</td>
     </tr>
     <tr>
     <td style="background-color: #D5D3F9;height:30px">Basic</td>
@@ -83,7 +83,7 @@
         <td style="width:15em;background-color: #ECF2FF;height:30px;text-align: left;">
             {{data[3]}}
         </td>
-        <td *ngFor="let value of sensible; let i = index" style="color:black" [ngStyle]="{ 'background-color': getBackgroundColor(value) }">
+        <td *ngFor="let value of sensible; let i = index" style="color:white" [ngStyle]="{ 'background-color': getBackgroundColor(value) }">
             <ng-container >{{value}}</ng-container>
             </td>
     </tr>

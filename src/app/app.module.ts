@@ -34,6 +34,8 @@ import { ChatbotComponent } from './chatbot/chatbot.component';
 import {MatSliderModule} from '@angular/material/slider';
 import { HttpClientModule } from '@angular/common/http';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { ProductCharacteristicsComponent } from './product-characteristics/product-characteristics.component';
+import { SplashScreenComponent } from './splash-screen/splash-screen.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,9 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     ClusterAnalysisComponent,
     SegmentsComponent,
     AnalysisComponent,
-    ChatbotComponent
+    ChatbotComponent,
+    ProductCharacteristicsComponent,
+    SplashScreenComponent
   ],
   imports: [
     MatProgressBarModule,

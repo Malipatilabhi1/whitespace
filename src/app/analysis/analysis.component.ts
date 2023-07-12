@@ -66,13 +66,13 @@ export class AnalysisComponent implements OnInit {
     //   return "#6CB4EE";
     // } else
      if (value > 1 && value < 3) {
-      return "#E9E9E9";
+      return "#fffde7";
     } else if (value > 3 && value < 11) {
-      return "#4E4E4E";
+      return "#fff59d";
     } else if (value > 11 && value <14) {
-      return "#999999";
+      return "#ffeb3b";
     }else if (value > 14) {
-      return "#222222";
+      return "#f9a825";
     }
     return ""; // Return empty string for no background color
   }

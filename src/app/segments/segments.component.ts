@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, HostListener } from '@angular/core';
 import { Options } from 'ng5-slider';
 import { GeneralServiceService } from '../general-service.service';
 import { HttpClient, HttpEventType } from '@angular/common/http';
@@ -275,7 +275,12 @@ segments6: any[] = [
   { name: 'Volume and Bounce', value:0.64 }
 ];
 sliderValues: number[] = [];
-
+@HostListener('document:keyup', ['$event'])
+handleKeyUp(event: KeyboardEvent) {
+  if (event.key === 'Enter') {
+    this.sendMessage();
+  }
+}
 slidervalues(value: number) {
   console.log(value);
 }
@@ -391,6 +396,7 @@ updateSegment(segmentNumber: number) {
     );
   
     this.userMessage = '';
+    this.scrollBottom();
   }
   
  
@@ -480,5 +486,13 @@ addEmotionalNeed(segment: any) {
       });
     }, 3000); // Delay of 3 seconds
    
+  }
+
+  @ViewChild('chatMessage') chatMessage:ElementRef;
+  ngAfterViewInit(){
+    this.scrollBottom();
+  }
+  scrollBottom(){
+      setTimeout(() => { this.chatMessage.nativeElement.scrollTop = this.chatMessage.nativeElement.scrollHeight; },300);
   }
 }

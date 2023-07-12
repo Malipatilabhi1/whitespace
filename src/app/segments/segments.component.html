@@ -342,9 +342,9 @@
           <!-- <div *ngIf="showIframe">
             <iframe src="http://3.111.229.37:3003/bot/73ff8af9-94e6-488c-8ba2-ac53258f7ca4?mode=iframe" width="400" height="300" ></iframe>
           </div> -->
-          <div class="chat-container">
+          <div class="chat-container" #chatMessage>
             <div class="chat-messages">
-              <div *ngFor="let message of messages.slice().reverse()" [ngClass]="{ 'user-message': message.sender === 'user', 'bot-message': message.sender === 'bot' }">
+              <div *ngFor="let message of messages" [ngClass]="{ 'user-message': message.sender === 'user', 'bot-message': message.sender === 'bot' }">
                 <div *ngIf="message.sender === 'bot'" class="response-content d-flex flex-row message-container right" >
                   <div class="response-image" style="margin-right:10px">
                     <img src="../../assets/images/chatBot.jpg" height="20px" width="20px" alt="Bot Image">
@@ -359,14 +359,15 @@
           
       </div>
       <hr class="py-0 my-0">
-      <div class="modal-footerchat-container"> 
+      <div class="modal-footer"> 
         
         <div class="chat-input rounded-pill">
           <input [(ngModel)]="userMessage"  placeholder="Type your message..." />
           <!-- <button (click)="sendMessage()">Send</button> -->
           <div style="background-color: #7672ED;height:30px;width:30px" class="rounded-pill">
               <img (click)="sendMessage()" style="margin-left: 8px;margin-top: 8px;" src="../../assets/images/Send.png" height="15px" width="15px" alt="">
-          </div>
+         
+            </div>
         </div>
     </div>
 

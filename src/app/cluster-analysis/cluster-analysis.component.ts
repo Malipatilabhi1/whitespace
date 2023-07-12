@@ -1320,7 +1320,7 @@ tableContent1={
   this.chartOptions = {
     series: barData,
     chart: {
-      width: "55%",
+      width: 320,
       type: "pie"
     },
     colors:["#91ADFD","#FFE0C2","#C0BBEB","#A3F5EC","#FDE68C","#D6D6D6"],
@@ -1785,7 +1785,7 @@ tableContent1={
   this.chartOptions1 = {
     series: barData,
     chart: {
-      width: "55%",
+      width: 320,
       type: "pie"
     },
     colors:["#91ADFD","#FFE0C2","#C0BBEB","#A3F5EC","#FDE68C","#D6D6D6"],
@@ -2241,7 +2241,7 @@ tableContent1={
     this.chartOptions2 = {
       series: barData,
       chart: {
-        width: "55%",
+        width: 320,
         type: "pie"
       },
       labels: barDataKey,

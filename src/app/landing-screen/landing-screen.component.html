@@ -1,4 +1,8 @@
+<div>
+    <mat-progress-bar color="accent" *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+</div>
 <div class="pt-5" style="display:flex;justify-content: center;align-items: center;">
+   
     <div class="card border-2" style="height:50%;width:80%;border: 1px dotted #3F7EFF;">
         <div class="main p-5">
             <div class="d-flex flex-column" style="display:flex;justify-content: center;align-items: center;">
@@ -6,7 +10,7 @@
                     <img src="../../assets/images/landing.png" class="mt-2" height="160" width="200" alt="" >
                 </div>
                 <div class="pt-2">
-                    <h1 style="display:flex;justify-content: center;align-items: center;"><b>Upload Market Research Data</b></h1>
+                    <p class="heading" style="display:flex;justify-content: center;align-items: center;"><b>Upload Market Research Data</b></p>
                     <p style="display:flex;justify-content: center;align-items: center;">You can upload csv or XLS files to import your inventory</p>
                 </div>
                 <div class="theUpload" style="width:50%;">

@@ -378,3 +378,11 @@ mat-progress-bar {
   height:10px;
   background-color:#1890FF;
 }
+button.nextButton:disabled{
+  background-color: gray;
+  cursor: not-allowed;
+height: 40px;
+border-radius: 0px;
+color:white;
+border:none;
+}

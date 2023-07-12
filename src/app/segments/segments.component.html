@@ -168,21 +168,21 @@
                 </div>
                 <div class="card m-1" style="width: 30%">
                     <div class="p-1">
-                        <div class="d-flex flex-row py-0 my-0" style="width: 100%;">
+                        <div class="d-flex flex-row " style="width: 100%;">
                             <p style="color: #222; font-size: 16px;  font-family: Outfit; font-style: normal; font-weight: 600;width:70%">
                                 Map to product attribute
                             </p>
                             <!-- <button (click)="markSegmentAsDone(i)" type="button" class="btn btn-primary mx-2 done"   >Done</button> -->
                           
                         </div>
-                        <hr>
-                        <div *ngIf="i == 0" style="height: 46vh; overflow-y: scroll;" class="py-0">
+                        <hr class="py-0 my-0">
+                        <div *ngIf="i == 0" style="height: 50vh; overflow-y: scroll;" class="py-0 pt-3">
                           <div *ngFor="let segment of segments1; let i = index" class="d-flex flex-row py-0 my-0" style="width:100%">
                             <div style="width:45%" class="py-0 my-0">
                               <p class="px-1 py-0 slide" style="margin-top: 10px;">{{ segment.name }}</p>
                             </div>
                             <div class="py-0 my-0" style="width:55%;">
-                              <mat-slider class="custom-slider" thumbLabel discrete style="width: 100px;" min="0" max="1" step="1" [(ngModel)]="segment.value" (change)="slidervalues(sliderValues[i])">
+                              <mat-slider class="custom-slider" thumbLabel discrete style="width: 100px;" min="0" max="100" step="1" [ngModel]="segment.value * 100" (ngModelChange)="segment.value = $event / 100; slidervalues(sliderValues[i])">
                                 <input matSliderThumb>
                               </mat-slider>
                               <span style="color: #222; text-align: right; font-size: 12px; font-family: Outfit; font-style: normal; font-weight: 600;">{{ segment.value *100 }}%</span>
@@ -194,13 +194,13 @@
                           </div>
                        
                         </div>
-                        <div *ngIf="i == 1" style="height: 46vh; overflow-y: scroll;" class="py-0">
+                        <div *ngIf="i == 1" style="height: 50vh; overflow-y: scroll;" class="py-0 pt-3">
                           <div *ngFor="let segment of segments2; let i = index" class="d-flex flex-row py-0 my-0" style="width:100%">
                             <div style="width:45%" class="py-0 my-0">
                               <p class="px-1 py-0 slide" style="margin-top: 10px;">{{ segment.name }}</p>
                             </div>
                             <div class="py-0 my-0" style="width:55%;">
-                              <mat-slider class="custom-slider" thumbLabel discrete style="width: 100px;" min="0" max="1" step="1" [(ngModel)]="segment.value" (change)="slidervalues(sliderValues[i])">
+                              <mat-slider class="custom-slider" thumbLabel discrete style="width: 100px;" min="0" max="100" step="1" [ngModel]="segment.value * 100" (ngModelChange)="segment.value = $event / 100; slidervalues(sliderValues[i])">
                                 <input matSliderThumb>
                               </mat-slider>
                               <span style="color: #222; text-align: right; font-size: 12px; font-family: Outfit; font-style: normal; font-weight: 600;">{{ segment.value *100}}%</span>
@@ -212,13 +212,13 @@
                           </div>
                        
                         </div>
-                        <div *ngIf="i == 2" style="height: 46vh; overflow-y: scroll;" class="py-0">
+                        <div *ngIf="i == 2" style="height: 50vh; overflow-y: scroll;" class="py-0 pt-3">
                           <div *ngFor="let segment of segments3; let i = index" class="d-flex flex-row py-0 my-0" style="width:100%">
                             <div style="width:45%" class="py-0 my-0">
                               <p class="px-1 py-0 slide" style="margin-top: 10px;">{{ segment.name }}</p>
                             </div>
                             <div class="py-0 my-0" style="width:55%;">
-                              <mat-slider class="custom-slider" thumbLabel discrete style="width: 100px;" min="0" max="1" step="1" [(ngModel)]="segment.value" (change)="slidervalues(sliderValues[i])">
+                              <mat-slider class="custom-slider" thumbLabel discrete style="width: 100px;" min="0" max="100" step="1" [ngModel]="segment.value * 100" (ngModelChange)="segment.value = $event / 100; slidervalues(sliderValues[i])">
                                 <input matSliderThumb>
                               </mat-slider>
                               <span style="color: #222; text-align: right; font-size: 12px; font-family: Outfit; font-style: normal; font-weight: 600;">{{ segment.value *100 }}%</span>
@@ -230,13 +230,13 @@
                           </div>
                        
                         </div>
-                        <div *ngIf="i == 3" style="height: 46vh; overflow-y: scroll;" class="py-0">
+                        <div *ngIf="i == 3" style="height: 50vh; overflow-y: scroll;" class="py-0 pt-3">
                           <div *ngFor="let segment of segments4; let i = index" class="d-flex flex-row py-0 my-0" style="width:100%">
                             <div style="width:45%" class="py-0 my-0">
                               <p class="px-1 py-0 slide" style="margin-top: 10px;">{{ segment.name }}</p>
                             </div>
                             <div class="py-0 my-0" style="width:55%;">
-                              <mat-slider class="custom-slider" thumbLabel discrete style="width: 100px;" min="0" max="1" step="1" [(ngModel)]="segment.value" (change)="slidervalues(sliderValues[i])">
+                              <mat-slider class="custom-slider" thumbLabel discrete style="width: 100px;" min="0" max="100" step="1" [ngModel]="segment.value * 100" (ngModelChange)="segment.value = $event / 100; slidervalues(sliderValues[i])">
                                 <input matSliderThumb>
                               </mat-slider>
                               <span style="color: #222; text-align: right; font-size: 12px; font-family: Outfit; font-style: normal; font-weight: 600;">{{ segment.value *100}}%</span>
@@ -248,13 +248,13 @@
                           </div>
                        
                         </div>
-                        <div *ngIf="i == 4" style="height: 46vh; overflow-y: scroll;" class="py-0">
+                        <div *ngIf="i == 4" style="height: 50vh; overflow-y: scroll;" class="py-0 pt-3">
                           <div *ngFor="let segment of segments5; let i = index" class="d-flex flex-row py-0 my-0" style="width:100%">
                             <div style="width:45%" class="py-0 my-0">
                               <p class="px-1 py-0 slide" style="margin-top: 10px;">{{ segment.name }}</p>
                             </div>
                             <div class="py-0 my-0" style="width:55%;">
-                              <mat-slider class="custom-slider" thumbLabel discrete style="width: 100px;" min="0" max="1" step="1" [(ngModel)]="segment.value" (change)="slidervalues(sliderValues[i])">
+                              <mat-slider class="custom-slider" thumbLabel discrete style="width: 100px;" min="0" max="100" step="1" [ngModel]="segment.value * 100" (ngModelChange)="segment.value = $event / 100; slidervalues(sliderValues[i])">
                                 <input matSliderThumb>
                               </mat-slider>
                               <span style="color: #222; text-align: right; font-size: 12px; font-family: Outfit; font-style: normal; font-weight: 600;">{{ segment.value *100}}%</span>
@@ -266,13 +266,13 @@
                           </div>
                        
                         </div>
-                        <div *ngIf="i == 5" style="height: 46vh; overflow-y: scroll;" class="py-0">
+                        <div *ngIf="i == 5" style="height: 50vh; overflow-y: scroll;" class="py-0 pt-3">
                           <div *ngFor="let segment of segments6; let i = index" class="d-flex flex-row py-0 my-0" style="width:100%">
                             <div style="width:45%" class="py-0 my-0">
                               <p class="px-1 py-0 slide" style="margin-top: 10px;">{{ segment.name }}</p>
                             </div>
                             <div class="py-0 my-0" style="width:55%;">
-                              <mat-slider class="custom-slider" thumbLabel discrete style="width: 100px;" min="0" max="1" step="1" [(ngModel)]="segment.value" (change)="slidervalues(sliderValues[i])">
+                              <mat-slider class="custom-slider" thumbLabel discrete style="width: 100px;" min="0" max="100" step="1" [ngModel]="segment.value * 100" (ngModelChange)="segment.value = $event / 100; slidervalues(sliderValues[i])">
                                 <input matSliderThumb>
                               </mat-slider>
                               <span style="color: #222; text-align: right; font-size: 12px; font-family: Outfit; font-style: normal; font-weight: 600;">{{ segment.value *100}}%</span>
@@ -285,10 +285,10 @@
                        
                         </div>
                         <hr class="py-0 my-0">
-                   <div style="height:7vh">
+                   <div style="height:7vh; align-items: center;">
                   
-                    <div class="d-flex flex-row"  >
-                     <div class="p-2" style="display:flex;justify-content: start; cursor: pointer;width:10%">
+                    <div class="d-flex flex-row" style="align-items: center;" >
+                     <div class="p-2" style="display:flex;justify-content: start; cursor: pointer;width:10%;vertical-align: center;align-items: center;">
                       <button (click)="markSegmentAsDone(i)"  type="button" class="btn btn-primary done"   >Done</button>
                      </div>
                      <div  style="display:flex;justify-content: end; cursor: pointer;width:90%;">

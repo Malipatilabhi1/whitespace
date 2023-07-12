@@ -35,7 +35,7 @@ export class LandingScreenComponent implements OnInit {
     this.fileInput.click();
   }
 
- 
+  isLoading = false;
 
   handleFileSelected(event: Event) {
     const target = event.target as HTMLInputElement;
@@ -46,7 +46,14 @@ export class LandingScreenComponent implements OnInit {
     if (selectedFile) {
       // Perform file upload logic here
       // After the upload is complete, navigate to a different page
-      this.router.navigate(['/summary']);
+      // this.router.navigate(['/summary']);
+      this.isLoading = true; // Show the progress bar
+  
+      setTimeout(() => {
+        this.router.navigate(['./summary']).then(() => {
+          this.isLoading = false; // Hide the progress bar when navigation is complete
+        });
+      }, 3000); // Delay of 3 seconds
     }
 
  

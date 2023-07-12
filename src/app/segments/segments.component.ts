@@ -155,6 +155,7 @@ segmentStatus: string[] = [];
   selectedTab: string;
 
   ngOnInit(): void {
+    this.setValues();
             //  this.getSegments();
           // this.updateSegment();
         this.route.paramMap.subscribe(params => {
@@ -162,26 +163,26 @@ segmentStatus: string[] = [];
           console.log( this.selectedTab)
         });
 
-    //     const storedSegmentDone = localStorage.getItem('segmentDone');
-    // if (storedSegmentDone) {
-    //   this.segmentDone = JSON.parse(storedSegmentDone);
-    // } else {
-    //   this.segmentDone = Array(this.data.length).fill(false);
-    // }
-    this.sliderValues = Array(this.data.length).fill(0);
+  const storedSegmentDone = localStorage.getItem('segmentDone');
+    if (storedSegmentDone) {
+      this.segmentDone = JSON.parse(storedSegmentDone);
+    } else {
+      this.segmentDone = Array(this.data.length).fill(false);
+    }
+    // this.sliderValues = Array(this.data.length).fill(0);
+    
+
    }
+
+
+
    allSegmentsDone: boolean = false;
    
    checkAllSegmentsDone() {
      this.allSegmentsDone = this.segmentDone.every(done => done);
-   }
-   
-  
-   
-      
-      segmentDone: boolean[] = [];
+   } 
+  segmentDone: boolean[] = [];
   // segmentDone: boolean[] = new Array(this.data.length).fill(false);
-
   markSegmentAsDone(index: number) {
     this.segmentDone[index] = true;
     this.checkAllSegmentsDone();
@@ -231,49 +232,12 @@ capture(){
   this.captureScreen()
 }
 data1:any=[];
-segments1: any[] = [
-  { name: 'Aroma', value:0.76 },
-  { name: 'Long Lasting Hold', value:0.6 },
-  { name: 'Clean Scalp', value:0.62 },
-  { name: 'Maintenance', value:0.67 },
-  { name: 'Volume and Bounce', value:0.64 }
-];
-segments2: any[] = [
-  { name: 'Aroma', value:0.76 },
-  { name: 'Long Lasting Hold', value:0.6 },
-  { name: 'Clean Scalp', value:0.62 },
-  { name: 'Maintenance', value:0.67 },
-  { name: 'Volume and Bounce', value:0.64 }
-];
-
-segments3: any[] = [
-  { name: 'Aroma', value:0.76 },
-  { name: 'Long Lasting Hold', value:0.6 },
-  { name: 'Clean Scalp', value:0.62 },
-  { name: 'Maintenance', value:0.67 },
-  { name: 'Volume and Bounce', value:0.64 }
-];
-segments4: any[] = [
-  { name: 'Aroma', value:0.76 },
-  { name: 'Long Lasting Hold', value:0.6 },
-  { name: 'Clean Scalp', value:0.62 },
-  { name: 'Maintenance', value:0.67 },
-  { name: 'Volume and Bounce', value:0.64 }
-];
-segments5: any[] = [
-  { name: 'Aroma', value:0.76 },
-  { name: 'Long Lasting Hold', value:0.6 },
-  { name: 'Clean Scalp', value:0.62 },
-  { name: 'Maintenance', value:0.67 },
-  { name: 'Volume and Bounce', value:0.64 }
-];
-segments6: any[] = [
-  { name: 'Aroma', value:0.76 },
-  { name: 'Long Lasting Hold', value:0.6 },
-  { name: 'Clean Scalp', value:0.62 },
-  { name: 'Maintenance', value:0.67 },
-  { name: 'Volume and Bounce', value:0.64 }
-];
+segments1: any =[];
+segments2: any =[];
+segments3: any =[];
+segments4: any =[];
+segments5: any =[];
+segments6: any =[];
 sliderValues: number[] = [];
 @HostListener('document:keyup', ['$event'])
 handleKeyUp(event: KeyboardEvent) {
@@ -281,8 +245,121 @@ handleKeyUp(event: KeyboardEvent) {
     this.sendMessage();
   }
 }
-slidervalues(value: number) {
-  console.log(value);
+slidervalues(value: any, index:any, segment:any) {
+  console.log(value, index, segment);
+  if(index==0){
+    let a=JSON.parse(localStorage.getItem(value));
+    a[0]=segment
+    console.log("a", a)
+    localStorage.setItem(value, JSON.stringify(a));
+    console.log(JSON.parse(localStorage.getItem(value)))
+  }
+  else if(index==1){
+    let a=JSON.parse(localStorage.getItem(value));
+    a[1]=segment
+    console.log("2a", a)
+    localStorage.setItem(value, JSON.stringify(a));
+  }else if(index==2){
+    let a=JSON.parse(localStorage.getItem(value));
+    a[2]=segment
+    console.log("3a", a)
+    localStorage.setItem(value, JSON.stringify(a));
+  }else if(index==3){
+    let a=JSON.parse(localStorage.getItem(value));
+    a[3]=segment
+    console.log("4a", a)
+    localStorage.setItem(value, JSON.stringify(a));
+  }else if(index==4){
+    let a=JSON.parse(localStorage.getItem(value));
+    a[4]=segment
+    console.log("5a", a)
+    localStorage.setItem(value, JSON.stringify(a));
+  }else if(index==5){
+    let a=JSON.parse(localStorage.getItem(value));
+    a[5]=segment
+    console.log("6a", a)
+    localStorage.setItem(value, JSON.stringify(a));
+  }
+ 
+}
+
+storedValue1:any;
+storedValue2:any;
+storedValue3:any;
+storedValue4:any;
+storedValue5:any;
+storedValue6:any;
+setValues(){
+  if(JSON.parse(localStorage.getItem('segment1'))){
+    this.segments1=JSON.parse(localStorage.getItem('segment1'));
+  }else{
+    this.segments1= [
+      { name: 'Aroma', value:0.76 },
+      { name: 'Long Lasting Hold', value:0.6 },
+      { name: 'Clean Scalp', value:0.62 },
+      { name: 'Maintenance', value:0.67 },
+      { name: 'Volume and Bounce', value:0.64 }
+    ] 
+      localStorage.setItem('segment1', JSON.stringify(this.segments1))
+  }
+
+  if(JSON.parse(localStorage.getItem('segment2'))){
+    this.segments2=JSON.parse(localStorage.getItem('segment2'));
+  }else{
+    this.segments2= [
+      { name: 'Aroma', value:0.70 },
+      { name: 'Long Lasting Hold', value:0.6 },
+      { name: 'Clean Scalp', value:0.52 },
+      { name: 'Maintenance', value:0.67 },
+      { name: 'Volume and Bounce', value:0.64 }
+    ] 
+    localStorage.setItem('segment2', JSON.stringify(this.segments2))
+  }
+  if(JSON.parse(localStorage.getItem('segment3'))){
+    this.segments3=JSON.parse(localStorage.getItem('segment3'));
+  }else{
+    this.segments3= [
+      { name: 'Aroma', value:0.70 },
+      { name: 'Long Lasting Hold', value:0.6 },
+      { name: 'Clean Scalp', value:0.52 },
+      { name: 'Maintenance', value:0.67 },
+      { name: 'Volume and Bounce', value:0.64 }
+    ] 
+    localStorage.setItem('segment3', JSON.stringify(this.segments3))
+  }if(JSON.parse(localStorage.getItem('segment4'))){
+    this.segments4=JSON.parse(localStorage.getItem('segment4'));
+  }else{
+    this.segments4= [
+      { name: 'Aroma', value:0.70 },
+      { name: 'Long Lasting Hold', value:0.6 },
+      { name: 'Clean Scalp', value:0.52 },
+      { name: 'Maintenance', value:0.67 },
+      { name: 'Volume and Bounce', value:0.64 }
+    ] 
+    localStorage.setItem('segment4', JSON.stringify(this.segments4))
+  }if(JSON.parse(localStorage.getItem('segment5'))){
+    this.segments5=JSON.parse(localStorage.getItem('segment5'));
+  }else{
+    this.segments5= [
+      { name: 'Aroma', value:0.70 },
+      { name: 'Long Lasting Hold', value:0.6 },
+      { name: 'Clean Scalp', value:0.52 },
+      { name: 'Maintenance', value:0.67 },
+      { name: 'Volume and Bounce', value:0.64 }
+    ] 
+    localStorage.setItem('segment5', JSON.stringify(this.segments5))
+  }if(JSON.parse(localStorage.getItem('segment6'))){
+    this.segments6=JSON.parse(localStorage.getItem('segment6'));
+  }else{
+    this.segments6= [
+      { name: 'Aroma', value:0.70 },
+      { name: 'Long Lasting Hold', value:0.6 },
+      { name: 'Clean Scalp', value:0.52 },
+      { name: 'Maintenance', value:0.67 },
+      { name: 'Volume and Bounce', value:0.64 }
+    ] 
+    localStorage.setItem('segment6', JSON.stringify(this.segments6))
+  }
 }
 //  segmentNames:any;
 // getSegments(){

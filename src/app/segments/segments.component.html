@@ -182,7 +182,8 @@
                               <p class="px-1 py-0 slide" style="margin-top: 10px;">{{ segment.name }}</p>
                             </div>
                             <div class="py-0 my-0" style="width:55%;">
-                              <mat-slider class="custom-slider" thumbLabel discrete style="width: 100px;" min="0" max="100" step="1" [ngModel]="segment.value * 100" (ngModelChange)="segment.value = $event / 100; slidervalues(sliderValues[i])">
+                              <mat-slider class="custom-slider" thumbLabel discrete style="width: 100px;" min="0" max="100" step="1" 
+                              [ngModel]="segment.value * 100" (ngModelChange)="segment.value = $event / 100; slidervalues('segment1', i, segment)">
                                 <input matSliderThumb>
                               </mat-slider>
                               <span style="color: #222; text-align: right; font-size: 12px; font-family: Outfit; font-style: normal; font-weight: 600;">{{ segment.value *100 }}%</span>
@@ -200,7 +201,7 @@
                               <p class="px-1 py-0 slide" style="margin-top: 10px;">{{ segment.name }}</p>
                             </div>
                             <div class="py-0 my-0" style="width:55%;">
-                              <mat-slider class="custom-slider" thumbLabel discrete style="width: 100px;" min="0" max="100" step="1" [ngModel]="segment.value * 100" (ngModelChange)="segment.value = $event / 100; slidervalues(sliderValues[i])">
+                              <mat-slider class="custom-slider" thumbLabel discrete style="width: 100px;" min="0" max="100" step="1" [ngModel]="segment.value * 100" (ngModelChange)="segment.value = $event / 100; slidervalues('segment2', i, segment)">
                                 <input matSliderThumb>
                               </mat-slider>
                               <span style="color: #222; text-align: right; font-size: 12px; font-family: Outfit; font-style: normal; font-weight: 600;">{{ segment.value *100}}%</span>
@@ -218,7 +219,7 @@
                               <p class="px-1 py-0 slide" style="margin-top: 10px;">{{ segment.name }}</p>
                             </div>
                             <div class="py-0 my-0" style="width:55%;">
-                              <mat-slider class="custom-slider" thumbLabel discrete style="width: 100px;" min="0" max="100" step="1" [ngModel]="segment.value * 100" (ngModelChange)="segment.value = $event / 100; slidervalues(sliderValues[i])">
+                              <mat-slider class="custom-slider" thumbLabel discrete style="width: 100px;" min="0" max="100" step="1" [ngModel]="segment.value * 100" (ngModelChange)="segment.value = $event / 100; slidervalues('segment3', i, segment)">
                                 <input matSliderThumb>
                               </mat-slider>
                               <span style="color: #222; text-align: right; font-size: 12px; font-family: Outfit; font-style: normal; font-weight: 600;">{{ segment.value *100 }}%</span>
@@ -236,7 +237,7 @@
                               <p class="px-1 py-0 slide" style="margin-top: 10px;">{{ segment.name }}</p>
                             </div>
                             <div class="py-0 my-0" style="width:55%;">
-                              <mat-slider class="custom-slider" thumbLabel discrete style="width: 100px;" min="0" max="100" step="1" [ngModel]="segment.value * 100" (ngModelChange)="segment.value = $event / 100; slidervalues(sliderValues[i])">
+                              <mat-slider class="custom-slider" thumbLabel discrete style="width: 100px;" min="0" max="100" step="1" [ngModel]="segment.value * 100" (ngModelChange)="segment.value = $event / 100; slidervalues('segment4', i, segment)">
                                 <input matSliderThumb>
                               </mat-slider>
                               <span style="color: #222; text-align: right; font-size: 12px; font-family: Outfit; font-style: normal; font-weight: 600;">{{ segment.value *100}}%</span>
@@ -254,7 +255,7 @@
                               <p class="px-1 py-0 slide" style="margin-top: 10px;">{{ segment.name }}</p>
                             </div>
                             <div class="py-0 my-0" style="width:55%;">
-                              <mat-slider class="custom-slider" thumbLabel discrete style="width: 100px;" min="0" max="100" step="1" [ngModel]="segment.value * 100" (ngModelChange)="segment.value = $event / 100; slidervalues(sliderValues[i])">
+                              <mat-slider class="custom-slider" thumbLabel discrete style="width: 100px;" min="0" max="100" step="1" [ngModel]="segment.value * 100" (ngModelChange)="segment.value = $event / 100; slidervalues('segment5', i, segment)">
                                 <input matSliderThumb>
                               </mat-slider>
                               <span style="color: #222; text-align: right; font-size: 12px; font-family: Outfit; font-style: normal; font-weight: 600;">{{ segment.value *100}}%</span>
@@ -272,7 +273,7 @@
                               <p class="px-1 py-0 slide" style="margin-top: 10px;">{{ segment.name }}</p>
                             </div>
                             <div class="py-0 my-0" style="width:55%;">
-                              <mat-slider class="custom-slider" thumbLabel discrete style="width: 100px;" min="0" max="100" step="1" [ngModel]="segment.value * 100" (ngModelChange)="segment.value = $event / 100; slidervalues(sliderValues[i])">
+                              <mat-slider class="custom-slider" thumbLabel discrete style="width: 100px;" min="0" max="100" step="1" [ngModel]="segment.value * 100" (ngModelChange)="segment.value = $event / 100; slidervalues('segment6', i, segment)">
                                 <input matSliderThumb>
                               </mat-slider>
                               <span style="color: #222; text-align: right; font-size: 12px; font-family: Outfit; font-style: normal; font-weight: 600;">{{ segment.value *100}}%</span>

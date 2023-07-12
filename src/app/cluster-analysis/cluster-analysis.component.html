@@ -332,7 +332,7 @@
       <div class="modal-body table-content">
         <table class="table table-bordered">
           <thead>
-            <tr class="table-primary">
+            <tr >
               <th>Features</th>
               <th *ngFor="let segment of a">
                 Segment {{ segment }}
@@ -341,7 +341,7 @@
           </thead>
           <tbody class="table-body">
             <tr *ngFor="let feature of b">
-              <td style="color: #3F7FFF;">{{ feature }}</td>
+              <td class="features">{{ feature }}</td>
               <td *ngFor="let segment of a" [ngStyle]="getCellStyles(segment, feature)">
                 {{ tableContent[segment][feature] }}
               </td>

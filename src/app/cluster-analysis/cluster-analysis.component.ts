@@ -1217,17 +1217,17 @@ tableContent1={
     if (value < 0.5) {
       cellStyles = {
         'background-color': '#6599FF',
-        color: 'white'
+        color: 'black'
       };
     } else if (value < 1) {
       cellStyles = {
         'background-color': '#A7C4FF',
-        color: 'white'
+        color: 'black'
       };
     }else{
       cellStyles = {
-        'background-color': '#C3D7FF',
-        color: 'white'
+        'background-color': '#E9EBF8',
+        color: 'black'
       };
     }
     // Add more conditions for other feature values

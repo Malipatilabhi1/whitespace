@@ -144,4 +144,20 @@ font-weight: 500;
   .card{
     box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.20); 
   }
-
+.features{
+  color: #666;
+font-family: Outfit;
+font-size: 14px;
+font-style: normal;
+font-weight: 600;
+line-height: 22px;
+}
+th{
+  color: #666;
+font-family: Outfit;
+font-size: 14px;
+font-style: normal;
+font-weight: 600;
+line-height: 22px;
+background-color: #EBEBEB;
+}

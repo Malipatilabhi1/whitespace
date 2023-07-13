@@ -334,8 +334,8 @@
           <thead>
             <tr >
               <th>Features</th>
-              <th *ngFor="let segment of a">
-                Segment {{ segment }}
+              <th *ngFor="let segment of a let i=index">
+                Segment {{ i+1 }}
               </th>
             </tr>
           </thead>
@@ -377,8 +377,8 @@
           <thead>
             <tr class="table-primary">
               <th>Features</th>
-              <th *ngFor="let segment of c">
-                Segment {{ segment }}
+              <th *ngFor="let segment of c let i = index">
+                Segment {{ i+1 }}
               </th>
             </tr>
           </thead>

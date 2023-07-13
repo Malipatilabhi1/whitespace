@@ -58,7 +58,7 @@
         <td style="width:15em;background-color: #ECF2FF;height:30px;text-align: left;">
           {{data[0]}}
         </td>
-        <td *ngFor="let value of flamboyant; let i = index" style="color:white" [ngStyle]="{ 'background-color': getBackgroundColor(value) }">
+        <td *ngFor="let value of flamboyant; let i = index"  [ngStyle]="getBackgroundColor(value)">
            <ng-container>{{value}}</ng-container>
            </td>
     </tr>
@@ -67,7 +67,7 @@
             {{data[1]}}
         </td>
        
-        <td *ngFor="let value of neutralising; let i = index" style="color:white" [ngStyle]="{ 'background-color': getBackgroundColor(value) }">
+        <td *ngFor="let value of neutralising; let i = index" style="color:white"  [ngStyle]="getBackgroundColor(value)">
             <ng-container >{{value}}</ng-container>
             </td>
     </tr>
@@ -75,7 +75,7 @@
         <td style="width:15em;background-color: #ECF2FF;height:30px;text-align: left;">
             {{data[2]}}
         </td>
-        <td *ngFor="let value of purist; let i = index" style="color:white" [ngStyle]="{ 'background-color': getBackgroundColor(value) }">
+        <td *ngFor="let value of purist; let i = index" style="color:black"  [ngStyle]="getBackgroundColor(value)">
             <ng-container>{{value}}</ng-container>
             </td>
     </tr>
@@ -83,7 +83,7 @@
         <td style="width:15em;background-color: #ECF2FF;height:30px;text-align: left;">
             {{data[3]}}
         </td>
-        <td *ngFor="let value of sensible; let i = index" style="color:white" [ngStyle]="{ 'background-color': getBackgroundColor(value) }">
+        <td *ngFor="let value of sensible; let i = index" style="color:white"  [ngStyle]="getBackgroundColor(value)">
             <ng-container >{{value}}</ng-container>
             </td>
     </tr>
@@ -91,7 +91,7 @@
         <td style="width:15em;background-color: #ECF2FF;height:30px;text-align: left;">
             {{data[4]}}
         </td>
-        <td *ngFor="let value of aspirant; let i = index" style="color:white" [ngStyle]="{ 'background-color': getBackgroundColor(value) }">
+        <td *ngFor="let value of aspirant; let i = index" style="color:white"  [ngStyle]="getBackgroundColor(value)">
             <ng-container >{{value}}</ng-container>
             </td>
     </tr>
@@ -99,7 +99,7 @@
         <td style="width:15em;background-color: #ECF2FF;height:30px;text-align: left;">
        {{data[5]}}
         </td>
-        <td *ngFor="let value of hoverer; let i = index" style="color:white" [ngStyle]="{ 'background-color': getBackgroundColor(value) }">
+        <td *ngFor="let value of hoverer; let i = index" style="color:white"  [ngStyle]="getBackgroundColor(value)">
             <ng-container >{{value}}</ng-container>
             </td>
     </tr>
@@ -110,8 +110,8 @@
                 <!-- <div class="mx-2" style="height:15px; width:20px; background-color: #89CFF0;"></div>
                 <div class="mx-2" style="height:15px; width:20px; background-color: #6CB4EE;"></div> -->
                 <div class="mx-2" style="height:15px; width:20px; background-color: #E9E9E9;"></div>   
-                <div class="mx-2" style="height:15px; width:20px; background-color: #4E4E4E;"></div>
-                <div class="mx-2" style="height:15px; width:20px; background-color:  #999999;"></div>
+                <div class="mx-2" style="height:15px; width:20px; background-color: #999999;"></div>
+                <div class="mx-2" style="height:15px; width:20px; background-color:  #4E4E4E;"></div>
                 <div class="mx-2" style="height:15px; width:20px; background-color: #222222;"></div>
                 <p class="pt-3 px-3">Higher Match</p>
              </div>

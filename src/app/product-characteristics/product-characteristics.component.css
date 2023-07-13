@@ -16,6 +16,7 @@ flex-shrink: 0;
 box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.20);
 }
 
+
 .cardHeadingText{
 color: #2D5AB5;
 font-family: Outfit;
@@ -78,4 +79,32 @@ font-family: Outfit;
 font-size: 14px;
 font-style: normal;
 font-weight: 400;
+}
+
+mat-progress-bar {
+    width: 100%; /* Adjust the desired width */
+    height:10px;
+    background-color:#1890FF;
+  }
+  .sticky-bottom{
+    position:fixed;
+    z-index:1;
+    bottom:1px;
+   background-color: white;
+   width:83%;
+   /* .btn{
+   display: flex;
+    justify-content: end;
+   } */
+   display: flex;
+    justify-content: end;
+   
+  }
+  .btn{
+    background-color: #ECF2FF;
+    border: 1px solid #3F7FFF;
+    color:#3F7FFF;
+    /* width: 113px; */
+height: 40px;
+border-radius: 0px;
 }

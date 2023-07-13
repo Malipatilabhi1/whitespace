@@ -295,10 +295,13 @@ setValues(){
   }else{
     this.segments1= [
       { name: 'Aroma', value:0.76 },
-      { name: 'Long Lasting Hold', value:0.6 },
-      { name: 'Clean Scalp', value:0.62 },
-      { name: 'Maintenance', value:0.67 },
-      { name: 'Volume and Bounce', value:0.64 }
+      { name: 'Bubble', value:0.67 },
+      { name: 'Viscocity', value:0.6 },
+      { name: 'PH', value:0.67 },
+      { name: 'Oil Removing', value:0.62 },
+      { name: 'Lather', value:0.67 },
+      { name: 'Scalp', value:0.64 },
+      { name: 'Price', value:0.57 }
     ] 
       localStorage.setItem('segment1', JSON.stringify(this.segments1))
   }
@@ -307,11 +310,14 @@ setValues(){
     this.segments2=JSON.parse(localStorage.getItem('segment2'));
   }else{
     this.segments2= [
-      { name: 'Aroma', value:0.70 },
-      { name: 'Long Lasting Hold', value:0.6 },
-      { name: 'Clean Scalp', value:0.52 },
-      { name: 'Maintenance', value:0.67 },
-      { name: 'Volume and Bounce', value:0.64 }
+      { name: 'Aroma', value:0.57 },
+      { name: 'Bubble', value:1.0 },
+      { name: 'Viscocity', value:0.69 },
+      { name: 'PH', value:1.0 },
+      { name: 'Oil Removing', value:1.0 },
+      { name: 'Lather', value:1.0 },
+      { name: 'Scalp', value:0.53 },
+      { name: 'Price', value:1.0 }
     ] 
     localStorage.setItem('segment2', JSON.stringify(this.segments2))
   }
@@ -319,44 +325,56 @@ setValues(){
     this.segments3=JSON.parse(localStorage.getItem('segment3'));
   }else{
     this.segments3= [
-      { name: 'Aroma', value:0.70 },
-      { name: 'Long Lasting Hold', value:0.6 },
-      { name: 'Clean Scalp', value:0.52 },
-      { name: 'Maintenance', value:0.67 },
-      { name: 'Volume and Bounce', value:0.64 }
+      { name: 'Aroma', value:0.74 },
+      { name: 'Bubble', value:0.64 },
+      { name: 'Viscocity', value:0.61 },
+      { name: 'PH', value:0.75},
+      { name: 'Oil Removing', value:0.65 },
+      { name: 'Lather', value:0.74 },
+      { name: 'Scalp', value:0.68 },
+      { name: 'Price', value:0.61 }
     ] 
     localStorage.setItem('segment3', JSON.stringify(this.segments3))
   }if(JSON.parse(localStorage.getItem('segment4'))){
     this.segments4=JSON.parse(localStorage.getItem('segment4'));
   }else{
     this.segments4= [
-      { name: 'Aroma', value:0.70 },
-      { name: 'Long Lasting Hold', value:0.6 },
-      { name: 'Clean Scalp', value:0.52 },
-      { name: 'Maintenance', value:0.67 },
-      { name: 'Volume and Bounce', value:0.64 }
+      { name: 'Aroma', value:0.45 },
+      { name: 'Bubble', value:0.69 },
+      { name: 'Viscocity', value:0.67 },
+      { name: 'PH', value:0.53},
+      { name: 'Oil Removing', value:0.76 },
+      { name: 'Lather', value:0.69 },
+      { name: 'Scalp', value:0.65 },
+      { name: 'Price', value:0.69 }
     ] 
     localStorage.setItem('segment4', JSON.stringify(this.segments4))
   }if(JSON.parse(localStorage.getItem('segment5'))){
     this.segments5=JSON.parse(localStorage.getItem('segment5'));
   }else{
     this.segments5= [
-      { name: 'Aroma', value:0.70 },
-      { name: 'Long Lasting Hold', value:0.6 },
-      { name: 'Clean Scalp', value:0.52 },
-      { name: 'Maintenance', value:0.67 },
-      { name: 'Volume and Bounce', value:0.64 }
+      { name: 'Aroma', value:0.61 },
+      { name: 'Bubble', value:0.61 },
+      { name: 'Viscocity', value:0.59 },
+      { name: 'PH', value:0.74},
+      { name: 'Oil Removing', value:0.63 },
+      { name: 'Lather', value:0.67 },
+      { name: 'Scalp', value:0.76 },
+      { name: 'Price', value:0.6 }
     ] 
     localStorage.setItem('segment5', JSON.stringify(this.segments5))
   }if(JSON.parse(localStorage.getItem('segment6'))){
     this.segments6=JSON.parse(localStorage.getItem('segment6'));
   }else{
     this.segments6= [
-      { name: 'Aroma', value:0.70 },
-      { name: 'Long Lasting Hold', value:0.6 },
-      { name: 'Clean Scalp', value:0.52 },
-      { name: 'Maintenance', value:0.67 },
-      { name: 'Volume and Bounce', value:0.64 }
+      { name: 'Aroma', value:0.64 },
+      { name: 'Bubble', value:0.75 },
+      { name: 'Viscocity', value:0.64 },
+      { name: 'PH', value:0.81},
+      { name: 'Oil Removing', value:0.58 },
+      { name: 'Lather', value:0.69 },
+      { name: 'Scalp', value:0.72 },
+      { name: 'Price', value:0.6 }
     ] 
     localStorage.setItem('segment6', JSON.stringify(this.segments6))
   }
@@ -558,7 +576,7 @@ addEmotionalNeed(segment: any) {
     this.isLoading1 = true; // Show the progress bar
   
     setTimeout(() => {
-      this.router.navigate(['./whitespaceAnalysis']).then(() => {
+      this.router.navigate(['./product']).then(() => {
         this.isLoading1 = false; // Hide the progress bar when navigation is complete
       });
     }, 3000); // Delay of 3 seconds

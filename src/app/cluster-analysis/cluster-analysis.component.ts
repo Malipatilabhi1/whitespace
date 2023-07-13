@@ -471,12 +471,12 @@ capture(){
         }
     },
     "respondent": {
-        "Segment 0": 15,
-        "Segment 1": 20,
-        "Segment 2": 760,
-        "Segment 3": 385,
-        "Segment 4": 270,
-        "Segment 5": 50
+        "Segment 1": 15,
+        "Segment 2": 20,
+        "Segment 3": 760,
+        "Segment 4": 385,
+        "Segment 5": 270,
+        "Segment 6": 50
     }
 }
 

@@ -555,8 +555,9 @@ saveSegmentCharacteristics(segment: any) {
 enableEditing() {
   this.isEditing = true;
 }
-deleteCharacteristic(segment: any, index: number) {
-  segment.characteristics.splice(index, 1);
+deleteCharacteristic(segment: any, j: number) {
+  segment.characteristics.splice(j, 1);
+  localStorage.setItem('data', JSON.stringify(this.data));
 }
 addCharacteristic(segment: any) {
   segment.characteristics.push(''); // Add an empty string as a new characteristic

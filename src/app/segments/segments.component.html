@@ -28,7 +28,12 @@
                 <div class="card d-flex flex-column m-1" style="width: 68%;">
                   <div class="d-flex flex-row topDiv" style="width:100%;">
                   <div style="width:10%">
-                    <img src="../../assets/images/girl.jpg" class="p-1 rounded-pill" style="border-radius: 50%;" height="70px" width="70px" alt="">
+                    <img *ngIf="i == 0" src="../../assets/images/girl1.jpg" class="p-1 rounded-pill" style="border-radius: 50%;" height="70px" width="70px" alt="">
+                    <img *ngIf="i == 1" src="../../assets/images/boy1.png" class="p-1 rounded-pill" style="border-radius: 50%;" height="70px" width="70px" alt="">
+                    <img *ngIf="i == 2" src="../../assets/images/girl2.jpg" class="p-1 rounded-pill" style="border-radius: 50%;" height="70px" width="70px" alt="">
+                    <img *ngIf="i == 3" src="../../assets/images/boy2.png" class="p-1 rounded-pill" style="border-radius: 50%;" height="70px" width="70px" alt="">
+                    <img *ngIf="i == 4" src="../../assets/images/girl_p.png" class="p-1 rounded-pill" style="border-radius: 50%;" height="70px" width="70px" alt="">
+                    <img *ngIf="i == 5" src="../../assets/images/boy3.png" class="p-1 rounded-pill" style="border-radius: 50%;" height="70px" width="70px" alt="">
                 </div>
                   
                   <div style="display:flex;  justify-content: start; align-items: center;width:50%">
@@ -173,7 +178,6 @@
                                 Map to product attribute
                             </p>
                             <!-- <button (click)="markSegmentAsDone(i)" type="button" class="btn btn-primary mx-2 done"   >Done</button> -->
-                          
                         </div>
                         <hr class="py-0 my-0">
                         <div *ngIf="i == 0" style="height: 50vh; overflow-y: scroll;" class="py-0 pt-3">
@@ -186,14 +190,13 @@
                               [ngModel]="segment.value * 100" (ngModelChange)="segment.value = $event / 100; slidervalues('segment1', i, segment)">
                                 <input matSliderThumb>
                               </mat-slider>
-                              <span style="color: #222; text-align: right; font-size: 12px; font-family: Outfit; font-style: normal; font-weight: 600;">{{ segment.value *100 }}%</span>
+                              <span style="color: #222; text-align: right; font-size: 12px; font-family: Outfit; font-style: normal; font-weight: 600;"> {{ (segment.value * 100).toFixed(0) }}%</span>
                               <div class="example-label-container" style="margin-top:-10px">
                                 <label id="example-name-label" class="example-name-label py-0 my-0">0</label>
                                 <label class="example-value-label last ">100</label>
                               </div>
                             </div>
                           </div>
-                       
                         </div>
                         <div *ngIf="i == 1" style="height: 50vh; overflow-y: scroll;" class="py-0 pt-3">
                           <div *ngFor="let segment of segments2; let i = index" class="d-flex flex-row py-0 my-0" style="width:100%">
@@ -204,7 +207,7 @@
                               <mat-slider class="custom-slider" thumbLabel discrete style="width: 100px;" min="0" max="100" step="1" [ngModel]="segment.value * 100" (ngModelChange)="segment.value = $event / 100; slidervalues('segment2', i, segment)">
                                 <input matSliderThumb>
                               </mat-slider>
-                              <span style="color: #222; text-align: right; font-size: 12px; font-family: Outfit; font-style: normal; font-weight: 600;">{{ segment.value *100}}%</span>
+                              <span style="color: #222; text-align: right; font-size: 12px; font-family: Outfit; font-style: normal; font-weight: 600;">{{ (segment.value * 100).toFixed(0) }}%</span>
                               <div class="example-label-container" style="margin-top:-10px">
                                 <label id="example-name-label" class="example-name-label py-0 my-0">0</label>
                                 <label class="example-value-label last ">100</label>
@@ -222,7 +225,7 @@
                               <mat-slider class="custom-slider" thumbLabel discrete style="width: 100px;" min="0" max="100" step="1" [ngModel]="segment.value * 100" (ngModelChange)="segment.value = $event / 100; slidervalues('segment3', i, segment)">
                                 <input matSliderThumb>
                               </mat-slider>
-                              <span style="color: #222; text-align: right; font-size: 12px; font-family: Outfit; font-style: normal; font-weight: 600;">{{ segment.value *100 }}%</span>
+                              <span style="color: #222; text-align: right; font-size: 12px; font-family: Outfit; font-style: normal; font-weight: 600;">{{ (segment.value * 100).toFixed(0) }}%</span>
                               <div class="example-label-container" style="margin-top:-10px">
                                 <label id="example-name-label" class="example-name-label py-0 my-0">0</label>
                                 <label class="example-value-label last ">100</label>
@@ -240,7 +243,7 @@
                               <mat-slider class="custom-slider" thumbLabel discrete style="width: 100px;" min="0" max="100" step="1" [ngModel]="segment.value * 100" (ngModelChange)="segment.value = $event / 100; slidervalues('segment4', i, segment)">
                                 <input matSliderThumb>
                               </mat-slider>
-                              <span style="color: #222; text-align: right; font-size: 12px; font-family: Outfit; font-style: normal; font-weight: 600;">{{ segment.value *100}}%</span>
+                              <span style="color: #222; text-align: right; font-size: 12px; font-family: Outfit; font-style: normal; font-weight: 600;">{{ (segment.value * 100).toFixed(0) }}%</span>
                               <div class="example-label-container" style="margin-top:-10px">
                                 <label id="example-name-label" class="example-name-label py-0 my-0">0</label>
                                 <label class="example-value-label last ">100</label>
@@ -258,7 +261,7 @@
                               <mat-slider class="custom-slider" thumbLabel discrete style="width: 100px;" min="0" max="100" step="1" [ngModel]="segment.value * 100" (ngModelChange)="segment.value = $event / 100; slidervalues('segment5', i, segment)">
                                 <input matSliderThumb>
                               </mat-slider>
-                              <span style="color: #222; text-align: right; font-size: 12px; font-family: Outfit; font-style: normal; font-weight: 600;">{{ segment.value *100}}%</span>
+                              <span style="color: #222; text-align: right; font-size: 12px; font-family: Outfit; font-style: normal; font-weight: 600;">{{ (segment.value * 100).toFixed(0) }}%</span>
                               <div class="example-label-container" style="margin-top:-10px">
                                 <label id="example-name-label" class="example-name-label py-0 my-0">0</label>
                                 <label class="example-value-label last ">100</label>
@@ -276,7 +279,7 @@
                               <mat-slider class="custom-slider" thumbLabel discrete style="width: 100px;" min="0" max="100" step="1" [ngModel]="segment.value * 100" (ngModelChange)="segment.value = $event / 100; slidervalues('segment6', i, segment)">
                                 <input matSliderThumb>
                               </mat-slider>
-                              <span style="color: #222; text-align: right; font-size: 12px; font-family: Outfit; font-style: normal; font-weight: 600;">{{ segment.value *100}}%</span>
+                              <span style="color: #222; text-align: right; font-size: 12px; font-family: Outfit; font-style: normal; font-weight: 600;">{{ (segment.value * 100).toFixed(0) }}%</span>
                               <div class="example-label-container" style="margin-top:-10px">
                                 <label id="example-name-label" class="example-name-label py-0 my-0">0</label>
                                 <label class="example-value-label last ">100</label>
@@ -287,16 +290,13 @@
                         </div>
                         <hr class="py-0 my-0">
                    <div style="height:7vh; align-items: center;">
-                  
                     <div class="d-flex flex-row" style="align-items: center;" >
                      <div class="p-2" style="display:flex;cursor: pointer;vertical-align: center;align-items: center;">
                       <button (click)="markSegmentAsDone(i)"  type="button" class="btn btn-primary done"   >Done</button>
                      </div>
                      <div  style="display:flex;justify-content: end; cursor: pointer;width:90%;">
                       <img src="../../assets/images/bot.jpg" class="rouned-pill" style="border-radius: 50%;" height="50" width="50" alt="" (click)="openIframe()" data-bs-toggle="modal" data-bs-target="#myModal2">
-                     </div>
-                       
-                         
+                     </div> 
                        </div>
                    </div>
                     </div>
@@ -305,17 +305,15 @@
             </ng-template>
             </mat-tab>
           </mat-tab-group>
-          <div class="p-2 sticky-bottom" >
-           
-            <button type="button" class="btn btn-light nextButton"  (click)="capture();nextPage()"  [disabled]="!allSegmentsDone">Whitespace Analysis
+          <div class="p-2 sticky-bottom" >    
+            <button type="button" class="btn btn-light nextButton"  (click)="capture();nextPage()"  [disabled]="!allSegmentsDone">Product Characteristics
               <i class="bi bi-arrow-right">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="26" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
                   <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
                 </svg>
               </i>
             </button>
-        </div>
-         
+        </div>   
  </div>  
   
     </div>

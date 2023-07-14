@@ -11,7 +11,7 @@ import { SplashScreenComponent } from './splash-screen/splash-screen.component';
 
 const routes: Routes = [
   {
-    path:"",
+    path:"landing",
     component:LandingScreenComponent,
     pathMatch:"full"
   },
@@ -46,7 +46,7 @@ const routes: Routes = [
     pathMatch:"full"
   },
   {
-    path:"splash",
+    path:"",
     component: SplashScreenComponent,
     pathMatch:"full"
   },

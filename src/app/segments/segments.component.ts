@@ -279,6 +279,16 @@ slidervalues(value: any, index:any, segment:any) {
     a[5]=segment
     console.log("6a", a)
     localStorage.setItem(value, JSON.stringify(a));
+  }else if(index==6){
+    let a=JSON.parse(localStorage.getItem(value));
+    a[6]=segment
+    console.log("7a", a)
+    localStorage.setItem(value, JSON.stringify(a));
+  }else if(index==7){
+    let a=JSON.parse(localStorage.getItem(value));
+    a[7]=segment
+    console.log("8a", a)
+    localStorage.setItem(value, JSON.stringify(a));
   }
  
 }
@@ -511,18 +521,11 @@ saveSegmentCharacteristics(segment: any) {
 enableEditing() {
   this.isEditing = true;
 }
-updateLocalStorage(segment: any) {
-  const segmentIndex = this.data.findIndex((seg) => seg.name === segment.name);
-  if (segmentIndex !== -1) {
-    this.data[segmentIndex].characteristics = segment.characteristics;
-    localStorage.setItem('segments', JSON.stringify(this.data));
-  }
-}
+
 
 
 deleteCharacteristic(segment: any, index: number) {
   segment.characteristics.splice(index, 1);
-  this.updateLocalStorage(segment);
 }
 addCharacteristic(segment: any) {
   segment.characteristics.push(''); // Add an empty string as a new characteristic

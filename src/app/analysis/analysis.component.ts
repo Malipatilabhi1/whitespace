@@ -23,7 +23,13 @@ export class AnalysisComponent implements OnInit {
     }
   
   ngOnInit() {
-   this.getPersonas()
+  //  this.getPersonas();
+
+  if(JSON.parse(localStorage.getItem('data'))){
+    this.data=JSON.parse(localStorage.getItem('data'));
+    console.log(this.data);
+  }
+
   }
 
   generatePDF() {
@@ -84,7 +90,7 @@ getPersonas(){
     console.log("res", res)
     this.data1= res;
      this.data = this.data1.personas;
-     console.log(this.data)
+     console.log(this.data);
   })
 }
 }

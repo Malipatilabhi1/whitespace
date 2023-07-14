@@ -3,7 +3,7 @@
     <mat-progress-bar color="accent" *ngIf="isLoading1" mode="indeterminate"></mat-progress-bar>
    </div>
     <div style="background-color: white;">
-        <p class="px-4 py-0 my-0 pt-2 title">Segment Characteristics Definition <span class="subSpan">({{ selectedTab }})</span> </p>
+        <p class="px-4 py-0 my-0 pt-2 title">Segment Characteristics Definition <span class="subSpan" *ngIf="selectedTab">({{ selectedTab }})</span> </p>
         
         <mat-tab-group style="background-color: white;" (selectedIndexChange)="onTabChange($event)" #tabGroup disableRipple animationDuration="0">
             <mat-tab  *ngFor="let segment of data; let i = index" (click)="displaySegmentName(segment.name);" >
@@ -32,7 +32,7 @@
                 </div>
                   
                   <div style="display:flex;  justify-content: start; align-items: center;width:50%">
-                    <input class="name" [(ngModel)]="segment.name">
+                    <input class="name" [(ngModel)]="segment.name" (ngModelChange)="segmentName(segment.name,i)">
                   </div>
                   <div class="px-2" style="width:40%;display:flex;  justify-content: end; align-items: center;" >
                     <button type="button" class="btn btn-dark" style="border-radius: 150px;background-color: #1A356B;font-size: 16px;font-family: Outfit;font-style: normal;font-weight: 500;" (click)="updateSegment(i)">
@@ -65,13 +65,13 @@
                         <div class="px-2" style="width:100%">
                          <div  *ngFor="let characteristic of segment.characteristics; let j = index">
                              <div class="input-group" >
-                                 <input class="form-control my-1 inputText" [value]="characteristic"  [readonly]="!isEditing" (click)="enableEditing()" >
+                                 <input class="form-control my-1 inputText" [value]="characteristic"  [readonly]="!isEditing" (click)="enableEditing()" (change)="changeContent($event.target,'characteristics',i,j)" >
                                  <div class="input-group-append">
                                   
                                     <button class="btn btn-outline-secondary mt-3 border-0 remove"
                                    style="height:1px;width:1px;border-radius: 60%;display:flex;align-items: center;right:40px" type="button">
                                    <i class="bi bi-dash-circle" >
-                                    <svg xmlns="http://www.w3.org/2000/svg"  (click)="deleteCharacteristic(segment, j)" width="16" height="16" fill="currentColor" class="bi bi-dash-circle" viewBox="0 0 16 16">
+                                    <svg xmlns="http://www.w3.org/2000/svg"  (click)="deleteCharacteristic(segment,j)" width="16" height="16" fill="currentColor" class="bi bi-dash-circle" viewBox="0 0 16 16">
                                       <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                                       <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
                                     </svg>
@@ -102,7 +102,7 @@
                          <div class="px-2" style="width:100%">
                            <div *ngFor="let need of segment.functional_need; let j = index">
                              <div class="input-group">
-                               <input class="form-control my-1 inputText" [value]="need" [readonly]="!isEditing" (click)="enableEditing()" >
+                               <input class="form-control my-1 inputText" [value]="need" [readonly]="!isEditing" (click)="enableEditing()" (change)="changeContent($event.target,'functional_need',i,j)">
                                <div class="input-group-append">
                                   
                                 <button class="btn btn-outline-secondary mt-3 border-0 remove"
@@ -142,13 +142,13 @@
                         <div class="px-2" style="width:100%">
                           <div *ngFor="let need of segment.emotional_need; let j = index">
                             <div class="input-group">
-                              <input class="form-control my-1 inputText" [value]="need" [readonly]="!isEditing" (click)="enableEditing()">
+                              <input class="form-control my-1 inputText" [value]="need" [readonly]="!isEditing" (click)="enableEditing()" (change)="changeContent($event.target,'emotional_need',i,j)">
                               <div class="input-group-append">
                                   
                                 <button class="btn btn-outline-secondary mt-3 border-0 remove"
                                style="height:1px;width:1px;border-radius: 60%;display:flex;align-items: center;right:40px" type="button">
                                <i class="bi bi-dash-circle" >
-                                <svg xmlns="http://www.w3.org/2000/svg"  (click)="deleteEmotionalNeed(segment, j)" width="16" height="16" fill="currentColor" class="bi bi-dash-circle" viewBox="0 0 16 16">
+                                <svg xmlns="http://www.w3.org/2000/svg"  (click)="deleteEmotionalNeed(segment,j)" width="16" height="16" fill="currentColor" class="bi bi-dash-circle" viewBox="0 0 16 16">
                                   <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                                   <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
                                 </svg>

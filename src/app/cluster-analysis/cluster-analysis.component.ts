@@ -1272,6 +1272,7 @@ tableContent1={
     // this.router.navigate(['/segment', { tab: tabName }]);
     this.isLoading = true; 
     setTimeout(() => {
+      localStorage.setItem('tabName',tabName);
       this.router.navigate(['/segment', { tab: tabName }]).then(() => {
         this.isLoading = false; 
       });

@@ -26,9 +26,10 @@ export class SegmentsComponent implements OnInit {
 isMapped:boolean=false;
 selectedSegmentName:string;
 
-isEditing: boolean = false;
+isEditing: boolean = true;
   showIframe = false;
- data =
+  data:any=[];
+ storedData =
   [
     {
       "name": "Dynamic Achiever",
@@ -158,10 +159,15 @@ segmentStatus: string[] = [];
     this.setValues();
             //  this.getSegments();
           // this.updateSegment();
-        this.route.paramMap.subscribe(params => {
-          this.selectedTab = params.get('tab');
-          console.log( this.selectedTab)
-        });
+
+          if(localStorage.getItem('tabName')){
+            this.selectedTab = localStorage.getItem('tabName');
+          }else{
+            this.selectedTab = '';
+          }
+          
+          
+        
 
   const storedSegmentDone = localStorage.getItem('segmentDone');
     if (storedSegmentDone) {
@@ -245,6 +251,28 @@ handleKeyUp(event: KeyboardEvent) {
     this.sendMessage();
   }
 }
+segmentName(name:any,index:number){
+  console.log(name,index)
+    let a=JSON.parse(localStorage.getItem('data'));
+    a[index].name=name;
+    localStorage.setItem('data', JSON.stringify(a));
+}
+changeContent(value:any,type:any,i:number,j:number){
+  console.log(value.value,j,i);
+  let a=JSON.parse(localStorage.getItem('data'));
+  if(type=='characteristics'){
+    a[i].characteristics[j]=value.value;
+    localStorage.setItem('data', JSON.stringify(a));
+  }else if(type=='functional_need'){
+    a[i].functional_need[j]=value.value;
+    localStorage.setItem('data', JSON.stringify(a));
+  }else if(type=='emotional_need'){
+    a[i].emotional_need[j]=value.value;
+    localStorage.setItem('data', JSON.stringify(a));
+  }
+ 
+}
+
 slidervalues(value: any, index:any, segment:any) {
   console.log(value, index, segment);
   if(index==0){
@@ -290,6 +318,7 @@ storedValue4:any;
 storedValue5:any;
 storedValue6:any;
 setValues(){
+//Setting and Getting Slider value
   if(JSON.parse(localStorage.getItem('segment1'))){
     this.segments1=JSON.parse(localStorage.getItem('segment1'));
   }else{
@@ -301,9 +330,7 @@ setValues(){
       { name: 'Volume and Bounce', value:0.64 }
     ] 
       localStorage.setItem('segment1', JSON.stringify(this.segments1))
-  }
-
-  if(JSON.parse(localStorage.getItem('segment2'))){
+  }if(JSON.parse(localStorage.getItem('segment2'))){
     this.segments2=JSON.parse(localStorage.getItem('segment2'));
   }else{
     this.segments2= [
@@ -314,8 +341,7 @@ setValues(){
       { name: 'Volume and Bounce', value:0.64 }
     ] 
     localStorage.setItem('segment2', JSON.stringify(this.segments2))
-  }
-  if(JSON.parse(localStorage.getItem('segment3'))){
+  }if(JSON.parse(localStorage.getItem('segment3'))){
     this.segments3=JSON.parse(localStorage.getItem('segment3'));
   }else{
     this.segments3= [
@@ -360,6 +386,14 @@ setValues(){
     ] 
     localStorage.setItem('segment6', JSON.stringify(this.segments6))
   }
+
+//Setting and Getting Segment Name
+if(JSON.parse(localStorage.getItem('data'))){
+  this.data=JSON.parse(localStorage.getItem('data'));
+}else{
+  this.data= this.storedData;
+    localStorage.setItem('data', JSON.stringify(this.storedData));
+}
 }
 //  segmentNames:any;
 // getSegments(){
@@ -493,8 +527,9 @@ saveSegmentCharacteristics(segment: any) {
 enableEditing() {
   this.isEditing = true;
 }
-deleteCharacteristic(segment: any, index: number) {
-  segment.characteristics.splice(index, 1);
+deleteCharacteristic(segment:any,j:number) {
+  segment.characteristics.splice(j, 1);
+    localStorage.setItem('data', JSON.stringify(this.data));
 }
 addCharacteristic(segment: any) {
   segment.characteristics.push(''); // Add an empty string as a new characteristic
@@ -510,8 +545,9 @@ enableFunctionalNeedsEditing() {
   this.isEditing = true;
 }
 
-deleteFunctionalNeed(segment: any, index: number) {
-  segment.functional_need.splice(index, 1);
+deleteFunctionalNeed(segment: any,j:number) {
+  segment.functional_need.splice(j, 1);
+  localStorage.setItem('data', JSON.stringify(this.data));
 }
 
 addFunctionalNeed(segment: any) {
@@ -527,8 +563,9 @@ enableEmotionalNeedsEditing() {
   this.isEditing = true;
 }
 
-deleteEmotionalNeed(segment: any, index: number) {
-  segment.emotional_need.splice(index, 1);
+deleteEmotionalNeed(segment: any, j:number) {
+  segment.emotional_need.splice(j, 1);
+  localStorage.setItem('data', JSON.stringify(this.data));
 }
 
 addEmotionalNeed(segment: any) {

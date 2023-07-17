@@ -1,4 +1,5 @@
 import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 // import {jsPDF} from 'jspdf'
 // import html2canvas from 'html2canvas';
 
@@ -23,6 +24,13 @@ export class AppComponent {
   }
   sideBarToggler() {
     this.sideBarOpen = !this.sideBarOpen;
+  }
+  constructor(private router: Router) {
+    
+   }
+  shouldDisplaySidenav(): boolean {
+    const currentRoute = this.router.url;
+    return currentRoute !== '/landing';
   }
   // generatePdf22() {
   //   let data = this.el.nativeElement

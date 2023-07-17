@@ -480,6 +480,7 @@ updateSegment(segmentNumber: number) {
       this.data1 = [];
       this.data1 = response;
       this.data = this.data1.segments;
+      localStorage.setItem('data', JSON.stringify( this.data));
       console.log("rege", this.data1.segments);
 
      
@@ -623,7 +624,7 @@ addEmotionalNeed(segment: any) {
     this.isLoading1 = true; // Show the progress bar
   
     setTimeout(() => {
-      this.router.navigate(['./product']).then(() => {
+      this.router.navigate(['./whitespaceAnalysis']).then(() => {
         this.isLoading1 = false; // Hide the progress bar when navigation is complete
       });
     }, 3000); // Delay of 3 seconds

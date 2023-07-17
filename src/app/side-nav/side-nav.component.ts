@@ -96,4 +96,9 @@ getEndPoint() {
     }
   });
 }
+shouldDisplaySidenav(): boolean {
+  const currentRoute = this.router.url;
+  return currentRoute !== '/landing';
+}
+
 }

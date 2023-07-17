@@ -28,8 +28,6 @@ tabJson={
     "bubble": 1.1,
     "viscocity": 1.0,
     "ph":2.1,
-  },
-  "01":{
     "natural": 1.7,
     "removes_oil": 2.0,
     "lather": 1.5,
@@ -37,15 +35,13 @@ tabJson={
     "softness": 1.7,
     "price": 1.7
   },
-  "1": {
+  "01":{
     "aroma": 1.2,
     "protein": 1.1,
     "vitamin": 1.2,
     "bubble": 2.7,
     "viscocity": 2.4,
     "ph": 2.9,
-  },
-  "11":{
     "natural": 1.4,
     "removes_oil": 2.7,
     "lather": 2.0,
@@ -53,64 +49,134 @@ tabJson={
     "softness":  2.4,
     "price":  2.4
   },
-  "2": {
-    
-  },
-  "22":{
+  "1": {
+    "aroma": 1.1,
+    "protein": 2.0,
+    "vitamin": 1.3,
+    "bubble": 2.5,
+    "viscocity": 2.4,
+    "ph": 2.6,
     "natural": 2.2,
     "removes_oil": 1.3,
     "lather": 1.2,
     "scalp_irritation": 2.3,
-    "softness": 1.2,
-    "price": 1.2
-  },
-  "3": {
+    "softness":  1.2,
+    "price":  1.2
+    },
+  "11":{
     "aroma": 1.1,
     "protein": 2.7,
     "vitamin": 2.4,
     "bubble": 2.0,
     "viscocity": 1.0,
     "ph": 2.3,
-  },
-  "33":{
     "natural": 1.1,
     "removes_oil": 1.7,
     "lather": 1.8,
     "scalp_irritation": 2.5,
-    "softness": 2.4,
-    "price": 1.0
+    "softness":  2.4,
+    "price":  1.0
   },
-  "4": {
+  "2": {
+  
+  },
+  "22":{
     "aroma": 2.6,
     "protein": 1.5,
     "vitamin": 1.0,
     "bubble": 2.8,
     "viscocity": 2.6,
     "ph": 2.9,
-  },
-  "44":{
     "natural": 1.0,
     "removes_oil": 2.1,
     "lather": 1.0,
     "scalp_irritation": 2.1,
-    "softness": 2.0,
-    "price": 1.8
+    "softness":  2.0,
+    "price":  1.8
   },
-  "5": {
+  "3": {
     "aroma": 2.1,
     "protein": 1.6,
     "vitamin": 1.9,
     "bubble": 2.6,
     "viscocity": 2.5,
-    "ph": 2.2
-  },
-  "55":{
+    "ph": 2.2,
     "natural": 1.0,
     "removes_oil": 2.1,
     "lather": 2.0,
     "scalp_irritation": 2.3,
-    "softness": 1.9,
-    "price": 2.7
+    "softness":  1.9,
+    "price":  2.7
+  },
+  "33":{
+    "aroma": 1.5,
+    "protein": 1.7,
+    "vitamin": 1.3,
+    "bubble": 1.5,
+    "viscocity": 2.2,
+    "ph": 2.0,
+    "natural": 1.2,
+    "removes_oil": 1.6,
+    "lather": 2.8,
+    "scalp_irritation": 1.3,
+    "softness":  1.9,
+    "price":  2.6
+  },
+  "4": {
+    "aroma": 2.3,
+    "protein": 1.6,
+    "vitamin": 1.6,
+    "bubble": 1.8,
+    "viscocity": 2.3,
+    "ph": 2.8,
+    "natural": 2.0,
+    "removes_oil": 2.4,
+    "lather": 2.0,
+    "scalp_irritation": 2.1,
+    "softness":  1.4,
+    "price":  1.5
+  },
+  "44":{
+    "aroma": 2.2,
+    "protein": 1.2,
+    "vitamin": 1.8,
+    "bubble": 2.3,
+    "viscocity": 1.2,
+    "ph": 1.0,
+    "natural": 1.8,
+    "removes_oil": 1.1,
+    "lather": 1.4,
+    "scalp_irritation": 2.1,
+    "softness":  2.5,
+    "price":  1.9
+  },
+  "5": {
+    "aroma": 1.0,
+    "protein": 2.7,
+    "vitamin": 2.6,
+    "bubble": 1.5,
+    "viscocity": 2.2,
+    "ph": 1.2,
+    "natural": 1.6,
+    "removes_oil": 1.3,
+    "lather": 2.5,
+    "scalp_irritation": 1.7,
+    "softness":  2.3,
+    "price":  1.5
+  },
+  "55":{
+    "aroma": 2.3,
+    "protein": 1.9,
+    "vitamin": 1.9,
+    "bubble": 2.7,
+    "viscocity": 2.2,
+    "ph": 1.3,
+    "natural": 2.5,
+    "removes_oil": 1.6,
+    "lather": 1.4,
+    "scalp_irritation": 1.8,
+    "softness":  1.0,
+    "price":  2.2
   }
 }
 // Assuming tabContent is an array of strings containing the key names
@@ -124,6 +190,9 @@ getValues(obj: any): any[] {
 }
 
 
+isEmptyObject(obj: any): boolean {
+  return Object.keys(obj).length === 0;
+}
 
 
 

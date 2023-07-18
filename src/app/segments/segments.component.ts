@@ -624,7 +624,7 @@ addEmotionalNeed(segment: any) {
     this.isLoading1 = true; // Show the progress bar
   
     setTimeout(() => {
-      this.router.navigate(['./product']).then(() => {
+      this.router.navigate(['./whitespaceAnalysis']).then(() => {
         this.isLoading1 = false; // Hide the progress bar when navigation is complete
       });
     }, 3000); // Delay of 3 seconds

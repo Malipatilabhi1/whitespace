@@ -7,45 +7,47 @@
     </div>
     <div class="body d-flex flex-column" style="margin-bottom: 4em;" >
         <div class="row1 d-flex flex-row p-2" style="width:100%">
-            <div class="card d-flex flex-column m-2">
-                <div class="cardHeading">
-                    <p class="cardHeadingText">Clarifying Shampoo</p>
-                </div>
-                <div class="cardCotent">
-                    <table>
-                        <thead>
-                          <tr>
-                            <th>Basic</th>
-                            <th>Premium</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>
-                              <div class="d-flex flex-column ">
-                                <div *ngFor="let key of getKeys(tabJson['0']); let i = index">
-                                  <div class="name-value d-flex flex-row">
-                                    <span class="name" style="width:70%">{{ key }}</span>
-                                    <span class="rounded-pill p-2">{{ tabJson['0'][key] }}</span>
-                                  </div>
-                                </div>
-                              </div>
-                            </td>
-                            <td>
-                              <div class="d-flex flex-column ">
-                                <div *ngFor="let key of getKeys(tabJson['01']); let i = index">
-                                  <div class="name-value d-flex flex-row">
-                                    <span class="name" style="width:70%">{{ key }}</span>
-                                    <span class="rounded-pill p-2">{{ tabJson['01'][key] }}</span>
-                                  </div>
-                                </div>
-                              </div>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                </div>
+          <div class="card d-flex flex-column m-2">
+            <div class="cardHeading">
+              <p class="cardHeadingText">Clarifying Shampoo</p>
             </div>
+            <div class="cardContent">
+              <table style="table-layout: fixed;">
+                <thead>
+                  <tr>
+                    <th>Basic</th>
+                    <th>Premium</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <div class="d-flex flex-column">
+                        <div *ngFor="let key of getKeys(tabJson['0']); let i = index">
+                          <div class="name-value d-flex flex-row">
+                            <span class="name-column">{{ key }}</span>
+                            <span class="value-column rounded-pill">{{ tabJson['0'][key] }}</span>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    
+                    <td>
+                      <div class="d-flex flex-column">
+                        <div *ngFor="let key of getKeys(tabJson['01']); let i = index">
+                          <div class="name-value d-flex flex-row">
+                            <span class="name-column">{{ key }}</span>
+                            <span class="value-column rounded-pill">{{ tabJson['01'][key] }}</span>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          
             <div class="card d-flex flex-column m-2">
                 <div class="cardHeading">
                     <p class="cardHeadingText">Neutralising Shampoo</p>
@@ -64,8 +66,8 @@
                               <div class="d-flex flex-column">
                                 <div *ngFor="let key of getKeys(tabJson['1']); let i = index">
                                   <div class="name-value d-flex flex-row">
-                                    <span class="name" style="width:70%">{{ key }}</span>
-                                    <span class="rounded-pill p-2">{{ tabJson['1'][key] }}</span>
+                                    <span class="name-column" style="width:70%"><div>{{ key }}</div></span>
+                                    <span class="value-column rounded-pill">{{ tabJson['1'][key] }}</span>
                                   </div>
                                 </div>
                               </div>
@@ -74,8 +76,8 @@
                               <div class="d-flex flex-column">
                                 <div *ngFor="let key of getKeys(tabJson['11']); let i = index">
                                   <div class="name-value d-flex flex-row">
-                                    <span class="name" style="width:70%">{{ key }}</span>
-                                    <span class="rounded-pill p-2">{{ tabJson['11'][key] }}</span>
+                                    <span class="name-column" style="width:70%">{{ key }}</span>
+                                    <span class="value-column rounded-pill">{{ tabJson['11'][key] }}</span>
                                   </div>
                                 </div>
                               </div>
@@ -106,8 +108,8 @@
                               <div class="d-flex flex-column" >
                                 <div *ngFor="let key of getKeys(tabJson['22']); let i = index">
                                   <div class="name-value d-flex flex-row">
-                                    <span class="name" style="width:70%;">{{ key }}</span>
-                                    <span class="rounded-pill p-2">{{ tabJson['22'][key] }}</span>
+                                    <span class="name-column" style="width:70%;">{{ key }}</span>
+                                    <span class="value-column rounded-pill">{{ tabJson['22'][key] }}</span>
                                   </div>
                                 </div>
                               </div>
@@ -137,8 +139,8 @@
                               <div class="d-flex flex-column">
                                 <div *ngFor="let key of getKeys(tabJson['3']); let i = index">
                                   <div class="name-value d-flex flex-row">
-                                    <span class="name" style="width:70%">{{ key }}</span>
-                                    <span class="rounded-pill p-2">{{ tabJson['3'][key] }}</span>
+                                    <span class="name-column" style="width:70%">{{ key }}</span>
+                                    <span class="value-column rounded-pill">{{ tabJson['3'][key] }}</span>
                                   </div>
                                 </div>
                               </div>
@@ -147,7 +149,7 @@
                               <div class="d-flex flex-column">
                                 <div *ngFor="let key of getKeys(tabJson['33']); let i = index">
                                   <div class="name-value d-flex flex-row">
-                                    <span class="name" style="width:70%">{{ key }}</span>
+                                    <span class="name-column" style="width:70%">{{ key }}</span>
                                     <span class="rounded-pill">{{ tabJson['33'][key] }}</span>
                                   </div>
                                 </div>
@@ -176,8 +178,8 @@
                               <div class="d-flex flex-column">
                                 <div *ngFor="let key of getKeys(tabJson['4']); let i = index">
                                   <div class="name-value d-flex flex-row">
-                                    <span class="name" style="width:70%">{{ key }}</span>
-                                    <span class="rounded-pill p-2">{{ tabJson['4'][key] }}</span>
+                                    <span class="name-column" style="width:70%">{{ key }}</span>
+                                    <span class="value-column rounded-pill">{{ tabJson['4'][key] }}</span>
                                   </div>
                                 </div>
                               </div>
@@ -186,7 +188,7 @@
                               <div class="d-flex flex-column">
                                 <div *ngFor="let key of getKeys(tabJson['44']); let i = index">
                                   <div class="name-value d-flex flex-row">
-                                    <span class="name" style="width:70%">{{ key }}</span>
+                                    <span class="name-column" style="width:70%">{{ key }}</span>
                                     <span class="rounded-pill">{{ tabJson['44'][key] }}</span>
                                   </div>
                                 </div>
@@ -215,8 +217,8 @@
                               <div class="d-flex flex-column">
                                 <div *ngFor="let key of getKeys(tabJson['5']); let i = index">
                                   <div class="name-value d-flex flex-row">
-                                    <span class="name" style="width:70%">{{ key }}</span>
-                                    <span class="rounded-pill p-2">{{ tabJson['5'][key] }}</span>
+                                    <span class="name-column" style="width:70%">{{ key }}</span>
+                                    <span class="value-column rounded-pill">{{ tabJson['5'][key] }}</span>
                                   </div>
                                 </div>
                               </div>
@@ -225,7 +227,7 @@
                               <div class="d-flex flex-column">
                                 <div *ngFor="let key of getKeys(tabJson['55']); let i = index">
                                   <div class="name-value d-flex flex-row">
-                                    <span class="name" style="width:70%">{{ key }}</span>
+                                    <span class="name-column" style="width:70%">{{ key }}</span>
                                     <span class="rounded-pill">{{ tabJson['55'][key] }}</span>
                                   </div>
                                 </div>
@@ -238,13 +240,6 @@
             </div>
         </div>
     </div>
-    <!-- <div class="sticky-bottom p-1">
-        <button (click)="gotoWhitespace()" type="button" class="btn btn-light btn1" >Whitespace Analysis
-          <i class="bi bi-arrow-right">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="26" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
-              <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
-            </svg>
-          </i>
-        </button>
-    </div>  -->
+    
+    
 </div>

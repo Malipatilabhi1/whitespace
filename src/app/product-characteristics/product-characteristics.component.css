@@ -109,3 +109,17 @@ mat-progress-bar {
 height: 40px;
 border-radius: 0px;
 }
+
+.name-column {
+    color: #666;
+font-family: Outfit;
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+    width: 90%; /* Adjust the width as needed */
+  }
+  
+  .value-column {
+    width: 15%; /* Adjust the width as needed */
+  }
+  

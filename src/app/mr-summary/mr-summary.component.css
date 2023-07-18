@@ -49,11 +49,25 @@
 .right {
     text-align: right;
 }
-.card1{
+.card1 {
     border-radius: 4px;
     background: linear-gradient(293deg, #FAB7BF 0%, #FFC7CB 100%);
-
-}
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .card1 .d-flex {
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .card1 h1,
+  .card1 p {
+    text-align: center;
+  }
+  
 h1{
     color: #222;
 font-size: 40px;
@@ -66,20 +80,90 @@ font-size: 16px;
 font-family: Outfit;
 font-weight: 500;
 }
-.card2{
+.card2 {
     border-radius: 4px;
     background: linear-gradient(293deg, #ABDDF7 0%, #B8EAF9 100%);
-
-}
-.card3{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+.card3 {
     border-radius: 4px;
-background: linear-gradient(293deg, #FDDF91 0%, #F5F3B8 100%);
-}
-.card4{
+    background: linear-gradient(293deg, #FDDF91 0%, #F5F3B8 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+
+.card4 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     border-radius: 4px;
     background: linear-gradient(293deg, #C9E9E5 0%, #E4FAF9 100%);
-
-}
+  }
+  
+  .card4 h4 {
+    text-align: center;
+    margin-top: 10px;
+  }
+  
+  .card4 .d-flex.flex-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .card4 .d-flex.flex-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+  }
+  
+  @media (max-width: 767px) {
+    .card4 {
+      width: 100%;
+    }
+  
+    .card4 h4 {
+      margin-bottom: 10px;
+    }
+  
+    .card4 .d-flex.flex-row {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .card4 .d-flex.flex-column {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+    
+    .card4 .d-flex.flex-row .d-flex.flex-column {
+      margin-bottom: 10px; /* Increase space between images */
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .card4 .d-flex.flex-row .d-flex.flex-column {
+      margin-bottom: 20px; /* Decrease space between images */
+    }
+  }
+  
+  @media (min-width: 1200px) {
+    .card4 .d-flex.flex-row .d-flex.flex-column {
+      margin-bottom: 30px; /* Further decrease space between images for larger screens */
+    }
+  }
+  
+  
+  
 h2{
     color: var(--character-title-85, rgba(0, 0, 0, 0.85));
 font-size: 20px;

@@ -480,6 +480,7 @@ updateSegment(segmentNumber: number) {
       this.data1 = [];
       this.data1 = response;
       this.data = this.data1.segments;
+      localStorage.setItem('data', JSON.stringify( this.data));
       console.log("rege", this.data1.segments);
 
      

@@ -11,6 +11,11 @@ import { SplashScreenComponent } from './splash-screen/splash-screen.component';
 
 const routes: Routes = [
   {
+    path:"",
+    component: SplashScreenComponent,
+    pathMatch:"full"
+  },
+  {
     path:"landing",
     component:LandingScreenComponent,
     pathMatch:"full"
@@ -45,11 +50,7 @@ const routes: Routes = [
     component: ProductCharacteristicsComponent,
     pathMatch:"full"
   },
-  {
-    path:"",
-    component: SplashScreenComponent,
-    pathMatch:"full"
-  },
+  
 ];
 
 @NgModule({

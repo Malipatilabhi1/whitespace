@@ -262,12 +262,15 @@ changeContent(value:any,type:any,i:number,j:number){
   let a=JSON.parse(localStorage.getItem('data'));
   if(type=='characteristics'){
     a[i].characteristics[j]=value.value;
+    this.data=a;
     localStorage.setItem('data', JSON.stringify(a));
   }else if(type=='functional_need'){
     a[i].functional_need[j]=value.value;
+    this.data=a;
     localStorage.setItem('data', JSON.stringify(a));
   }else if(type=='emotional_need'){
     a[i].emotional_need[j]=value.value;
+    this.data=a;
     localStorage.setItem('data', JSON.stringify(a));
   }
  

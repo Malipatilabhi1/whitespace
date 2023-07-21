@@ -354,7 +354,8 @@ score(){
       plotOptions: {
         bar: {
           horizontal: false,
-          columnWidth: "55%"
+          columnWidth: "35%",
+          
         }
       },
       dataLabels: {
@@ -423,7 +424,7 @@ score(){
       plotOptions: {
         bar: {
           horizontal: false,
-          columnWidth: "55%"
+          columnWidth: "35%"
         }
       },
       dataLabels: {
@@ -492,7 +493,7 @@ score(){
         plotOptions: {
           bar: {
             horizontal: false,
-            columnWidth: "55%"
+            columnWidth: "35%"
           }
         },
         dataLabels: {
@@ -561,7 +562,7 @@ score(){
       plotOptions: {
         bar: {
           horizontal: false,
-          columnWidth: "55%"
+          columnWidth: "35%"
         }
       },
       dataLabels: {

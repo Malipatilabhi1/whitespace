@@ -112,10 +112,10 @@ border-radius: 0px;
 
 .name-column {
     color: #666;
-font-family: Outfit;
-font-size: 14px;
-font-style: normal;
-font-weight: 400;
+    font-family: Outfit;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
     width: 80%; /* Adjust the width as needed */
   }
   

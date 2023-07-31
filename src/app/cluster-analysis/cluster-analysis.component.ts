@@ -1394,7 +1394,8 @@ tableContent1={
       ],
       plotOptions: {
         bar: {
-          horizontal: false
+          horizontal: false,
+          columnWidth:"70%"
         }
       },
       xaxis: {
@@ -1481,7 +1482,7 @@ tableContent1={
           }
         }
       ],
-      plotOptions: { bar: { horizontal: false } },
+      plotOptions: { bar: { horizontal: false,columnWidth:"60%" } },
       xaxis: { type: "category", categories: spendCategories,
     labels:{
       style: {
@@ -1565,7 +1566,8 @@ tableContent1={
       ],
       plotOptions: {
         bar: {
-          horizontal: false
+          horizontal: false,
+          columnWidth:"60%"
         }
       },
       xaxis: {
@@ -1663,7 +1665,8 @@ tableContent1={
       ],
       plotOptions: {
         bar: {
-          horizontal: false
+          horizontal: false,
+          columnWidth:"60%"
         }
       },
       xaxis: {
@@ -1746,7 +1749,7 @@ tableContent1={
           }
         }
       ],
-      plotOptions: { bar: { horizontal: false } },
+      plotOptions: { bar: { horizontal: false, columnWidth:"60%" } },
       xaxis: { type: "category", categories: incomeCategories ,
     labels:{
       style: {
@@ -1846,6 +1849,7 @@ tableContent1={
       dataLabels:{
         enabled:false
       },
+      plotOptions: { bar: { horizontal: false, columnWidth:"70%" } },
       responsive: [
         {
           breakpoint: 480,
@@ -1939,7 +1943,7 @@ tableContent1={
           }
         }
       ],
-      plotOptions: { bar: { horizontal: false } },
+      plotOptions: { bar: { horizontal: false,  columnWidth:"60%"  } },
       xaxis: { type: "category", categories: spendCategories,
     labels:{
       style: {
@@ -2021,7 +2025,8 @@ tableContent1={
         ],
         plotOptions: {
           bar: {
-            horizontal: false
+            horizontal: false,
+            columnWidth:"60%" 
           }
         },
         xaxis: {
@@ -2118,7 +2123,8 @@ tableContent1={
         ],
         plotOptions: {
           bar: {
-            horizontal: false
+            horizontal: false,
+            columnWidth:"60%" 
           }
         },
         xaxis: {
@@ -2202,7 +2208,7 @@ tableContent1={
             }
           }
         ],
-        plotOptions: { bar: { horizontal: false } },
+        plotOptions: { bar: { horizontal: false,  columnWidth:"60%"  } },
         xaxis: { type: "category", categories: incomeCategories ,
       labels:{
         style: {
@@ -2302,6 +2308,7 @@ tableContent1={
       dataLabels:{
         enabled:false
       },
+      plotOptions: { bar: { horizontal: false, columnWidth:"70%" } },
       responsive: [
         {
           breakpoint: 480,
@@ -2396,7 +2403,7 @@ tableContent1={
           }
         }
       ],
-      plotOptions: { bar: { horizontal: false } },
+      plotOptions: { bar: { horizontal: false, columnWidth:"60%" } },
       xaxis: { type: "category", categories: spendCategories,
     labels:{
       style: {
@@ -2480,7 +2487,8 @@ tableContent1={
         ],
         plotOptions: {
           bar: {
-            horizontal: false
+            horizontal: false,
+            columnWidth:"60%"
           }
         },
         xaxis: {
@@ -2578,7 +2586,8 @@ tableContent1={
       ],
       plotOptions: {
         bar: {
-          horizontal: false
+          horizontal: false,
+          columnWidth:"60%"
         }
       },
       xaxis: {
@@ -2662,7 +2671,7 @@ tableContent1={
             }
           }
         ],
-        plotOptions: { bar: { horizontal: false } },
+        plotOptions: { bar: { horizontal: false, columnWidth:"60%" } },
         xaxis: { type: "category", categories: incomeCategories ,
       labels:{
         style: {

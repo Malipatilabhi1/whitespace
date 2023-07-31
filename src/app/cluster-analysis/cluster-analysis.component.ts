@@ -677,7 +677,7 @@ capture(){
         "looks": 0.5,
         "natural": 0.71,
         "packsize": 0.76,
-        "pbrand": 1.89,
+        "pbrand": 0.55,
         "pgoal": 1.0,
         "ph": 0.43,
         "planning": 0.61,
@@ -687,7 +687,7 @@ capture(){
         "regret": 0.61,
         "removes_oil": 0.86,
         "satisfaction": 0.61,
-        "sbrand": 1.22,
+        "sbrand": 0.22,
         "scalp_irritation": 0.8,
         "sgoal": 0.93,
         "soccompany": 1.1,
@@ -706,7 +706,7 @@ capture(){
         "age": 0.23,
         "aroma": 0.23,
         "bubble": 0.0,
-        "car": 0.0,
+        "car": 0.8,
         "dependent": 0.0,
         "designation": 0.12,
         "expense": 0.43,
@@ -722,7 +722,7 @@ capture(){
         "looks": 0.48,
         "natural": 0.0,
         "packsize": 0.0,
-        "pbrand": 1.24,
+        "pbrand": 0.24,
         "pgoal": 0.0,
         "ph": 0.0,
         "planning": 0.48,
@@ -732,7 +732,7 @@ capture(){
         "regret": 0.56,
         "removes_oil": 0.0,
         "satisfaction": 0.12,
-        "sbrand": 1.6,
+        "sbrand": 0.6,
         "scalp_irritation": 0.12,
         "sgoal": 0.0,
         "soccompany": 0.23,
@@ -751,7 +751,7 @@ capture(){
         "age": 0.8,
         "aroma": 0.59,
         "bubble": 0.61,
-        "car": 0.49,
+        "car": 1.49,
         "dependent": 0.66,
         "designation": 0.73,
         "expense": 1.04,
@@ -767,7 +767,7 @@ capture(){
         "looks": 0.56,
         "natural": 0.8,
         "packsize": 0.84,
-        "pbrand": 1.99,
+        "pbrand": 0.99,
         "pgoal": 1.04,
         "ph": 0.62,
         "planning": 0.78,
@@ -777,7 +777,7 @@ capture(){
         "regret": 0.76,
         "removes_oil": 0.56,
         "satisfaction": 0.72,
-        "sbrand": 1.65,
+        "sbrand": 1.2,
         "scalp_irritation": 0.72,
         "sgoal": 1.17,
         "soccompany": 0.77,
@@ -812,7 +812,7 @@ capture(){
         "looks": 0.73,
         "natural": 0.75,
         "packsize": 0.8,
-        "pbrand": 2.03,
+        "pbrand": 1.03,
         "pgoal": 1.36,
         "ph": 0.69,
         "planning": 0.56,
@@ -822,7 +822,7 @@ capture(){
         "regret": 0.47,
         "removes_oil": 0.83,
         "satisfaction": 0.63,
-        "sbrand": 1.88,
+        "sbrand": 0.23,
         "scalp_irritation": 0.66,
         "sgoal": 1.34,
         "soccompany": 1.09,
@@ -857,7 +857,7 @@ capture(){
         "looks": 0.64,
         "natural": 0.56,
         "packsize": 1.06,
-        "pbrand": 1.83,
+        "pbrand": 0.23,
         "pgoal": 1.5,
         "ph": 0.69,
         "planning": 0.49,
@@ -902,7 +902,7 @@ capture(){
         "looks": 0.56,
         "natural": 0.92,
         "packsize": 0.89,
-        "pbrand": 1.5,
+        "pbrand": 0.5,
         "pgoal": 0.83,
         "ph": 0.78,
         "planning": 0.75,
@@ -912,7 +912,7 @@ capture(){
         "regret": 0.78,
         "removes_oil": 0.62,
         "satisfaction": 0.78,
-        "sbrand": 1.53,
+        "sbrand": 0.33,
         "scalp_irritation": 0.42,
         "sgoal": 1.28,
         "soccompany": 0.83,
@@ -950,7 +950,7 @@ tableContent1={
       "looks": 0.43,
       "natural": 0.87,
       "packsize": 0.76,
-      "pbrand": 1.83,
+      "pbrand": 0.51,
       "pgoal": 1.33,
       "ph": 0.57,
       "planning": 0.83,
@@ -960,7 +960,7 @@ tableContent1={
       "regret": 0.56,
       "removes_oil": 0.79,
       "satisfaction": 0.61,
-      "sbrand": 1.54,
+      "sbrand": 0.18,
       "scalp_irritation": 0.68,
       "sgoal": 1.45,
       "soccompany": 1.09,
@@ -979,7 +979,7 @@ tableContent1={
       "age": 0.72,
       "aroma": 0.66,
       "bubble": 0.58,
-      "car": 0.5,
+      "car": 1.5,
       "dependent": 0.5,
       "designation": 0.66,
       "expense": 0.9,
@@ -987,7 +987,7 @@ tableContent1={
       "family": 0.89,
       "freedom": 0.55,
       "freq": 0.85,
-      "gender": 0.21,
+      "gender": 0.81,
       "income": 1.0,
       "judgement": 0.83,
       "lather": 0.62,
@@ -995,7 +995,7 @@ tableContent1={
       "looks": 0.58,
       "natural": 0.83,
       "packsize": 0.69,
-      "pbrand": 1.87,
+      "pbrand": 0.34,
       "pgoal": 0.93,
       "ph": 0.58,
       "planning": 0.76,
@@ -1005,7 +1005,7 @@ tableContent1={
       "regret": 0.73,
       "removes_oil": 0.63,
       "satisfaction": 0.76,
-      "sbrand": 1.4,
+      "sbrand": 0.7,
       "scalp_irritation": 0.72,
       "sgoal": 1.0,
       "soccompany": 0.62,
@@ -1032,7 +1032,7 @@ tableContent1={
       "family": 0.6,
       "freedom": 0.74,
       "freq": 0.98,
-      "gender": 0.46,
+      "gender": 0.89,
       "income": 0.79,
       "judgement": 0.56,
       "lather": 0.74,
@@ -1040,7 +1040,7 @@ tableContent1={
       "looks": 0.63,
       "natural": 0.52,
       "packsize": 1.0,
-      "pbrand": 1.85,
+      "pbrand": 0.85,
       "pgoal": 1.51,
       "ph": 0.74,
       "planning": 0.43,
@@ -1050,7 +1050,7 @@ tableContent1={
       "regret": 0.69,
       "removes_oil": 0.83,
       "satisfaction": 0.6,
-      "sbrand": 1.61,
+      "sbrand": 1.11,
       "scalp_irritation": 0.87,
       "sgoal": 1.24,
       "soccompany": 1.16,
@@ -1067,48 +1067,48 @@ tableContent1={
   },
   "3": {
       "age": 0.23,
-      "aroma": 0.23,
-      "bubble": 0.0,
-      "car": 0.0,
-      "dependent": 0.0,
-      "designation": 0.12,
+      "aroma": 0.83,
+      "bubble": 0.5,
+      "car": 1.0,
+      "dependent": 0.5,
+      "designation": 1.12,
       "expense": 0.43,
-      "experiment": 0.12,
-      "family": 0.0,
+      "experiment": 0.89,
+      "family": 0.5,
       "freedom": 0.53,
-      "freq": 0.51,
-      "gender": 0.0,
-      "income": 0.0,
+      "freq": 0.91,
+      "gender": 0.5,
+      "income": 1.0,
       "judgement": 0.39,
-      "lather": 0.0,
+      "lather": 0.7,
       "letgo": 0.57,
       "looks": 0.48,
-      "natural": 0.0,
-      "packsize": 0.0,
-      "pbrand": 1.24,
-      "pgoal": 0.0,
-      "ph": 0.0,
-      "planning": 0.48,
-      "ppurpose": 0.0,
+      "natural": 0.8,
+      "packsize": 0.2,
+      "pbrand": 1.06,
+      "pgoal": 0.6,
+      "ph": 0.5,
+      "planning": 0.8,
+      "ppurpose": 0.4,
       "praise": 0.5,
       "protein": 0.12,
       "regret": 0.56,
-      "removes_oil": 0.0,
+      "removes_oil": 1.0,
       "satisfaction": 0.12,
-      "sbrand": 1.6,
+      "sbrand": 0.34,
       "scalp_irritation": 0.12,
-      "sgoal": 0.0,
+      "sgoal": 0.6,
       "soccompany": 0.23,
-      "socialize": 0.23,
+      "socialize": 0.63,
       "softness": 0.0,
       "spend": 0.39,
-      "spurpose": 0.0,
-      "stickiness": 0.0,
-      "switchcount": 0.0,
-      "usemonth": 0.0,
+      "spurpose": 0.6,
+      "stickiness": 0.12,
+      "switchcount": 0.5,
+      "usemonth": 0.4,
       "viscocity": 0.65,
       "vitamin": 0.0,
-      "workhours": 0.37
+      "workhours": 0.87
   },
   "4": {
       "age": 1.21,
@@ -1130,7 +1130,7 @@ tableContent1={
       "looks": 0.53,
       "natural": 0.73,
       "packsize": 0.96,
-      "pbrand": 1.5,
+      "pbrand": 0.34,
       "pgoal": 0.73,
       "ph": 0.67,
       "planning": 0.73,
@@ -1159,7 +1159,7 @@ tableContent1={
       "age": 0.69,
       "aroma": 0.74,
       "bubble": 0.2,
-      "car": 0.35,
+      "car": 0.85,
       "dependent": 0.35,
       "designation": 1.04,
       "expense": 1.11,
@@ -1167,7 +1167,7 @@ tableContent1={
       "family": 0.59,
       "freedom": 0.74,
       "freq": 0.84,
-      "gender": 0.49,
+      "gender": 1.49,
       "income": 0.84,
       "judgement": 0.62,
       "lather": 0.44,
@@ -1175,7 +1175,7 @@ tableContent1={
       "looks": 0.99,
       "natural": 0.74,
       "packsize": 0.74,
-      "pbrand": 1.93,
+      "pbrand": 0.53,
       "pgoal": 1.38,
       "ph": 0.49,
       "planning": 0.79,
@@ -1185,7 +1185,7 @@ tableContent1={
       "regret": 0.0,
       "removes_oil": 0.89,
       "satisfaction": 0.44,
-      "sbrand": 1.19,
+      "sbrand": 0.41,
       "scalp_irritation": 0.52,
       "sgoal": 0.89,
       "soccompany": 1.14,
@@ -1202,8 +1202,8 @@ tableContent1={
   }
 }
 
-  a = Object.keys(this.tableContent)
-  b=Object.keys(this.tableContent['0'])
+  a:any = Object.keys(this.tableContent)
+  b:any=Object.keys(this.tableContent['0'])
 
   c = Object.keys(this.tableContent1)
   d=Object.keys(this.tableContent1['0'])
@@ -1214,12 +1214,12 @@ tableContent1={
     const value = this.tableContent1[segment][feature];
     let cellStyles = {};
     // Add different colors based on the feature values
-    if (value < 0.5) {
+    if (value <= 0.5) {
       cellStyles = {
         'background-color': '#6599FF',
         color: 'black'
       };
-    } else if (value < 1) {
+    } else if (value <= 1) {
       cellStyles = {
         'background-color': '#A7C4FF',
         color: 'black'
@@ -1241,20 +1241,20 @@ tableContent1={
     const value = this.tableContent[segment][feature];
     let cellStyles = {};
     // Add different colors based on the feature values
-    if (value < 0.5) {
+    if (value <= 0.5) {
       cellStyles = {
         'background-color': '#6599FF',
-        color: 'white'
+        color: 'black'
       };
-    } else if (value < 1) {
+    } else if (value <= 1) {
       cellStyles = {
         'background-color': '#A7C4FF',
-        color: 'white'
+        color: 'black'
       };
     }else{
       cellStyles = {
-        'background-color': '#C3D7FF',
-        color: 'white'
+        'background-color': '#E9EBF8',
+        color: 'black'
       };
     }
     // Add more conditions for other feature values

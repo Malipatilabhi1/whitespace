@@ -216,12 +216,12 @@ clusterKm:string;
       26744.13921377517,
       26131.58438923397,
       25594.224917522573,
-      25196.415062845655,
-      24854.62766654396,
-      24313.93969095713,
-      23732.66380730381,
-      23548.26414021165,
-      22949.607893217897
+      25590.415062845655,
+      25580.62766654396,
+      25550.93969095713,
+      25520.66380730381,
+      25500.26414021165,
+      25500.607893217897
   ]
    
   
@@ -244,7 +244,8 @@ clusterKm:string;
         enabled: false
       },
       stroke: {
-        curve: "straight"
+        curve: "straight",
+        width:2
       },
       title: {
         text: "Elbow Graph",
@@ -350,7 +351,8 @@ clusterKm:string;
         enabled: false
       },
       stroke: {
-        curve: "straight"
+        curve: "straight",
+        width: 2
       },
       title: {
         text: "EPS Graph",

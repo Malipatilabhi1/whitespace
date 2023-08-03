@@ -125,6 +125,11 @@ font-weight: 500;
     justify-content: center;
     margin: 10px;
   }
+
+  .sticky-top{
+    background-color: #fdfdfd;
+    padding-bottom: 5px;
+  }
   
   @media (max-width: 767px) {
     .card4 {

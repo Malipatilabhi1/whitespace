@@ -21,8 +21,7 @@
 .content {
   position: absolute;
   top: 30%;
-  left: 50px; /* Adjust this value to set the desired space from the left side */
-  transform: translateX(-100%);
+  left: 30px; /* Adjust this value to set the desired space from the left side */
   opacity: 0;
   z-index: 100; /* Ensure the content appears above the image */
   animation: slideIn 3s 1s forwards;
@@ -45,12 +44,11 @@
 }
 
 .content .jkt {
-  width: 190px;
-  height: 37px;
+  width: 230px;
+  height: 40px;
 }
-
 .content .sub{
-  color: #BABABA;
+color: #BABABA;
 font-family: Outfit;
 font-size: 28px;
 font-style: normal;

@@ -17,3 +17,8 @@
   .inputClass::placeholder {
     color: #FFFFFF; /* Set the desired color for the placeholder */
   }
+
+.jkt {
+    width: 170px;
+    height: 40px;
+  }

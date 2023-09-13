@@ -1,0 +1,86 @@
+<div class="main d-flex flex-column" id = "content" #content>
+    <!-- header -->
+    <div class="d-flex flex-row p-3 my-0 py-0 sticky-top" style="width:100%;background-color: white;">
+        <div class="p-3" style="width:50%">
+            <p class="pb-1 mb-0 heading">Product Recommendations</p>
+        </div>
+    </div>
+    <!-- body -->
+    <div class="d-flex flex-row p-2" >
+        <!-- card 1 -->
+        <div class="card border-0 m-1" style="width: 31%;height:100%; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);border-radius: 20px;"> 
+            <div class="d-flex flex-column  topDiv" style="width:100%;align-items: center;"> 
+                <img src="../../assets/images/girl1.jpg" class="p-1 rounded-pill m-2" style="border-radius: 50%;" height="100px" width="100px" alt="">
+                 <p class="label">{{RecProduct.name}}</p>
+            </div>
+            <div class="my-3 mx-4">
+                <p  style="color: #222; font-size: 16px; font-family: Outfit; font-style: normal; font-weight: 600;align-items: center;">Segment Characteristics</p>
+                <div *ngFor="let value of RecProduct.characteristics" >
+                    <p class="Text">{{value}}</p>
+                </div>
+             </div>
+
+             <div class="my-3 mx-4">
+                <p  style="color: #222; font-size: 16px; font-family: Outfit; font-style: normal; font-weight: 600;align-items: center;">Functional Need</p>
+                <div *ngFor="let value of RecProduct.emotional_need" >
+                    <p class="Text">{{value}}</p>
+                </div>
+             </div>
+
+             <div class="my-3 mx-4">
+                <p  style="color: #222; font-size: 16px; font-family: Outfit; font-style: normal; font-weight: 600;align-items: center;">Emotional Need</p>
+                <div *ngFor="let value of RecProduct.functional_need" >
+                    <p class="Text">{{value}}</p>
+                </div>
+             </div>
+        </div>
+        <!-- card 2 -->
+        <div class="card border-0 d-flex flex-column m-1" style="width: 69%; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);">
+                <!-- section1 -->
+            <div class="d-flex flex-row p-2" style="height: 35%;">
+                <div style="width: 50%;"> 
+                    <p style="color: #222; font-size: 16px; font-family: Outfit; font-style: normal; font-weight: 600;align-items: center;">Product Parameter</p>
+                </div>
+                <!-- divider -->
+                <div class="d-flex">
+                    <div class="vr"></div>
+                </div>
+                <div style="width: 50%;">
+                    <p style="color: #222; font-size: 16px; font-family: Outfit; font-style: normal; font-weight: 600;align-items: center;">Price Point</p> 
+                </div>
+            </div>
+                <!-- section2 -->
+            <div class="d-flex flex-column p-2" style="width: 100%;">
+            
+                <div class="d-flex flex-row" style="width: 100%;justify-content: space-between;">
+                    <p style="color: #222; font-size: 16px; font-family: Outfit; font-style: normal; font-weight: 600;align-items: center;">Generative AI Brand Images</p>
+                    <div style="display: flex; justify-content:space-between;align-items: flex-end;">
+                        <button class="btn btn-outline-primary btn-sm" style="border-radius: 3px;">
+                            
+                         Download All
+                        </button>
+                        <button  class="btn btn-primary btn-sm" style="border-radius: 3px;margin-left: 10px;">
+                            <i class="bi bi-card-checklist">
+                                <svg xmlns="http://www.w3.org/2000/svg" style="margin-top:-4px;" width="16" height="20" fill="currentColor" class="bi bi-card-checklist" viewBox="0 0 16 16">
+                                </svg>
+                            </i>
+                         Regenerate
+                        </button>
+                    </div>
+                </div>
+               
+                <app-image-card-slider></app-image-card-slider>
+               
+            </div>
+        </div>
+    </div>
+        
+        
+        
+        
+    </div>
+    
+    
+    
+    
+   

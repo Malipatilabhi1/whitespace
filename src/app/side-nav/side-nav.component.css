@@ -1,0 +1,46 @@
+.highlighted{
+    background: var(--daybreak-blue-1, #E6F7FF);
+    box-shadow: -3px 0px 0px 0px #1890FF inset;
+    color:#1890FF;
+    border-right: 43px solid blue;
+}
+.highlighted svg{
+    fill: #1890FF;
+  }
+  .highlighted h3 {
+    color: #1890FF;
+  }
+
+h3{
+    color: #858585;
+font-size: 16px;
+font-family: Outfit;
+}
+
+svg{
+    fill:#858585;
+   
+}
+.logout{
+    position:fixed;
+    z-index:1;
+    bottom:0;
+    left:0px; 
+    color: #222;
+font-size: 16px;
+font-family: Outfit;
+font-style: normal;
+font-weight: 400;
+
+}
+hr{
+    margin-top: 280px;
+}
+
+.divider{
+    color: #858585;
+font-size: 14px;
+font-family: Outfit;
+
+}
+

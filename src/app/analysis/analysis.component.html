@@ -1,0 +1,177 @@
+<div class="main d-flex flex-column" id = "content" #content>
+<div class="d-flex flex-row p-3 my-0 py-0" style="width:100%;background-color: white;">
+    <div class="p-2" style="width:50%">
+        <p class="pb-1 mb-0 heading">Whitespace Analysis</p>
+    </div>
+    <div class="p-2" style="display: flex; justify-content: end;width:50%">
+        <button class="btn btn-primary" style="border-radius: 0px;" data-bs-toggle="modal" data-bs-target="#exampleModal2" (click)="capture()">
+            <i class="bi bi-card-checklist">
+                <svg xmlns="http://www.w3.org/2000/svg" style="margin-top:-4px;" width="16" height="20" fill="currentColor" class="bi bi-card-checklist" viewBox="0 0 16 16">
+                    <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
+                    <path d="M7 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0zM7 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0z"/>
+                  </svg>
+            </i>
+            Generate Report</button>
+    </div>
+</div>
+<div class="card border-0 px-2 mx-2 my-2 py-2" style="justify-content: center;width:83vw; position: relative;
+display: inline-block;">
+   <div class="table-container" style="overflow: auto; height: 80vh;">
+    <table class="p-2" style="width:82vw;">
+    <tr >
+        <td rowspan="2" class="diagonal-cell" style="width:15em; height:2em; background-color: #A7C4FF;">
+            <div class="top-segment d-flex flex-row" style="height:1em">
+                     <h3>Product</h3> <i class="bi bi-arrow-right-circle-fill px-2 pt-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#23468C" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
+                            <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
+                          </svg>
+                      </i>
+            </div><hr>
+            <div class="bottom-segment d-flex fle-row" style="height:1em">
+                <h3>Customer&nbsp;Segment</h3><i class="bi bi-arrow-down-circle-fill px-2 pt-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#23468C" class="bi bi-arrow-down-circle-fill" viewBox="0 0 16 16">
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z"/>
+                      </svg>
+                </i>
+      </div>
+            </td>
+    <td colspan="2" (mouseenter)="toggleTooltip($event,1)" (mouseleave)="toggleTooltip($event,1)" style="background-color: #C0BEF7;height:30px">
+        <app-tooltip-card [Image]="'clarifying_whitespace_img'" [Title]="'Clarifying Shampoo'" *ngIf="id===1"></app-tooltip-card>Clarifying Shampoo</td>
+    <td colspan="2" (mouseenter)="toggleTooltip($event,2)" (mouseleave)="toggleTooltip($event,2)" style="background-color: #C0BEF7;height:30px">
+        <app-tooltip-card [Image]="'Neutralising_whitespace_img'" [Title]="'Neutralising Shampoo'" *ngIf="id===2"></app-tooltip-card>Neutralising Shampoo</td>
+    <td colspan="1" (mouseenter)="toggleTooltip($event,3)" (mouseleave)="toggleTooltip($event,3)" style="background-color: #C0BEF7;height:30px">
+        <app-tooltip-card [Image]="'chelating_whitespace_img'" [Title]="'Chelating'" *ngIf="id===3"></app-tooltip-card>Chelating</td>
+    <td colspan="2" style="background-color: #C0BEF7;height:30px">Keratin Shampoo</td>
+    <td colspan="2" style="background-color: #C0BEF7;height:30px">Volumizing Shampoo</td>
+    <td colspan="2" style="background-color: #C0BEF7;height:30px">Dry Shampoo</td>
+    <td rowspan="2" style="width:7em; height:6em; background-color: #918EF1;">Score&nbsp;&nbsp;&nbsp;</td>
+    <td rowspan="2" style="width:7em; height:6em; background-color: #918EF1;">Avg&nbsp;&nbsp;&nbsp;</td>
+    </tr>
+    
+    <tr>
+    <td style="background-color: #D5D3F9;height:30px">Basic</td>
+    <td style="background-color: #D5D3F9;height:30px">Premium</td>
+    <td style="background-color: #D5D3F9;height:30px">Basic</td>
+    <td style="background-color: #D5D3F9;height:30px">Premium</td>
+    <td style="background-color: #D5D3F9;height:30px">Premium</td>
+    <td style="background-color: #D5D3F9;height:30px">Basic</td>
+    <td style="background-color: #D5D3F9;height:30px">Premium</td>
+    <td style="background-color: #D5D3F9;height:30px">Basic</td>
+    <td style="background-color: #D5D3F9;height:30px">Premium</td>
+    <td style="background-color: #D5D3F9;height:30px">Basic</td>
+    <td style="background-color: #D5D3F9;height:30px">Premium</td>  
+    </tr>
+    <tr >
+        <td style="width:15em;background-color: #ECF2FF;height:30px;text-align: left;">
+          {{data[0].name}}
+        </td>
+        <td *ngFor="let value of flamboyant; let i = index"  [ngStyle]="getBackgroundColor(value)">
+           <ng-container>{{value}}</ng-container>
+           </td>
+    </tr>
+    <tr>
+        <td style="width:15em;background-color: #ECF2FF;height:30px;text-align: left;">
+            {{data[1].name}}
+        </td>
+       
+        <td *ngFor="let value of neutralising; let i = index" style="color:white"  [ngStyle]="getBackgroundColor(value)">
+            <ng-container >{{value}}</ng-container>
+            </td>
+    </tr>
+    <tr >
+        <td style="width:15em;background-color: #ECF2FF;height:30px;text-align: left;">
+            {{data[2].name}}
+        </td>
+        <td *ngFor="let value of purist; let i = index" style="color:black"  [ngStyle]="getBackgroundColor(value)">
+            <ng-container>{{value}}</ng-container>
+            </td>
+    </tr>
+    <tr >
+        <td style="width:15em;background-color: #ECF2FF;height:30px;text-align: left;">
+            {{data[3].name}}
+        </td>
+        <td *ngFor="let value of sensible; let i = index" style="color:white"  [ngStyle]="getBackgroundColor(value)">
+            <ng-container >{{value}}</ng-container>
+            </td>
+    </tr>
+    <tr >
+        <td style="width:15em;background-color: #ECF2FF;height:30px;text-align: left;">
+            {{data[4].name}}
+        </td>
+        <td *ngFor="let value of aspirant; let i = index" style="color:white"  [ngStyle]="getBackgroundColor(value)">
+            <ng-container >{{value}}</ng-container>
+            </td>
+    </tr>
+    <tr >
+        <td style="width:15em;background-color: #ECF2FF;height:30px;text-align: left;">
+       {{data[5].name}}
+        </td>
+        <td *ngFor="let value of hoverer; let i = index" style="color:white"  [ngStyle]="getBackgroundColor(value)">
+            <ng-container >{{value}}</ng-container>
+            </td>
+    </tr>
+    <tr>
+        <td colspan="13" style="background-color: #ECF2FF;height: 20px !important;">
+             <div class="d-flex flex-row" style="align-items: center;justify-content: center;height: 20px !important;">
+                <p class="pt-3 px-3">Lower Match</p>
+                <!-- <div class="mx-2" style="height:15px; width:20px; background-color: #89CFF0;"></div>
+                <div class="mx-2" style="height:15px; width:20px; background-color: #6CB4EE;"></div> -->
+                <div class="mx-2" style="height:15px; width:20px; background-color: #E9E9E9;"></div>   
+                <div class="mx-2" style="height:15px; width:20px; background-color: #999999;"></div>
+                <div class="mx-2" style="height:15px; width:20px; background-color:  #4E4E4E;"></div>
+                <div class="mx-2" style="height:15px; width:20px; background-color: #222222;"></div>
+                <p class="pt-3 px-3">Higher Match</p>
+             </div>
+        </td>
+    </tr>
+    </table>
+</div>
+    </div>
+    
+    
+    
+    
+</div>
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal2" tabindex="-1" style="border-radius: 0px;" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content" style="border-radius: 0px;">
+        <div class="modal-header">
+            <p class="generate py-0 my-0">Generate Report</p>
+          <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+     <div class="d-flex flex-column"  style="display: flex; justify-content: center;align-items: center;">
+       <img src="../../assets/images/reportGenerated.png" height="150px" width="270px" alt="">
+        <p class="reportgenerated py-3">Hey! Report generated successfully!</p>
+    
+        <div class="d-flex flex-row" >
+            <button class="btn btn-primary view"  style="width:9em;margin-right: 5px;"  (click)="previewPDF()">
+                <i class="bi bi-eye">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                        <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
+                        <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
+                      </svg>
+                </i>
+                View Report</button>
+               
+            <button class="btn btn-light download" style="width:9em;" (click)="generatePDF()" >
+                <i class="bi bi-download">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#1890ff" class="bi bi-download" viewBox="0 0 16 16">
+                        <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+                        <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+                      </svg>
+                </i>
+                Download</button>
+        </div>
+    </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>

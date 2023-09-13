@@ -1,0 +1,536 @@
+<div class="main" id = "content" #content style="height:100%;position:sticky">
+  <div>
+    <mat-progress-bar color="accent" *ngIf="isLoading1" mode="indeterminate"></mat-progress-bar>
+   </div>
+    <div style="background-color: white;">
+        <p class="px-4 py-0 my-0 pt-2 title">Segment Characteristics Definition <span class="subSpan" *ngIf="selectedTab">({{ selectedTab }})</span> </p>
+        
+        <mat-tab-group style="background-color: white;" (selectedIndexChange)="onTabChange($event)" #tabGroup disableRipple animationDuration="0">
+            <mat-tab  *ngFor="let segment of data; let i = index" (click)="displaySegmentName(segment.name);" >
+             
+              <ng-template mat-tab-label>
+                <div class="tab-label">
+                  <div class="tab-icon">
+                    <mat-icon style="color: green" *ngIf="isSegmentDone(i)">check_circle</mat-icon>
+                  </div>
+                  <div class="tab-name">Segment {{i+1}}</div>
+                  <div class="tab-status">
+                    <span *ngIf="!segmentDone[i]" class="status-indicator">(In-progress)</span>
+                  </div>
+                </div>
+              </ng-template>
+             
+              <ng-template matTabContent>
+                <div>
+                  <mat-progress-bar color="accent" *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+                 </div>
+              <div class="d-flex flex-row p-2" style="width: 100%; background-color: #F0F2F5;">
+                <div class="card d-flex flex-column m-1" style="width: 68%;">
+                  <div class="d-flex flex-row topDiv" style="width:100%;">
+                  <div style="width:10%">
+                    <img *ngIf="i == 0" src="../../assets/images/girl1.jpg" class="p-1 rounded-pill" style="border-radius: 50%;" height="70px" width="70px" alt="">
+                    <img *ngIf="i == 1" src="../../assets/images/boy1.png" class="p-1 rounded-pill" style="border-radius: 50%;" height="70px" width="70px" alt="">
+                    <img *ngIf="i == 2" src="../../assets/images/girl2.jpg" class="p-1 rounded-pill" style="border-radius: 50%;" height="70px" width="70px" alt="">
+                    <img *ngIf="i == 3" src="../../assets/images/boy2.png" class="p-1 rounded-pill" style="border-radius: 50%;" height="70px" width="70px" alt="">
+                    <img *ngIf="i == 4" src="../../assets/images/girl_p.png" class="p-1 rounded-pill" style="border-radius: 50%;" height="70px" width="70px" alt="">
+                    <img *ngIf="i == 5" src="../../assets/images/boy3.png" class="p-1 rounded-pill" style="border-radius: 50%;" height="70px" width="70px" alt="">
+                </div>
+                  
+                  <div style="display:flex;  justify-content: start; align-items: center;width:50%">
+                    <input class="name" [(ngModel)]="segment.name" (ngModelChange)="segmentName(segment.name,i)">
+                  </div>
+                  <div class="px-2" style="width:40%;display:flex;  justify-content: end; align-items: center;" >
+                    <button type="button" class="btn btn-dark" style="border-radius: 150px;background-color: #1A356B;font-size: 16px;font-family: Outfit;font-style: normal;font-weight: 500;" (click)="updateSegment(i)">
+                        <i class="bi bi-arrow-repeat">
+                            <svg xmlns="http://www.w3.org/2000/svg" style="margin-right:5px" width="20" height="20" fill="currentColor" class="bi bi-arrow-repeat" viewBox="0 0 16 16">
+                                <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z"/>
+                                <path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z"/>
+                              </svg>
+                        </i>Regenerate</button>
+                  </div>
+                  </div>
+                 <div style="height:57.3vh;overflow-y: scroll;">
+                    <div class="segment" >
+                        <div class="d-flex flex-row p-2" style="width:100%">
+                         <div class="p-1" style="width:50%;display:flex;justify-content: start;align-items: center;">
+                             <p  style="color: #222; font-size: 16px; font-family: Outfit; font-style: normal; font-weight: 600;align-items: center;">Segment Characteristics</p>
+                         </div>
+                         <div style="width:50%;display:flex;justify-content: end;align-items: center;">
+                             <button (click)="addCharacteristic(segment)" type="button" class="btn btn-light" style="border:none;background-color: white;font-size: 12px;font-family: Outfit;font-style: normal;font-weight: 600;color:#7672ED">
+                                 <i class="bi bi-plus-circle">
+                                     <svg xmlns="http://www.w3.org/2000/svg" style="margin-right:5px;" width="13" height="13" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+                                         <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                         <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                                       </svg>
+                                 </i>Add More</button>  
+                         </div>  
+                        </div>
+                        <div class="px-2" style="width:100%">
+                         <div  *ngFor="let characteristic of segment.characteristics; let j = index">
+                             <div class="input-group" >
+                                 <input class="form-control my-1 inputText" [value]="characteristic"  [readonly]="!isEditing" (click)="enableEditing()" (change)="changeContent($event.target,'characteristics',i,j)" >
+                                 <div class="input-group-append">
+                                  
+                                    <button class="btn btn-outline-secondary mt-3 border-0 remove"
+                                   style="height:1px;width:1px;border-radius: 60%;display:flex;align-items: center;right:40px" type="button">
+                                   <i class="bi bi-dash-circle" >
+                                    <svg xmlns="http://www.w3.org/2000/svg"  (click)="deleteCharacteristic(segment,j)" width="16" height="16" fill="currentColor" class="bi bi-dash-circle" viewBox="0 0 16 16">
+                                      <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                      <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
+                                    </svg>
+                                  </i>
+                                  </button>
+                                 </div>
+                               </div>
+                           </div>
+                        </div>
+                       </div>
+                       <div class="function">
+                         <div class="d-flex flex-row p-2" style="width:100%">
+                           <div class="p-1" style="width:50%;display:flex;justify-content: start;align-items: center;">
+                             <p style="color: #222; font-size: 16px; font-family: Outfit; font-style: normal; font-weight: 600;align-items: center;">Functional Needs</p>
+                           </div>
+                           <div style="width:50%;display:flex;justify-content: end;align-items: center;">
+                             <button (click)="addFunctionalNeed(segment)" type="button" class="btn btn-light"
+                               style="border:none;background-color: white;font-size: 12px;font-family: Outfit;font-style: normal;font-weight: 600;color:#7672ED">
+                               <i class="bi bi-plus-circle">
+                                 <svg xmlns="http://www.w3.org/2000/svg" style="margin-right:5px;" width="13" height="13" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+                                   <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                   <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                                 </svg>
+                               </i>Add More
+                             </button>
+                           </div>
+                         </div>
+                         <div class="px-2" style="width:100%">
+                           <div *ngFor="let need of segment.functional_need; let j = index">
+                             <div class="input-group">
+                               <input class="form-control my-1 inputText" [value]="need" [readonly]="!isEditing" (click)="enableEditing()" (change)="changeContent($event.target,'functional_need',i,j)">
+                               <div class="input-group-append">
+                                  
+                                <button class="btn btn-outline-secondary mt-3 border-0 remove"
+                               style="height:1px;width:1px;border-radius: 60%;display:flex;align-items: center;right:40px" type="button">
+                               <i class="bi bi-dash-circle" >
+                                <svg xmlns="http://www.w3.org/2000/svg"  (click)="deleteFunctionalNeed(segment, j)" width="16" height="16" fill="currentColor" class="bi bi-dash-circle" viewBox="0 0 16 16">
+                                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                  <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
+                                </svg>
+                              </i>
+                              </button>
+                             </div>
+                               <!-- <div class="input-group-append">
+                                 <button class="btn btn-outline-secondary mt-3" (click)="deleteFunctionalNeed(segment, j)"
+                                   style="height:15px;width:10px;border-radius: 60%;display:flex;align-items: center;right:40px" type="button">-</button>
+                               </div> -->
+                             </div>
+                           </div>
+                         </div>
+                       </div>
+                       <div class="emotional">
+                        <div class="d-flex flex-row p-2" style="width:100%">
+                          <div class="p-1" style="width:50%;display:flex;justify-content: start;align-items: center;">
+                            <p style="color: #222; font-size: 16px; font-family: Outfit; font-style: normal; font-weight: 600;align-items: center;">Emotional Needs</p>
+                          </div>
+                          <div style="width:50%;display:flex;justify-content: end;align-items: center;">
+                            <button (click)="addEmotionalNeed(segment)" type="button" class="btn btn-light" style="border:none;background-color: white;font-size: 12px;font-family: Outfit;font-style: normal;font-weight: 600;color:#7672ED">
+                              <i class="bi bi-plus-circle">
+                                <svg xmlns="http://www.w3.org/2000/svg" style="margin-right:5px;" width="13" height="13" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+                                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                  <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                                </svg>
+                              </i>Add More
+                            </button>
+                          </div>
+                        </div>
+                        <div class="px-2" style="width:100%">
+                          <div *ngFor="let need of segment.emotional_need; let j = index">
+                            <div class="input-group">
+                              <input class="form-control my-1 inputText" [value]="need" [readonly]="!isEditing" (click)="enableEditing()" (change)="changeContent($event.target,'emotional_need',i,j)">
+                              <div class="input-group-append">
+                                  
+                                <button class="btn btn-outline-secondary mt-3 border-0 remove"
+                               style="height:1px;width:1px;border-radius: 60%;display:flex;align-items: center;right:40px" type="button">
+                               <i class="bi bi-dash-circle" >
+                                <svg xmlns="http://www.w3.org/2000/svg"  (click)="deleteEmotionalNeed(segment,j)" width="16" height="16" fill="currentColor" class="bi bi-dash-circle" viewBox="0 0 16 16">
+                                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                  <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
+                                </svg>
+                              </i>
+                              </button>
+                             </div>
+                              <!-- <div class="input-group-append">
+                                <button class="btn btn-outline-secondary mt-3" (click)="deleteEmotionalNeed(segment, j)" style="height:15px;width:10px;border-radius: 60%;display:flex;align-items: center;right:40px" type="button">-</button>
+                              </div> -->
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                 </div>
+                  
+                </div>
+                <div class="card m-1" style="width: 30%">
+                    <div class="p-1">
+                        <div class="d-flex flex-row " style="width: 100%;">
+                            <p style="color: #222; font-size: 16px;  font-family: Outfit; font-style: normal; font-weight: 600;width:70%">
+                                Map to product attribute
+                            </p>
+                            <!-- <button (click)="markSegmentAsDone(i)" type="button" class="btn btn-primary mx-2 done"   >Done</button> -->
+                        </div>
+                        <hr class="py-0 my-0">
+                        <div *ngIf="i == 0" style="height: 50vh; overflow-y: scroll;" class="py-0 pt-3">
+                          <div *ngFor="let segment of segments1; let i = index" class="d-flex flex-row py-0 my-0" style="width:100%">
+                            <div style="width:45%" class="py-0 my-0">
+                              <p class="px-1 py-0 slide" style="margin-top: 10px;">{{ segment.name }}</p>
+                            </div>
+                            <div class="py-0 my-0" style="width:55%;">
+                              <mat-slider class="custom-slider" thumbLabel discrete style="width: 100px;" min="0" max="100" step="1" 
+                              [ngModel]="segment.value * 100" (ngModelChange)="segment.value = $event / 100; slidervalues('segment1', i, segment)">
+                                <input matSliderThumb>
+                              </mat-slider>
+                              <span style="color: #222; text-align: right; font-size: 12px; font-family: Outfit; font-style: normal; font-weight: 600;"> {{ (segment.value * 100).toFixed(0) }}%</span>
+                              <div class="example-label-container" style="margin-top:-10px">
+                                <label id="example-name-label" class="example-name-label py-0 my-0">0</label>
+                                <label class="example-value-label last ">100</label>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div *ngIf="i == 1" style="height: 50vh; overflow-y: scroll;" class="py-0 pt-3">
+                          <div *ngFor="let segment of segments2; let i = index" class="d-flex flex-row py-0 my-0" style="width:100%">
+                            <div style="width:45%" class="py-0 my-0">
+                              <p class="px-1 py-0 slide" style="margin-top: 10px;">{{ segment.name }}</p>
+                            </div>
+                            <div class="py-0 my-0" style="width:55%;">
+                              <mat-slider class="custom-slider" thumbLabel discrete style="width: 100px;" min="0" max="100" step="1" [ngModel]="segment.value * 100" (ngModelChange)="segment.value = $event / 100; slidervalues('segment2', i, segment)">
+                                <input matSliderThumb>
+                              </mat-slider>
+                              <span style="color: #222; text-align: right; font-size: 12px; font-family: Outfit; font-style: normal; font-weight: 600;">{{ (segment.value * 100).toFixed(0) }}%</span>
+                              <div class="example-label-container" style="margin-top:-10px">
+                                <label id="example-name-label" class="example-name-label py-0 my-0">0</label>
+                                <label class="example-value-label last ">100</label>
+                              </div>
+                            </div>
+                          </div>
+                       
+                        </div>
+                        <div *ngIf="i == 2" style="height: 50vh; overflow-y: scroll;" class="py-0 pt-3">
+                          <div *ngFor="let segment of segments3; let i = index" class="d-flex flex-row py-0 my-0" style="width:100%">
+                            <div style="width:45%" class="py-0 my-0">
+                              <p class="px-1 py-0 slide" style="margin-top: 10px;">{{ segment.name }}</p>
+                            </div>
+                            <div class="py-0 my-0" style="width:55%;">
+                              <mat-slider class="custom-slider" thumbLabel discrete style="width: 100px;" min="0" max="100" step="1" [ngModel]="segment.value * 100" (ngModelChange)="segment.value = $event / 100; slidervalues('segment3', i, segment)">
+                                <input matSliderThumb>
+                              </mat-slider>
+                              <span style="color: #222; text-align: right; font-size: 12px; font-family: Outfit; font-style: normal; font-weight: 600;">{{ (segment.value * 100).toFixed(0) }}%</span>
+                              <div class="example-label-container" style="margin-top:-10px">
+                                <label id="example-name-label" class="example-name-label py-0 my-0">0</label>
+                                <label class="example-value-label last ">100</label>
+                              </div>
+                            </div>
+                          </div>
+                       
+                        </div>
+                        <div *ngIf="i == 3" style="height: 50vh; overflow-y: scroll;" class="py-0 pt-3">
+                          <div *ngFor="let segment of segments4; let i = index" class="d-flex flex-row py-0 my-0" style="width:100%">
+                            <div style="width:45%" class="py-0 my-0">
+                              <p class="px-1 py-0 slide" style="margin-top: 10px;">{{ segment.name }}</p>
+                            </div>
+                            <div class="py-0 my-0" style="width:55%;">
+                              <mat-slider class="custom-slider" thumbLabel discrete style="width: 100px;" min="0" max="100" step="1" [ngModel]="segment.value * 100" (ngModelChange)="segment.value = $event / 100; slidervalues('segment4', i, segment)">
+                                <input matSliderThumb>
+                              </mat-slider>
+                              <span style="color: #222; text-align: right; font-size: 12px; font-family: Outfit; font-style: normal; font-weight: 600;">{{ (segment.value * 100).toFixed(0) }}%</span>
+                              <div class="example-label-container" style="margin-top:-10px">
+                                <label id="example-name-label" class="example-name-label py-0 my-0">0</label>
+                                <label class="example-value-label last ">100</label>
+                              </div>
+                            </div>
+                          </div>
+                       
+                        </div>
+                        <div *ngIf="i == 4" style="height: 50vh; overflow-y: scroll;" class="py-0 pt-3">
+                          <div *ngFor="let segment of segments5; let i = index" class="d-flex flex-row py-0 my-0" style="width:100%">
+                            <div style="width:45%" class="py-0 my-0">
+                              <p class="px-1 py-0 slide" style="margin-top: 10px;">{{ segment.name }}</p>
+                            </div>
+                            <div class="py-0 my-0" style="width:55%;">
+                              <mat-slider class="custom-slider" thumbLabel discrete style="width: 100px;" min="0" max="100" step="1" [ngModel]="segment.value * 100" (ngModelChange)="segment.value = $event / 100; slidervalues('segment5', i, segment)">
+                                <input matSliderThumb>
+                              </mat-slider>
+                              <span style="color: #222; text-align: right; font-size: 12px; font-family: Outfit; font-style: normal; font-weight: 600;">{{ (segment.value * 100).toFixed(0) }}%</span>
+                              <div class="example-label-container" style="margin-top:-10px">
+                                <label id="example-name-label" class="example-name-label py-0 my-0">0</label>
+                                <label class="example-value-label last ">100</label>
+                              </div>
+                            </div>
+                          </div>
+                       
+                        </div>
+                        <div *ngIf="i == 5" style="height: 50vh; overflow-y: scroll;" class="py-0 pt-3">
+                          <div *ngFor="let segment of segments6; let i = index" class="d-flex flex-row py-0 my-0" style="width:100%">
+                            <div style="width:45%" class="py-0 my-0">
+                              <p class="px-1 py-0 slide" style="margin-top: 10px;">{{ segment.name }}</p>
+                            </div>
+                            <div class="py-0 my-0" style="width:55%;">
+                              <mat-slider class="custom-slider" thumbLabel discrete style="width: 100px;" min="0" max="100" step="1" [ngModel]="segment.value * 100" (ngModelChange)="segment.value = $event / 100; slidervalues('segment6', i, segment)">
+                                <input matSliderThumb>
+                              </mat-slider>
+                              <span style="color: #222; text-align: right; font-size: 12px; font-family: Outfit; font-style: normal; font-weight: 600;">{{ (segment.value * 100).toFixed(0) }}%</span>
+                              <div class="example-label-container" style="margin-top:-10px">
+                                <label id="example-name-label" class="example-name-label py-0 my-0">0</label>
+                                <label class="example-value-label last ">100</label>
+                              </div>
+                            </div>
+                          </div>
+                       
+                        </div>
+                        <hr class="py-0 my-0">
+                   <div style="height:7vh; align-items: center;">
+                    <div class="d-flex flex-row" style="align-items: center;" >
+                     <div class="p-2" style="display:flex;cursor: pointer;vertical-align: center;align-items: center;">
+                      <button (click)="markSegmentAsDone(i,segment)"  type="button" class="btn btn-primary done"   >Done</button>
+
+
+                     </div>
+                     <div  style="display:flex;justify-content: end; cursor: pointer;width:90%;">
+                      <img src="../../assets/images/bot.jpg" class="rouned-pill" style="border-radius: 50%;" height="50" width="50" alt="" (click)="openIframe()" data-bs-toggle="modal" data-bs-target="#myModal2">
+                     </div> 
+                       </div>
+                   </div>
+                    </div>
+                </div>
+              </div>
+            </ng-template>
+            </mat-tab>
+          </mat-tab-group>
+          <div class="p-2 sticky-bottom" >    
+            <button type="button" class="btn btn-light nextButton"  (click)="capture();nextPage()"  [disabled]="!allSegmentsDone">Whitespace Analysis
+              <i class="bi bi-arrow-right">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="26" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+                </svg>
+              </i>
+            </button>
+        </div>   
+ </div>  
+  
+    </div>
+<!-- Modal -->
+
+
+
+ <div class="modal fade" id="myModal2" tabindex="-1" aria-labelledby="myModalLabel2" >
+    <div class="modal-dialog" id="modal-dialog"  role="document">
+      <div class="modal-content" id="modal-content">
+        <div class="modal-header" style="background-color: #918EF1;height:5em">
+          <p class="assistant">Chatbot Assistant</p>
+            <button type="button border-0" style="background-color:#918EF1;color:white ;border:none;height:50px;width:50px" class="close" data-bs-dismiss="modal" aria-label="Close">
+              <i class="bi bi-x-lg">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                  <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+                </svg>
+              </i>
+              <!-- <span  aria-hidden="true">&times;</span> -->
+            </button>
+         
+        </div>
+        <div class="modal-body">
+            
+          <!-- <div *ngIf="showIframe">
+            <iframe src="http://3.111.229.37:3003/bot/73ff8af9-94e6-488c-8ba2-ac53258f7ca4?mode=iframe" width="400" height="300" ></iframe>
+          </div> -->
+          <div class="chat-container" #chatMessage>
+            <div class="chat-messages">
+              <div *ngFor="let message of messages" [ngClass]="{ 'user-message': message.sender === 'user', 'bot-message': message.sender === 'bot' }">
+                <div *ngIf="message.sender === 'bot'" class="response-content d-flex flex-row message-container right" >
+                  <div class="response-image" style="margin-right:10px">
+                    <img src="../../assets/images/chatBot.jpg" height="20px" width="20px" alt="Bot Image">
+                  </div>
+                  <div class="bot-response " >{{ message.content }}</div>
+                 
+                </div>
+                <div *ngIf="message.sender === 'user'" class="user-message rounded-pill">{{ message.content }}</div>
+              </div>
+            </div>
+          </div>
+          
+      </div>
+      <hr class="py-0 my-0">
+      <div class="modal-footer"> 
+        
+        <div class="chat-input rounded-pill">
+          <input [(ngModel)]="userMessage"  placeholder="Type your message..." />
+          <!-- <button (click)="sendMessage()">Send</button> -->
+          <div style="background-color: #7672ED;height:30px;width:30px" class="rounded-pill">
+              <img (click)="sendMessage()" style="margin-left: 8px;margin-top: 8px;" src="../../assets/images/Send.png" height="15px" width="15px" alt="">
+         
+            </div>
+        </div>
+    </div>
+
+    </div>
+</div>
+</div> 
+
+
+<!-- <div class="px-3 pt-3" style="display:flex;justify-content: end; cursor: pointer;"  >
+            <img src="../../assets/images/chatBot.jpg" class="rouned-pill" style="border-radius: 50%;" height="50" width="50" alt="" (click)="openIframe()">
+             <div *ngIf="showIframe">
+                <iframe src="http://3.111.229.37:3003/bot/73ff8af9-94e6-488c-8ba2-ac53258f7ca4?mode=iframe" width="400" height="500" ></iframe>
+              </div>
+           </div>  -->
+    <!-- <div class="mx-3">
+        <div class="p-1 card me-1 mb-3 rounded-0" style="width: 100%; overflow-y: auto; background-color: white">
+            <ul class="list-group d-flex flex-row">
+            <div
+                  class="list-group-item m-2 my-div d-flex flex-row"
+                  style="border: 1px solid grey; cursor: pointer;"
+                  *ngFor="let segment of segments"
+                  [class.selected]="segment === selectedSegment"
+                  (click)="selectSegment(segment)"
+            >
+            <div class="tick-mark" [ngClass]="{ 'selected': segment === selectedSegment }">
+            <span class="tick"></span>
+            </div>
+            <div class="segment-item d-flex flex-column">
+       
+            <span><b>{{ segment.name }}</b><sub>{{ getSegmentStatus(segment) }}</sub></span>
+            
+            </div>
+            </div>
+            </ul>
+            </div>
+    <div class="d-flex flex-row">
+       
+    <div class="p-1" style="width: 90%">
+   <div class="card d-flex flex-column" *ngIf="selectedSegment">
+    <div class="d-flex flex-row"  >
+        <div class="d-flex flex-row" style="width:50%">
+            <div class="m-2">
+             <img  [src]="selectedSegment.image"  class="rouned-pill" style="border-radius: 50%;" height="120" width="120"   >
+            </div>
+             <div class="input-group m-2 pt-5" style="width:230px;height:50px;align-items: center;">
+               
+                 <input type="text" style="display: flex;justify-content: center;background-color: rgb(230, 230, 247);" class="form-control" [(ngModel)]="selectedSegment.ename">
+                 
+             </div>
+         </div>
+         <div class="d-flex flex-row" style="display:flex; justify-content: end;align-items:center;width:50%">
+             <div class="p-2" style="display: flex;justify-content: center;height:53px">
+                 <label style="width:300px;border:1px solid rgb(212, 212, 247);border-radius: 10px;align-items: center;display: flex;padding: 10px;" *ngIf="!isMapped" >status: Yet to be Mapped</label>
+                 <label style="width:300px;border:1px solid rgb(212, 212, 247);border-radius: 10px;align-items: center;display: flex;padding: 10px;background-color:rgb(212, 212, 247) ;" *ngIf="isMapped" >status: Mapped to product attribute</label>   
+             </div>
+        
+         </div> 
+    </div>  
+    <div class=" d-flex flex-row" style="width:100%" >
+        
+  <div class="1 mx-1" style="width:33%">
+    <div class="d-flex flex-row mx-2 pt-2 pb-0 mb-0">
+
+        
+        <h3 style="width: 90%"><b>Segment Characteristics</b></h3>
+        <button style="height: 30px; vertical-align: center;display:flex;align-items: center;justify-content: end;border-radius: 5px;background-color: rgb(230, 230, 247);"
+                      class="btn btn-light mx-2" (click)="addCharacteristic()">+</button>
+        </div>
+        <div *ngFor="let characteristic of selectedSegment?.segmentCharacteristics; let i = index;"
+                    class="input-group mx-1 my-3">
+        <input type="text" class=" form-control" [value]="characteristic">
+        <button class="btn btn-light" style="background-color: rgb(230, 230, 247);" (click)="removeCharacteristic(i)">-</button>
+        </div>
+  </div>
+ <div class="2 mx-1" style="width:33%">
+    <div class="d-flex flex-row mx-2 pt-2">
+        <h3 style="width: 90%"><b>Functional Need</b></h3>
+        <button style="height: 30px; vertical-align: center;display:flex;align-items: center;justify-content: end;border-radius: 5px;background-color: rgb(230, 230, 247);"
+                      class="btn btn-light mx-1 my-3" (click)="addFunctionalNeed()">+</button>
+        </div>
+        <div *ngFor="let need of selectedSegment?.functionalNeeds; let i = index" class="input-group m-1">
+        <input type="text" class="form-control" [value]="need">
+        <button class="btn btn-light" style="background-color: rgb(230, 230, 247);" (click)="removeFunctionalNeed(i)">-</button>
+        </div>
+ </div>
+   <div class="3 mx-2" style="width:33%">
+    <div class="d-flex flex-row mx-2 pt-2">
+        <h3 style="width: 90%"><b>Emotional Need</b></h3>
+        <button style="height: 30px; vertical-align: center;display:flex;align-items: center;justify-content: end;border-radius: 5px;background-color: rgb(230, 230, 247);"
+                      class="btn btn-light mx-2" (click)="addFunctionalNeed2()">+</button>
+        </div>
+        <div *ngFor="let need of selectedSegment?.functionalNeeds2; let i = index" class="input-group mx-1 my-3">
+        <input type="text" class="form-control" [value]="need">
+        <button class="btn btn-light" style="background-color: rgb(230, 230, 247);" (click)="removeFunctionalNeed2(i)">-</button>
+        </div>
+   </div>
+    </div>
+</div>
+<div class="d-flex flex-row" style="display:flex;justify-content: end; ">
+    <div class="px-3 pt-3" style="display:flex;justify-content: end; cursor: pointer;"  >
+     <img src="../../assets/images/chatBot.jpg" class="rouned-pill" style="border-radius: 50%;" height="50" width="50" alt="" data-bs-toggle="modal" data-bs-target="#myModal2" >
+    </div>
+    <div class="p-2 mt-3" style="display:flex;justify-content: end;height:50px;align-items: center; ">
+        <button type="button" class="btn btn-primary"(click)="saveSegment()" >Save</button>
+    </div>
+     <div class="p-2 mt-3" style="display:flex;justify-content: end;height:50px;align-items: center; ">
+         <button type="button" class="btn btn-primary" (click)="capture()" routerLink="/whitespaceAnalysis" >Next</button>
+     </div>
+ </div>
+    </div>
+    
+        <div class="card" style="width:30%;height:500px">
+            <div class="slider-container d-flex flex-row">
+                <p class="pt-4 px-2">aroma</p>
+                <ng5-slider [(value)]="sliderValues[0]" [options]="sliderOptions"></ng5-slider>
+            </div>
+            <div class="slider-container d-flex flex-row">
+                <p class="pt-4 px-2">clean&nbsp;scalp</p>
+                <ng5-slider [(value)]="sliderValues[1]" [options]="sliderOptions"></ng5-slider>
+            </div>
+            <div class="slider-container d-flex flex-row">
+                <p class="pt-4 px-2">long&nbsp;lasting&nbsp;hold</p>
+                <ng5-slider [(value)]="sliderValues[2]" [options]="sliderOptions"></ng5-slider>
+            </div>
+            <div class="slider-container d-flex flex-row">
+                <p class="pt-4 px-2">maintainance</p>
+                <ng5-slider [(value)]="sliderValues[3]" [options]="sliderOptions"></ng5-slider>
+            </div>
+            <div class="slider-container d-flex flex-row">
+                <p class="pt-4 px-2">volume&nbsp;and&nbsp;bounce</p>
+                <ng5-slider [(value)]="sliderValues[4]" [options]="sliderOptions"></ng5-slider>
+            </div>
+            <div class="slider-container d-flex flex-row">
+                <p class="pt-4 px-2">special&nbsp;purpose</p>
+                <ng5-slider [(value)]="sliderValues[5]" [options]="sliderOptions"></ng5-slider>
+            </div>
+        </div>
+  
+
+    </div>
+   
+    </div> -->
+
+                 <!-- <div class="slider-container d-flex flex-column mb-2" >
+                            <p class="px-2 py-0 my-0 slide">Aroma</p>
+                            <ng5-slider [(value)]="sliderValues[0]" [options]="sliderOptions"></ng5-slider>
+                        </div>
+                        <div class="slider-container d-flex flex-column mb-2">
+                            <p class="px-2 py-0 my-0 slide">clean scalp</p>
+                            <ng5-slider [(value)]="sliderValues[1]" [options]="sliderOptions"></ng5-slider>
+                        </div>
+                        <div class="slider-container d-flex flex-column mb-2">
+                            <p class="px-2 py-0 my-0 slide">long lasting hold</p>
+                            <ng5-slider [(value)]="sliderValues[2]" [options]="sliderOptions"></ng5-slider>
+                        </div>
+                        <div class="slider-container d-flex flex-column mb-2">
+                            <p class="px-2 py-0 my-0 slide">maintainance</p>
+                            <ng5-slider [(value)]="sliderValues[3]" [options]="sliderOptions"></ng5-slider>
+                        </div>
+                        <div class="slider-container d-flex flex-column mb-2">
+                            <p class="px-2 py-0 my-0 slide">volume and bounce</p>
+                            <ng5-slider [(value)]="sliderValues[4]" [options]="sliderOptions"></ng5-slider>
+                        </div>
+                        <div class="slider-container d-flex flex-column">
+                            <p class="px-2 py-0 my-0 slide">special purpose</p>
+                            <ng5-slider [(value)]="sliderValues[5]" [options]="sliderOptions"></ng5-slider>
+                        </div> -->

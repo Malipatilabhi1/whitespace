@@ -1,0 +1,99 @@
+.image-card-slider {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+  
+  .slider-container {
+    white-space: nowrap;
+    position: relative;
+    display: flex;
+    overflow-x: hidden;
+    scroll-snap-type: x mandatory;
+    margin-left: 55px;
+    margin-right: 55px;
+    margin-top:30px;
+    margin-bottom: 10px;
+  }
+  
+  .image-card {
+    flex: 0 0 auto;
+    width: 150px; 
+    margin-right: 50px; 
+    scroll-snap-align: start;
+  }
+  
+  .arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px; 
+    height: 100px; 
+    background-color: rgba(255, 255, 255, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 20px; 
+    z-index: 1; 
+    user-select: none; 
+  }
+  
+  .left-arrow {
+    left: 0;
+  }
+  
+  .right-arrow {
+    right: 0;
+  }
+  
+  .icons {
+    display: flex;
+    justify-content: flex-end; 
+    margin-top: 10px; 
+  }
+
+  .icons i {
+    margin-left: 15px;
+    color: aquamarine;
+  }
+
+  .custom-icon {
+    color: #FF0000; 
+}
+
+.slider {
+    display: flex;
+    transition: transform 2s ease; 
+  }
+
+  @keyframes slideToLeft {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0%);
+    }
+  }
+  
+  @keyframes slideToRight {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(0%);
+    }
+  }
+  
+.slider.prev {
+    animation: slideToRight 2s cubic-bezier(0.42, 0, 0.58, 1) forwards;
+  }
+  
+  .slider.next {
+    animation: slideToLeft 2s cubic-bezier(0.42, 0, 0.58, 1) forwards;
+  }
+  
+ .fa-download{
+  color: rgb(172, 23, 23);
+  }
+  

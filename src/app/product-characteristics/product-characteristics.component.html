@@ -1,0 +1,253 @@
+<div id = "content" #content>
+    <div>
+        <mat-progress-bar color="accent" *ngIf="isLoading1" mode="indeterminate"></mat-progress-bar>
+    </div>
+    <div class="heading p-2 sticky-top" style="width:100%;background-color: white;">
+        <p class="heading">Product Characteristics</p>
+    </div>
+    <div class="body d-flex flex-column" style="margin-bottom: 4em;" >
+        <div class="row1 d-flex flex-row p-2" style="width:100%;">
+          <div class="card d-flex flex-column m-2">
+            <div class="cardHeading">
+              <p class="cardHeadingText">Clarifying Shampoo</p>
+              
+            </div>
+            <div class="cardContent d-flex flex-row">
+              <img src="../../assets/images/Product1_img.png" alt="Image Description" style="height:240px;width:80px">
+              <div class="table-container">
+                <table style="table-layout: fixed;">
+                <thead>
+                  <tr>
+                    <th>Basic</th>
+                    <th>Premium</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <div class="d-flex flex-column">
+                        <div *ngFor="let key of getKeys(tabJson['0']); let i = index">
+                          <div class="name-value d-flex flex-row">
+                            <span class="name-column">{{ key }}</span>
+                            <span class="value-column rounded-pill">{{ tabJson['0'][key] }}</span>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    
+                    <td>
+                      <div class="d-flex flex-column">
+                        <div *ngFor="let key of getKeys(tabJson['01']); let i = index">
+                          <div class="name-value d-flex flex-row">
+                            <span class="name-column">{{ key }}</span>
+                            <span class="value-column rounded-pill">{{ tabJson['01'][key] }}</span>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table></div>
+            </div>
+          </div>
+          
+            <div class="card d-flex flex-column m-2">
+                <div class="cardHeading">
+                    <p class="cardHeadingText">Neutralising Shampoo</p>
+                </div>
+                <div class="cardContent d-flex flex-row">
+                  <img src="../../assets/images/Product2_img.png" alt="Image Description">
+                  <div class="table-container"><table style="table-layout: fixed;">
+                        <thead>
+                          <tr>
+                            <th>Basic</th>
+                            <th>Premium</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>
+                              <div class="d-flex flex-column">
+                                <div *ngFor="let key of getKeys(tabJson['1']); let i = index">
+                                  <div class="name-value d-flex flex-row">
+                                    <span class="name-column" ><div>{{ key }}</div></span>
+                                    <span class="value-column rounded-pill">{{ tabJson['1'][key] }}</span>
+                                  </div>
+                                </div>
+                              </div>
+                            </td>
+                            <td>
+                              <div class="d-flex flex-column">
+                                <div *ngFor="let key of getKeys(tabJson['11']); let i = index">
+                                  <div class="name-value d-flex flex-row">
+                                    <span class="name-column" >{{ key }}</span>
+                                    <span class="value-column rounded-pill">{{ tabJson['11'][key] }}</span>
+                                  </div>
+                                </div>
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table></div>
+                      
+                </div>
+            </div>
+            <div class="card d-flex flex-column m-2">
+                <div class="cardHeading">
+                    <p class="cardHeadingText">Chelating</p>
+                </div>
+                <div class="cardContent d-flex flex-row">
+                  <img src="../../assets/images/Product3_img.png" alt="Image Description">
+                  <div class="table-container"><table style="table-layout: fixed;">
+                        <thead>
+                          <tr >
+                            <th >Premium</th>
+                            <th></th>
+                            
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                          
+                            <td style="width:50%;border:none">
+                              <div class="d-flex flex-column" >
+                                <div *ngFor="let key of getKeys(tabJson['22']); let i = index">
+                                  <div class="name-value d-flex flex-row">
+                                    <span class="name-column" >{{ key }}</span>
+                                    <span class="value-column rounded-pill">{{ tabJson['22'][key] }}</span>
+                                  </div>
+                                </div>
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table></div>
+                </div>
+            </div>
+        </div>
+        <div class="row1 d-flex flex-row justify-content-between p-2" style="width:100%">
+            <div class="card d-flex flex-column m-2">
+                <div class="cardHeading">
+                    <p class="cardHeadingText">Keratin Shampoo</p>
+                </div>
+                <div class="cardContent d-flex flex-row">
+                  <img src="../../assets/images/Product2_img.png" alt="Image Description">
+                  <div class="table-container"><table style="table-layout: fixed;">
+                        <thead>
+                          <tr>
+                            <th>Basic</th>
+                            <th>Premium</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>
+                              <div class="d-flex flex-column">
+                                <div *ngFor="let key of getKeys(tabJson['3']); let i = index">
+                                  <div class="name-value d-flex flex-row">
+                                    <span class="name-column" >{{ key }}</span>
+                                    <span class="value-column rounded-pill">{{ tabJson['3'][key] }}</span>
+                                  </div>
+                                </div>
+                              </div>
+                            </td>
+                            <td>
+                              <div class="d-flex flex-column">
+                                <div *ngFor="let key of getKeys(tabJson['33']); let i = index">
+                                  <div class="name-value d-flex flex-row">
+                                    <span class="name-column" >{{ key }}</span>
+                                    <span class="value-column rounded-pill">{{ tabJson['33'][key] }}</span>
+                                  </div>
+                                </div>
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table></div>
+                </div>
+            </div>
+            <div class="card d-flex flex-column m-2">
+                <div class="cardHeading">
+                    <p class="cardHeadingText">Volumizing Shampoo</p>
+                </div>
+                <div class="cardContent d-flex flex-row">
+                  <img src="../../assets/images/Product3_img.png" alt="Image Description">
+                  <div class="table-container"><table style="table-layout: fixed;">
+                        <thead>
+                          <tr>
+                            <th>Basic</th>
+                            <th>Premium</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>
+                              <div class="d-flex flex-column">
+                                <div *ngFor="let key of getKeys(tabJson['4']); let i = index">
+                                  <div class="name-value d-flex flex-row">
+                                    <span class="name-column" >{{ key }}</span>
+                                    <span class="value-column rounded-pill">{{ tabJson['4'][key] }}</span>
+                                  </div>
+                                </div>
+                              </div>
+                            </td>
+                            <td>
+                              <div class="d-flex flex-column">
+                                <div *ngFor="let key of getKeys(tabJson['44']); let i = index">
+                                  <div class="name-value d-flex flex-row">
+                                    <span class="name-column" >{{ key }}</span>
+                                    <span class="value-column rounded-pill">{{ tabJson['44'][key] }}</span>
+                                  </div>
+                                </div>
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table></div>
+                </div>
+            </div>
+            <div class="card d-flex flex-column m-2">
+                <div class="cardHeading">
+                    <p class="cardHeadingText">Dry Shampoo</p>
+                </div>
+                <div class="cardContent d-flex flex-row">
+                  <img src="../../assets/images/Product1_img.png" alt="Image Description" style="height:240px;width:100px">
+                  <div class="table-container"><table style="table-layout: fixed;">
+                        <thead>
+                          <tr>
+                            <th>Basic</th>
+                            <th>Premium</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>
+                              <div class="d-flex flex-column">
+                                <div *ngFor="let key of getKeys(tabJson['5']); let i = index">
+                                  <div class="name-value d-flex flex-row">
+                                    <span class="name-column" >{{ key }}</span>
+                                    <span class="value-column rounded-pill">{{ tabJson['5'][key] }}</span>
+                                  </div>
+                                </div>
+                              </div>
+                            </td>
+                            <td>
+                              <div class="d-flex flex-column">
+                                <div *ngFor="let key of getKeys(tabJson['55']); let i = index">
+                                  <div class="name-value d-flex flex-row">
+                                    <span class="name-column" >{{ key }}</span>
+                                    <span class="value-column rounded-pill">{{ tabJson['55'][key] }}</span>
+                                  </div>
+                                </div>
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+</div>

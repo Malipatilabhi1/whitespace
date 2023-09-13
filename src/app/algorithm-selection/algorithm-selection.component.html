@@ -48,7 +48,7 @@
           <div style="overflow-y: scroll;height:57vh" *ngIf="isOptionSelectedA1">
             <div class="d-flex flex-column">
             <label class="lab">Init Method</label>
-            <select class="drop" [(ngModel)]="selectedInitMethod">
+            <select class="drop" [(ngModel)]="selectedInitMethod" (ngModelChange)="optionselected()">
               <option value="" ></option>
               <option value="option1">KMeans++</option>
             </select>

@@ -108,6 +108,10 @@ clusterKm:string;
      
     }
   }
+  optionselected(){
+    this.selectedClusterRange='12';
+    this.selectedIterations='1000';
+  }
 
   onSelectAlgorithm1(){
     if (this.selectedAlgorithm1 !== '') {

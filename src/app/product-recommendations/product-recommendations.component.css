@@ -98,3 +98,8 @@ font-weight: 400;
 margin-top:2%;
 margin-bottom:2%;
 }
+
+#chart {
+  max-width: 350px;
+  margin: 0px auto 101px auto;
+}

@@ -40,6 +40,32 @@
             <div class="d-flex flex-row p-2" style="height: 35%;">
                 <div style="width: 50%;"> 
                     <p style="color: #222; font-size: 16px; font-family: Outfit; font-style: normal; font-weight: 600;align-items: center;">Product Parameter</p>
+
+                    <!-- <div id="chart">
+                        <apx-chart
+                          [series]="chartOptions.series"
+                          [chart]="chartOptions.chart"
+                          [xaxis]="chartOptions.xaxis"
+                          [title]="chartOptions.title"
+                        ></apx-chart>
+                      </div> -->
+                      <div id="chart">
+                        <apx-chart
+                          [series]="chartOptions.series"
+                          [chart]="chartOptions.chart"
+                          [xaxis]="chartOptions.xaxis"
+                          [stroke]="chartOptions.stroke"
+                          [colors]="chartOptions.colors"
+                          [dataLabels]="chartOptions.dataLabels"
+                          [tooltip]="chartOptions.tooltip"
+                          [plotOptions]="chartOptions.plotOptions"
+                          [markers]="chartOptions.markers"
+                          [yaxis]="chartOptions.yaxis"
+                          [fill]="chartOptions.fill"
+                          [title]="chartOptions.title"
+                        ></apx-chart>
+                      </div>
+                      
                 </div>
                 <!-- divider -->
                 <div class="d-flex">

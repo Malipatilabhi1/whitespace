@@ -1,0 +1,88 @@
+.heading {
+    font-family: Outfit;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+  }
+
+.mat-mdc-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+
+.table-container{
+    height: 440px;
+    overflow: scroll;
+    border:1px solid lightgray;
+    border-radius: 5px;
+}
+  table {
+    width: 100%;
+    height: 100%;
+  }
+  
+  th{
+    color: black;
+    font-size: 13px; 
+    background-color: rgb(248,248,248);
+  }
+  td{
+    font-size: 13px; 
+  }
+  th td {
+    width: 25%;
+    padding: 10px;
+  }
+  td{
+    color: #6f6e6e;
+  }
+  *::-webkit-scrollbar {
+    width: 3px !important;
+  }
+  *::-webkit-scrollbar-track {
+    background: transparent !important;
+  }
+  *::-webkit-scrollbar-thumb {
+    background-color: #6599ff !important;
+    border-radius: 20px !important;
+   
+    border: 1px solid #6599FF !important;
+  }
+
+  
+.completed{
+  background-color: #d3f9d4;
+  display: flex;
+  color: var(--foundation-blue-blue-600, #3dbe34);
+  justify-content: center;
+  align-items: center;
+  padding: 2px 3px;
+  flex-shrink: 0;
+  border-radius: 50px;
+}
+.validating{
+  background-color:#f8eddd;
+  display: flex;
+  color: var(--foundation-blue-blue-600,#ed7f2cfe);
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 50px;
+  padding: 2px 3px;
+}
+
+/* CSS for the big dot */
+.completed::before {
+  content: "•"; /* Unicode bullet character */
+  color: #3dbe34;   /* Customize the color as needed */
+  font-size: 25px; /* Customize the size as needed */
+  margin-right: 8px; /* Adjust the spacing between the dot and the label */
+}
+
+/* CSS for the big dot */
+.validating::before {
+  content: "•"; /* Unicode bullet character */
+  color: #ed7f2cfe;   /* Customize the color as needed */
+  font-size: 25px; /* Customize the size as needed */
+  margin-right: 8px; /* Adjust the spacing between the dot and the label */
+}

@@ -40,8 +40,8 @@ import { TooltipCardComponent } from './tooltip-card/tooltip-card.component';
 import { ProductRecommendationsComponent } from './product-recommendations/product-recommendations.component';
 import { ImageCardSliderComponent } from './image-card-slider/image-card-slider.component';
 import { ProjectLibraryComponent } from './project-library/project-library.component';
-
-
+import {MatTableModule} from '@angular/material/table';
+import { MatPaginatorModule} from '@angular/material/paginator';
 @NgModule({
   declarations: [
     AppComponent,
@@ -89,7 +89,8 @@ import { ProjectLibraryComponent } from './project-library/project-library.compo
     MatTabsModule,
     Ng5SliderModule,
     MatSliderModule,
-    
+    MatTableModule,
+    MatPaginatorModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

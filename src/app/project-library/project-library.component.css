@@ -11,7 +11,7 @@
 }
 
 .table-container{
-    height: 440px;
+    height: calc(100vh - 170px);
     overflow: scroll;
     border:1px solid lightgray;
     border-radius: 5px;
@@ -85,4 +85,8 @@
   color: #ed7f2cfe;   /* Customize the color as needed */
   font-size: 25px; /* Customize the size as needed */
   margin-right: 8px; /* Adjust the spacing between the dot and the label */
+}
+
+li{
+  font-size: small;
 }

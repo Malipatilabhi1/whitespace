@@ -101,5 +101,60 @@ margin-bottom:2%;
 
 #chart {
   max-width: 350px;
-  margin: 0px auto 101px auto;
+  margin: 20px 0px 0px 0px;
+}
+.slider-container {
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  padding: 10%;
+}
+
+.custom-slider {
+  margin: 0 ;
+  width: 100%;
+  color: blue;
+
+}
+
+.value {
+  width: 100%;
+  display: flex;
+  justify-content:space-around;
+  margin: 10px 0px 0px 10px;
+}
+.value-display {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+  padding-left: 20px;
+  font-size: 12px;
+}
+
+.min-value, .max-value {
+  color:black;
+  font-weight: 500;
+  font-size: small;
+}
+
+.selected-value {
+  font-weight: bold;
+  color: #2196F3;
+}
+
+.custom-slider .mat-slider-track-fill {
+  background: #2196F3; /* Change color of the track fill */
+  height: 16px; /* Adjust the height to change the thickness */
+}
+
+.custom-slider .mat-slider-track-background {
+  height: 16px; /* Adjust the height to change the thickness */
+}
+
+.custom-slider .mat-slider-thumb {
+  height: 24px; /* Adjust the thumb size accordingly */
+  width: 24px; /* Adjust the thumb size accordingly */
+  margin-top: -4px; /* Adjust to center the thumb vertically with the track */
+  margin-left: -12px; /* Adjust to center the thumb horizontally with the track */
 }

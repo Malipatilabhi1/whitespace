@@ -16,7 +16,7 @@
                 </span>
             </div>
             <div>
-            <button  class="btn btn-primary btn-sm" style="border-radius: 3px;">
+            <button type="button"  data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="btn btn-primary btn-sm" style="border-radius: 3px;">
                 <i class="fa-solid fa-plus">
                     <svg xmlns="http://www.w3.org/2000/svg" style="margin-top:-4px;" fill="currentColor" height="1em" viewBox="0 0 448 512">
                      <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/></svg>
@@ -48,8 +48,8 @@
           <ng-container matColumnDef="createdBy">
             <th mat-header-cell *matHeaderCellDef> Created By </th>
             <td mat-cell *matCellDef="let row"><span>
-              
-              {{row.createdBy}}</span>  </td>
+              <img [src]="row.createdBy.img" width="20" height="20"/>
+              {{row.createdBy.name}}</span>  </td>
           </ng-container>
 
           <ng-container matColumnDef="createdOn">
@@ -78,12 +78,29 @@
                 </i>
              View
             </button>
-            <button type="button" class="btn btn-light btn-sm" style="background-color: white;border: none;">
+          <div class="btn-group dropstart">
+            <button type="button" class="btn btn-light btn-sm" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: white;border: none;">
               <i class="fa-solid fa-ellipsis-vertical">
                 <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 128 512">
                   <path d="M64 360a56 56 0 1 0 0 112 56 56 0 1 0 0-112zm0-160a56 56 0 1 0 0 112 56 56 0 1 0 0-112zM120 96A56 56 0 1 0 8 96a56 56 0 1 0 112 0z"/></svg>
               </i>
-          </button>
+            </button>
+            <div class="dropdown-menu" style="margin: 0%;padding: 0%;">
+              <ul class="list-group">
+                <li class="list-group-item"><i class="fa-regular fa-copy mx-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M384 336H192c-8.8 0-16-7.2-16-16V64c0-8.8 7.2-16 16-16l140.1 0L400 115.9V320c0 8.8-7.2 16-16 16zM192 384H384c35.3 0 64-28.7 64-64V115.9c0-12.7-5.1-24.9-14.1-33.9L366.1 14.1c-9-9-21.2-14.1-33.9-14.1H192c-35.3 0-64 28.7-64 64V320c0 35.3 28.7 64 64 64zM64 128c-35.3 0-64 28.7-64 64V448c0 35.3 28.7 64 64 64H256c35.3 0 64-28.7 64-64V416H272v32c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V192c0-8.8 7.2-16 16-16H96V128H64z"/></svg>
+                </i>Copy</li>
+                <li class="list-group-item"><i class="mx-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M4.32352 15.356C4.36816 15.356 4.41281 15.3516 4.45745 15.3449L8.21191 14.6864C8.25656 14.6775 8.29897 14.6574 8.33022 14.6239L17.7923 5.16183C17.813 5.14118 17.8294 5.11665 17.8406 5.08965C17.8518 5.06265 17.8575 5.0337 17.8575 5.00446C17.8575 4.97523 17.8518 4.94628 17.8406 4.91928C17.8294 4.89228 17.813 4.86775 17.7923 4.8471L14.0825 1.13504C14.04 1.09263 13.9842 1.07031 13.924 1.07031C13.8637 1.07031 13.8079 1.09263 13.7655 1.13504L4.30343 10.5971C4.26995 10.6306 4.24986 10.6708 4.24093 10.7154L3.58245 14.4699C3.56074 14.5894 3.56849 14.7125 3.60505 14.8284C3.64162 14.9443 3.70587 15.0496 3.79227 15.135C3.93959 15.2779 4.12486 15.356 4.32352 15.356ZM5.82799 11.4632L13.924 3.36942L15.5601 5.00558L7.46415 13.0993L5.47977 13.4498L5.82799 11.4632ZM18.2141 17.231H1.78557C1.39049 17.231 1.07129 17.5502 1.07129 17.9453V18.7489C1.07129 18.8471 1.15165 18.9275 1.24986 18.9275H18.7499C18.8481 18.9275 18.9284 18.8471 18.9284 18.7489V17.9453C18.9284 17.5502 18.6092 17.231 18.2141 17.231Z" fill="#666666"/>
+                  </svg>
+                </i>Edit</li>
+                <li class="list-group-item"><i class="fa-solid fa-trash mx-2">
+                  <svg xmlns="http://www.w3.org/2000/svg"  width="16" height="16" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"/></svg>
+                </i>Delete</li>
+              </ul>
+            </div>
+          </div>
             </td>
           </ng-container>
       
@@ -101,3 +118,29 @@
 </div>
 
 
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content" style="border-radius: 3px;">
+      <div class="modal-header border-0">
+        <h4 class="modal-title" style="font-weight:500;font-size: small;" id="staticBackdropLabel">+ Create New Project</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body border-0 d-flex flex-row" style="padding-top: 0%;">
+        <div class="m-1" style="width: 30%;">
+          <label for="exampleFormControlInput1" style="font-size: small;" class="form-label">Project ID</label>
+          <input type="email" style="border-radius:0;" class="form-control form-control-sm" id="exampleFormControlInput1" placeholder="Enter Project ID">
+        </div>
+        <div class="m-1" style="width: 70%;">
+          <label for="exampleFormControlInput1" style="font-size: small;" class="form-label">Project Name</label>
+          <input type="email" style="border-radius:0;" class="form-control form-control-sm" id="exampleFormControlInput1" placeholder="Enter Project Name">
+        </div>
+      </div>
+      <div class="modal-footer border-0">
+        <button type="button" style="background-color: white;color: black;border: 1px solid lightgray;" class="btn-sm px-3" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary btn-sm px-3">Create</button>
+      </div>
+    </div>
+  </div>
+</div>

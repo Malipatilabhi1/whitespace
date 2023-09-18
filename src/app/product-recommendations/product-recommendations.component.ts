@@ -38,6 +38,16 @@ export class ProductRecommendationsComponent implements OnInit {
   @ViewChild("chart") chart: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
 
+  minValue = 1;
+  maxValue = 50;
+  selectedValue = 21.99;
+  step = 1;
+  formatLabel(value: number) {
+    return `${value}%`;
+  }
+  
+  
+
   ngOnInit(): void {
     console.log(this.recProductService.RecProduct);
     

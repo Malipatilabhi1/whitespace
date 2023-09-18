@@ -8,7 +8,7 @@
     <!-- body -->
     <div class="d-flex flex-row p-2" >
         <!-- card 1 -->
-        <div class="card border-0 m-1" style="width: 31%;height:100%; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);border-radius: 20px;"> 
+        <div class="card border-0 m-1 " style="width: 31%;height:100%; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);border-radius: 20px;"> 
             <div class="d-flex flex-column  topDiv" style="width:100%;align-items: center;"> 
                 <img src="../../assets/images/girl1.jpg" class="p-1 rounded-pill m-2" style="border-radius: 50%;" height="100px" width="100px" alt="">
                  <p class="label">{{RecProduct.name}}</p>
@@ -27,18 +27,19 @@
                 </div>
              </div>
 
-             <div class="my-3 mx-4">
+             <div class="mb-5 my-3 mx-4">
                 <p  style="color: #222; font-size: 16px; font-family: Outfit; font-style: normal; font-weight: 600;align-items: center;">Emotional Need</p>
                 <div *ngFor="let value of RecProduct.functional_need" >
                     <p class="Text">{{value}}</p>
                 </div>
              </div>
+             
         </div>
         <!-- card 2 -->
-        <div class="card border-0 d-flex flex-column m-1 p-2" style="width: 69%; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);">
+        <div class="card border-0 d-flex flex-column mb-5 m-1 p-2" style="width: 69%;height: 100%; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);">
                 <!-- section1 -->
-            <div class="d-flex flex-row p-2" style="height: 35%;">
-                <div style="width: 50%;"> 
+            <div class="d-flex flex-row p-1 mb-2" >
+                <div class="mt-2" style="width: 50%;"> 
                     <p style="color: #222; font-size: 16px; font-family: Outfit; font-style: normal; font-weight: 600;align-items: center;">Product Parameter</p>
 
                     <!-- <div id="chart">
@@ -71,12 +72,35 @@
                 <div class="d-flex">
                     <div class="vr"></div>
                 </div>
-                <div style="width: 50%;">
+                <div class="m-2" style="width: 50%;">
                     <p style="color: #222; font-size: 16px; font-family: Outfit; font-style: normal; font-weight: 600;align-items: center;">Price Point</p> 
+                    <div class="slider-container">
+                        <mat-slider
+                          [min]="minValue"
+                          [max]="maxValue"
+                          [(ngModel)]="selectedValue"
+                          [step]="step"
+                          thumbLabel
+                          [displayWith]="formatLabel"
+                          class="custom-slider"
+                        ></mat-slider>
+                        <div class="value">
+                          <span class="min-value">${{ minValue }}</span>
+                          <span class="selected-value">${{ selectedValue }}</span>
+                          <span class="max-value">${{ maxValue }}</span>
+                        </div>
+                        <div class="value-display">
+                            <span>Value</span>
+                            <span>Premium</span>
+                        </div>
+                        <div class="value-display"><p>Recommended Price Point :</p><span class="selected-value">${{ selectedValue }}</span></div>
+                      </div>
+                      
+                      
                 </div>
             </div>
                 <!-- section2 -->
-            <div class="d-flex flex-column p-2" style="width: 100%;">
+            <div class="d-flex flex-column p-2" >
             
                 <div class="d-flex flex-row" style="width: 100%;justify-content: space-between;">
                     <p style="color: #222; font-size: 16px; font-family: Outfit; font-style: normal; font-weight: 600;align-items: center;">Generative AI Brand Images</p>

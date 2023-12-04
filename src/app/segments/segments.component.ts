@@ -470,7 +470,7 @@ delay(ms: number) {
 updateSegment(segmentNumber: number) {
   this.isLoading = true; // Display the loader
 
-  const apiUrl = 'http://3.111.229.37:5000/faq_hardcoded_ReGenerateSegment';
+  const apiUrl = 'http://35.207.211.225:5000/faq_hardcoded_ReGenerateSegment';
   const requestBody = { "seg_num": segmentNumber };
 
   this.http.post(apiUrl, requestBody).subscribe(
@@ -506,7 +506,7 @@ updateSegment(segmentNumber: number) {
 
   userMessage = '';
   messages: Message[] = [];
-  apiUrl = 'http://3.111.229.37:5000/faq_updateDetails';
+  apiUrl = 'http://35.207.211.225:5000/faq_updateDetails';
 
 
   sendMessage(): void {

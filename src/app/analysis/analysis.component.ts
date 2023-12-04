@@ -146,7 +146,7 @@ export class AnalysisComponent implements OnInit {
   data:any=[];
 getPersonas(){
   debugger
-  this.http.get('http://3.111.229.37:5000/get_personas').subscribe(res=>{
+  this.http.get('http://35.207.211.225:5000/get_personas').subscribe(res=>{
     console.log("res", res)
     this.data1= res;
      this.data = this.data1.personas;
